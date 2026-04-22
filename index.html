@@ -4,194 +4,1114 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Melina Rivera — Full Stack Developer</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <meta name="description" content="Desarrolladora Full Stack especializada en React, Node.js y Supabase. Construyo apps y webs reales: SaaS propios en producción, soluciones digitales para pymes y autónomos."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
+    /* ===== TOKENS ===== */
     :root {
-      --bg:#0D0D0F; --bg2:#13131A; --bg3:#1A1A24;
-      --border:rgba(255,255,255,0.07);
-      --terra:#5B8DB8; --terra-dim:rgba(91,141,184,0.15);
-      --gold:#B0B8C1; --white:#F0EDE8; --muted:rgba(240,237,232,0.45);
-      --accent:#8BB8D8;
+      --bg: #08080F;
+      --bg2: #0F0F1A;
+      --bg3: #16162A;
+      --bg4: #1C1C34;
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.14);
+
+      --blue: #5B8DB8;
+      --blue-dim: rgba(91,141,184,0.12);
+      --blue-glow: rgba(91,141,184,0.25);
+      --blue-light: #8BB8D8;
+      --blue-dark: #3A6A95;
+
+      --white: #F0EDE8;
+      --muted: rgba(240,237,232,0.45);
+      --muted2: rgba(240,237,232,0.25);
+
+      --grad-hero: radial-gradient(ellipse 70% 60% at 75% 35%, rgba(91,141,184,0.12) 0%, transparent 65%),
+                   radial-gradient(ellipse 50% 50% at 20% 85%, rgba(91,141,184,0.08) 0%, transparent 60%),
+                   radial-gradient(ellipse 30% 30% at 50% 50%, rgba(140,100,210,0.05) 0%, transparent 50%);
+
+      --radius: 1.2rem;
+      --radius-sm: 0.75rem;
+      --radius-xl: 1.8rem;
+
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
-    ::-webkit-scrollbar{width:5px} ::-webkit-scrollbar-track{background:var(--bg)} ::-webkit-scrollbar-thumb{background:var(--terra);border-radius:3px}
-    .lucide{width:1em;height:1em;stroke-width:1.75;vertical-align:-.125em;display:inline-block}
-    .lucide-hero{width:3.2rem;height:3.2rem;stroke-width:1.25}
-    #loader{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .7s,visibility .7s}
-    #loader.hidden{opacity:0;visibility:hidden}
-    .loader-name{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--terra);letter-spacing:.05em}
-    .loader-bar{width:180px;height:2px;background:rgba(255,255,255,.08);border-radius:2px;margin:.8rem auto 0;overflow:hidden}
-    .loader-progress{height:100%;background:var(--terra);border-radius:2px;animation:load 1s ease forwards}
-    @keyframes load{from{width:0}to{width:100%}}
-    .navbar{background:rgba(13,13,15,.92)!important;backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:.9rem 0;transition:box-shadow .3s}
-    .navbar.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.3)}
-    .navbar-brand{display:flex;align-items:center}
-    .navbar-brand img{height:38px;width:auto;object-fit:contain}
-    .nav-link{color:var(--muted)!important;font-size:.85rem;font-weight:500;letter-spacing:.04em;padding:.4rem 1rem!important;transition:color .2s}
-    .nav-link:hover,.nav-link.active{color:var(--white)!important}
-    .btn-hire{background:var(--terra);color:white!important;border-radius:2rem;padding:.4rem 1.3rem!important;font-size:.85rem!important;transition:background .2s,transform .2s!important}
-    .btn-hire:hover{background:#4A7FA5!important;transform:translateY(-1px)}
-    .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:7rem 0 4rem;position:relative}
-    .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 60% 50% at 80% 40%,rgba(91,141,184,.08) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(91,141,184,.06) 0%,transparent 60%);pointer-events:none}
-    .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);margin-bottom:1.5rem}
-    .hero-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--terra)}
-    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5vw,4.5rem);line-height:1.05;font-weight:700;margin-bottom:1rem}
-    .hero h1 .name{color:var(--terra);font-style:italic}
-    .hero-desc{font-size:1rem;line-height:1.8;color:var(--muted);font-weight:300;max-width:460px;margin-bottom:2.5rem}
-    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
-    .btn-main{background:var(--terra);color:white;border:none;border-radius:2rem;padding:.85rem 2rem;font-size:.9rem;font-weight:500;cursor:pointer;transition:background .2s,transform .2s;text-decoration:none;display:inline-block}
-    .btn-main:hover{background:#4A7FA5;transform:translateY(-2px);color:white}
-    .btn-outline{border:1px solid rgba(255,255,255,.15);color:var(--muted);border-radius:2rem;padding:.85rem 2rem;font-size:.9rem;font-weight:500;text-decoration:none;display:inline-block;transition:border-color .2s,color .2s}
-    .btn-outline:hover{border-color:rgba(255,255,255,.4);color:var(--white)}
-    .social-links{display:flex;gap:.7rem;margin-top:2rem}
-    .social-pill{display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:2rem;padding:.4rem 1rem;font-size:.78rem;color:var(--muted);text-decoration:none;transition:all .2s}
-    .social-pill:hover{background:var(--terra-dim);border-color:rgba(224,120,80,.3);color:var(--terra)}
-    .hero-visual{display:flex;justify-content:center;align-items:center;padding:3rem 4rem}
-    .avatar-wrap{position:relative;width:340px;height:340px}
-    .avatar-ring{position:absolute;inset:-12px;border-radius:50%;border:1px solid rgba(91,141,184,.2);animation:spin 20s linear infinite}
-    .avatar-ring::after{content:'';position:absolute;top:-4px;left:50%;width:8px;height:8px;background:var(--terra);border-radius:50%;transform:translateX(-50%)}
-    @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-    .avatar-circle{width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,var(--bg3),var(--bg2));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:7rem;position:relative;overflow:hidden}
-    .avatar-circle img{width:70%;height:85%;object-fit:contain;position:relative;z-index:1;filter:drop-shadow(0 0 24px rgba(91,141,184,.35))}
-    .avatar-circle::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(224,120,80,.08),transparent 60%)}
-    .float-card{position:absolute;background:var(--bg2);border:1px solid var(--border);border-radius:.8rem;padding:.7rem 1rem;font-size:.78rem;display:flex;align-items:center;gap:.6rem;box-shadow:0 8px 32px rgba(0,0,0,.3)}
-    .float-card-1{bottom:2rem;left:-3rem;animation:float1 4s ease-in-out infinite}
-    .float-card-2{top:2rem;right:-2rem;animation:float2 5s ease-in-out infinite}
-    @keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-    @keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
-    .float-dot{width:8px;height:8px;border-radius:50%;background:var(--terra);flex-shrink:0;animation:blink 2s ease-in-out infinite}
-    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-    .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:1rem;overflow:hidden;margin-top:2.5rem}
-    .stat-box{background:var(--bg2);padding:1.5rem;text-align:center}
-    .stat-n{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--terra);display:block}
-    .stat-l{font-size:.72rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:.2rem}
-    section{padding:5rem 0}
-    .section-chip{display:inline-flex;align-items:center;gap:.4rem;background:var(--terra-dim);border:1px solid rgba(224,120,80,.2);border-radius:2rem;padding:.3rem .9rem;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);margin-bottom:1rem}
-    .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);color:var(--white);line-height:1.2}
-    .section-title em{font-style:italic;color:var(--terra)}
-    .sobre-bg{background:var(--bg2);border-radius:1.5rem;padding:3rem;border:1px solid var(--border)}
-    .skill-tag{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:.6rem;padding:.45rem .9rem;font-size:.82rem;color:var(--muted);transition:all .2s}
-    .skill-tag:hover{background:var(--terra-dim);border-color:rgba(224,120,80,.3);color:var(--white)}
-    .project-card{background:var(--bg2);border:1px solid var(--border);border-radius:1.2rem;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s;height:100%}
-    .project-card:hover{transform:translateY(-6px);border-color:rgba(224,120,80,.25);box-shadow:0 16px 48px rgba(0,0,0,.3)}
-    .project-thumb{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-    .pt1{background:linear-gradient(135deg,#1A120A,#2A1A0E)}
-    .pt2{background:linear-gradient(135deg,#0A1015,#0E1A25)}
-    .project-thumb-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,15,.8) 0%,transparent 60%);pointer-events:none}
-    .project-badge{position:absolute;top:.8rem;left:.8rem;background:rgba(13,13,15,.7);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:2rem;padding:.25rem .7rem;font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-    .project-featured{border-color:rgba(91,141,184,.3)!important}
-    .project-info{padding:1.5rem}
-    .project-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--white);margin-bottom:.5rem}
-    .project-desc{font-size:.82rem;line-height:1.6;color:var(--muted);margin-bottom:1.2rem}
-    .project-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.2rem}
-    .project-tag{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:.4rem;padding:.2rem .6rem;font-size:.7rem;color:var(--muted)}
-    .project-links{display:flex;gap:.8rem}
-    .project-link{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;font-weight:500;text-decoration:none;color:var(--terra);transition:color .2s}
-    .project-link:hover{color:#7EADC8}
-    .project-link.secondary{color:var(--muted)}
-    .project-link.secondary:hover{color:var(--white)}
-    .project-logo{width:100px;height:100px;object-fit:contain;border-radius:1rem;filter:drop-shadow(0 4px 24px rgba(0,0,0,.5))}
-    .project-logo-sm{width:64px;height:64px;object-fit:contain;border-radius:.75rem}
-    .cotidiana-wrap{background:white;border-radius:1rem;padding:.6rem;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.4)}
-    .service-card{background:var(--bg2);border:1px solid var(--border);border-radius:1.2rem;padding:2rem;transition:border-color .3s,transform .3s;height:100%}
-    .service-card:hover{border-color:rgba(224,120,80,.25);transform:translateY(-4px)}
-    .service-icon{display:flex;align-items:center;justify-content:center;width:2.8rem;height:2.8rem;background:var(--terra-dim);border:1px solid rgba(224,120,80,.2);border-radius:.75rem;margin-bottom:1rem;color:var(--terra)}
-    .service-name{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--white);margin-bottom:.6rem}
-    .service-desc{font-size:.82rem;line-height:1.7;color:var(--muted)}
-    .service-price{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--terra);margin-top:1rem;display:block}
-    .contact-bg{background:var(--bg2);border:1px solid var(--border);border-radius:1.5rem;padding:3rem}
-    .contact-input{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:.8rem;padding:.85rem 1.1rem;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s}
-    .contact-input:focus{border-color:rgba(224,120,80,.4)}
-    .contact-input::placeholder{color:var(--muted)}
-    textarea.contact-input{resize:vertical;min-height:120px}
-    .contact-label{font-size:.78rem;font-weight:500;letter-spacing:.04em;color:var(--muted);margin-bottom:.4rem;display:block}
-    footer{background:var(--bg);border-top:1px solid var(--border);padding:2rem 0}
-    .footer-text{font-size:.82rem;color:var(--muted)}
-    #backToTop{position:fixed;bottom:2rem;right:2rem;background:var(--terra);color:white;border:none;border-radius:50%;width:42px;height:42px;cursor:pointer;z-index:500;opacity:0;transform:scale(0);transition:opacity .3s,transform .3s;display:flex;align-items:center;justify-content:center}
-    #backToTop.visible{opacity:1;transform:scale(1)}
-    #toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(120%);background:var(--bg2);border:1px solid var(--border);color:var(--white);border-radius:2rem;padding:.7rem 1.5rem;font-size:.85rem;z-index:9000;transition:transform .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,.3)}
-    #toast.show{transform:translateX(-50%) translateY(0)}
-    .fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
-    .fade-in.visible{opacity:1;transform:translateY(0)}
-    .fd1{transition-delay:.1s} .fd2{transition-delay:.2s} .fd3{transition-delay:.3s}
-    .navbar-toggler{border:none} .navbar-toggler:focus{box-shadow:none}
-    @media(max-width:992px){
-      .hero{grid-template-columns:1fr;padding-top:6rem;text-align:center;gap:3rem}
-      .hero-desc{margin:0 auto 2.5rem}
-      .hero-actions{justify-content:center}
-      .social-links{justify-content:center}
-      .hero-visual{order:-1}
-      .avatar-wrap{width:220px;height:220px}
-      .float-card-1{left:0;bottom:-1rem}
-      .float-card-2{right:0;top:-1rem}
-      .stats-row{grid-template-columns:1fr}
-      .stat-box+.stat-box{border-top:1px solid var(--border)}
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
     }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 4px; }
+
+    /* ===== CURSOR GLOW ===== */
+    #cursor-glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(91,141,184,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s;
+    }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-inner { text-align: center; }
+    .loader-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      color: var(--blue);
+      letter-spacing: 0.06em;
+      opacity: 0;
+      animation: fadeUp 0.5s ease 0.2s forwards;
+    }
+    .loader-subtitle {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+      opacity: 0;
+      animation: fadeUp 0.5s ease 0.4s forwards;
+    }
+    .loader-bar {
+      width: 160px; height: 1px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 1px;
+      margin: 1.2rem auto 0;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeUp 0.5s ease 0.5s forwards;
+    }
+    .loader-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue-dark), var(--blue-light));
+      animation: load 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    }
+    @keyframes load { from { width: 0 } to { width: 100% } }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== NOISE TEXTURE OVERLAY ===== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.4;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: var(--transition);
+    }
+    .navbar.scrolled {
+      background: rgba(8,8,15,0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      padding: 0.65rem 0;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; text-decoration: none;
+    }
+    .nav-logo img { height: 36px; width: auto; object-fit: contain; }
+    .nav-links {
+      display: flex; align-items: center; gap: 0.25rem;
+      list-style: none;
+    }
+    .nav-links li a {
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      padding: 0.4rem 0.9rem;
+      border-radius: 2rem;
+      transition: var(--transition);
+      position: relative;
+    }
+    .nav-links li a:hover,
+    .nav-links li a.active { color: var(--white); }
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; right: 50%;
+      height: 1px;
+      background: var(--blue);
+      transition: var(--transition);
+    }
+    .nav-links li a.active::after { left: 0.9rem; right: 0.9rem; }
+    .btn-nav-hire {
+      background: var(--blue) !important;
+      color: white !important;
+      border-radius: 2rem !important;
+      box-shadow: 0 0 20px rgba(91,141,184,0.25);
+    }
+    .btn-nav-hire:hover {
+      background: var(--blue-dark) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 24px rgba(91,141,184,0.4) !important;
+    }
+    .btn-nav-hire::after { display: none !important; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 0.5rem;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--muted);
+      border-radius: 1px;
+      transition: var(--transition);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ===== MOBILE MENU ===== */
+    .mobile-menu {
+      display: none;
+      position: fixed; inset: 0; top: 70px;
+      background: rgba(8,8,15,0.97);
+      backdrop-filter: blur(24px);
+      z-index: 999;
+      padding: 2rem;
+      flex-direction: column;
+      gap: 0.5rem;
+      opacity: 0;
+      transform: translateY(-12px);
+      transition: var(--transition);
+    }
+    .mobile-menu.open {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .mobile-menu a {
+      color: var(--muted);
+      font-size: 1.1rem;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius-sm);
+      border-bottom: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--white); background: var(--blue-dim); }
+    .mobile-menu .mobile-hire {
+      background: var(--blue);
+      color: white !important;
+      text-align: center;
+      margin-top: 1rem;
+      border: none;
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 0 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: var(--grad-hero);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(91,141,184,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91,141,184,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow-line {
+      display: block; width: 28px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue));
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.8rem);
+      line-height: 1.04;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .hero h1 .name {
+      color: var(--blue);
+      font-style: italic;
+      position: relative;
+    }
+    .hero h1 .name::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--blue), transparent);
+    }
+    .typewriter-wrap {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 1rem; color: var(--blue-light);
+      font-weight: 500; margin-bottom: 1.4rem;
+      min-height: 1.6rem;
+    }
+    .typewriter-cursor {
+      display: inline-block; width: 2px; height: 1.1em;
+      background: var(--blue); vertical-align: middle;
+      animation: cursorBlink 1s ease infinite;
+    }
+    @keyframes cursorBlink { 0%,100% { opacity: 1 } 50% { opacity: 0 } }
+    .hero-desc {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 460px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-desc strong { color: var(--white); font-weight: 500; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-bottom: 2rem; }
+    .btn-main {
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: white; border: none;
+      border-radius: 2rem; padding: 0.85rem 2rem;
+      font-size: 0.9rem; font-weight: 500;
+      cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      transition: var(--transition-bounce);
+      box-shadow: 0 4px 24px rgba(91,141,184,0.3);
+      position: relative; overflow: hidden;
+    }
+    .btn-main::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .btn-main:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(91,141,184,0.45); color: white; }
+    .btn-main:hover::before { opacity: 1; }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--muted); border-radius: 2rem;
+      padding: 0.85rem 2rem; font-size: 0.9rem; font-weight: 500;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;
+      transition: var(--transition);
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.35); color: var(--white); }
+    .social-links { display: flex; gap: 0.7rem; }
+    .social-pill {
+      display: flex; align-items: center; gap: 0.4rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 2rem; padding: 0.4rem 1rem;
+      font-size: 0.78rem; color: var(--muted);
+      text-decoration: none; transition: var(--transition);
+    }
+    .social-pill:hover {
+      background: var(--blue-dim);
+      border-color: rgba(91,141,184,0.3);
+      color: var(--blue-light);
+      transform: translateY(-1px);
+    }
+    .stats-row {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      margin-top: 2.5rem;
+    }
+    .stat-box {
+      background: var(--bg2); padding: 1.4rem;
+      text-align: center; transition: var(--transition);
+    }
+    .stat-box:hover { background: var(--bg3); }
+    .stat-n {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem; color: var(--blue);
+      display: block; line-height: 1;
+    }
+    .stat-l {
+      font-size: 0.7rem; color: var(--muted);
+      letter-spacing: 0.07em; text-transform: uppercase;
+      margin-top: 0.3rem; display: block;
+    }
+
+    /* ===== HERO VISUAL ===== */
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+      position: relative; z-index: 2;
+    }
+    .avatar-wrap { position: relative; width: 360px; height: 360px; }
+    .avatar-ring {
+      position: absolute; inset: -16px;
+      border-radius: 50%;
+      border: 1px solid rgba(91,141,184,0.15);
+      animation: spin 24s linear infinite;
+    }
+    .avatar-ring::before {
+      content: '';
+      position: absolute; top: -3px; left: 50%;
+      width: 6px; height: 6px;
+      background: var(--blue);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px var(--blue);
+    }
+    .avatar-ring-2 {
+      position: absolute; inset: -36px;
+      border-radius: 50%;
+      border: 1px dashed rgba(91,141,184,0.07);
+      animation: spin 40s linear infinite reverse;
+    }
+    @keyframes spin { from { transform: rotate(0deg) } to { transform: rotate(360deg) } }
+    .avatar-circle {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--bg3), var(--bg2));
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .avatar-circle::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 35% 30%, rgba(91,141,184,0.1), transparent 60%);
+    }
+    .avatar-circle img {
+      width: 70%; height: 85%;
+      object-fit: contain; position: relative; z-index: 1;
+      filter: drop-shadow(0 0 28px rgba(91,141,184,0.4));
+    }
+    .float-card {
+      position: absolute;
+      background: rgba(15,15,26,0.85);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(91,141,184,0.2);
+      border-radius: 0.8rem; padding: 0.7rem 1.1rem;
+      font-size: 0.78rem;
+      display: flex; align-items: center; gap: 0.6rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04);
+    }
+    .float-card-1 { bottom: 1.5rem; left: -3.5rem; animation: float1 4s ease-in-out infinite; }
+    .float-card-2 { top: 1.5rem; right: -2.5rem; animation: float2 5s ease-in-out infinite; }
+    @keyframes float1 { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+    @keyframes float2 { 0%,100% { transform: translateY(0) } 50% { transform: translateY(8px) } }
+    .float-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #4CAF82; flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(76,175,130,0.6);
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100% { opacity:1 } 50% { opacity:.3 } }
+
+    /* ===== SECTION BASE ===== */
+    section { padding: 6rem 0; position: relative; }
+    .section-chip {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--blue-dim);
+      border: 1px solid rgba(91,141,184,0.2);
+      border-radius: 2rem; padding: 0.3rem 0.9rem;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      line-height: 1.15;
+    }
+    .section-title em { font-style: italic; color: var(--blue); }
+
+    /* ===== FADE ANIMATIONS ===== */
+    .fade-in {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fd1 { transition-delay: 0.1s; }
+    .fd2 { transition-delay: 0.2s; }
+    .fd3 { transition-delay: 0.3s; }
+    .fd4 { transition-delay: 0.4s; }
+
+    /* ===== SOBRE MÍ ===== */
+    .sobre-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .sobre-card::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(91,141,184,0.06), transparent 60%);
+      pointer-events: none;
+    }
+    .skill-category-label {
+      font-size: 0.72rem; color: var(--muted);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 0.8rem; display: block;
+    }
+    .skill-tag {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.82rem; color: var(--muted);
+      transition: var(--transition);
+      cursor: default;
+    }
+    .skill-tag:hover {
+      background: var(--blue-dim);
+      border-color: rgba(91,141,184,0.3);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ===== PROCESS SECTION ===== */
+    #proceso { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 2rem; left: 2rem; right: 2rem; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), var(--blue-dim), var(--border), transparent);
+      z-index: 0;
+    }
+    .process-step {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative; z-index: 1;
+      transition: var(--transition);
+    }
+    .process-step:hover {
+      border-color: rgba(91,141,184,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    .process-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; font-style: italic;
+      color: rgba(91,141,184,0.2);
+      line-height: 1; margin-bottom: 1rem;
+    }
+    .process-icon {
+      width: 2.8rem; height: 2.8rem;
+      background: var(--blue-dim);
+      border: 1px solid rgba(91,141,184,0.2);
+      border-radius: 0.75rem;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue); margin: 0 auto 1rem;
+    }
+    .process-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .process-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+    /* ===== PROJECTS ===== */
+    #proyectos { background: var(--bg); }
+    .project-filters {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+      margin-bottom: 2.5rem; justify-content: center;
+    }
+    .filter-btn {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 2rem; padding: 0.35rem 1rem;
+      font-size: 0.78rem; font-weight: 500;
+      color: var(--muted); cursor: pointer;
+      transition: var(--transition);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--blue-dim);
+      border-color: rgba(91,141,184,0.35);
+      color: var(--blue-light);
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .project-featured-row {
+      grid-column: 1 / -1;
+    }
+    .project-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      height: 100%;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover {
+      border-color: rgba(91,141,184,0.25);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(91,141,184,0.08);
+    }
+    .project-card.featured {
+      flex-direction: row;
+      border-color: rgba(91,141,184,0.3);
+    }
+    .project-thumb {
+      aspect-ratio: 16/9;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      flex-shrink: 0;
+    }
+    .project-card.featured .project-thumb {
+      aspect-ratio: auto;
+      width: 42%;
+      min-height: 260px;
+    }
+    .project-thumb-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,8,15,0.85) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .project-badge {
+      position: absolute; top: 0.8rem; left: 0.8rem;
+      background: rgba(8,8,15,0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 2rem; padding: 0.25rem 0.7rem;
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .project-status {
+      position: absolute; bottom: 0.8rem; right: 0.8rem;
+      border-radius: 2rem; padding: 0.2rem 0.65rem;
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+    .status-prod {
+      background: rgba(76,175,130,0.15);
+      border: 1px solid rgba(76,175,130,0.3);
+      color: #4CAF82;
+    }
+    .status-val {
+      background: rgba(91,141,184,0.15);
+      border: 1px solid rgba(91,141,184,0.3);
+      color: var(--blue-light);
+    }
+    .status-dev {
+      background: rgba(176,184,193,0.1);
+      border: 1px solid rgba(176,184,193,0.2);
+      color: #B0B8C1;
+    }
+    .project-info { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .project-card.featured .project-info { padding: 2.2rem; }
+    .project-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+    .project-card.featured .project-name { font-size: 1.6rem; }
+    .project-tagline {
+      font-size: 0.8rem; color: var(--blue);
+      font-style: italic; margin-bottom: 1rem;
+      letter-spacing: 0.02em;
+    }
+    .project-desc {
+      font-size: 0.83rem; line-height: 1.65;
+      color: var(--muted); margin-bottom: 1.2rem;
+      flex: 1;
+    }
+    .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+    .project-tag {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 0.35rem;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.7rem; color: var(--muted);
+    }
+    .project-links { display: flex; gap: 1rem; margin-top: auto; }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-size: 0.8rem; font-weight: 500;
+      text-decoration: none; color: var(--blue-light);
+      transition: var(--transition);
+    }
+    .project-link:hover { color: var(--white); gap: 0.5rem; }
+    .project-link.secondary { color: var(--muted); }
+    .project-link.secondary:hover { color: var(--white); }
+    .project-badge-featured {
+      position: absolute; top: 0.8rem; left: 0.8rem;
+      background: var(--blue);
+      color: white;
+      border-radius: 2rem; padding: 0.25rem 0.75rem;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.3rem;
+    }
+    .cotidiana-wrap {
+      background: white; border-radius: 0.9rem;
+      padding: 0.5rem; display: inline-flex;
+      align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    /* ===== SERVICES ===== */
+    #servicios { background: var(--bg2); border-top: 1px solid var(--border); }
+    .service-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: var(--transition);
+      height: 100%;
+      display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .service-card:hover {
+      border-color: rgba(91,141,184,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+    }
+    .service-card:hover::before { opacity: 1; }
+    .service-card.popular {
+      border-color: rgba(91,141,184,0.35);
+      background: linear-gradient(160deg, var(--bg2), var(--bg));
+    }
+    .service-card.popular::before { opacity: 0.6; }
+    .service-popular-badge {
+      position: absolute; top: -13px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--blue);
+      color: white; border-radius: 2rem;
+      padding: 0.2rem 0.9rem;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      white-space: nowrap;
+      display: flex; align-items: center; gap: 0.3rem;
+      box-shadow: 0 4px 16px rgba(91,141,184,0.4);
+    }
+    .service-icon {
+      width: 2.8rem; height: 2.8rem;
+      background: var(--blue-dim);
+      border: 1px solid rgba(91,141,184,0.2);
+      border-radius: 0.75rem;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue); margin-bottom: 1rem;
+    }
+    .service-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+    .service-ideal {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.8rem;
+    }
+    .service-desc {
+      font-size: 0.83rem; line-height: 1.7;
+      color: var(--muted); margin-bottom: 1rem;
+    }
+    .service-list {
+      list-style: none; padding: 0;
+      display: flex; flex-direction: column; gap: 0.5rem;
+      flex: 1;
+    }
+    .service-list li {
+      font-size: 0.8rem; color: var(--muted);
+      display: flex; align-items: flex-start; gap: 0.5rem;
+    }
+    .service-check { color: var(--blue); flex-shrink: 0; font-size: 0.9em; }
+    .service-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; color: var(--blue);
+      margin-bottom: 1rem; display: block;
+    }
+    .service-divider {
+      height: 1px; background: var(--border);
+      margin: 1.5rem 0;
+    }
+    .service-card.popular .service-divider { background: rgba(91,141,184,0.2); }
+
+    /* ===== CONTACT ===== */
+    #contacto { background: var(--bg); border-top: 1px solid var(--border); }
+    .contact-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      position: relative; overflow: hidden;
+    }
+    .contact-card::before {
+      content: '';
+      position: absolute; top: -100px; right: -100px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(91,141,184,0.05), transparent 60%);
+      pointer-events: none;
+    }
+    .contact-label {
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.04em; color: var(--muted);
+      margin-bottom: 0.4rem; display: block;
+    }
+    .contact-input {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1.1rem;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; outline: none;
+      transition: var(--transition);
+    }
+    .contact-input:focus {
+      border-color: rgba(91,141,184,0.4);
+      background: rgba(91,141,184,0.04);
+      box-shadow: 0 0 0 3px rgba(91,141,184,0.08);
+    }
+    .contact-input::placeholder { color: var(--muted2); }
+    textarea.contact-input { resize: vertical; min-height: 120px; }
+    select.contact-input { cursor: pointer; }
+    select.contact-input option { background: var(--bg2); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 0;
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .footer-logo img { height: 30px; opacity: 0.6; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      font-size: 0.82rem; color: var(--muted);
+      text-decoration: none; transition: var(--transition);
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-social { display: flex; gap: 0.8rem; }
+    .footer-social a {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); transition: var(--transition);
+    }
+    .footer-social a:hover {
+      background: var(--blue-dim);
+      border-color: rgba(91,141,184,0.3);
+      color: var(--blue-light);
+      transform: translateY(-2px);
+    }
+    .footer-copy { font-size: 0.8rem; color: var(--muted2); }
+    .footer-heart { color: var(--blue); }
+
+    /* ===== BACK TO TOP ===== */
+    #backToTop {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: var(--blue); color: white;
+      border: none; border-radius: 50%;
+      width: 44px; height: 44px;
+      cursor: pointer; z-index: 500;
+      opacity: 0; transform: scale(0) translateY(10px);
+      transition: var(--transition-bounce);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(91,141,184,0.4);
+    }
+    #backToTop.visible { opacity: 1; transform: scale(1) translateY(0); }
+    #backToTop:hover { transform: scale(1.1) translateY(-2px); }
+
+    /* ===== TOAST ===== */
+    #toast {
+      position: fixed; bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      background: var(--bg3);
+      border: 1px solid rgba(91,141,184,0.3);
+      color: var(--white);
+      border-radius: 2rem; padding: 0.75rem 1.5rem;
+      font-size: 0.85rem; z-index: 9000;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      white-space: nowrap;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    #toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ===== GRID ROW UTILITY ===== */
+    .row { display: flex; flex-wrap: wrap; margin: 0 -0.75rem; }
+    .col { padding: 0 0.75rem; }
+    .col-12 { flex: 0 0 100%; max-width: 100%; }
+    .col-md-6 { flex: 0 0 50%; max-width: 50%; }
+    .col-lg-3 { flex: 0 0 25%; max-width: 25%; }
+    .col-lg-5 { flex: 0 0 41.667%; max-width: 41.667%; }
+    .col-lg-6 { flex: 0 0 50%; max-width: 50%; }
+    .col-lg-7 { flex: 0 0 58.333%; max-width: 58.333%; }
+    .col-lg-8 { flex: 0 0 66.667%; max-width: 66.667%; }
+    .col-offset-lg-1 { margin-left: 8.333%; }
+    .g-3 > .col, .g-3 > [class*=col] { padding: 0.75rem; }
+    .g-4 > .col, .g-4 > [class*=col] { padding: 1rem; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .text-center { text-align: center; }
+    .mb-3 { margin-bottom: 1rem; }
+    .mb-4 { margin-bottom: 1.5rem; }
+    .mb-5 { margin-bottom: 3rem; }
+    .mt-3 { margin-top: 1rem; }
+    .d-flex { display: flex; }
+    .flex-wrap { flex-wrap: wrap; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 1rem; }
+    .align-items-center { align-items: center; }
+    .justify-content-center { justify-content: center; }
+    .w-100 { width: 100%; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-card.featured { flex-direction: column; }
+      .project-card.featured .project-thumb { width: 100%; min-height: 220px; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .process-steps::before { display: none; }
+      .col-lg-3 { flex: 0 0 50%; max-width: 50%; }
+      .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8 { flex: 0 0 100%; max-width: 100%; }
+      .col-offset-lg-1 { margin-left: 0; }
+    }
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; padding-top: 6rem; text-align: center; gap: 3rem; }
+      .hero-desc { margin: 0 auto 2.5rem; }
+      .hero-actions { justify-content: center; }
+      .social-links { justify-content: center; }
+      .stats-row { grid-template-columns: repeat(3,1fr); }
+      .hero-visual { order: -1; }
+      .avatar-wrap { width: 240px; height: 240px; }
+      .float-card-1 { left: 0; }
+      .float-card-2 { right: 0; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .col-md-6 { flex: 0 0 100%; max-width: 100%; }
+      .col-lg-3 { flex: 0 0 100%; max-width: 100%; }
+      .hamburger { display: flex; }
+      .nav-links { display: none; }
+      .contact-card { padding: 2rem; }
+    }
+    @media (max-width: 480px) {
+      .avatar-wrap { width: 200px; height: 200px; }
+      .stats-row { grid-template-columns: 1fr; }
+      .stat-box + .stat-box { border-top: 1px solid var(--border); }
+      .hero h1 { font-size: 2.4rem; }
+      .float-card { display: none; }
+    }
+
+    /* ===== LUCIDE ICONS ===== */
+    .lucide { width: 1em; height: 1em; stroke-width: 1.75; vertical-align: -0.125em; display: inline-block; }
+    .lucide-hero { width: 3rem; height: 3rem; stroke-width: 1.25; }
   </style>
 </head>
 <body>
 
+  <!-- Cursor glow -->
+  <div id="cursor-glow"></div>
+
+  <!-- Loader -->
   <div id="loader">
-    <div style="text-align:center">
+    <div class="loader-inner">
       <div class="loader-name">Melina Rivera</div>
+      <div class="loader-subtitle">Full Stack Developer</div>
       <div class="loader-bar"><div class="loader-progress"></div></div>
     </div>
   </div>
 
-  <button id="backToTop"><i data-lucide="arrow-up" class="lucide"></i></button>
-  <div id="toast">✓ Mensaje enviado</div>
+  <!-- Back to top -->
+  <button id="backToTop" aria-label="Volver arriba">
+    <i data-lucide="arrow-up" class="lucide"></i>
+  </button>
 
-  <nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#"><img src="img/MR_logo.png" alt="MR"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-        <i data-lucide="menu" class="lucide" style="color:var(--muted);font-size:1.4rem;width:1.4rem;height:1.4rem"></i>
+  <!-- Toast -->
+  <div id="toast">
+    <i data-lucide="check-circle" class="lucide" style="color:var(--blue)"></i>
+    Mensaje enviado correctamente
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#" aria-label="Inicio">
+        <img src="img/MR_logo.png" alt="MR — Melina Rivera"/>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#sobre" id="nl-sobre">Sobre mí</a></li>
+        <li><a href="#proceso" id="nl-proceso">Proceso</a></li>
+        <li><a href="#proyectos" id="nl-proyectos">Proyectos</a></li>
+        <li><a href="#servicios" id="nl-servicios">Servicios</a></li>
+        <li><a href="#contacto" class="btn-nav-hire" id="nl-contacto">Contacto</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
       </button>
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-          <li class="nav-item"><a class="nav-link" href="#sobre">Sobre mí</a></li>
-          <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
-          <li class="nav-item ms-lg-2"><a class="nav-link btn-hire" href="#contacto">Contacto</a></li>
-        </ul>
-      </div>
     </div>
   </nav>
 
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#sobre" class="mobile-link">Sobre mí</a>
+    <a href="#proceso" class="mobile-link">Proceso</a>
+    <a href="#proyectos" class="mobile-link">Proyectos</a>
+    <a href="#servicios" class="mobile-link">Servicios</a>
+    <a href="#contacto" class="mobile-link mobile-hire">Contacto →</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
   <div class="container">
-    <section class="hero">
-      <div>
-        <div class="hero-eyebrow">Full Stack Developer</div>
+    <section class="hero" id="inicio">
+      <div class="hero-bg"></div>
+      <div class="hero-grid"></div>
+
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-line"></span>
+          Full Stack Developer
+        </div>
         <h1>Hola, soy<br><span class="name">Melina Rivera</span></h1>
-        <p class="hero-desc">Construyo <strong style="color:var(--white);font-weight:500">apps y webs reales</strong> — con React, Node.js y Supabase. Desde SaaS propios en producción hasta presencia digital para pymes y autónomos.</p>
+        <div class="typewriter-wrap">
+          <span id="typewriter"></span><span class="typewriter-cursor"></span>
+        </div>
+        <p class="hero-desc">
+          Construyo <strong>apps y webs reales</strong> — con React, Node.js y Supabase.
+          Desde SaaS propios en producción hasta presencia digital para pymes y autónomos.
+        </p>
         <div class="hero-actions">
-          <a href="#proyectos" class="btn-main">Ver mis proyectos</a>
-          <a href="#contacto" class="btn-outline">Hablemos →</a>
+          <a href="#proyectos" class="btn-main">
+            <i data-lucide="layout-grid" class="lucide"></i> Ver mis proyectos
+          </a>
+          <a href="#contacto" class="btn-outline">
+            Hablemos <i data-lucide="arrow-right" class="lucide"></i>
+          </a>
         </div>
         <div class="social-links">
-          <a href="https://github.com/melinarivera" class="social-pill" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> GitHub</a>
-          <a href="https://www.linkedin.com/in/deliamelinarivera" class="social-pill" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+          <a href="https://github.com/melinarivera" class="social-pill" target="_blank" rel="noopener">
+            <svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/deliamelinarivera" class="social-pill" target="_blank" rel="noopener">
+            <svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
         </div>
         <div class="stats-row fade-in">
-          <div class="stat-box"><span class="stat-n">10+</span><span class="stat-l">Proyectos</span></div>
-          <div class="stat-box"><span class="stat-n">3</span><span class="stat-l">Apps en producción</span></div>
-          <div class="stat-box"><span class="stat-n">100%</span><span class="stat-l">Compromiso</span></div>
+          <div class="stat-box">
+            <span class="stat-n" data-target="10">0</span>
+            <span class="stat-l">Proyectos</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-n" data-target="3">0</span>
+            <span class="stat-l">Apps en producción</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-n" data-target="100" data-suffix="%">0%</span>
+            <span class="stat-l">Compromiso</span>
+          </div>
         </div>
       </div>
+
       <div class="hero-visual">
         <div class="avatar-wrap">
+          <div class="avatar-ring-2"></div>
           <div class="avatar-ring"></div>
-          <div class="avatar-circle"><img src="img/MR_logo.png" alt=""></div>
+          <div class="avatar-circle">
+            <img src="img/MR_logo.png" alt="Melina Rivera"/>
+          </div>
           <div class="float-card float-card-1">
             <div class="float-dot"></div>
-            <span style="color:var(--white)">Disponible para proyectos</span>
+            <span style="color:var(--white);font-weight:500">Disponible para proyectos</span>
           </div>
           <div class="float-card float-card-2">
-            <i data-lucide="rocket" class="lucide" style="color:var(--terra);width:1rem;height:1rem"></i>
+            <i data-lucide="rocket" class="lucide" style="color:var(--blue);width:1rem;height:1rem"></i>
             <span style="color:var(--white)">Apps en producción</span>
           </div>
         </div>
@@ -199,20 +1119,40 @@
     </section>
   </div>
 
+  <!-- ===== SOBRE MÍ ===== -->
   <section id="sobre">
     <div class="container">
-      <div class="row align-items-center g-5">
-        <div class="col-lg-5 fade-in">
+      <div class="row align-items-center" style="gap: 0">
+        <div class="col col-lg-5 fade-in" style="padding: 0 1.5rem 0 0.75rem">
           <div class="section-chip"><i data-lucide="user" class="lucide"></i> Sobre mí</div>
           <h2 class="section-title mb-4">Desarrollo web con <em>propósito</em></h2>
-          <p style="color:var(--muted);line-height:1.8;font-size:.95rem" class="mb-3">Soy Melina Rivera, desarrolladora full stack con apps propias en producción y validación. Me especializo en <strong style="color:var(--white)">construir productos digitales reales</strong> — desde la idea hasta el deploy.</p>
-          <p style="color:var(--muted);line-height:1.8;font-size:.95rem" class="mb-4">Trabajo con React, Node.js y Supabase para construir SaaS, herramientas de RRHH y apps cotidianas. También ayudo a pymes y autónomos a tener presencia digital que genere resultados.</p>
-          <a href="#contacto" class="btn-main">Trabajemos juntos</a>
+          <p style="color:var(--muted);line-height:1.85;font-size:.95rem" class="mb-3">
+            Soy Melina Rivera, desarrolladora full stack con apps propias en producción y validación.
+            Me especializo en <strong style="color:var(--white)">construir productos digitales reales</strong> — desde la idea hasta el deploy.
+          </p>
+          <p style="color:var(--muted);line-height:1.85;font-size:.95rem" class="mb-4">
+            Trabajo con React, Node.js y Supabase para construir SaaS, herramientas de RRHH y apps cotidianas.
+            También ayudo a pymes y autónomos a tener presencia digital que genere resultados.
+          </p>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem">
+            <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:var(--muted)">
+              <i data-lucide="map-pin" class="lucide" style="color:var(--blue)"></i> A Coruña, España
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:var(--muted)">
+              <i data-lucide="globe" class="lucide" style="color:var(--blue)"></i> Trabajo remoto
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:var(--muted)">
+              <i data-lucide="clock" class="lucide" style="color:var(--blue)"></i> Respuesta en &lt;24h
+            </div>
+          </div>
+          <a href="#contacto" class="btn-main">Trabajemos juntos <i data-lucide="arrow-right" class="lucide"></i></a>
         </div>
-        <div class="col-lg-6 offset-lg-1 fade-in fd1">
-          <div class="sobre-bg">
-            <p class="section-chip mb-3"><i data-lucide="code-2" class="lucide"></i> Stack tecnológico</p>
-            <p style="font-size:.78rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem">Frontend</p>
+
+        <div class="col col-lg-6 col-offset-lg-1 fade-in fd1" style="padding: 0 0.75rem">
+          <div class="sobre-card">
+            <div class="section-chip mb-4"><i data-lucide="code-2" class="lucide"></i> Stack tecnológico</div>
+
+            <span class="skill-category-label">Frontend</span>
             <div class="d-flex gap-2 flex-wrap mb-4">
               <span class="skill-tag"><i data-lucide="atom" class="lucide"></i> React</span>
               <span class="skill-tag"><i data-lucide="zap" class="lucide"></i> Vite</span>
@@ -221,7 +1161,8 @@
               <span class="skill-tag"><i data-lucide="layout" class="lucide"></i> Bootstrap 5</span>
               <span class="skill-tag"><i data-lucide="navigation" class="lucide"></i> React Router</span>
             </div>
-            <p style="font-size:.78rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem">Backend & Base de datos</p>
+
+            <span class="skill-category-label">Backend & Base de datos</span>
             <div class="d-flex gap-2 flex-wrap mb-4">
               <span class="skill-tag"><i data-lucide="server" class="lucide"></i> Node.js</span>
               <span class="skill-tag"><i data-lucide="layers" class="lucide"></i> Express</span>
@@ -229,7 +1170,8 @@
               <span class="skill-tag"><i data-lucide="hard-drive" class="lucide"></i> PostgreSQL</span>
               <span class="skill-tag"><i data-lucide="mail" class="lucide"></i> Brevo SMTP</span>
             </div>
-            <p style="font-size:.78rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem">Deploy & Herramientas</p>
+
+            <span class="skill-category-label">Deploy & Herramientas</span>
             <div class="d-flex gap-2 flex-wrap">
               <span class="skill-tag"><i data-lucide="triangle" class="lucide"></i> Vercel</span>
               <span class="skill-tag"><i data-lucide="train-front" class="lucide"></i> Railway</span>
@@ -242,146 +1184,240 @@
     </div>
   </section>
 
-  <section id="proyectos" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <!-- ===== PROCESO ===== -->
+  <section id="proceso">
+    <div class="container">
+      <div class="text-center mb-5 fade-in">
+        <div class="section-chip mx-auto"><i data-lucide="workflow" class="lucide"></i> Mi proceso</div>
+        <h2 class="section-title">Cómo trabajo <em>contigo</em></h2>
+        <p style="color:var(--muted);font-size:.95rem;max-width:520px;margin:.8rem auto 0;line-height:1.8">
+          Un proceso claro, sin sorpresas. Desde la primera llamada hasta el lanzamiento.
+        </p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step fade-in">
+          <div class="process-num">01</div>
+          <div class="process-icon"><i data-lucide="message-circle" class="lucide" style="width:1.3rem;height:1.3rem"></i></div>
+          <div class="process-title">Descubrimiento</div>
+          <p class="process-desc">Hablamos de tu negocio, objetivos y necesidades reales. Entiendo el problema antes de proponer soluciones.</p>
+        </div>
+        <div class="process-step fade-in fd1">
+          <div class="process-num">02</div>
+          <div class="process-icon"><i data-lucide="pencil-ruler" class="lucide" style="width:1.3rem;height:1.3rem"></i></div>
+          <div class="process-title">Diseño & Plan</div>
+          <p class="process-desc">Creo la arquitectura y el diseño visual. Te presento el plan antes de escribir una sola línea de código.</p>
+        </div>
+        <div class="process-step fade-in fd2">
+          <div class="process-num">03</div>
+          <div class="process-icon"><i data-lucide="code" class="lucide" style="width:1.3rem;height:1.3rem"></i></div>
+          <div class="process-title">Desarrollo</div>
+          <p class="process-desc">Construyo con código limpio, escalable y bien estructurado. Updates frecuentes para que estés al tanto.</p>
+        </div>
+        <div class="process-step fade-in fd3">
+          <div class="process-num">04</div>
+          <div class="process-icon"><i data-lucide="rocket" class="lucide" style="width:1.3rem;height:1.3rem"></i></div>
+          <div class="process-title">Lanzamiento</div>
+          <p class="process-desc">Deploy, pruebas finales y entrega. Con soporte post-lanzamiento para que nada falle el primer día.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROYECTOS ===== -->
+  <section id="proyectos">
     <div class="container">
       <div class="text-center mb-5 fade-in">
         <div class="section-chip mx-auto"><i data-lucide="grid-2x2" class="lucide"></i> Proyectos</div>
         <h2 class="section-title">Lo que he <em>construido</em></h2>
       </div>
-      <div class="row g-4">
+
+      <div class="project-filters fade-in" id="projectFilters">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="saas">SaaS / Apps</button>
+        <button class="filter-btn" data-filter="cliente">Clientes</button>
+        <button class="filter-btn" data-filter="landing">Landings</button>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
 
         <!-- ETERN-ME DESTACADO -->
-        <div class="col-12 fade-in">
-          <div class="project-card project-featured" style="border-color:rgba(224,120,80,.4)">
-            <div class="row g-0">
-              <div class="col-lg-5">
-                <div style="height:100%;min-height:240px;background:linear-gradient(135deg,#100C1A,#1A0E2A,#0A1218);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
-                  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,168,76,.06),transparent 70%)"></div>
-                  <div style="width:130px;height:130px;border-radius:50%;overflow:hidden;position:relative;z-index:1;box-shadow:0 4px 32px rgba(0,0,0,.5);flex-shrink:0"><img src="img/etern-me.png" alt="ETERN-ME" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
-                  <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,15,.6) 0%,transparent 50%);pointer-events:none"></div>
-                  <div class="project-badge" style="background:var(--terra);color:white;font-size:.7rem">
-                    <i data-lucide="star" class="lucide" style="width:.75em;height:.75em"></i> Destacado
-                  </div>
-                  <div style="position:absolute;bottom:.8rem;right:.8rem;background:rgba(13,13,15,.75);backdrop-filter:blur(8px);border:1px solid rgba(224,120,80,.25);border-radius:2rem;padding:.25rem .8rem;font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--terra)">En validación</div>
-                </div>
+        <div class="project-featured-row fade-in" data-category="saas">
+          <div class="project-card featured">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#100C1A,#1A0E2A,#0A1218)">
+              <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,168,76,.06),transparent 70%)"></div>
+              <div style="width:130px;height:130px;border-radius:50%;overflow:hidden;position:relative;z-index:1;box-shadow:0 4px 32px rgba(0,0,0,.5)">
+                <img src="img/etern-me.png" alt="ETERN-ME" style="width:100%;height:100%;object-fit:cover;display:block;"/>
               </div>
-              <div class="col-lg-7">
-                <div class="project-info" style="padding:2rem">
-                  <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-1">
-                    <div class="project-name" style="font-size:1.5rem">ETERN-ME</div>
-                    <span style="background:var(--terra-dim);border:1px solid rgba(224,120,80,.2);border-radius:2rem;padding:.2rem .8rem;font-size:.7rem;color:var(--terra);font-weight:600">Proyecto propio · SaaS</span>
-                  </div>
-                  <p style="font-size:.8rem;color:var(--terra);font-style:italic;margin-bottom:1rem;letter-spacing:.02em">Todo en orden. Siempre.</p>
-                  <div class="project-desc" style="font-size:.9rem;margin-bottom:1.5rem">Organiza tu vida digital. Protege lo que más importa. Una plataforma que centraliza cuentas, documentos e información esencial — para que nada importante se pierda y tus seres queridos tengan acceso cuando lo necesiten.</div>
-                  <div class="project-tags">
-                    <span class="project-tag">React</span><span class="project-tag">Node.js</span><span class="project-tag">Express</span><span class="project-tag">Supabase</span><span class="project-tag">PostgreSQL</span><span class="project-tag">Vercel</span><span class="project-tag">Railway</span>
-                  </div>
-                  <div class="project-links mt-3">
-                    <a href="https://etern-me.com" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a>
-                  </div>
-                </div>
+              <div class="project-thumb-overlay"></div>
+              <div class="project-badge-featured"><i data-lucide="star" class="lucide" style="width:.75em;height:.75em"></i> Destacado</div>
+              <div class="project-status status-val">En validación</div>
+            </div>
+            <div class="project-info">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.3rem">
+                <div class="project-name">ETERN-ME</div>
+                <span style="background:var(--blue-dim);border:1px solid rgba(91,141,184,.2);border-radius:2rem;padding:.2rem .8rem;font-size:.7rem;color:var(--blue-light);font-weight:600">Proyecto propio · SaaS</span>
+              </div>
+              <div class="project-tagline">Todo en orden. Siempre.</div>
+              <div class="project-desc">
+                Organiza tu vida digital. Protege lo que más importa. Una plataforma que centraliza cuentas, documentos e información esencial — para que nada importante se pierda y tus seres queridos tengan acceso cuando lo necesiten.
+              </div>
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">Express</span>
+                <span class="project-tag">Supabase</span>
+                <span class="project-tag">PostgreSQL</span>
+                <span class="project-tag">Vercel</span>
+                <span class="project-tag">Railway</span>
+              </div>
+              <div class="project-links">
+                <a href="https://etern-me.com" class="project-link" target="_blank" rel="noopener">
+                  <i data-lucide="external-link" class="lucide"></i> Ver en vivo
+                </a>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Cotidiana -->
-        <div class="col-lg-4 fade-in fd1">
+        <div class="fade-in fd1" data-category="saas">
           <div class="project-card">
-            <div class="project-thumb" style="background:linear-gradient(135deg,#0A1525,#0D1E38);position:relative">
-              <div class="cotidiana-wrap"><img src="img/cotidiana.png" alt="Cotidiana" class="project-logo-sm"/></div>
+            <div class="project-thumb" style="background:linear-gradient(135deg,#0A1525,#0D1E38)">
+              <div class="cotidiana-wrap"><img src="img/cotidiana.png" alt="Cotidiana" style="width:64px;height:64px;object-fit:contain;border-radius:.75rem"/></div>
               <div class="project-thumb-overlay"></div>
               <div class="project-badge">App · Organización</div>
-              <div style="position:absolute;bottom:.8rem;right:.8rem;background:rgba(13,13,15,.75);backdrop-filter:blur(8px);border:1px solid rgba(108,142,173,.2);border-radius:2rem;padding:.2rem .6rem;font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)">En validación</div>
+              <div class="project-status status-val">En validación</div>
             </div>
             <div class="project-info">
               <div class="project-name">Cotidiana.app</div>
               <div class="project-desc">App de organización para adultos mayores o personas con poca experiencia tecnológica. Interfaz simple, accesible y pensada para el día a día.</div>
-              <div class="project-tags"><span class="project-tag">React 19</span><span class="project-tag">Vite 7</span><span class="project-tag">Supabase</span><span class="project-tag">React Router 7</span><span class="project-tag">Brevo SMTP</span></div>
-              <div class="project-links"><a href="https://cotidiana.app" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a></div>
+              <div class="project-tags">
+                <span class="project-tag">React 19</span>
+                <span class="project-tag">Vite 7</span>
+                <span class="project-tag">Supabase</span>
+                <span class="project-tag">React Router 7</span>
+                <span class="project-tag">Brevo SMTP</span>
+              </div>
+              <div class="project-links">
+                <a href="https://cotidiana.app" class="project-link" target="_blank" rel="noopener">
+                  <i data-lucide="external-link" class="lucide"></i> Ver en vivo
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Zenwi -->
-        <div class="col-lg-4 fade-in fd2">
+        <div class="fade-in fd2" data-category="saas">
           <div class="project-card">
-            <div class="project-thumb" style="background:linear-gradient(135deg,#0A1020,#0D1830);position:relative">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#0A1020,#0D1830)">
               <i data-lucide="heart-pulse" class="lucide-hero" style="color:#6C8EAD;opacity:.85;position:relative;z-index:1"></i>
               <div class="project-thumb-overlay"></div>
               <div class="project-badge">App · RRHH</div>
-              <div style="position:absolute;bottom:.8rem;right:.8rem;background:rgba(13,13,15,.75);backdrop-filter:blur(8px);border:1px solid rgba(108,142,173,.25);border-radius:2rem;padding:.2rem .6rem;font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)">En producción</div>
+              <div class="project-status status-prod">En producción</div>
             </div>
             <div class="project-info">
               <div class="project-name">Zenwi.app</div>
-              <div class="project-desc">Herramienta de RRHH para detectar y prevenir el burnout de forma anónima. Control diario del bienestar del equipo, sin fricciones y con total privacidad para el empleado.</div>
-              <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Node.js</span><span class="project-tag">Supabase</span></div>
-              <div class="project-links"><a href="https://zenwi.app" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a></div>
+              <div class="project-desc">Herramienta de RRHH para detectar y prevenir el burnout de forma anónima. Control diario del bienestar del equipo, sin fricciones y con total privacidad.</div>
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">Supabase</span>
+              </div>
+              <div class="project-links">
+                <a href="https://zenwi.app" class="project-link" target="_blank" rel="noopener">
+                  <i data-lucide="external-link" class="lucide"></i> Ver en vivo
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Travelmates -->
-        <div class="col-lg-4 fade-in fd3">
+        <div class="fade-in fd3" data-category="saas">
           <div class="project-card">
-            <div class="project-thumb" style="background:linear-gradient(135deg,#0A1520,#0F1E30);position:relative">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#0A1520,#0F1E30)">
               <i data-lucide="plane" class="lucide-hero" style="color:#B0B8C1;opacity:.85;position:relative;z-index:1"></i>
               <div class="project-thumb-overlay"></div>
               <div class="project-badge">App · Viajes en equipo</div>
-              <div style="position:absolute;bottom:.8rem;right:.8rem;background:rgba(13,13,15,.75);backdrop-filter:blur(8px);border:1px solid rgba(176,184,193,.2);border-radius:2rem;padding:.2rem .6rem;font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)">En desarrollo</div>
+              <div class="project-status status-dev">En desarrollo</div>
             </div>
             <div class="project-info">
               <div class="project-name">Travelmates</div>
-              <div class="project-desc">App colaborativa para planificar y gestionar viajes en grupo — amigos, familia, compañeros. Itinerarios compartidos, gastos y votaciones en un solo lugar. Proyecto en equipo.</div>
-              <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Node.js</span><span class="project-tag">Trabajo en equipo</span></div>
+              <div class="project-desc">App colaborativa para planificar y gestionar viajes en grupo — amigos, familia, compañeros. Itinerarios, gastos y votaciones en un solo lugar.</div>
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">Trabajo en equipo</span>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- NovaFlow -->
-        <div class="col-lg-4 fade-in fd1">
+        <div class="fade-in fd1" data-category="landing">
           <div class="project-card">
-            <div class="project-thumb pt2" style="position:relative">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#0A1015,#0E1A25)">
               <i data-lucide="layout-dashboard" class="lucide-hero" style="color:#6C8EAD;opacity:.8;position:relative;z-index:1"></i>
               <div class="project-thumb-overlay"></div>
               <div class="project-badge">SaaS Dashboard</div>
             </div>
             <div class="project-info">
               <div class="project-name">NovaFlow — Consultoría Digital</div>
-              <div class="project-desc">Aplicación web tipo startup con panel administrativo. Landing page profesional + dashboard interno estilo SaaS con JavaScript avanzado.</div>
-              <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">Bootstrap 5</span></div>
+              <div class="project-desc">Landing + panel administrativo estilo SaaS con JavaScript avanzado. Diseño profesional para startup de consultoría.</div>
+              <div class="project-tags">
+                <span class="project-tag">HTML5</span>
+                <span class="project-tag">CSS3</span>
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">Bootstrap 5</span>
+              </div>
               <div class="project-links">
-                <a href="https://melinarivera.github.io/mi-consultoria-web/" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a>
-                <a href="https://github.com/melinarivera/mi-consultoria-web" class="project-link secondary" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> Código</a>
+                <a href="https://melinarivera.github.io/mi-consultoria-web/" class="project-link" target="_blank" rel="noopener">
+                  <i data-lucide="external-link" class="lucide"></i> Ver en vivo
+                </a>
+                <a href="https://github.com/melinarivera/mi-consultoria-web" class="project-link secondary" target="_blank" rel="noopener">
+                  <svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                  Código
+                </a>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Alma de Barrio -->
-        <div class="col-lg-4 fade-in fd2">
+        <div class="fade-in fd2" data-category="cliente landing">
           <div class="project-card">
-            <div class="project-thumb pt1" style="position:relative">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#1A120A,#2A1A0E)">
               <i data-lucide="shopping-bag" class="lucide-hero" style="color:#8BB8D8;opacity:.8;position:relative;z-index:1"></i>
               <div class="project-thumb-overlay"></div>
-              <div class="project-badge">Landing Page</div>
+              <div class="project-badge">Landing Page · Tienda</div>
             </div>
             <div class="project-info">
               <div class="project-name">Alma de Barrio</div>
               <div class="project-desc">Tienda artesanal con carrito funcional, filtros por categoría y animaciones CSS al scroll.</div>
-              <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">Bootstrap 5</span></div>
+              <div class="project-tags">
+                <span class="project-tag">HTML5</span>
+                <span class="project-tag">CSS3</span>
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">Bootstrap 5</span>
+              </div>
               <div class="project-links">
-                <a href="https://melinarivera.github.io/Alma-de-barrio/" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a>
-                <a href="https://github.com/melinarivera/Alma-de-barrio" class="project-link secondary" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> Código</a>
+                <a href="https://melinarivera.github.io/Alma-de-barrio/" class="project-link" target="_blank" rel="noopener">
+                  <i data-lucide="external-link" class="lucide"></i> Ver en vivo
+                </a>
+                <a href="https://github.com/melinarivera/Alma-de-barrio" class="project-link secondary" target="_blank" rel="noopener">
+                  <svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.11.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                  Código
+                </a>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Lumière Beauty -->
-        <div class="col-lg-4 fade-in fd3">
+        <div class="fade-in fd3" data-category="cliente landing">
           <div class="project-card">
-            <div class="project-thumb" style="background:linear-gradient(135deg,#1A0A10,#2E1020);position:relative">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#1A0A10,#2E1020)">
               <i data-lucide="sparkles" class="lucide-hero" style="color:#B0B8C1;opacity:.8;position:relative;z-index:1"></i>
               <div class="project-thumb-overlay"></div>
               <div class="project-badge">Cliente real</div>
@@ -389,38 +1425,55 @@
             <div class="project-info">
               <div class="project-name">Lumière Beauty</div>
               <div class="project-desc">Landing para estética autónoma con reserva de citas, galería de servicios y diseño femenino.</div>
-              <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">Bootstrap 5</span></div>
+              <div class="project-tags">
+                <span class="project-tag">HTML5</span>
+                <span class="project-tag">CSS3</span>
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">Bootstrap 5</span>
+              </div>
               <div class="project-links">
-                <a href="https://melinarivera.github.io/lumiere-beauty/" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a>
-                <a href="https://github.com/melinarivera/lumiere-beauty" class="project-link secondary" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> Código</a>
+                <a href="https://melinarivera.github.io/lumiere-beauty/" class="project-link" target="_blank" rel="noopener">
+                  <i data-lucide="external-link" class="lucide"></i> Ver en vivo
+                </a>
+                <a href="https://github.com/melinarivera/lumiere-beauty" class="project-link secondary" target="_blank" rel="noopener">
+                  <svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                  Código
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Efsun · Tienda Esotérica -->
-        <div class="col-lg-4 fade-in fd1">
+        <!-- Efsun Tienda -->
+        <div class="fade-in fd1" data-category="cliente">
           <div class="project-card">
-            <div class="project-thumb" style="background:linear-gradient(135deg,#0D0A1F,#1A0A2E);position:relative">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#0D0A1F,#1A0A2E)">
               <i data-lucide="shopping-cart" class="lucide-hero" style="color:#B0B8C1;opacity:.8;position:relative;z-index:1"></i>
               <div class="project-thumb-overlay"></div>
               <div class="project-badge">Cliente real · Tienda</div>
             </div>
             <div class="project-info">
               <div class="project-name">Efsun · Tienda Esotérica</div>
-              <div class="project-desc">Tienda online para consultora esotérica con atención en A Coruña y online. Catálogo de productos, carrito de compra y diseño místico.</div>
-              <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">Google Fonts</span></div>
+              <div class="project-desc">Tienda online para consultora esotérica con atención en A Coruña y online. Catálogo, carrito de compra y diseño místico.</div>
+              <div class="project-tags">
+                <span class="project-tag">HTML5</span>
+                <span class="project-tag">CSS3</span>
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">Google Fonts</span>
+              </div>
               <div class="project-links">
-                <a href="https://melinarivera.github.io/tienda-esoterica/" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a>
+                <a href="https://melinarivera.github.io/tienda-esoterica/" class="project-link" target="_blank" rel="noopener">
+                  <i data-lucide="external-link" class="lucide"></i> Ver en vivo
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Efsun · Plataforma con IA -->
-        <div class="col-lg-4 fade-in fd2">
+        <!-- Efsun Plataforma IA -->
+        <div class="fade-in fd2" data-category="cliente">
           <div class="project-card">
-            <div class="project-thumb" style="background:linear-gradient(135deg,#0A0A1F,#150A2E);position:relative">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#0A0A1F,#150A2E)">
               <i data-lucide="moon-star" class="lucide-hero" style="color:#B0B8C1;opacity:.8;position:relative;z-index:1"></i>
               <div class="project-thumb-overlay"></div>
               <div class="project-badge">Cliente real · IA</div>
@@ -428,19 +1481,29 @@
             <div class="project-info">
               <div class="project-name">Efsun · Plataforma Esotérica</div>
               <div class="project-desc">Plataforma completa con horóscopo personalizado generado con IA, reservas de sesiones, blog e integración con WhatsApp.</div>
-              <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">Google Fonts</span><span class="project-tag">IA</span></div>
+              <div class="project-tags">
+                <span class="project-tag">HTML5</span>
+                <span class="project-tag">CSS3</span>
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">IA</span>
+              </div>
               <div class="project-links">
-                <a href="https://melinarivera.github.io/pyme-efsun/" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a>
-                <a href="https://github.com/melinarivera/pyme-efsun" class="project-link secondary" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> Código</a>
+                <a href="https://melinarivera.github.io/pyme-efsun/" class="project-link" target="_blank" rel="noopener">
+                  <i data-lucide="external-link" class="lucide"></i> Ver en vivo
+                </a>
+                <a href="https://github.com/melinarivera/pyme-efsun" class="project-link secondary" target="_blank" rel="noopener">
+                  <svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                  Código
+                </a>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Recursos RRHH -->
-        <div class="col-lg-4 fade-in fd2">
+        <div class="fade-in fd3" data-category="landing">
           <div class="project-card">
-            <div class="project-thumb" style="background:linear-gradient(135deg,#0A1A10,#102E1A);position:relative">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#0A1A10,#102E1A)">
               <i data-lucide="book-open" class="lucide-hero" style="color:#6C8EAD;opacity:.8;position:relative;z-index:1"></i>
               <div class="project-thumb-overlay"></div>
               <div class="project-badge">Herramienta académica</div>
@@ -448,10 +1511,19 @@
             <div class="project-info">
               <div class="project-name">Recursos del Máster · RRHH</div>
               <div class="project-desc">Tests interactivos y PDFs descargables de los 4 módulos del Máster en Dirección y Gestión de RRHH. Calificación automática y barra de progreso.</div>
-              <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span></div>
+              <div class="project-tags">
+                <span class="project-tag">HTML5</span>
+                <span class="project-tag">CSS3</span>
+                <span class="project-tag">JavaScript</span>
+              </div>
               <div class="project-links">
-                <a href="https://melinarivera.github.io/Recursos_de_estudio_MasterRRHH/" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a>
-                <a href="https://github.com/melinarivera/Recursos_de_estudio_MasterRRHH" class="project-link secondary" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> Código</a>
+                <a href="https://melinarivera.github.io/Recursos_de_estudio_MasterRRHH/" class="project-link" target="_blank" rel="noopener">
+                  <i data-lucide="external-link" class="lucide"></i> Ver en vivo
+                </a>
+                <a href="https://github.com/melinarivera/Recursos_de_estudio_MasterRRHH" class="project-link secondary" target="_blank" rel="noopener">
+                  <svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                  Código
+                </a>
               </div>
             </div>
           </div>
@@ -461,120 +1533,139 @@
     </div>
   </section>
 
+  <!-- ===== SERVICIOS ===== -->
   <section id="servicios">
     <div class="container">
       <div class="text-center mb-5 fade-in">
         <div class="section-chip mx-auto"><i data-lucide="briefcase" class="lucide"></i> Servicios</div>
         <h2 class="section-title">Invierte en tu negocio,<br><em>no solo en una web</em></h2>
-        <p style="color:var(--muted);font-size:.95rem;max-width:540px;margin:.8rem auto 0;line-height:1.8">Cada proyecto es diferente. Por eso trabajo con packs pensados para el momento en el que está tu negocio — y hacia dónde quiere llegar.</p>
+        <p style="color:var(--muted);font-size:.95rem;max-width:540px;margin:.8rem auto 0;line-height:1.8">
+          Cada proyecto es diferente. Por eso trabajo con packs pensados para el momento en el que está tu negocio.
+        </p>
       </div>
+
       <div class="row g-4 align-items-stretch">
-        <div class="col-md-6 col-lg-3 fade-in">
-          <div class="service-card d-flex flex-column" style="height:100%">
-            <div>
-              <div class="service-icon"><i data-lucide="rocket" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
-              <div class="service-name">Pack 1</div>
-              <p style="font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Ideal para emprendedores y autónomos que acaban de arrancar</p>
-              <div class="service-desc">Tu primera presencia digital seria: una página de aterrizaje que comunica quién eres, qué ofreces y cómo contactarte. Diseñada para convertir visitas en llamadas o mensajes de WhatsApp desde el primer día.</div>
-              <ul style="list-style:none;padding:0;margin:1rem 0 0;display:flex;flex-direction:column;gap:.5rem">
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Landing page estratégica o para eventos</li>
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Diseño responsive (móvil + escritorio)</li>
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Formulario de contacto y botón WhatsApp</li>
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Entrega en 8 días</li>
-              </ul>
-            </div>
-            <div style="margin-top:auto;padding-top:1.5rem;border-top:1px solid var(--border)">
-              <span class="service-price">Desde 350 €</span>
-              <a href="#contacto" class="btn-outline d-block text-center mt-3" style="padding:.65rem 1rem;font-size:.82rem">Quiero empezar →</a>
-            </div>
+
+        <div class="col col-md-6 col-lg-3 fade-in">
+          <div class="service-card" style="height:100%">
+            <div class="service-icon"><i data-lucide="rocket" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
+            <div class="service-name">Pack 1</div>
+            <div class="service-ideal">Ideal para emprendedores y autónomos que acaban de arrancar</div>
+            <div class="service-desc">Tu primera presencia digital seria: una página de aterrizaje que comunica quién eres, qué ofreces y cómo contactarte. Diseñada para convertir.</div>
+            <ul class="service-list">
+              <li><span class="service-check">✓</span> Landing page estratégica o para eventos</li>
+              <li><span class="service-check">✓</span> Diseño responsive (móvil + escritorio)</li>
+              <li><span class="service-check">✓</span> Formulario de contacto y botón WhatsApp</li>
+              <li><span class="service-check">✓</span> Entrega en 8 días</li>
+            </ul>
+            <div class="service-divider"></div>
+            <span class="service-price">Desde 350 €</span>
+            <a href="#contacto" class="btn-outline w-100" style="text-align:center;padding:.65rem 1rem;font-size:.82rem;justify-content:center">
+              Quiero empezar →
+            </a>
           </div>
         </div>
-        <div class="col-md-6 col-lg-3 fade-in fd1">
-          <div class="service-card d-flex flex-column" style="height:100%;border-color:rgba(224,120,80,.35);position:relative">
-            <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--terra);color:white;border-radius:2rem;padding:.2rem .9rem;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap"><i data-lucide="star" class="lucide" style="width:.75em;height:.75em"></i> Más solicitado</div>
-            <div>
-              <div class="service-icon"><i data-lucide="store" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
-              <div class="service-name">Pack 2</div>
-              <p style="font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Ideal para negocios que quieren crecer y ganar visibilidad</p>
-              <div class="service-desc">Una web completa que posiciona tu empresa como referente en tu sector. Estructura pensada para que tus clientes encuentren lo que buscan, confíen en ti y actúen.</div>
-              <ul style="list-style:none;padding:0;margin:1rem 0 0;display:flex;flex-direction:column;gap:.5rem">
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Web completa de 5–7 páginas</li>
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Arquitectura estratégica de contenido</li>
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Blog o catálogo de productos/servicios</li>
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> SEO básico en cada página</li>
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Diseño responsive incluido</li>
-              </ul>
+
+        <div class="col col-md-6 col-lg-3 fade-in fd1">
+          <div class="service-card popular" style="height:100%">
+            <div class="service-popular-badge">
+              <i data-lucide="star" class="lucide" style="width:.75em;height:.75em"></i> Más solicitado
             </div>
-            <div style="margin-top:auto;padding-top:1.5rem;border-top:1px solid rgba(224,120,80,.2)">
-              <span class="service-price">Desde 600 €</span>
-              <a href="#contacto" class="btn-main d-block text-center mt-3" style="padding:.65rem 1rem;font-size:.82rem">Quiero crecer →</a>
-            </div>
+            <div class="service-icon"><i data-lucide="store" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
+            <div class="service-name">Pack 2</div>
+            <div class="service-ideal">Ideal para negocios que quieren crecer y ganar visibilidad</div>
+            <div class="service-desc">Una web completa que posiciona tu empresa como referente. Estructura pensada para que tus clientes confíen y actúen.</div>
+            <ul class="service-list">
+              <li><span class="service-check">✓</span> Web completa de 5–7 páginas</li>
+              <li><span class="service-check">✓</span> Arquitectura estratégica de contenido</li>
+              <li><span class="service-check">✓</span> Blog o catálogo de productos/servicios</li>
+              <li><span class="service-check">✓</span> SEO básico en cada página</li>
+              <li><span class="service-check">✓</span> Diseño responsive incluido</li>
+            </ul>
+            <div class="service-divider" style="background:rgba(91,141,184,.2)"></div>
+            <span class="service-price">Desde 600 €</span>
+            <a href="#contacto" class="btn-main w-100" style="justify-content:center;padding:.65rem 1rem;font-size:.82rem">
+              Quiero crecer →
+            </a>
           </div>
         </div>
-        <div class="col-md-6 col-lg-3 fade-in fd2">
-          <div class="service-card d-flex flex-column" style="height:100%">
-            <div>
-              <div class="service-icon"><i data-lucide="gem" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
-              <div class="service-name">Pack 3</div>
-              <p style="font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Ideal para negocios listos para vender o reservar online 24/7</p>
-              <div class="service-desc">Tu negocio abierto las 24 horas: tienda online o sistema de reservas automatizado, diseño a medida y base técnica sólida para escalar.</div>
-              <ul style="list-style:none;padding:0;margin:1rem 0 0;display:flex;flex-direction:column;gap:.5rem">
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Ecommerce o sistema de reservas</li>
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Automatizaciones de proceso clave</li>
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Diseño personalizado al 100%</li>
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Arquitectura preparada para escalar</li>
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Soporte técnico 30 días post-lanzamiento</li>
-              </ul>
-            </div>
-            <div style="margin-top:auto;padding-top:1.5rem;border-top:1px solid var(--border)">
-              <span class="service-price">Desde 1,500 €</span>
-              <a href="#contacto" class="btn-outline d-block text-center mt-3" style="padding:.65rem 1rem;font-size:.82rem">Quiero vender online →</a>
-            </div>
+
+        <div class="col col-md-6 col-lg-3 fade-in fd2">
+          <div class="service-card" style="height:100%">
+            <div class="service-icon"><i data-lucide="gem" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
+            <div class="service-name">Pack 3</div>
+            <div class="service-ideal">Ideal para negocios listos para vender o reservar online 24/7</div>
+            <div class="service-desc">Tu negocio abierto las 24 horas: tienda online o sistema de reservas automatizado, con base técnica sólida para escalar.</div>
+            <ul class="service-list">
+              <li><span class="service-check">✓</span> Ecommerce o sistema de reservas</li>
+              <li><span class="service-check">✓</span> Automatizaciones de proceso clave</li>
+              <li><span class="service-check">✓</span> Diseño personalizado al 100%</li>
+              <li><span class="service-check">✓</span> Arquitectura preparada para escalar</li>
+              <li><span class="service-check">✓</span> Soporte técnico 30 días post-lanzamiento</li>
+            </ul>
+            <div class="service-divider"></div>
+            <span class="service-price">Desde 1,500 €</span>
+            <a href="#contacto" class="btn-outline w-100" style="text-align:center;padding:.65rem 1rem;font-size:.82rem;justify-content:center">
+              Quiero vender online →
+            </a>
           </div>
         </div>
-        <div class="col-md-6 col-lg-3 fade-in fd3">
-          <div class="service-card d-flex flex-column" style="height:100%;background:linear-gradient(160deg,var(--bg2),rgba(26,26,36,.95))">
-            <div>
-              <div class="service-icon"><i data-lucide="wrench" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
-              <div class="service-name">Mantenimiento</div>
-              <p style="font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Ideal para quienes ya tienen web y quieren que siempre funcione</p>
-              <div class="service-desc">Tu web es una herramienta de negocio: necesita estar actualizada, segura y funcionando. Me encargo de todo para que tú te centres en lo importante.</div>
-              <ul style="list-style:none;padding:0;margin:1rem 0 0;display:flex;flex-direction:column;gap:.5rem">
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Actualizaciones y revisiones periódicas</li>
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Cambios de contenido y pequeñas mejoras</li>
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Soporte directo por WhatsApp o email</li>
-                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Sin sorpresas ni presupuestos extra</li>
-              </ul>
-            </div>
-            <div style="margin-top:auto;padding-top:1.5rem;border-top:1px solid var(--border)">
-              <span class="service-price">Desde 90 €/mes</span>
-              <a href="#contacto" class="btn-outline d-block text-center mt-3" style="padding:.65rem 1rem;font-size:.82rem">Me interesa →</a>
-            </div>
+
+        <div class="col col-md-6 col-lg-3 fade-in fd3">
+          <div class="service-card" style="height:100%">
+            <div class="service-icon"><i data-lucide="wrench" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
+            <div class="service-name">Mantenimiento</div>
+            <div class="service-ideal">Ideal para quienes ya tienen web y quieren que siempre funcione</div>
+            <div class="service-desc">Tu web es una herramienta de negocio: necesita estar actualizada y segura. Me encargo de todo para que tú te centres en lo importante.</div>
+            <ul class="service-list">
+              <li><span class="service-check">✓</span> Actualizaciones y revisiones periódicas</li>
+              <li><span class="service-check">✓</span> Cambios de contenido y pequeñas mejoras</li>
+              <li><span class="service-check">✓</span> Soporte directo por WhatsApp o email</li>
+              <li><span class="service-check">✓</span> Sin sorpresas ni presupuestos extra</li>
+            </ul>
+            <div class="service-divider"></div>
+            <span class="service-price">Desde 90 €/mes</span>
+            <a href="#contacto" class="btn-outline w-100" style="text-align:center;padding:.65rem 1rem;font-size:.82rem;justify-content:center">
+              Me interesa →
+            </a>
           </div>
         </div>
+
       </div>
-      <p class="text-center fade-in" style="color:var(--muted);font-size:.82rem;margin-top:2.5rem">
-        ¿No sabes qué pack necesitas? <a href="#contacto" style="color:var(--terra);text-decoration:none;font-weight:500">Cuéntame tu situación y te oriento sin compromiso con un PACK A TU MEDIDA →</a>
+
+      <p class="text-center fade-in" style="color:var(--muted);font-size:.85rem;margin-top:2.5rem">
+        ¿No sabes qué pack necesitas?
+        <a href="#contacto" style="color:var(--blue);text-decoration:none;font-weight:500">
+          Cuéntame tu situación y te oriento sin compromiso →
+        </a>
       </p>
     </div>
   </section>
 
-  <section id="contacto" style="background:var(--bg2);border-top:1px solid var(--border)">
+  <!-- ===== CONTACTO ===== -->
+  <section id="contacto">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-8">
+        <div class="col col-lg-8 mx-auto">
           <div class="text-center mb-5 fade-in">
             <div class="section-chip mx-auto"><i data-lucide="message-circle-heart" class="lucide"></i> Contacto</div>
             <h2 class="section-title">¿Tienes un proyecto <em>en mente</em>?</h2>
             <p style="color:var(--muted);font-size:.95rem;margin-top:.8rem">Cuéntame tu idea y te respondo en menos de 24h.</p>
           </div>
-          <div class="contact-bg fade-in">
+          <div class="contact-card fade-in fd1">
             <form id="contact-form" action="https://formspree.io/f/xbdplnyg" method="POST">
               <div class="row g-3">
-                <div class="col-md-6"><label class="contact-label">Tu nombre</label><input type="text" name="nombre" class="contact-input" id="c-name" placeholder="Ana García" required/></div>
-                <div class="col-md-6"><label class="contact-label">Tu email</label><input type="email" name="email" class="contact-input" id="c-email" placeholder="ana@negocio.com" required/></div>
-                <div class="col-12"><label class="contact-label">¿Qué necesitas?</label>
-                  <select name="servicio" class="contact-input" style="cursor:pointer">
+                <div class="col col-md-6">
+                  <label class="contact-label" for="c-name">Tu nombre</label>
+                  <input type="text" name="nombre" class="contact-input" id="c-name" placeholder="Ana García" required/>
+                </div>
+                <div class="col col-md-6">
+                  <label class="contact-label" for="c-email">Tu email</label>
+                  <input type="email" name="email" class="contact-input" id="c-email" placeholder="ana@negocio.com" required/>
+                </div>
+                <div class="col col-12">
+                  <label class="contact-label">¿Qué necesitas?</label>
+                  <select name="servicio" class="contact-input">
                     <option value="" disabled selected>Selecciona un servicio</option>
                     <option>Landing page para mi negocio</option>
                     <option>App web completa para mi empresa</option>
@@ -583,12 +1674,19 @@
                     <option>Otro</option>
                   </select>
                 </div>
-                <div class="col-12"><label class="contact-label">Cuéntame tu proyecto</label><textarea name="mensaje" class="contact-input" id="c-msg" placeholder="Tengo una tienda de ropa y quiero tener presencia online..." required></textarea></div>
-                <div class="col-12"><button type="submit" class="btn-main w-100" style="padding:1rem;font-size:1rem">Enviar mensaje <i data-lucide="send" class="lucide" style="width:.9em;height:.9em;margin-left:.3em"></i></button></div>
+                <div class="col col-12">
+                  <label class="contact-label" for="c-msg">Cuéntame tu proyecto</label>
+                  <textarea name="mensaje" class="contact-input" id="c-msg" placeholder="Tengo una tienda de ropa y quiero tener presencia online..." required></textarea>
+                </div>
+                <div class="col col-12">
+                  <button type="submit" class="btn-main w-100" style="padding:1rem;font-size:.95rem;justify-content:center" id="submit-btn">
+                    Enviar mensaje <i data-lucide="send" class="lucide" style="width:.9em;height:.9em;margin-left:.3em"></i>
+                  </button>
+                </div>
               </div>
             </form>
-            <div id="form-success" style="display:none;text-align:center;padding:2rem 0">
-              <i data-lucide="circle-check-big" class="lucide" style="width:3rem;height:3rem;color:var(--terra);display:block;margin:0 auto 1rem"></i>
+            <div id="form-success" style="display:none;text-align:center;padding:2.5rem 0">
+              <i data-lucide="circle-check-big" class="lucide" style="width:3rem;height:3rem;color:var(--blue);display:block;margin:0 auto 1rem"></i>
               <h4 style="color:var(--white);font-family:'Playfair Display',serif;margin-bottom:.5rem">¡Mensaje enviado!</h4>
               <p style="color:var(--muted);font-size:.9rem">Te respondo en menos de 24h. ¡Gracias por contactarme!</p>
             </div>
@@ -598,41 +1696,196 @@
     </div>
   </section>
 
+  <!-- ===== FOOTER ===== -->
   <footer>
-    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
-      <div class="footer-text">© 2026 Melina Rivera. Todos los derechos reservados.</div>
-      <div class="footer-text">Hecho con ♥ y mucho café ☕</div>
-      <div class="d-flex gap-3">
-        <a href="https://github.com/melinarivera" style="color:var(--muted);transition:color .2s" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="width:1.2rem;height:1.2rem"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg></a>
-        <a href="https://www.linkedin.com/in/deliamelinarivera" style="color:var(--muted);transition:color .2s" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="width:1.2rem;height:1.2rem"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <img src="img/MR_logo.png" alt="MR"/>
+        </div>
+        <div class="footer-links">
+          <a href="#sobre">Sobre mí</a>
+          <a href="#proceso">Proceso</a>
+          <a href="#proyectos">Proyectos</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+        <div class="footer-social">
+          <a href="https://github.com/melinarivera" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg style="width:1rem;height:1rem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/deliamelinarivera" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg style="width:1rem;height:1rem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+        <div class="footer-copy">
+          © 2026 Melina Rivera. Todos los derechos reservados. &nbsp;·&nbsp;
+          Hecho con <span class="footer-heart">♥</span> y mucho café ☕
+        </div>
       </div>
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- ===== SCRIPTS ===== -->
   <script>
+    // Init Lucide icons
     lucide.createIcons();
-    window.addEventListener('load', () => setTimeout(() => document.getElementById('loader').classList.add('hidden'), 1000));
-    window.addEventListener('scroll', () => {
-      document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
-      document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+
+    // ─── Loader ───────────────────────────────────────────────
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+        startTypewriter();
+        startCounters();
+      }, 1400);
     });
-    document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
-    document.querySelectorAll('section[id]').forEach(s => {
+
+    // ─── Cursor glow ─────────────────────────────────────────
+    const cursorGlow = document.getElementById('cursor-glow');
+    document.addEventListener('mousemove', e => {
+      cursorGlow.style.left = e.clientX + 'px';
+      cursorGlow.style.top  = e.clientY + 'px';
+    });
+
+    // ─── Navbar scroll ───────────────────────────────────────
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+      backToTop.classList.toggle('visible', window.scrollY > 500);
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ─── Mobile menu ─────────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // ─── Active nav link ─────────────────────────────────────
+    document.querySelectorAll('section[id], div.hero').forEach(section => {
       new IntersectionObserver(entries => {
         entries.forEach(e => {
           if (e.isIntersecting) {
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
-            if (a) a.classList.add('active');
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            const id = e.target.id || 'inicio';
+            const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+            if (link && !link.classList.contains('btn-nav-hire')) link.classList.add('active');
           }
         });
-      }, { threshold: 0.4 }).observe(s);
+      }, { threshold: 0.4 }).observe(section);
     });
-    const fo = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fo.unobserve(e.target); } });
+
+    // ─── Fade-in on scroll ───────────────────────────────────
+    const fadeObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); }
+      });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => fo.observe(el));
+    document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+    // ─── Typewriter effect ───────────────────────────────────
+    const phrases = [
+      'Construyo apps reales.',
+      'Desarrollo con React + Node.js.',
+      'SaaS desde cero hasta producción.',
+      'Webs que convierten para pymes.',
+    ];
+    let phraseIdx = 0, charIdx = 0, deleting = false;
+    const typeEl = document.getElementById('typewriter');
+
+    function startTypewriter() {
+      function tick() {
+        const current = phrases[phraseIdx];
+        if (!deleting) {
+          typeEl.textContent = current.slice(0, ++charIdx);
+          if (charIdx === current.length) {
+            deleting = true;
+            setTimeout(tick, 2000);
+            return;
+          }
+        } else {
+          typeEl.textContent = current.slice(0, --charIdx);
+          if (charIdx === 0) {
+            deleting = false;
+            phraseIdx = (phraseIdx + 1) % phrases.length;
+          }
+        }
+        setTimeout(tick, deleting ? 40 : 70);
+      }
+      tick();
+    }
+
+    // ─── Animated counters ───────────────────────────────────
+    function startCounters() {
+      document.querySelectorAll('[data-target]').forEach(el => {
+        const target = +el.dataset.target;
+        const suffix = el.dataset.suffix || '+';
+        let count = 0;
+        const step = Math.ceil(target / 30);
+        const timer = setInterval(() => {
+          count = Math.min(count + step, target);
+          el.textContent = count + suffix;
+          if (count >= target) clearInterval(timer);
+        }, 40);
+      });
+    }
+
+    // ─── Project filters ─────────────────────────────────────
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('#projectsGrid > [data-category]').forEach(card => {
+          const cats = card.dataset.category;
+          const show = filter === 'all' || cats.includes(filter);
+          card.style.opacity = show ? '1' : '0.2';
+          card.style.transform = show ? '' : 'scale(0.97)';
+          card.style.pointerEvents = show ? '' : 'none';
+          card.style.transition = 'opacity 0.3s, transform 0.3s';
+        });
+      });
+    });
+
+    // ─── Contact form ─────────────────────────────────────────
+    const form = document.getElementById('contact-form');
+    const formSuccess = document.getElementById('form-success');
+    const toast = document.getElementById('toast');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      submitBtn.textContent = 'Enviando...';
+      submitBtn.disabled = true;
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          formSuccess.style.display = 'block';
+          lucide.createIcons();
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 4000);
+        } else {
+          throw new Error();
+        }
+      } catch {
+        submitBtn.textContent = 'Error. Inténtalo de nuevo';
+        submitBtn.disabled = false;
+      }
+    });
   </script>
 </body>
 </html>
