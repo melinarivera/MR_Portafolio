@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Melina Rivera — Full Stack Developer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg:#0D0D0F; --bg2:#13131A; --bg3:#1A1A24;
+      --border:rgba(255,255,255,0.07);
+      --terra:#5B8DB8; --terra-dim:rgba(91,141,184,0.15);
+      --gold:#B0B8C1; --white:#F0EDE8; --muted:rgba(240,237,232,0.45);
+      --accent:#8BB8D8;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
+    ::-webkit-scrollbar{width:5px} ::-webkit-scrollbar-track{background:var(--bg)} ::-webkit-scrollbar-thumb{background:var(--terra);border-radius:3px}
+    .lucide{width:1em;height:1em;stroke-width:1.75;vertical-align:-.125em;display:inline-block}
+    .lucide-hero{width:3.2rem;height:3.2rem;stroke-width:1.25}
+    #loader{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .7s,visibility .7s}
+    #loader.hidden{opacity:0;visibility:hidden}
+    .loader-name{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--terra);letter-spacing:.05em}
+    .loader-bar{width:180px;height:2px;background:rgba(255,255,255,.08);border-radius:2px;margin:.8rem auto 0;overflow:hidden}
+    .loader-progress{height:100%;background:var(--terra);border-radius:2px;animation:load 1s ease forwards}
+    @keyframes load{from{width:0}to{width:100%}}
+    .navbar{background:rgba(13,13,15,.92)!important;backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:.9rem 0;transition:box-shadow .3s}
+    .navbar.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.3)}
+    .navbar-brand{display:flex;align-items:center}
+    .navbar-brand img{height:38px;width:auto;object-fit:contain}
+    .nav-link{color:var(--muted)!important;font-size:.85rem;font-weight:500;letter-spacing:.04em;padding:.4rem 1rem!important;transition:color .2s}
+    .nav-link:hover,.nav-link.active{color:var(--white)!important}
+    .btn-hire{background:var(--terra);color:white!important;border-radius:2rem;padding:.4rem 1.3rem!important;font-size:.85rem!important;transition:background .2s,transform .2s!important}
+    .btn-hire:hover{background:#4A7FA5!important;transform:translateY(-1px)}
+    .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:7rem 0 4rem;position:relative}
+    .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 60% 50% at 80% 40%,rgba(91,141,184,.08) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(91,141,184,.06) 0%,transparent 60%);pointer-events:none}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);margin-bottom:1.5rem}
+    .hero-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--terra)}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5vw,4.5rem);line-height:1.05;font-weight:700;margin-bottom:1rem}
+    .hero h1 .name{color:var(--terra);font-style:italic}
+    .hero-desc{font-size:1rem;line-height:1.8;color:var(--muted);font-weight:300;max-width:460px;margin-bottom:2.5rem}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+    .btn-main{background:var(--terra);color:white;border:none;border-radius:2rem;padding:.85rem 2rem;font-size:.9rem;font-weight:500;cursor:pointer;transition:background .2s,transform .2s;text-decoration:none;display:inline-block}
+    .btn-main:hover{background:#4A7FA5;transform:translateY(-2px);color:white}
+    .btn-outline{border:1px solid rgba(255,255,255,.15);color:var(--muted);border-radius:2rem;padding:.85rem 2rem;font-size:.9rem;font-weight:500;text-decoration:none;display:inline-block;transition:border-color .2s,color .2s}
+    .btn-outline:hover{border-color:rgba(255,255,255,.4);color:var(--white)}
+    .social-links{display:flex;gap:.7rem;margin-top:2rem}
+    .social-pill{display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:2rem;padding:.4rem 1rem;font-size:.78rem;color:var(--muted);text-decoration:none;transition:all .2s}
+    .social-pill:hover{background:var(--terra-dim);border-color:rgba(224,120,80,.3);color:var(--terra)}
+    .hero-visual{display:flex;justify-content:center;align-items:center;padding:3rem 4rem}
+    .avatar-wrap{position:relative;width:340px;height:340px}
+    .avatar-ring{position:absolute;inset:-12px;border-radius:50%;border:1px solid rgba(91,141,184,.2);animation:spin 20s linear infinite}
+    .avatar-ring::after{content:'';position:absolute;top:-4px;left:50%;width:8px;height:8px;background:var(--terra);border-radius:50%;transform:translateX(-50%)}
+    @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    .avatar-circle{width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,var(--bg3),var(--bg2));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:7rem;position:relative;overflow:hidden}
+    .avatar-circle img{width:70%;height:85%;object-fit:contain;position:relative;z-index:1;filter:drop-shadow(0 0 24px rgba(91,141,184,.35))}
+    .avatar-circle::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(224,120,80,.08),transparent 60%)}
+    .float-card{position:absolute;background:var(--bg2);border:1px solid var(--border);border-radius:.8rem;padding:.7rem 1rem;font-size:.78rem;display:flex;align-items:center;gap:.6rem;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+    .float-card-1{bottom:2rem;left:-3rem;animation:float1 4s ease-in-out infinite}
+    .float-card-2{top:2rem;right:-2rem;animation:float2 5s ease-in-out infinite}
+    @keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+    .float-dot{width:8px;height:8px;border-radius:50%;background:var(--terra);flex-shrink:0;animation:blink 2s ease-in-out infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+    .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:1rem;overflow:hidden;margin-top:2.5rem}
+    .stat-box{background:var(--bg2);padding:1.5rem;text-align:center}
+    .stat-n{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--terra);display:block}
+    .stat-l{font-size:.72rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:.2rem}
+    section{padding:5rem 0}
+    .section-chip{display:inline-flex;align-items:center;gap:.4rem;background:var(--terra-dim);border:1px solid rgba(224,120,80,.2);border-radius:2rem;padding:.3rem .9rem;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);margin-bottom:1rem}
+    .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);color:var(--white);line-height:1.2}
+    .section-title em{font-style:italic;color:var(--terra)}
+    .sobre-bg{background:var(--bg2);border-radius:1.5rem;padding:3rem;border:1px solid var(--border)}
+    .skill-tag{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:.6rem;padding:.45rem .9rem;font-size:.82rem;color:var(--muted);transition:all .2s}
+    .skill-tag:hover{background:var(--terra-dim);border-color:rgba(224,120,80,.3);color:var(--white)}
+    .project-card{background:var(--bg2);border:1px solid var(--border);border-radius:1.2rem;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s;height:100%}
+    .project-card:hover{transform:translateY(-6px);border-color:rgba(224,120,80,.25);box-shadow:0 16px 48px rgba(0,0,0,.3)}
+    .project-thumb{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .pt1{background:linear-gradient(135deg,#1A120A,#2A1A0E)}
+    .pt2{background:linear-gradient(135deg,#0A1015,#0E1A25)}
+    .project-thumb-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,15,.8) 0%,transparent 60%);pointer-events:none}
+    .project-badge{position:absolute;top:.8rem;left:.8rem;background:rgba(13,13,15,.7);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:2rem;padding:.25rem .7rem;font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .project-featured{border-color:rgba(91,141,184,.3)!important}
+    .project-info{padding:1.5rem}
+    .project-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--white);margin-bottom:.5rem}
+    .project-desc{font-size:.82rem;line-height:1.6;color:var(--muted);margin-bottom:1.2rem}
+    .project-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.2rem}
+    .project-tag{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:.4rem;padding:.2rem .6rem;font-size:.7rem;color:var(--muted)}
+    .project-links{display:flex;gap:.8rem}
+    .project-link{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;font-weight:500;text-decoration:none;color:var(--terra);transition:color .2s}
+    .project-link:hover{color:#7EADC8}
+    .project-link.secondary{color:var(--muted)}
+    .project-link.secondary:hover{color:var(--white)}
+    .project-logo{width:100px;height:100px;object-fit:contain;border-radius:1rem;filter:drop-shadow(0 4px 24px rgba(0,0,0,.5))}
+    .project-logo-sm{width:64px;height:64px;object-fit:contain;border-radius:.75rem}
+    .cotidiana-wrap{background:white;border-radius:1rem;padding:.6rem;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.4)}
+    .service-card{background:var(--bg2);border:1px solid var(--border);border-radius:1.2rem;padding:2rem;transition:border-color .3s,transform .3s;height:100%}
+    .service-card:hover{border-color:rgba(224,120,80,.25);transform:translateY(-4px)}
+    .service-icon{display:flex;align-items:center;justify-content:center;width:2.8rem;height:2.8rem;background:var(--terra-dim);border:1px solid rgba(224,120,80,.2);border-radius:.75rem;margin-bottom:1rem;color:var(--terra)}
+    .service-name{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--white);margin-bottom:.6rem}
+    .service-desc{font-size:.82rem;line-height:1.7;color:var(--muted)}
+    .service-price{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--terra);margin-top:1rem;display:block}
+    .contact-bg{background:var(--bg2);border:1px solid var(--border);border-radius:1.5rem;padding:3rem}
+    .contact-input{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:.8rem;padding:.85rem 1.1rem;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s}
+    .contact-input:focus{border-color:rgba(224,120,80,.4)}
+    .contact-input::placeholder{color:var(--muted)}
+    textarea.contact-input{resize:vertical;min-height:120px}
+    .contact-label{font-size:.78rem;font-weight:500;letter-spacing:.04em;color:var(--muted);margin-bottom:.4rem;display:block}
+    footer{background:var(--bg);border-top:1px solid var(--border);padding:2rem 0}
+    .footer-text{font-size:.82rem;color:var(--muted)}
+    #backToTop{position:fixed;bottom:2rem;right:2rem;background:var(--terra);color:white;border:none;border-radius:50%;width:42px;height:42px;cursor:pointer;z-index:500;opacity:0;transform:scale(0);transition:opacity .3s,transform .3s;display:flex;align-items:center;justify-content:center}
+    #backToTop.visible{opacity:1;transform:scale(1)}
+    #toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(120%);background:var(--bg2);border:1px solid var(--border);color:var(--white);border-radius:2rem;padding:.7rem 1.5rem;font-size:.85rem;z-index:9000;transition:transform .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+    #toast.show{transform:translateX(-50%) translateY(0)}
+    .fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+    .fd1{transition-delay:.1s} .fd2{transition-delay:.2s} .fd3{transition-delay:.3s}
+    .navbar-toggler{border:none} .navbar-toggler:focus{box-shadow:none}
+    @media(max-width:992px){
+      .hero{grid-template-columns:1fr;padding-top:6rem;text-align:center;gap:3rem}
+      .hero-desc{margin:0 auto 2.5rem}
+      .hero-actions{justify-content:center}
+      .social-links{justify-content:center}
+      .hero-visual{order:-1}
+      .avatar-wrap{width:220px;height:220px}
+      .float-card-1{left:0;bottom:-1rem}
+      .float-card-2{right:0;top:-1rem}
+      .stats-row{grid-template-columns:1fr}
+      .stat-box+.stat-box{border-top:1px solid var(--border)}
+    }
+  </style>
+</head>
+<body>
+
+  <div id="loader">
+    <div style="text-align:center">
+      <div class="loader-name">Melina Rivera</div>
+      <div class="loader-bar"><div class="loader-progress"></div></div>
+    </div>
+  </div>
+
+  <button id="backToTop"><i data-lucide="arrow-up" class="lucide"></i></button>
+  <div id="toast">✓ Mensaje enviado</div>
+
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img src="img/MR_logo.png" alt="MR"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <i data-lucide="menu" class="lucide" style="color:var(--muted);font-size:1.4rem;width:1.4rem;height:1.4rem"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="#sobre">Sobre mí</a></li>
+          <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+          <li class="nav-item ms-lg-2"><a class="nav-link btn-hire" href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <section class="hero">
+      <div>
+        <div class="hero-eyebrow">Full Stack Developer</div>
+        <h1>Hola, soy<br><span class="name">Melina Rivera</span></h1>
+        <p class="hero-desc">Construyo <strong style="color:var(--white);font-weight:500">apps y webs reales</strong> — con React, Node.js y Supabase. Desde SaaS propios en producción hasta presencia digital para pymes y autónomos.</p>
+        <div class="hero-actions">
+          <a href="#proyectos" class="btn-main">Ver mis proyectos</a>
+          <a href="#contacto" class="btn-outline">Hablemos →</a>
+        </div>
+        <div class="social-links">
+          <a href="https://github.com/melinarivera" class="social-pill" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> GitHub</a>
+          <a href="https://www.linkedin.com/in/deliamelinarivera" class="social-pill" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+        </div>
+        <div class="stats-row fade-in">
+          <div class="stat-box"><span class="stat-n">10+</span><span class="stat-l">Proyectos</span></div>
+          <div class="stat-box"><span class="stat-n">3</span><span class="stat-l">Apps en producción</span></div>
+          <div class="stat-box"><span class="stat-n">100%</span><span class="stat-l">Compromiso</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="avatar-wrap">
+          <div class="avatar-ring"></div>
+          <div class="avatar-circle"><img src="img/MR_logo.png" alt=""></div>
+          <div class="float-card float-card-1">
+            <div class="float-dot"></div>
+            <span style="color:var(--white)">Disponible para proyectos</span>
+          </div>
+          <div class="float-card float-card-2">
+            <i data-lucide="rocket" class="lucide" style="color:var(--terra);width:1rem;height:1rem"></i>
+            <span style="color:var(--white)">Apps en producción</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section id="sobre">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5 fade-in">
+          <div class="section-chip"><i data-lucide="user" class="lucide"></i> Sobre mí</div>
+          <h2 class="section-title mb-4">Desarrollo web con <em>propósito</em></h2>
+          <p style="color:var(--muted);line-height:1.8;font-size:.95rem" class="mb-3">Soy Melina Rivera, desarrolladora full stack con apps propias en producción y validación. Me especializo en <strong style="color:var(--white)">construir productos digitales reales</strong> — desde la idea hasta el deploy.</p>
+          <p style="color:var(--muted);line-height:1.8;font-size:.95rem" class="mb-4">Trabajo con React, Node.js y Supabase para construir SaaS, herramientas de RRHH y apps cotidianas. También ayudo a pymes y autónomos a tener presencia digital que genere resultados.</p>
+          <a href="#contacto" class="btn-main">Trabajemos juntos</a>
+        </div>
+        <div class="col-lg-6 offset-lg-1 fade-in fd1">
+          <div class="sobre-bg">
+            <p class="section-chip mb-3"><i data-lucide="code-2" class="lucide"></i> Stack tecnológico</p>
+            <p style="font-size:.78rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem">Frontend</p>
+            <div class="d-flex gap-2 flex-wrap mb-4">
+              <span class="skill-tag"><i data-lucide="atom" class="lucide"></i> React</span>
+              <span class="skill-tag"><i data-lucide="zap" class="lucide"></i> Vite</span>
+              <span class="skill-tag"><i data-lucide="globe" class="lucide"></i> HTML5</span>
+              <span class="skill-tag"><i data-lucide="paintbrush" class="lucide"></i> CSS3</span>
+              <span class="skill-tag"><i data-lucide="layout" class="lucide"></i> Bootstrap 5</span>
+              <span class="skill-tag"><i data-lucide="navigation" class="lucide"></i> React Router</span>
+            </div>
+            <p style="font-size:.78rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem">Backend & Base de datos</p>
+            <div class="d-flex gap-2 flex-wrap mb-4">
+              <span class="skill-tag"><i data-lucide="server" class="lucide"></i> Node.js</span>
+              <span class="skill-tag"><i data-lucide="layers" class="lucide"></i> Express</span>
+              <span class="skill-tag"><i data-lucide="database" class="lucide"></i> Supabase</span>
+              <span class="skill-tag"><i data-lucide="hard-drive" class="lucide"></i> PostgreSQL</span>
+              <span class="skill-tag"><i data-lucide="mail" class="lucide"></i> Brevo SMTP</span>
+            </div>
+            <p style="font-size:.78rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem">Deploy & Herramientas</p>
+            <div class="d-flex gap-2 flex-wrap">
+              <span class="skill-tag"><i data-lucide="triangle" class="lucide"></i> Vercel</span>
+              <span class="skill-tag"><i data-lucide="train-front" class="lucide"></i> Railway</span>
+              <span class="skill-tag"><i data-lucide="git-branch" class="lucide"></i> Git & GitHub</span>
+              <span class="skill-tag"><i data-lucide="shield" class="lucide"></i> Auth & RLS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proyectos" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="container">
+      <div class="text-center mb-5 fade-in">
+        <div class="section-chip mx-auto"><i data-lucide="grid-2x2" class="lucide"></i> Proyectos</div>
+        <h2 class="section-title">Lo que he <em>construido</em></h2>
+      </div>
+      <div class="row g-4">
+
+        <!-- ETERN-ME DESTACADO -->
+        <div class="col-12 fade-in">
+          <div class="project-card project-featured" style="border-color:rgba(224,120,80,.4)">
+            <div class="row g-0">
+              <div class="col-lg-5">
+                <div style="height:100%;min-height:240px;background:linear-gradient(135deg,#100C1A,#1A0E2A,#0A1218);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
+                  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,168,76,.06),transparent 70%)"></div>
+                  <div style="width:130px;height:130px;border-radius:50%;overflow:hidden;position:relative;z-index:1;box-shadow:0 4px 32px rgba(0,0,0,.5);flex-shrink:0"><img src="img/etern-me.png" alt="ETERN-ME" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+                  <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,15,.6) 0%,transparent 50%);pointer-events:none"></div>
+                  <div class="project-badge" style="background:var(--terra);color:white;font-size:.7rem">
+                    <i data-lucide="star" class="lucide" style="width:.75em;height:.75em"></i> Destacado
+                  </div>
+                  <div style="position:absolute;bottom:.8rem;right:.8rem;background:rgba(13,13,15,.75);backdrop-filter:blur(8px);border:1px solid rgba(224,120,80,.25);border-radius:2rem;padding:.25rem .8rem;font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--terra)">En validación</div>
+                </div>
+              </div>
+              <div class="col-lg-7">
+                <div class="project-info" style="padding:2rem">
+                  <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-1">
+                    <div class="project-name" style="font-size:1.5rem">ETERN-ME</div>
+                    <span style="background:var(--terra-dim);border:1px solid rgba(224,120,80,.2);border-radius:2rem;padding:.2rem .8rem;font-size:.7rem;color:var(--terra);font-weight:600">Proyecto propio · SaaS</span>
+                  </div>
+                  <p style="font-size:.8rem;color:var(--terra);font-style:italic;margin-bottom:1rem;letter-spacing:.02em">Todo en orden. Siempre.</p>
+                  <div class="project-desc" style="font-size:.9rem;margin-bottom:1.5rem">Organiza tu vida digital. Protege lo que más importa. Una plataforma que centraliza cuentas, documentos e información esencial — para que nada importante se pierda y tus seres queridos tengan acceso cuando lo necesiten.</div>
+                  <div class="project-tags">
+                    <span class="project-tag">React</span><span class="project-tag">Node.js</span><span class="project-tag">Express</span><span class="project-tag">Supabase</span><span class="project-tag">PostgreSQL</span><span class="project-tag">Vercel</span><span class="project-tag">Railway</span>
+                  </div>
+                  <div class="project-links mt-3">
+                    <a href="https://etern-me.com" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cotidiana -->
+        <div class="col-lg-4 fade-in fd1">
+          <div class="project-card">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#0A1525,#0D1E38);position:relative">
+              <div class="cotidiana-wrap"><img src="img/cotidiana.png" alt="Cotidiana" class="project-logo-sm"/></div>
+              <div class="project-thumb-overlay"></div>
+              <div class="project-badge">App · Organización</div>
+              <div style="position:absolute;bottom:.8rem;right:.8rem;background:rgba(13,13,15,.75);backdrop-filter:blur(8px);border:1px solid rgba(108,142,173,.2);border-radius:2rem;padding:.2rem .6rem;font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)">En validación</div>
+            </div>
+            <div class="project-info">
+              <div class="project-name">Cotidiana.app</div>
+              <div class="project-desc">App de organización para adultos mayores o personas con poca experiencia tecnológica. Interfaz simple, accesible y pensada para el día a día.</div>
+              <div class="project-tags"><span class="project-tag">React 19</span><span class="project-tag">Vite 7</span><span class="project-tag">Supabase</span><span class="project-tag">React Router 7</span><span class="project-tag">Brevo SMTP</span></div>
+              <div class="project-links"><a href="https://cotidiana.app" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Zenwi -->
+        <div class="col-lg-4 fade-in fd2">
+          <div class="project-card">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#0A1020,#0D1830);position:relative">
+              <i data-lucide="heart-pulse" class="lucide-hero" style="color:#6C8EAD;opacity:.85;position:relative;z-index:1"></i>
+              <div class="project-thumb-overlay"></div>
+              <div class="project-badge">App · RRHH</div>
+              <div style="position:absolute;bottom:.8rem;right:.8rem;background:rgba(13,13,15,.75);backdrop-filter:blur(8px);border:1px solid rgba(108,142,173,.25);border-radius:2rem;padding:.2rem .6rem;font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)">En producción</div>
+            </div>
+            <div class="project-info">
+              <div class="project-name">Zenwi.app</div>
+              <div class="project-desc">Herramienta de RRHH para detectar y prevenir el burnout de forma anónima. Control diario del bienestar del equipo, sin fricciones y con total privacidad para el empleado.</div>
+              <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Node.js</span><span class="project-tag">Supabase</span></div>
+              <div class="project-links"><a href="https://zenwi.app" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Travelmates -->
+        <div class="col-lg-4 fade-in fd3">
+          <div class="project-card">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#0A1520,#0F1E30);position:relative">
+              <i data-lucide="plane" class="lucide-hero" style="color:#B0B8C1;opacity:.85;position:relative;z-index:1"></i>
+              <div class="project-thumb-overlay"></div>
+              <div class="project-badge">App · Viajes en equipo</div>
+              <div style="position:absolute;bottom:.8rem;right:.8rem;background:rgba(13,13,15,.75);backdrop-filter:blur(8px);border:1px solid rgba(176,184,193,.2);border-radius:2rem;padding:.2rem .6rem;font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)">En desarrollo</div>
+            </div>
+            <div class="project-info">
+              <div class="project-name">Travelmates</div>
+              <div class="project-desc">App colaborativa para planificar y gestionar viajes en grupo — amigos, familia, compañeros. Itinerarios compartidos, gastos y votaciones en un solo lugar. Proyecto en equipo.</div>
+              <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Node.js</span><span class="project-tag">Trabajo en equipo</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NovaFlow -->
+        <div class="col-lg-4 fade-in fd1">
+          <div class="project-card">
+            <div class="project-thumb pt2" style="position:relative">
+              <i data-lucide="layout-dashboard" class="lucide-hero" style="color:#6C8EAD;opacity:.8;position:relative;z-index:1"></i>
+              <div class="project-thumb-overlay"></div>
+              <div class="project-badge">SaaS Dashboard</div>
+            </div>
+            <div class="project-info">
+              <div class="project-name">NovaFlow — Consultoría Digital</div>
+              <div class="project-desc">Aplicación web tipo startup con panel administrativo. Landing page profesional + dashboard interno estilo SaaS con JavaScript avanzado.</div>
+              <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">Bootstrap 5</span></div>
+              <div class="project-links">
+                <a href="https://melinarivera.github.io/mi-consultoria-web/" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a>
+                <a href="https://github.com/melinarivera/mi-consultoria-web" class="project-link secondary" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> Código</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alma de Barrio -->
+        <div class="col-lg-4 fade-in fd2">
+          <div class="project-card">
+            <div class="project-thumb pt1" style="position:relative">
+              <i data-lucide="shopping-bag" class="lucide-hero" style="color:#8BB8D8;opacity:.8;position:relative;z-index:1"></i>
+              <div class="project-thumb-overlay"></div>
+              <div class="project-badge">Landing Page</div>
+            </div>
+            <div class="project-info">
+              <div class="project-name">Alma de Barrio</div>
+              <div class="project-desc">Tienda artesanal con carrito funcional, filtros por categoría y animaciones CSS al scroll.</div>
+              <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">Bootstrap 5</span></div>
+              <div class="project-links">
+                <a href="https://melinarivera.github.io/Alma-de-barrio/" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a>
+                <a href="https://github.com/melinarivera/Alma-de-barrio" class="project-link secondary" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> Código</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lumière Beauty -->
+        <div class="col-lg-4 fade-in fd3">
+          <div class="project-card">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#1A0A10,#2E1020);position:relative">
+              <i data-lucide="sparkles" class="lucide-hero" style="color:#B0B8C1;opacity:.8;position:relative;z-index:1"></i>
+              <div class="project-thumb-overlay"></div>
+              <div class="project-badge">Cliente real</div>
+            </div>
+            <div class="project-info">
+              <div class="project-name">Lumière Beauty</div>
+              <div class="project-desc">Landing para estética autónoma con reserva de citas, galería de servicios y diseño femenino.</div>
+              <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">Bootstrap 5</span></div>
+              <div class="project-links">
+                <a href="https://melinarivera.github.io/lumiere-beauty/" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a>
+                <a href="https://github.com/melinarivera/lumiere-beauty" class="project-link secondary" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> Código</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Efsun · Tienda Esotérica -->
+        <div class="col-lg-4 fade-in fd1">
+          <div class="project-card">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#0D0A1F,#1A0A2E);position:relative">
+              <i data-lucide="shopping-cart" class="lucide-hero" style="color:#B0B8C1;opacity:.8;position:relative;z-index:1"></i>
+              <div class="project-thumb-overlay"></div>
+              <div class="project-badge">Cliente real · Tienda</div>
+            </div>
+            <div class="project-info">
+              <div class="project-name">Efsun · Tienda Esotérica</div>
+              <div class="project-desc">Tienda online para consultora esotérica con atención en A Coruña y online. Catálogo de productos, carrito de compra y diseño místico.</div>
+              <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">Google Fonts</span></div>
+              <div class="project-links">
+                <a href="https://melinarivera.github.io/tienda-esoterica/" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Efsun · Plataforma con IA -->
+        <div class="col-lg-4 fade-in fd2">
+          <div class="project-card">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#0A0A1F,#150A2E);position:relative">
+              <i data-lucide="moon-star" class="lucide-hero" style="color:#B0B8C1;opacity:.8;position:relative;z-index:1"></i>
+              <div class="project-thumb-overlay"></div>
+              <div class="project-badge">Cliente real · IA</div>
+            </div>
+            <div class="project-info">
+              <div class="project-name">Efsun · Plataforma Esotérica</div>
+              <div class="project-desc">Plataforma completa con horóscopo personalizado generado con IA, reservas de sesiones, blog e integración con WhatsApp.</div>
+              <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">Google Fonts</span><span class="project-tag">IA</span></div>
+              <div class="project-links">
+                <a href="https://melinarivera.github.io/pyme-efsun/" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a>
+                <a href="https://github.com/melinarivera/pyme-efsun" class="project-link secondary" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> Código</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recursos RRHH -->
+        <div class="col-lg-4 fade-in fd2">
+          <div class="project-card">
+            <div class="project-thumb" style="background:linear-gradient(135deg,#0A1A10,#102E1A);position:relative">
+              <i data-lucide="book-open" class="lucide-hero" style="color:#6C8EAD;opacity:.8;position:relative;z-index:1"></i>
+              <div class="project-thumb-overlay"></div>
+              <div class="project-badge">Herramienta académica</div>
+            </div>
+            <div class="project-info">
+              <div class="project-name">Recursos del Máster · RRHH</div>
+              <div class="project-desc">Tests interactivos y PDFs descargables de los 4 módulos del Máster en Dirección y Gestión de RRHH. Calificación automática y barra de progreso.</div>
+              <div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span></div>
+              <div class="project-links">
+                <a href="https://melinarivera.github.io/Recursos_de_estudio_MasterRRHH/" class="project-link" target="_blank"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a>
+                <a href="https://github.com/melinarivera/Recursos_de_estudio_MasterRRHH" class="project-link secondary" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> Código</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="container">
+      <div class="text-center mb-5 fade-in">
+        <div class="section-chip mx-auto"><i data-lucide="briefcase" class="lucide"></i> Servicios</div>
+        <h2 class="section-title">Invierte en tu negocio,<br><em>no solo en una web</em></h2>
+        <p style="color:var(--muted);font-size:.95rem;max-width:540px;margin:.8rem auto 0;line-height:1.8">Cada proyecto es diferente. Por eso trabajo con packs pensados para el momento en el que está tu negocio — y hacia dónde quiere llegar.</p>
+      </div>
+      <div class="row g-4 align-items-stretch">
+        <div class="col-md-6 col-lg-3 fade-in">
+          <div class="service-card d-flex flex-column" style="height:100%">
+            <div>
+              <div class="service-icon"><i data-lucide="rocket" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
+              <div class="service-name">Pack 1</div>
+              <p style="font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Ideal para emprendedores y autónomos que acaban de arrancar</p>
+              <div class="service-desc">Tu primera presencia digital seria: una página de aterrizaje que comunica quién eres, qué ofreces y cómo contactarte. Diseñada para convertir visitas en llamadas o mensajes de WhatsApp desde el primer día.</div>
+              <ul style="list-style:none;padding:0;margin:1rem 0 0;display:flex;flex-direction:column;gap:.5rem">
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Landing page estratégica o para eventos</li>
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Diseño responsive (móvil + escritorio)</li>
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Formulario de contacto y botón WhatsApp</li>
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Entrega en 8 días</li>
+              </ul>
+            </div>
+            <div style="margin-top:auto;padding-top:1.5rem;border-top:1px solid var(--border)">
+              <span class="service-price">Desde 350 €</span>
+              <a href="#contacto" class="btn-outline d-block text-center mt-3" style="padding:.65rem 1rem;font-size:.82rem">Quiero empezar →</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 fade-in fd1">
+          <div class="service-card d-flex flex-column" style="height:100%;border-color:rgba(224,120,80,.35);position:relative">
+            <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--terra);color:white;border-radius:2rem;padding:.2rem .9rem;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap"><i data-lucide="star" class="lucide" style="width:.75em;height:.75em"></i> Más solicitado</div>
+            <div>
+              <div class="service-icon"><i data-lucide="store" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
+              <div class="service-name">Pack 2</div>
+              <p style="font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Ideal para negocios que quieren crecer y ganar visibilidad</p>
+              <div class="service-desc">Una web completa que posiciona tu empresa como referente en tu sector. Estructura pensada para que tus clientes encuentren lo que buscan, confíen en ti y actúen.</div>
+              <ul style="list-style:none;padding:0;margin:1rem 0 0;display:flex;flex-direction:column;gap:.5rem">
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Web completa de 5–7 páginas</li>
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Arquitectura estratégica de contenido</li>
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Blog o catálogo de productos/servicios</li>
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> SEO básico en cada página</li>
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Diseño responsive incluido</li>
+              </ul>
+            </div>
+            <div style="margin-top:auto;padding-top:1.5rem;border-top:1px solid rgba(224,120,80,.2)">
+              <span class="service-price">Desde 600 €</span>
+              <a href="#contacto" class="btn-main d-block text-center mt-3" style="padding:.65rem 1rem;font-size:.82rem">Quiero crecer →</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 fade-in fd2">
+          <div class="service-card d-flex flex-column" style="height:100%">
+            <div>
+              <div class="service-icon"><i data-lucide="gem" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
+              <div class="service-name">Pack 3</div>
+              <p style="font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Ideal para negocios listos para vender o reservar online 24/7</p>
+              <div class="service-desc">Tu negocio abierto las 24 horas: tienda online o sistema de reservas automatizado, diseño a medida y base técnica sólida para escalar.</div>
+              <ul style="list-style:none;padding:0;margin:1rem 0 0;display:flex;flex-direction:column;gap:.5rem">
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Ecommerce o sistema de reservas</li>
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Automatizaciones de proceso clave</li>
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Diseño personalizado al 100%</li>
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Arquitectura preparada para escalar</li>
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Soporte técnico 30 días post-lanzamiento</li>
+              </ul>
+            </div>
+            <div style="margin-top:auto;padding-top:1.5rem;border-top:1px solid var(--border)">
+              <span class="service-price">Desde 1,500 €</span>
+              <a href="#contacto" class="btn-outline d-block text-center mt-3" style="padding:.65rem 1rem;font-size:.82rem">Quiero vender online →</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 fade-in fd3">
+          <div class="service-card d-flex flex-column" style="height:100%;background:linear-gradient(160deg,var(--bg2),rgba(26,26,36,.95))">
+            <div>
+              <div class="service-icon"><i data-lucide="wrench" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
+              <div class="service-name">Mantenimiento</div>
+              <p style="font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Ideal para quienes ya tienen web y quieren que siempre funcione</p>
+              <div class="service-desc">Tu web es una herramienta de negocio: necesita estar actualizada, segura y funcionando. Me encargo de todo para que tú te centres en lo importante.</div>
+              <ul style="list-style:none;padding:0;margin:1rem 0 0;display:flex;flex-direction:column;gap:.5rem">
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Actualizaciones y revisiones periódicas</li>
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Cambios de contenido y pequeñas mejoras</li>
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Soporte directo por WhatsApp o email</li>
+                <li style="font-size:.8rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem"><span style="color:var(--terra)">✓</span> Sin sorpresas ni presupuestos extra</li>
+              </ul>
+            </div>
+            <div style="margin-top:auto;padding-top:1.5rem;border-top:1px solid var(--border)">
+              <span class="service-price">Desde 90 €/mes</span>
+              <a href="#contacto" class="btn-outline d-block text-center mt-3" style="padding:.65rem 1rem;font-size:.82rem">Me interesa →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="text-center fade-in" style="color:var(--muted);font-size:.82rem;margin-top:2.5rem">
+        ¿No sabes qué pack necesitas? <a href="#contacto" style="color:var(--terra);text-decoration:none;font-weight:500">Cuéntame tu situación y te oriento sin compromiso con un PACK A TU MEDIDA →</a>
+      </p>
+    </div>
+  </section>
+
+  <section id="contacto" style="background:var(--bg2);border-top:1px solid var(--border)">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="text-center mb-5 fade-in">
+            <div class="section-chip mx-auto"><i data-lucide="message-circle-heart" class="lucide"></i> Contacto</div>
+            <h2 class="section-title">¿Tienes un proyecto <em>en mente</em>?</h2>
+            <p style="color:var(--muted);font-size:.95rem;margin-top:.8rem">Cuéntame tu idea y te respondo en menos de 24h.</p>
+          </div>
+          <div class="contact-bg fade-in">
+            <form id="contact-form" action="https://formspree.io/f/xbdplnyg" method="POST">
+              <div class="row g-3">
+                <div class="col-md-6"><label class="contact-label">Tu nombre</label><input type="text" name="nombre" class="contact-input" id="c-name" placeholder="Ana García" required/></div>
+                <div class="col-md-6"><label class="contact-label">Tu email</label><input type="email" name="email" class="contact-input" id="c-email" placeholder="ana@negocio.com" required/></div>
+                <div class="col-12"><label class="contact-label">¿Qué necesitas?</label>
+                  <select name="servicio" class="contact-input" style="cursor:pointer">
+                    <option value="" disabled selected>Selecciona un servicio</option>
+                    <option>Landing page para mi negocio</option>
+                    <option>App web completa para mi empresa</option>
+                    <option>Mantenimiento de web</option>
+                    <option>Consultoría digital</option>
+                    <option>Otro</option>
+                  </select>
+                </div>
+                <div class="col-12"><label class="contact-label">Cuéntame tu proyecto</label><textarea name="mensaje" class="contact-input" id="c-msg" placeholder="Tengo una tienda de ropa y quiero tener presencia online..." required></textarea></div>
+                <div class="col-12"><button type="submit" class="btn-main w-100" style="padding:1rem;font-size:1rem">Enviar mensaje <i data-lucide="send" class="lucide" style="width:.9em;height:.9em;margin-left:.3em"></i></button></div>
+              </div>
+            </form>
+            <div id="form-success" style="display:none;text-align:center;padding:2rem 0">
+              <i data-lucide="circle-check-big" class="lucide" style="width:3rem;height:3rem;color:var(--terra);display:block;margin:0 auto 1rem"></i>
+              <h4 style="color:var(--white);font-family:'Playfair Display',serif;margin-bottom:.5rem">¡Mensaje enviado!</h4>
+              <p style="color:var(--muted);font-size:.9rem">Te respondo en menos de 24h. ¡Gracias por contactarme!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <div class="footer-text">© 2026 Melina Rivera. Todos los derechos reservados.</div>
+      <div class="footer-text">Hecho con ♥ y mucho café ☕</div>
+      <div class="d-flex gap-3">
+        <a href="https://github.com/melinarivera" style="color:var(--muted);transition:color .2s" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="width:1.2rem;height:1.2rem"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg></a>
+        <a href="https://www.linkedin.com/in/deliamelinarivera" style="color:var(--muted);transition:color .2s" target="_blank"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="width:1.2rem;height:1.2rem"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    lucide.createIcons();
+    window.addEventListener('load', () => setTimeout(() => document.getElementById('loader').classList.add('hidden'), 1000));
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+      document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+    });
+    document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+    document.querySelectorAll('section[id]').forEach(s => {
+      new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+            if (a) a.classList.add('active');
+          }
+        });
+      }, { threshold: 0.4 }).observe(s);
+    });
+    const fo = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fo.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => fo.observe(el));
+  </script>
+</body>
+</html>
