@@ -738,7 +738,8 @@
       transition: var(--transition);
       height: 100%;
       display: flex; flex-direction: column;
-      position: relative; overflow: hidden;
+      position: relative;
+      text-align: center;
     }
     .service-card::before {
       content: '';
@@ -776,26 +777,29 @@
       border: 1px solid rgba(91,141,184,0.2);
       border-radius: 0.75rem;
       display: flex; align-items: center; justify-content: center;
-      color: var(--blue); margin-bottom: 1rem;
+      color: var(--blue); margin: 0 auto 1rem;
     }
     .service-name {
       font-family: 'Playfair Display', serif;
       font-size: 1.1rem; color: var(--white);
       margin-bottom: 0.4rem;
+      text-align: center;
     }
     .service-ideal {
       font-size: 0.72rem; font-weight: 600;
       letter-spacing: 0.07em; text-transform: uppercase;
       color: var(--muted); margin-bottom: 0.8rem;
+      text-align: center;
     }
     .service-desc {
       font-size: 0.83rem; line-height: 1.7;
       color: var(--muted); margin-bottom: 1rem;
+      text-align: left;
     }
     .service-list {
       list-style: none; padding: 0;
       display: flex; flex-direction: column; gap: 0.5rem;
-      flex: 1;
+      flex: 1; text-align: left;
     }
     .service-list li {
       font-size: 0.8rem; color: var(--muted);
@@ -806,6 +810,7 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem; color: var(--blue);
       margin-bottom: 1rem; display: block;
+      text-align: center;
     }
     .service-divider {
       height: 1px; background: var(--border);
@@ -1310,8 +1315,9 @@
         <!-- Zenwi -->
         <div class="fade-in fd2" data-category="saas">
           <div class="project-card">
-            <div class="project-thumb" style="background:#0A1020;position:relative">
-              <img src="img/thumbs/zenwi.jpg" alt="Zenwi app" style="width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0;"/>
+            <div class="project-thumb" style="background:linear-gradient(135deg,#0A1020,#0D1830);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.8rem">
+              <span style="font-size:3.5rem;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4))">🧠</span>
+              <span style="font-size:1rem;font-weight:600;color:rgba(255,255,255,.6);letter-spacing:0.05em">zenwi.app</span>
               <div class="project-thumb-overlay"></div>
               <div class="project-badge">App · RRHH</div>
               <div class="project-status status-prod">En producción</div>
@@ -1323,11 +1329,6 @@
                 <span class="project-tag">React</span>
                 <span class="project-tag">Node.js</span>
                 <span class="project-tag">Supabase</span>
-              </div>
-              <div class="project-links">
-                <a href="https://zenwi.app" class="project-link" target="_blank" rel="noopener">
-                  <i data-lucide="external-link" class="lucide"></i> Ver en vivo
-                </a>
               </div>
             </div>
           </div>
@@ -1371,11 +1372,7 @@
                 <span class="project-tag">JavaScript</span>
                 <span class="project-tag">Bootstrap 5</span>
               </div>
-              <div class="project-links">
-                <a href="https://melinarivera.github.io/mi-consultoria-web/" class="project-link" target="_blank" rel="noopener">
-                  <i data-lucide="external-link" class="lucide"></i> Ver en vivo
-                </a>
-              </div>
+              <div class="project-links"></div>
             </div>
           </div>
         </div>
@@ -1397,11 +1394,7 @@
                 <span class="project-tag">JavaScript</span>
                 <span class="project-tag">Bootstrap 5</span>
               </div>
-              <div class="project-links">
-                <a href="https://melinarivera.github.io/Alma-de-barrio/" class="project-link" target="_blank" rel="noopener">
-                  <i data-lucide="external-link" class="lucide"></i> Ver en vivo
-                </a>
-              </div>
+              <div class="project-links"></div>
             </div>
           </div>
         </div>
@@ -1423,11 +1416,7 @@
                 <span class="project-tag">JavaScript</span>
                 <span class="project-tag">Bootstrap 5</span>
               </div>
-              <div class="project-links">
-                <a href="https://melinarivera.github.io/lumiere-beauty/" class="project-link" target="_blank" rel="noopener">
-                  <i data-lucide="external-link" class="lucide"></i> Ver en vivo
-                </a>
-              </div>
+              <div class="project-links"></div>
             </div>
           </div>
         </div>
@@ -1484,8 +1473,30 @@
           </div>
         </div>
 
+        <!-- Pandín Estancia Infantil -->
+        <div class="fade-in fd3" data-category="cliente landing">
+          <div class="project-card">
+            <div class="project-thumb" style="background:#F0EDE0;position:relative">
+              <img src="img/thumbs/pandin.jpg" alt="Pandín Estancia Infantil" style="width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0;"/>
+              <div class="project-thumb-overlay" style="background:linear-gradient(to top,rgba(15,10,5,.8) 0%,transparent 55%)"></div>
+              <div class="project-badge">Cliente real · Educación</div>
+            </div>
+            <div class="project-info">
+              <div class="project-name">Pandín · Estancia Infantil</div>
+              <div class="project-desc">Web completa para estancia infantil en CDMX. Diseño adaptado para familias: accesible, cálido y con asistente virtual integrado.</div>
+              <div class="project-tags">
+                <span class="project-tag">HTML5</span>
+                <span class="project-tag">CSS3</span>
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">Bootstrap 5</span>
+                <span class="project-tag">UX</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Recursos RRHH -->
-        <div class="fade-in fd3" data-category="landing">
+        <div class="fade-in fd1" data-category="landing">
           <div class="project-card">
             <div class="project-thumb" style="background:#0A1A10;position:relative">
               <img src="img/thumbs/rrhh.jpg" alt="Recursos RRHH" style="width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0;"/>
@@ -1536,7 +1547,6 @@
               <li><span class="service-check">✓</span> Landing page estratégica o para eventos</li>
               <li><span class="service-check">✓</span> Diseño responsive (móvil + escritorio)</li>
               <li><span class="service-check">✓</span> Formulario de contacto y botón WhatsApp</li>
-              <li><span class="service-check">✓</span> Entrega en 8 días</li>
             </ul>
             <div class="service-divider"></div>
             <span class="service-price">Desde 350 €</span>
@@ -1546,7 +1556,7 @@
           </div>
         </div>
 
-        <div class="col col-md-6 col-lg-3 fade-in fd1">
+        <div class="col col-md-6 col-lg-3 fade-in fd1" style="padding-top:1.5rem">
           <div class="service-card popular" style="height:100%">
             <div class="service-popular-badge">
               <i data-lucide="star" class="lucide" style="width:.75em;height:.75em"></i> Más solicitado
