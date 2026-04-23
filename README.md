@@ -44,21 +44,6 @@ Aunque este portafolio es un proyecto frontend enfocado en rendimiento puro (HTM
 5. **Servicios:** Packs escalonados de desarrollo freelance para negocios en diferentes etapas de crecimiento.
 6. **Contacto:** Formulario directo e integración de redes profesionales.
 
-## 💻 Ejecutar Localmente
-
-Este portafolio es extremadamente ligero y no requiere procesos de build complejos.
-
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/melinarivera/mi-portafolio.git
-   ```
-2. Navega al directorio:
-   ```bash
-   cd mi-portafolio
-   ```
-3. Abre el archivo `index.html` en tu navegador, o utiliza una extensión como Live Server en VS Code:
-   ```bash
-   npx serve .
    ```
 
 ## 📫 Contacto
