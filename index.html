@@ -618,11 +618,12 @@
       transition: var(--transition);
       height: 100%;
       display: flex; flex-direction: column;
+      box-shadow: 0 4px 24px rgba(91,141,184, 0.05);
     }
     .project-card:hover {
-      border-color: rgba(91,141,184,0.25);
+      border-color: rgba(91,141,184,0.35);
       transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(91,141,184,0.08);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 32px rgba(91,141,184,0.15);
     }
     .project-card.featured {
       flex-direction: row;
@@ -641,7 +642,7 @@
     }
     .project-thumb-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(8,8,15,0.85) 0%, transparent 55%);
+      background: linear-gradient(to top, rgba(8,8,15,0.3) 0%, transparent 40%);
       pointer-events: none;
     }
     .project-badge {
@@ -1249,8 +1250,8 @@
           <div class="project-card featured">
             <div class="project-thumb" style="background:linear-gradient(135deg,#100C1A,#1A0E2A,#0A1218);position:relative">
               <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,168,76,.06),transparent 70%)"></div>
-              <img src="img/etern-me-hero.png" alt="ETERN-ME landing page" style="width:100%;height:100%;object-fit:contain;object-position:center;position:absolute;inset:0;display:block;"/>
-              <div class="project-thumb-overlay"></div>
+              <img src="img/etern-me-hero.png" alt="ETERN-ME landing page" style="width:100%;height:100%;object-fit:contain;object-position:center;position:absolute;inset:0;display:block;padding:2.5rem 1rem;"/>
+              <!-- overlay removed to avoid darkening screenshot -->
               <div class="project-badge-featured"><i data-lucide="star" class="lucide" style="width:.75em;height:.75em"></i> Destacado</div>
               <div class="project-status status-val">En validación</div>
             </div>
@@ -1285,8 +1286,8 @@
         <div class="fade-in fd1" data-category="saas">
           <div class="project-card">
             <div class="project-thumb" style="background:linear-gradient(135deg,#0A1525,#0D1E38);position:relative">
-              <img src="img/cotidiana-hero.png" alt="Cotidiana landing page" style="width:100%;height:100%;object-fit:contain;object-position:center;position:absolute;inset:0;display:block;"/>
-              <div class="project-thumb-overlay"></div>
+              <img src="img/cotidiana-hero.png" alt="Cotidiana landing page" style="width:100%;height:100%;object-fit:contain;object-position:center;position:absolute;inset:0;display:block;padding:2.5rem 1rem;"/>
+              <!-- overlay removed -->
               <div class="project-badge">App · Organización</div>
               <div class="project-status status-val">En validación</div>
             </div>
@@ -1336,8 +1337,8 @@
         <div class="fade-in fd3" data-category="saas">
           <div class="project-card">
             <div class="project-thumb" style="background:linear-gradient(135deg,#0A1520,#0F1E30);position:relative">
-              <img src="img/travelmates-hero.png" alt="TravelMates landing page" style="width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0;display:block;"/>
-              <div class="project-thumb-overlay"></div>
+              <img src="img/travelmates-hero.png" alt="TravelMates landing page" style="width:100%;height:100%;object-fit:contain;object-position:center;position:absolute;inset:0;display:block;padding:2.5rem 1rem;"/>
+              <!-- overlay removed -->
               <div class="project-badge">App · Viajes de Grupo</div>
               <div class="project-status status-dev">En desarrollo</div>
             </div>
