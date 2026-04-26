@@ -74,4 +74,14 @@ MR_Portafolio/
 
 ---
 
+## ⚠️ Aviso de derechos de autor
+
+© 2025 Melina Rivera. Todos los derechos reservados.
+
+Este repositorio es **de solo lectura y con fines de visualización**. Queda **expresamente prohibido** clonar, copiar, redistribuir, modificar o reutilizar cualquier parte de este código o diseño sin el **permiso escrito y expreso** de la autora.
+
+Si quieres contactarme para una colaboración o tienes dudas, escríbeme a través del formulario de contacto del portafolio o por LinkedIn.
+
+---
+
 *Diseñado y desarrollado con mucho café ☕ — Melina Rivera, 2025*
