@@ -1,56 +1,77 @@
-# Melina Rivera — Full Stack Developer Portfolio
+# Melina Rivera — Portafolio Personal
 
-Bienvenido al repositorio de mi portafolio personal. Soy desarrolladora full stack especializada en construir **apps y webs reales** — desde SaaS propios en producción hasta soluciones digitales escalables para pymes y autónomos.
+> Portafolio personal de Melina Rivera, desarrolladora web freelance especializada en apps y webs reales para pymes y autónomos.
 
-## 🚀 Sobre el Proyecto
+---
 
-Este portafolio ha sido diseñado y desarrollado desde cero para reflejar mi identidad como desarrolladora: **código limpio, diseño profesional y foco en los resultados**.
+## 🚀 Descripción
 
-### Características Destacadas:
-- **Diseño Premium y Moderno:** Interfaz oscura (dark mode nativo) con acabados "glassmorphism", paleta de colores cuidadosamente seleccionada (azules, oscuros profundos) y tipografías elegantes (Playfair Display para encabezamientos y DM Sans para lectura).
-- **Microinteracciones y Animaciones:** Efectos de hover suaves, elementos flotantes, contadores animados y una estela (glow) de cursor que proporciona una experiencia de navegación viva y dinámica.
-- **Totalmente Responsive:** La estructura de grid y componentes se adapta a cualquier dispositivo, ofreciendo una experiencia sin fisuras en móviles, tablets y monitores grandes.
-- **Sistema de Filtros:** Sección de proyectos interactiva que permite filtrar entre trabajos SaaS propios, landings para clientes y mucho más.
-- **Formulario Integrado:** Formulario de contacto completamente funcional enlazado a Formspree, con validación visual y mensajes *toast* de éxito.
+Este portafolio ha sido construido **desde cero** como sitio estático — sin frameworks, sin bundlers, sin dependencias. HTML puro, CSS3 y Vanilla JavaScript.
 
-## 🛠️ Stack Tecnológico
+El objetivo es demostrar que un diseño premium y una experiencia de usuario de alto nivel no necesitan complejidad técnica: solo buen código.
 
-Aunque este portafolio es un proyecto frontend enfocado en rendimiento puro (HTML, CSS3 y Vanilla JavaScript), mi stack diario completo como Full Stack es mucho más amplio:
+### ✨ Características
 
-### Frontend
-- **React.js & Vite**
-- **HTML5 & CSS3** (Vanilla CSS para control absoluto del diseño)
-- **Bootstrap 5** (Para proyectos de clientes)
-- **React Router**
+- **Dark mode nativo** con glassmorphism y paleta de colores oscura (azules profundos + acentos neón)
+- **Tipografía editorial** — Playfair Display para títulos, DM Sans para lectura
+- **Microinteracciones** — hover suaves, cursor con glow, contadores animados, efecto typewriter
+- **Totalmente responsive** — mobile-first, sin media queries innecesarias
+- **Filtro de proyectos** — galería interactiva filtrable por categoría
+- **Formulario de contacto** funcional via [Formspree](https://formspree.io) (sin backend propio)
 
-### Backend & Base de Datos
-- **Node.js & Express**
-- **Supabase** (Autenticación, RLS, Storage)
-- **PostgreSQL**
+---
 
-### Herramientas & Deploy
-- **Git & GitHub**
-- **Vercel & Railway**
-- **Servicios Integrados:** Brevo SMTP, Formspree, etc.
+## 🛠️ Stack
 
-## 📂 Qué encontrarás en este portafolio
+Este proyecto es **100% frontend estático**:
 
-1. **Hero Section:** Una presentación asertiva con texto dinámico estilo *typewriter* y estadísticas en vivo de mi trayectoria.
-2. **Sobre Mí:** Quién soy y cuáles son mis herramientas de trabajo diario.
-3. **Mi Proceso:** La metodología de 4 pasos que aplico con mis clientes (Descubrimiento, Diseño, Desarrollo, Lanzamiento).
-4. **Proyectos:** Mi galería de trabajo, destacando:
-   - *SaaS Propios:* ETERN-ME (App destacada), Cotidiana.app, Zenwi.
-   - *Trabajos de Clientes:* Landings, plataformas esotéricas, dashboards y e-commerces.
-5. **Servicios:** Packs escalonados de desarrollo freelance para negocios en diferentes etapas de crecimiento.
-6. **Contacto:** Formulario directo e integración de redes profesionales.
+| Tecnología       | Uso                                  |
+|------------------|--------------------------------------|
+| HTML5            | Estructura semántica                 |
+| CSS3 Vanilla     | Diseño, animaciones, layout          |
+| Vanilla JS       | Interactividad, filtros, animaciones |
+| Formspree        | Procesado del formulario de contacto |
 
-   ```
+> **No hay backend, base de datos, ni proceso de build.**  
+> El archivo `index.html` es todo lo que necesitas para ejecutar el proyecto.
+
+---
+
+## 📂 Estructura del proyecto
+
+```
+MR_Portafolio/
+├── index.html       # Toda la app (HTML + JS inline)
+├── img/             # Imágenes y assets
+│   ├── MR_logo.png
+│   ├── etern-me.png
+│   ├── cotidiana.png
+│   └── thumbs/      # Miniaturas de proyectos
+└── README.md
+```
+
+---
+
+## 📸 Secciones del portafolio
+
+1. **Hero** — Presentación con texto typewriter y estadísticas animadas
+2. **Sobre mí** — Quién soy y cómo trabajo
+3. **Mi proceso** — Metodología en 4 pasos: Descubrimiento → Diseño → Desarrollo → Lanzamiento
+4. **Proyectos** — Galería filtrable con proyectos destacados:
+   - *SaaS propios:* ETERN-ME, Cotidiana.app, Zenwi
+   - *Clientes:* Landings, dashboards, e-commerces, plataformas
+5. **Servicios** — Packs de desarrollo freelance
+6. **Contacto** — Formulario + redes profesionales
+
+---
 
 ## 📫 Contacto
 
-¿Buscas una desarrolladora capaz de llevar tu idea hasta el pase a producción?
-- **LinkedIn:** [linkedin.com/in/deliamelinarivera](https://www.linkedin.com/in/deliamelinarivera)
-- **GitHub:** [github.com/melinarivera](https://github.com/melinarivera)
+¿Tienes un proyecto en mente?
+
+- 🔗 **LinkedIn:** [linkedin.com/in/deliamelinarivera](https://www.linkedin.com/in/deliamelinarivera)
+- 🐙 **GitHub:** [github.com/melinarivera](https://github.com/melinarivera)
 
 ---
-*Diseñado y desarrollado con mucho café ☕ por Melina.*
+
+*Diseñado y desarrollado con mucho café ☕ — Melina Rivera, 2025*
