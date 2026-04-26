@@ -1313,8 +1313,10 @@
         <!-- Zenwi -->
         <div class="fade-in fd2" data-category="saas">
           <div class="project-card">
-            <div class="project-thumb" style="background:linear-gradient(135deg,#0A1020,#0D1830)">
-              <i data-lucide="heart-pulse" class="lucide-hero" style="color:#6C8EAD;opacity:.85;position:relative;z-index:1"></i>
+            <div class="project-thumb" style="background:linear-gradient(135deg,#060D1C,#0B1428);display:flex;align-items:center;justify-content:center">
+              <div style="width:110px;height:110px;border-radius:1.2rem;overflow:hidden;position:relative;z-index:1;box-shadow:0 4px 32px rgba(0,0,0,.5)">
+                <img src="img/zenwi-logo.png" alt="ZenWi" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+              </div>
               <div class="project-thumb-overlay"></div>
               <div class="project-badge">App · RRHH</div>
               <div class="project-status status-prod">En producción</div>
@@ -1335,7 +1337,7 @@
         <div class="fade-in fd3" data-category="saas">
           <div class="project-card">
             <div class="project-thumb" style="background:linear-gradient(135deg,#0A1520,#0F1E30)">
-              <i data-lucide="plane" class="lucide-hero" style="color:#B0B8C1;opacity:.85;position:relative;z-index:1"></i>
+              <!-- TravelMates hero screenshot added after capture -->
               <div class="project-thumb-overlay"></div>
               <div class="project-badge">App · Viajes de Grupo</div>
               <div class="project-status status-dev">En desarrollo</div>
@@ -1538,7 +1540,7 @@
         <div class="col col-md-6 col-lg-3 fade-in">
           <div class="service-card" style="height:100%">
             <div class="service-icon"><i data-lucide="rocket" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
-            <div class="service-name">Pack 1</div>
+            <div class="service-name">Pack Lanzamiento</div>
             <div class="service-ideal">Ideal para emprendedores y autónomos que acaban de arrancar</div>
             <div class="service-desc">Tu primera presencia digital seria: una página de aterrizaje que comunica quién eres, qué ofreces y cómo contactarte. Diseñada para convertir.</div>
             <ul class="service-list">
@@ -1548,7 +1550,6 @@
               <li><span class="service-check">✓</span> Testing funcional en móvil y escritorio</li>
             </ul>
             <div class="service-divider"></div>
-            <span class="service-price">Desde 399€ + IVA</span>
             <a href="#contacto" class="btn-outline w-100" style="text-align:center;padding:.65rem 1rem;font-size:.82rem;justify-content:center">
               Quiero empezar →
             </a>
@@ -1561,7 +1562,7 @@
               <i data-lucide="star" class="lucide" style="width:.75em;height:.75em"></i> Más solicitado
             </div>
             <div class="service-icon"><i data-lucide="store" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
-            <div class="service-name">Pack 2</div>
+            <div class="service-name">Web Completa</div>
             <div class="service-ideal">Ideal para negocios que quieren crecer y ganar visibilidad</div>
             <div class="service-desc">Una web completa que posiciona tu empresa como referente. Estructura pensada para que tus clientes confíen y actúen.</div>
             <ul class="service-list">
@@ -1573,7 +1574,6 @@
               <li><span class="service-check">✓</span> Testing cross-browser y multi-dispositivo</li>
             </ul>
             <div class="service-divider" style="background:rgba(91,141,184,.2)"></div>
-            <span class="service-price">Desde 1000 € + IVA</span>
             <a href="#contacto" class="btn-main w-100" style="justify-content:center;padding:.65rem 1rem;font-size:.82rem">
               Quiero crecer →
             </a>
@@ -1583,7 +1583,7 @@
         <div class="col col-md-6 col-lg-3 fade-in fd2">
           <div class="service-card" style="height:100%">
             <div class="service-icon"><i data-lucide="gem" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
-            <div class="service-name">Pack 3</div>
+            <div class="service-name">E-commerce & Reservas</div>
             <div class="service-ideal">Ideal para negocios listos para vender o reservar online 24/7</div>
             <div class="service-desc">Tu negocio abierto las 24 horas: tienda online o sistema de reservas automatizado, con base técnica sólida para escalar.</div>
             <ul class="service-list">
@@ -1595,9 +1595,28 @@
               <li><span class="service-check">✓</span> Soporte técnico 30 días post-lanzamiento</li>
             </ul>
             <div class="service-divider"></div>
-            <span class="service-price">Desde 1,800 € + IVA</span>
             <a href="#contacto" class="btn-outline w-100" style="text-align:center;padding:.65rem 1rem;font-size:.82rem;justify-content:center">
               Quiero vender online →
+            </a>
+          </div>
+        </div>
+
+        <div class="col col-md-6 col-lg-3 fade-in fd3">
+          <div class="service-card" style="height:100%">
+            <div class="service-icon"><i data-lucide="layout-dashboard" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
+            <div class="service-name">Planner o CRM a Medida</div>
+            <div class="service-ideal">Para particulares o pymes que necesitan organizar su negocio o vida digital</div>
+            <div class="service-desc">Diseño y desarrollo planners digitales y CRMs personalizados: desde gestión de clientes y leads hasta organización semanal, menús o rutinas. Sin plantillas, hecho justo para ti.</div>
+            <ul class="service-list">
+              <li><span class="service-check">✓</span> Análisis de tus necesidades reales</li>
+              <li><span class="service-check">✓</span> Diseño 100% personalizado</li>
+              <li><span class="service-check">✓</span> Sincronización en tiempo real (Firebase/Supabase)</li>
+              <li><span class="service-check">✓</span> Acceso desde cualquier dispositivo</li>
+              <li><span class="service-check">✓</span> Formación incluida para usarlo desde el día 1</li>
+            </ul>
+            <div class="service-divider"></div>
+            <a href="#contacto" class="btn-outline w-100" style="text-align:center;padding:.65rem 1rem;font-size:.82rem;justify-content:center">
+              Lo quiero →
             </a>
           </div>
         </div>
@@ -1616,7 +1635,6 @@
               <li><span class="service-check">✓</span> Sin sorpresas ni presupuestos extra</li>
             </ul>
             <div class="service-divider"></div>
-            <span class="service-price">Desde 90 €/mes + IVA</span>
             <a href="#contacto" class="btn-outline w-100" style="text-align:center;padding:.65rem 1rem;font-size:.82rem;justify-content:center">
               Me interesa →
             </a>
@@ -1660,7 +1678,9 @@
                   <select name="servicio" class="contact-input">
                     <option value="" disabled selected>Selecciona un servicio</option>
                     <option>Landing page para mi negocio</option>
-                    <option>App web completa para mi empresa</option>
+                    <option>Web completa para mi empresa</option>
+                    <option>E-commerce o sistema de reservas</option>
+                    <option>Planner o CRM personalizado</option>
                     <option>Mantenimiento de web</option>
                     <option>Consultoría digital</option>
                     <option>Otro</option>
