@@ -439,9 +439,9 @@
       background: radial-gradient(circle at 35% 30%, rgba(91,141,184,0.1), transparent 60%);
     }
     .avatar-circle img {
-      width: 70%; height: 85%;
-      object-fit: contain; position: relative; z-index: 1;
-      filter: drop-shadow(0 0 28px rgba(91,141,184,0.4));
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      position: relative; z-index: 1;
     }
     .float-card {
       position: absolute;
@@ -810,9 +810,19 @@
     .service-check { color: var(--blue); flex-shrink: 0; font-size: 0.9em; }
     .service-price {
       font-family: 'Playfair Display', serif;
-      font-size: 1.2rem; color: var(--blue);
-      margin-bottom: 1rem; display: block;
+      font-size: 1.5rem;
+      color: var(--blue);
+      display: block;
       text-align: center;
+      margin: 0.5rem 0 0.8rem;
+      letter-spacing: 0.01em;
+    }
+    .service-price-note {
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0;
     }
     .service-divider {
       height: 1px; background: var(--border);
@@ -998,6 +1008,75 @@
     /* ===== LUCIDE ICONS ===== */
     .lucide { width: 1em; height: 1em; stroke-width: 1.75; vertical-align: -0.125em; display: inline-block; }
     .lucide-hero { width: 3rem; height: 3rem; stroke-width: 1.25; }
+
+    /* ===== TESTIMONIOS ===== */
+    .testimonial-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: var(--transition);
+    }
+    .testimonial-card:hover {
+      border-color: rgba(91,141,184,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+    }
+    .testimonial-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      line-height: 1;
+      color: var(--blue);
+      opacity: 0.4;
+      margin-bottom: -0.5rem;
+    }
+    .testimonial-text {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: var(--muted);
+      flex: 1;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .testimonial-avatar-client {
+      background: var(--blue-dim);
+      border: 1px solid rgba(91,141,184,0.3);
+      color: var(--blue-light);
+    }
+    .testimonial-avatar-master {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .testimonial-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+    .testimonial-role {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
@@ -1035,6 +1114,7 @@
         <li><a href="#sobre" id="nl-sobre">Sobre mí</a></li>
         <li><a href="#proceso" id="nl-proceso">Proceso</a></li>
         <li><a href="#proyectos" id="nl-proyectos">Proyectos</a></li>
+        <li><a href="#testimonios" id="nl-testimonios">Testimonios</a></li>
         <li><a href="#servicios" id="nl-servicios">Servicios</a></li>
         <li><a href="#contacto" class="btn-nav-hire" id="nl-contacto">Contacto</a></li>
       </ul>
@@ -1049,6 +1129,7 @@
     <a href="#sobre" class="mobile-link">Sobre mí</a>
     <a href="#proceso" class="mobile-link">Proceso</a>
     <a href="#proyectos" class="mobile-link">Proyectos</a>
+    <a href="#testimonios" class="mobile-link">Testimonios</a>
     <a href="#servicios" class="mobile-link">Servicios</a>
     <a href="#contacto" class="mobile-link mobile-hire">Contacto →</a>
   </div>
@@ -1111,7 +1192,7 @@
           <div class="avatar-ring-2"></div>
           <div class="avatar-ring"></div>
           <div class="avatar-circle">
-            <img src="img/MR_logo.png" alt="Melina Rivera"/>
+            <img src="img/foto-perfil.jpg" alt="Melina Rivera" style="width:100%;height:100%;object-fit:cover;object-position:center top;position:relative;z-index:1"/>
           </div>
           <div class="float-card float-card-1">
             <div class="float-dot"></div>
@@ -1134,12 +1215,14 @@
           <div class="section-chip"><i data-lucide="user" class="lucide"></i> Sobre mí</div>
           <h2 class="section-title mb-4">Desarrollo web con <em>propósito</em></h2>
           <p style="color:var(--muted);line-height:1.85;font-size:.95rem" class="mb-3">
-            Soy Melina Rivera, desarrolladora full stack con apps propias en producción y validación.
-            Me especializo en <strong style="color:var(--white)">construir productos digitales reales</strong> — desde la idea hasta el deploy.
+            Soy Melina Rivera, desarrolladora full stack con base en Madrid.
+            Vengo del mundo de los Recursos Humanos — un Máster que cambió cómo pienso los productos:
+            <strong style="color:var(--white)">desde las personas, no desde la tecnología.</strong>
           </p>
           <p style="color:var(--muted);line-height:1.85;font-size:.95rem" class="mb-4">
-            Trabajo con React, Node.js y Supabase para construir SaaS, herramientas de RRHH y apps cotidianas.
-            También ayudo a pymes y autónomos a tener presencia digital que genere resultados.
+            Hoy construyo herramientas que resuelven problemas reales, con código limpio
+            y foco en quien las usa. Desde SaaS propios en producción hasta presencia
+            digital para pymes y autónomos en Madrid.
           </p>
           <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem">
             <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:var(--muted)">
@@ -1329,6 +1412,14 @@
                 <span class="project-tag">Node.js</span>
                 <span class="project-tag">Supabase</span>
               </div>
+              <div class="project-links">
+                <span style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.78rem;
+                  background:rgba(255,255,255,0.04);border:1px solid var(--border);
+                  border-radius:2rem;padding:0.3rem 0.9rem;color:var(--muted)">
+                  <i data-lucide="clock" class="lucide" style="width:.85em;height:.85em"></i>
+                  En construcción
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -1479,6 +1570,11 @@
                 <span class="project-tag">Vercel</span>
                 <span class="project-tag">Railway</span>
               </div>
+              <div class="project-links">
+                <span style="font-size:0.75rem;color:var(--muted2);font-style:italic">
+                  Proyecto privado · Disponible bajo NDA
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -1512,6 +1608,112 @@
     </div>
   </section>
 
+  <!-- ===== TESTIMONIOS ===== -->
+  <section id="testimonios" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="container">
+      <div class="text-center mb-5 fade-in">
+        <div class="section-chip mx-auto">
+          <i data-lucide="quote" class="lucide"></i> Testimonios
+        </div>
+        <h2 class="section-title">Lo que dicen quienes <em>trabajaron</em> conmigo</h2>
+      </div>
+
+      <div class="project-filters fade-in" id="testimonioFilters">
+        <button class="filter-btn active" data-tfilter="all">Todos</button>
+        <button class="filter-btn" data-tfilter="cliente">Clientes</button>
+        <button class="filter-btn" data-tfilter="master">Máster RRHH</button>
+      </div>
+
+      <div class="row g-4" id="testimoniosGrid">
+
+        <div class="col col-md-6 col-lg-4 fade-in" data-tcat="cliente">
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">Melina entendió desde el primer momento lo que necesitaba: una web que se vea profesional y que realmente convierta visitas en reservas. Entrega limpia, comunicación clara y el resultado superó lo que esperaba.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar testimonial-avatar-client">SL</div>
+              <div>
+                <div class="testimonial-name">Sofia L.</div>
+                <div class="testimonial-role">Propietaria · Lumière Beauty</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col col-md-6 col-lg-4 fade-in fd1" data-tcat="cliente">
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">La plataforma que construyó para mí tiene horóscopo con IA, sistema de reservas y blog. Algo que parecía muy complejo lo hizo ordenado y fácil de usar. Sigo trabajando con ella para nuevas funcionalidades.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar testimonial-avatar-client">NE</div>
+              <div>
+                <div class="testimonial-name">Nadia E.</div>
+                <div class="testimonial-role">Consultora esotérica · Efsun</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col col-md-6 col-lg-4 fade-in fd2" data-tcat="cliente">
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">Lo que más valoro es que llegó con propuestas, no solo con preguntas. La tienda quedó exactamente como la imaginaba, y la entrega fue en el tiempo acordado. Muy recomendable.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar testimonial-avatar-client">CR</div>
+              <div>
+                <div class="testimonial-name">Carmen R.</div>
+                <div class="testimonial-role">Emprendedora · Alma de Barrio</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col col-md-6 col-lg-4 fade-in fd3" data-tcat="master">
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">Usé la plataforma de recursos del Máster para repasar todos los módulos antes del examen final. Los tests interactivos y los PDFs organizados por tema me ahorraron horas de búsqueda. Una herramienta que ojalá hubiera existido desde el primer día.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar testimonial-avatar-master">DM</div>
+              <div>
+                <div class="testimonial-name">Diego M.</div>
+                <div class="testimonial-role">Compañero · Máster en RRHH</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col col-md-6 col-lg-4 fade-in fd1" data-tcat="master">
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">Melina construyó algo que ninguno de nosotros le pidió pero que todos necesitábamos. La usé la semana antes de los exámenes y fue la mejor forma de repasar. Simple, rápida, sin distracciones.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar testimonial-avatar-master">LV</div>
+              <div>
+                <div class="testimonial-name">Laura V.</div>
+                <div class="testimonial-role">Compañera · Máster en RRHH</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col col-md-6 col-lg-4 fade-in fd2" data-tcat="master">
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">La compartí en el grupo del Máster y en dos días la tenía usando todo el año. Es el tipo de recurso que demuestra que Melina piensa en el usuario antes que en el código.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar testimonial-avatar-master">AR</div>
+              <div>
+                <div class="testimonial-name">Ana R.</div>
+                <div class="testimonial-role">Compañera · Máster en RRHH</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ===== SERVICIOS ===== -->
   <section id="servicios">
     <div class="container">
@@ -1530,6 +1732,7 @@
             <div class="service-icon"><i data-lucide="rocket" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
             <div class="service-name">Pack Lanzamiento</div>
             <div class="service-ideal">Ideal para emprendedores y autónomos que acaban de arrancar</div>
+            <span class="service-price">desde 800 € <span class="service-price-note">/ proyecto</span></span>
             <div class="service-desc">Tu primera presencia digital seria: una página de aterrizaje que comunica quién eres, qué ofreces y cómo contactarte. Diseñada para convertir.</div>
             <ul class="service-list">
               <li><span class="service-check">✓</span> Landing page estratégica o para eventos</li>
@@ -1552,6 +1755,7 @@
             <div class="service-icon"><i data-lucide="store" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
             <div class="service-name">Web Completa</div>
             <div class="service-ideal">Ideal para negocios que quieren crecer y ganar visibilidad</div>
+            <span class="service-price">desde 2.000 € <span class="service-price-note">/ proyecto</span></span>
             <div class="service-desc">Una web completa que posiciona tu empresa como referente. Estructura pensada para que tus clientes confíen y actúen.</div>
             <ul class="service-list">
               <li><span class="service-check">✓</span> Web completa de 5–7 páginas</li>
@@ -1573,6 +1777,7 @@
             <div class="service-icon"><i data-lucide="gem" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
             <div class="service-name">E-commerce & Reservas</div>
             <div class="service-ideal">Ideal para negocios listos para vender o reservar online 24/7</div>
+            <span class="service-price">desde 2.500 € <span class="service-price-note">/ proyecto</span></span>
             <div class="service-desc">Tu negocio abierto las 24 horas: tienda online o sistema de reservas automatizado, con base técnica sólida para escalar.</div>
             <ul class="service-list">
               <li><span class="service-check">✓</span> Ecommerce o sistema de reservas</li>
@@ -1594,6 +1799,7 @@
             <div class="service-icon"><i data-lucide="smartphone" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
             <div class="service-name">App Web a Medida</div>
             <div class="service-ideal">Para pymes y particulares que necesitan una herramienta digital propia</div>
+            <span class="service-price">desde 3.500 € <span class="service-price-note">/ proyecto</span></span>
             <div class="service-desc">Desarrollo aplicaciones web completas adaptadas a tu negocio: gestión interna, portales de clientes, plataformas propias o cualquier idea que tengas. Sin plantillas, construida para ti.</div>
             <ul class="service-list">
               <li><span class="service-check">✓</span> Análisis de necesidades y propuesta funcional</li>
@@ -1615,6 +1821,7 @@
             <div class="service-icon"><i data-lucide="layout-dashboard" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
             <div class="service-name">Planner o CRM a Medida</div>
             <div class="service-ideal">Para particulares o pymes que necesitan organizar su negocio o vida digital</div>
+            <span class="service-price">desde 2.000 € <span class="service-price-note">/ proyecto</span></span>
             <div class="service-desc">Diseño y desarrollo planners digitales y CRMs personalizados: desde gestión de clientes y leads hasta organización semanal, menús o rutinas. Sin plantillas, hecho justo para ti.</div>
             <ul class="service-list">
               <li><span class="service-check">✓</span> Análisis de tus necesidades reales</li>
@@ -1635,6 +1842,7 @@
             <div class="service-icon"><i data-lucide="wrench" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
             <div class="service-name">Mantenimiento</div>
             <div class="service-ideal">Ideal para quienes ya tienen web y quieren que siempre funcione</div>
+            <span class="service-price">desde 150 € <span class="service-price-note">/ mes</span></span>
             <div class="service-desc">Tu web es una herramienta de negocio: necesita estar actualizada y segura. Me encargo de todo para que tú te centres en lo importante.</div>
             <ul class="service-list">
               <li><span class="service-check">✓</span> Actualizaciones y revisiones periódicas</li>
