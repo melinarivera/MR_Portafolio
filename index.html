@@ -1937,6 +1937,7 @@
           <a href="#sobre">Sobre mí</a>
           <a href="#proceso">Proceso</a>
           <a href="#proyectos">Proyectos</a>
+          <a href="#testimonios">Testimonios</a>
           <a href="#servicios">Servicios</a>
           <a href="#contacto">Contacto</a>
         </div>
@@ -2113,6 +2114,21 @@
         submitBtn.disabled = false;
       }
     });
+
+  // ─── Testimonios filters ──────────────────────────────────
+  document.querySelectorAll('[data-tfilter]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-tfilter]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.tfilter;
+      document.querySelectorAll('#testimoniosGrid > [data-tcat]').forEach(card => {
+        card.style.display = (filter === 'all' || card.dataset.tcat === filter) ? '' : 'none';
+      });
+    });
+  });
+
+  // Re-init lucide para los nuevos íconos de la sección testimonios
+  lucide.createIcons();
   </script>
 </body>
 </html>
