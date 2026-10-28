@@ -132,7 +132,7 @@ FAQ = [
   ("¿La web y el dominio son míos?", "Sí. El dominio, el alojamiento y las cuentas van a tu nombre desde el primer día. Si dejamos de trabajar juntas, te lo llevas todo."),
   ("¿Los textos legales me protegen?", "Uso iubenda, que genera la política de privacidad y de cookies y la actualiza cuando cambia la ley. En sectores regulados recomiendo que tu abogado/a revise el aviso legal."),
   ("¿Puedo dejar las cuotas mensuales?", "Sí, sin permanencia. Avisas con 30 días y te dejo todo documentado para que otra persona pueda seguir."),
-  ("¿Trabajas con negocios de México?", "Sí. Elige México arriba para ver precios en pesos. Facturo en remoto y nos vemos por videollamada."),
+  ("¿Trabajas con negocios de otros países?", "Sí. Trabajo en remoto con negocios de cualquier lugar: nos vemos por videollamada y todo se gestiona online. Si tu negocio está en México, elige México arriba para ver los precios en pesos."),
 ]
 
 # ───────────────────────── helpers ─────────────────────────
@@ -390,7 +390,7 @@ def build_page():
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>Servicios Melina Rivera</title>
 <meta name="claude:viewport-fit-sides" content="cover"/>
-<meta name="description" content="Webs, asistentes de WhatsApp con IA, CRM y redes sociales para pymes en España y México. Precios claros, qué incluye cada uno y qué pagas aparte, con demos que puedes probar."/>
+<meta name="description" content="Webs, asistentes de WhatsApp con IA, CRM y redes sociales para pymes. Trabajo en remoto, desde cualquier lugar. Precios claros, qué incluye cada uno y qué pagas aparte, con demos que puedes probar."/>
 <meta property="og:title" content="Servicios digitales para pymes · Melina Rivera"/>
 <meta property="og:description" content="Precios claros, demos que puedes probar y sin letra pequeña."/>
 <meta property="og:image" content="../img/thumbs/asistente-whatsapp.jpg"/>
@@ -416,7 +416,7 @@ def build_page():
   <section class="hero"><div class="wrap">
     <p class="eyebrow">Webs · IA · CRM · Redes</p>
     <h1>Lo digital de tu negocio, <em>sin letra pequeña</em></h1>
-    <p class="lead">Webs, asistentes de WhatsApp con IA, CRM y redes sociales para pymes de España y México. Cada servicio tiene precio de partida, qué incluye, qué pagas aparte y ejemplos que puedes abrir.</p>
+    <p class="lead">Webs, asistentes de WhatsApp con IA, CRM y redes sociales para pymes, en remoto y desde cualquier lugar. Cada servicio tiene precio de partida, qué incluye, qué pagas aparte y ejemplos que puedes abrir.</p>
     <div class="actions">
       <a class="btn primary" href="#servicios"><i data-lucide="tag"></i>Ver precios</a>
       <a class="btn ghost" href="#demos"><i data-lucide="play"></i>Probar las demos</a>
@@ -548,7 +548,7 @@ def build_page():
   </div></section>
 </main>
 
-<footer><div class="wrap"><span>© 2026 Melina Rivera · Madrid</span><span><a href="../">Portafolio</a> · <a href="{IG}" target="_blank" rel="noopener">Instagram</a></span></div></footer>
+<footer><div class="wrap"><span>© 2026 Melina Rivera · Trabajo en remoto</span><span><a href="../">Portafolio</a> · <a href="{IG}" target="_blank" rel="noopener">Instagram</a></span></div></footer>
 
 <script>
 (function(){{
