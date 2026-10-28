@@ -17,7 +17,7 @@ S = [
        eur="desde 350 €", mxn="desde $3,500 MXN", per="/ proyecto",
        items=["Una página clara y rápida, pensada para móvil", "Botón de WhatsApp, formulario y mapa", "Textos orientados a conseguir contactos", "SEO local básico para Google", "Lista en 1–2 semanas"],
        aparte="Dominio y alojamiento a tu nombre · textos legales con iubenda",
-       ex=[("Efsun tienda", "https://melinarivera.github.io/tienda-esoterica/")]),
+       ex=[("Piñatas Madrid", "https://melinarivera.github.io/pinata/"), ("Efsun tienda", "https://melinarivera.github.io/tienda-esoterica/")]),
   dict(id="web", icon="store", name="Web corporativa", ideal="Para pymes que quieren generar confianza",
        eur="desde 1.100 €", mxn="desde $12,000 MXN", per="/ proyecto", popular=True,
        items=["5–7 páginas con estructura pensada para vender", "Blog o catálogo de servicios", "SEO básico en cada página", "WhatsApp, formulario y analítica", "Aviso legal con tus datos + privacidad y cookies con iubenda"],
@@ -30,16 +30,16 @@ S = [
        ex=[("Efsun plataforma", "https://melinarivera.github.io/pyme-efsun/")]),
   dict(id="ia", icon="sparkles", name="Asistente de WhatsApp con IA", ideal="Para dejar de responder siempre lo mismo",
        eur="desde 490 €", mxn="desde $5,500 MXN", per="+ 39 €/mes", per_mx="+ $650 MXN/mes", new=True,
-       items=["Responde dudas 24/7 en WhatsApp o en tu web", "Entrenado con tu información: precios, horarios, servicios", "Pasa la conversación a una persona cuando hace falta", "<b>Con citas</b> (agenda, recordatorios y ficha en el CRM): <span class='js-price' data-eur='desde 890 € + 69 €/mes' data-mxn='desde $9,900 MXN + $1,100 MXN/mes'>desde 890 € + 69 €/mes</span>", "La cuota incluye mantenimiento y el coste de la IA"],
-       aparte="Mensajes de WhatsApp: los cobra Meta a tu negocio (responder a clientes es gratis hasta 1.000/mes)",
+       items=["Responde dudas 24/7 en WhatsApp o en tu web", "Entrenado con tu información: precios, horarios, servicios", "Pasa la conversación a una persona cuando hace falta", "<b>Con citas</b> (agenda, recordatorios y ficha en el CRM): <span class='js-price' data-eur='desde 890 € + 69 €/mes' data-mxn='desde $9,900 MXN + $1,100 MXN/mes'>desde 890 € + 69 €/mes</span>", "La cuota incluye la IA, el servidor y el mantenimiento: hasta 1.000 conversaciones al mes (2.000 con citas)"],
+       aparte="Mensajes de WhatsApp: los cobra Meta a tu negocio. <a href='#ia-claro'>Calcula tu gasto</a>",
        extra=("Automatizaciones de procesos (facturas, recordatorios, informes)", "desde 290 €", "desde $3,500 MXN", "por flujo"),
-       ex=[("Demo estética", "../demos/asistente-whatsapp/#estetica"), ("Demo extranjería", "../demos/asistente-whatsapp/#extranjeria"), ("Tesovia", "https://www.tesovia.com")]),
+       ex=[("Demo estética", "../demos/asistente-whatsapp/#estetica"), ("Demo extranjería", "../demos/asistente-whatsapp/#extranjeria"), ("Nexo: facturas con IA", "https://melinarivera.github.io/Nexo_Facturas/")]),
   dict(id="crm", icon="layout-dashboard", name="CRM y planners a medida", ideal="Para tener clientes y tareas en orden",
        eur="desde 1.200 €", mxn="desde $14,000 MXN", per="/ proyecto",
        items=["Fichas de cliente con historial y segmentos", "Reservas, agenda o embudo de ventas", "Campañas por WhatsApp o email respetando el RGPD", "Exportación a Excel", "Formación para usarlo desde el primer día"],
        aparte="Base de datos: plan gratuito al empezar; si crece, desde unos 25 $/mes",
        extra=("¿Prefieres HubSpot, Notion u otro? Te lo configuro", "desde 400 €", "desde $4,500 MXN", ""),
-       ex=[("Demo CRM restaurante", "../demos/crm-restaurante/"), ("ZenWi", "https://zenwi.app")]),
+       ex=[("Demo CRM restaurante", "../demos/crm-restaurante/"), ("Nexo para gestorías", "https://melinarivera.github.io/Nexo_Facturas/"), ("ZenWi", "https://zenwi.app")]),
   dict(id="redes", icon="megaphone", name="Redes sociales y reputación", ideal="Para que te encuentren y te elijan",
        eur="desde 220 €", mxn="desde $3,500 MXN", per="/ mes", per_mx="/ mes", new=True,
        items=["<b>Esencial</b> · <span class='js-price' data-eur='220 €/mes' data-mxn='$3,500 MXN/mes'>220 €/mes</span>: 2 redes, 8 publicaciones al mes", "<b>Crecimiento</b> · <span class='js-price' data-eur='420 €/mes' data-mxn='$6,500 MXN/mes'>420 €/mes</span>: 12 posts + 4 reels y gestión de anuncios", "Diseños propios con IA y calendario mensual", "Respuesta a reseñas y perfil de Google optimizado"],
@@ -74,7 +74,8 @@ COSTES = [
   ("Textos legales: privacidad y cookies", "Tú, a tu nombre (iubenda)", "plan gratuito limitado o desde unos 6 €/mes", "Se actualizan cuando cambia la normativa. Yo los configuro e instalo el banner de cookies."),
   ("Aviso legal", "Incluido", "—", "Lo redacto con los datos de tu negocio. En despachos, extranjería o salud, recomiendo que lo revise tu abogado/a."),
   ("Pagos online", "Comisión de la pasarela", "según Stripe, TPV de tu banco o Mercado Pago", "Se descuenta de cada venta. Yo no cobro comisión."),
-  ("IA (tokens) del asistente", "Incluida en la cuota mensual", "uso normal de una pyme: pocos euros al mes", "Si superas unas 1.000 conversaciones al mes, te aviso antes de ajustar la cuota."),
+  ("IA (tokens) del asistente", "Incluida en la cuota mensual", "hasta 1.000 conversaciones/mes (2.000 con citas)", "La pago yo desde mi cuenta de Claude, con límite de gasto por cliente. Si te acercas al límite, te aviso; nunca se corta sin avisar."),
+  ("Conversaciones extra de IA", "Tú, solo si las usas", "+1.000 conversaciones: 9 €", "Te aviso al llegar al 80 %. Tú decides si añades un bloque o subimos de plan."),
   ("Mensajes de WhatsApp (Meta)", "Tu negocio, directamente a Meta", "responder a clientes: gratis hasta 1.000/mes · recordatorio ≈ 0,017 € · campaña ≈ 0,059 €", "Tarifas de Meta para España en 2026. Meta te factura a ti; yo no añado margen."),
   ("Anuncios en Meta o Google", "Tú, directamente a la plataforma", "lo decides tú", "Mi gestión va en la cuota de redes."),
   ("Canva Pro, plantillas y herramientas de diseño", "Incluido", "—", "Las uso yo; no tienes que contratar nada."),
@@ -83,6 +84,8 @@ COSTES = [
 
 EJEMPLOS = [  # solo proyectos con página real funcionando
   dict(name="Tesovia", tag="SaaS con IA", desc="Asistente académico con IA en español e inglés: citas APA, feedback, detección de IA y plagio.", img="../img/thumbs/tesovia.jpg", url="https://www.tesovia.com", fit="cover", bg="#F5F6FF", featured=True),
+  dict(name="Nexo · Facturas con IA", tag="Automatización para gestorías", desc="Demo multiempresa: la factura entra, la IA la lee y valida, el equipo aprueba y sale lista para el programa contable (SAP).", img="../img/thumbs/nexo-facturas.jpg", url="https://melinarivera.github.io/Nexo_Facturas/", fit="cover", bg="#F3F5EF"),
+  dict(name="Piñatas Madrid", tag="Web de negocio local", desc="Catálogo de piñatas artesanales con pedido directo por WhatsApp, reserva con señal y entrega en metro.", img="../img/thumbs/pinata.jpg", url="https://melinarivera.github.io/pinata/", fit="cover", bg="#1E1433"),
   dict(name="ETERN-ME", tag="SaaS", desc="Organiza cuentas, documentos e información esencial para que nada importante se pierda.", img="../img/etern-me-hero.png", url="https://etern-me.com", fit="contain", bg="#140F20"),
   dict(name="Cotidiana", tag="App", desc="Organizador del día a día para personas mayores o con poca experiencia tecnológica.", img="../img/cotidiana-hero.png", url="https://cotidiana.app", fit="contain", bg="#0D1A30"),
   dict(name="ZenWi", tag="App RRHH", desc="Detección temprana del burnout en equipos, anónima por diseño.", img="../img/zenwi-logo.png", url="https://zenwi.app", fit="logo", bg="#0B1428"),
@@ -95,12 +98,19 @@ SECTORES = [
   ("Consultoras de extranjería", "scale", ["Asistente que filtra consultas y pide cita", "Contenido que resuelve dudas frecuentes", "Reseñas de Google bien respondidas"]),
   ("Despachos profesionales", "briefcase", ["Web clara con áreas de práctica", "Agenda de primeras consultas", "LinkedIn y Google Business al día"]),
   ("Centros de estética", "flower-2", ["Reservas y recordatorios por WhatsApp", "Reels de tratamientos y antes/después (con permiso)", "Campañas a clientas que no vuelven"]),
+  ("Gestorías y asesorías", "calculator", ["Facturas leídas con IA y listas para contabilidad", "Portal para que los clientes suban documentos", "Recordatorios de plazos por WhatsApp"]),
   ("Tiendas de barrio", "shopping-basket", ["Perfil de Google y mapa optimizados", "Catálogo en WhatsApp o tienda sencilla", "Publicaciones de novedades y ofertas"]),
 ]
 
 FAQ = [
+  ("¿De dónde sale la IA y quién la paga?", "El asistente usa Claude, de Anthropic. La contrato yo con mi cuenta de empresa (pago por uso, con límite de gasto para cada cliente) y va incluida en tu cuota: hasta 1.000 conversaciones al mes en el plan básico y 2.000 en el de citas. No necesitas crear ninguna cuenta de IA."),
+  ("¿Cuánto cuesta la IA de verdad?", "Muy poco: un negocio con 1.000 conversaciones al mes consume entre 1 y 5 € de IA. La cuota cubre eso, el servidor donde funciona el asistente y mi mantenimiento (ajustes, nuevas respuestas, revisar que todo va bien)."),
+  ("¿Qué pasa si paso de las conversaciones incluidas?", "Te aviso al llegar al 80 %. Puedes añadir bloques de 1.000 conversaciones por 9 € o pasar al plan superior. El asistente nunca se apaga sin avisarte."),
+  ("¿Prefiero pagar la IA yo directamente, se puede?", "Sí. Creas tu cuenta en Anthropic, pones tu tarjeta y la cuota baja 10 € al mes. Pagas exactamente lo que consumes; yo lo configuro y te enseño a ver el gasto."),
+  ("¿Puedo seguir usando WhatsApp en mi móvil?", "Sí. Con la coexistencia de Meta (disponible en España) sigues contestando desde la app de WhatsApp Business con el mismo número, y el asistente responde cuando tú no puedes."),
+  ("¿Qué pasa si la IA se equivoca?", "Solo responde con la información que tú apruebas (precios, horarios, servicios). Si no sabe algo, no se lo inventa: pasa la conversación a una persona. Cada mes reviso las preguntas sin respuesta y las añado."),
+  ("¿Y los datos de mis clientes?", "Firmamos un contrato de encargado de tratamiento (RGPD). El asistente pide consentimiento antes de guardar datos y solo guarda lo necesario para la cita o la consulta."),
   ("¿La web y el dominio son míos?", "Sí. El dominio, el alojamiento y las cuentas van a tu nombre desde el primer día. Si dejamos de trabajar juntas, te lo llevas todo."),
-  ("¿Quién paga la IA y los mensajes de WhatsApp?", "La IA va incluida en la cuota mensual del asistente. Los mensajes de WhatsApp los cobra Meta directamente a tu negocio, y responder a tus clientes es gratis hasta 1.000 mensajes al mes."),
   ("¿Los textos legales me protegen?", "Uso iubenda, que genera la política de privacidad y de cookies y la actualiza cuando cambia la ley. En sectores regulados recomiendo que tu abogado/a revise el aviso legal."),
   ("¿Puedo dejar las cuotas mensuales?", "Sí, sin permanencia. Avisas con 30 días y te dejo todo documentado para que otra persona pueda seguir."),
   ("¿Trabajas con negocios de México?", "Sí. Elige México arriba para ver precios en pesos. Facturo en remoto y nos vemos por videollamada."),
@@ -254,6 +264,25 @@ tr:last-child td{border-bottom:0}
 .who{display:inline-block;font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--bg3);color:var(--muted)}
 .who.inc{background:rgba(76,175,130,.14);color:var(--ok)}
 .note{font-size:13.5px;color:var(--muted2);margin-top:14px;max-width:80ch}
+/* calculadora */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:24px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+@media (max-width:820px){.calc{grid-template-columns:1fr}}
+.calc-in{display:flex;flex-direction:column;gap:6px;min-width:0}
+.calc-in label{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);font-weight:600;margin-top:8px}
+.calc-in output{color:var(--fg);font-variant-numeric:tabular-nums}
+.calc-in input[type=range]{width:100%;accent-color:var(--accent)}
+.calc-plan{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.calc-plan button{border:1px solid var(--line2);background:transparent;color:var(--muted);font:inherit;font-size:13.5px;font-weight:600;padding:8px 14px;border-radius:99px;cursor:pointer}
+.calc-plan button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.calc-out{display:flex;flex-direction:column;gap:2px;min-width:0}
+.calc-row,.calc-total{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.calc-row span,.calc-total span{font-size:14.5px}
+.calc-row small,.calc-total small{display:block;font-size:12.5px;color:var(--muted2)}
+.calc-row b{font-variant-numeric:tabular-nums;font-weight:600}
+.calc-total{border-bottom:0;padding-top:14px}
+.calc-total b{font-family:var(--display);font-size:30px;color:var(--accent-2);font-variant-numeric:tabular-nums}
+.calc-ia{font-size:13.5px;color:var(--muted);background:var(--bg3);border-radius:12px;padding:10px 12px;margin-top:6px}
+.calc-ia b{color:var(--ok)}
 /* packs */
 .pack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
 .pack{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:8px;position:relative}
@@ -331,7 +360,7 @@ footer a{color:var(--muted)}
 """
 
 def build_page():
-    secs = "".join(f'<span>{n}</span>' for n, _, _ in SECTORES) + "<span>Restaurantes</span><span>Pymes en general</span>"
+    secs = "".join(f'<span>{n}</span>' for n, _, _ in SECTORES) + "<span>Restaurantes</span>"
     rows = "".join(
         f"<tr><td>{c}</td><td><span class=\"who{' inc' if w.startswith('Incluid') else ''}\">{w}</span></td><td>{a}</td><td>{n}</td></tr>"
         for c, w, a, n in COSTES)
@@ -356,7 +385,7 @@ def build_page():
 <header class="nav"><div class="wrap nav-in">
   <a class="brand" href="#inicio"><img src="../img/MR_logo.png" alt=""/>Melina Rivera</a>
   <nav class="nav-links" aria-label="Secciones">
-    <a href="#servicios">Servicios</a><a href="#incluye">Qué incluye</a><a href="#demos">Demos</a><a href="#ejemplos">Ejemplos</a><a href="#contacto">Contacto</a>
+    <a href="#servicios">Servicios</a><a href="#incluye">Qué incluye</a><a href="#ia-claro">Gasto mensual</a><a href="#demos">Demos</a><a href="#ejemplos">Ejemplos</a><a href="#contacto">Contacto</a>
   </nav>
   <div class="toggle" role="group" aria-label="País y moneda">
     <button type="button" data-country="es" class="on" id="c-es">🇪🇸 España €</button>
@@ -394,15 +423,46 @@ def build_page():
     <p class="note js-note">Importes orientativos de octubre de 2026 (España, sin IVA). En México las tarifas de Meta y de los proveedores son distintas: te las detallo en el presupuesto.</p>
   </div></section>
 
-  <section class="band" id="packs"><div class="wrap">
+  <section class="band" id="ia-claro"><div class="wrap">
+    <div class="head"><p class="eyebrow">Asistentes con IA</p><h2>Lo que vas a pagar <em>cada mes</em></h2>
+      <p class="lead">Tres partes: mi cuota (incluye la IA), lo que cobra Meta por los mensajes de WhatsApp y, si quieres, los anuncios. Mueve los valores para ver tu caso.</p></div>
+    <div class="calc">
+      <div class="calc-in">
+        <label for="k-conv">Conversaciones al mes<output id="o-conv">300</output></label>
+        <input type="range" id="k-conv" min="50" max="3000" step="50" value="300"/>
+        <label for="k-resp">Respuestas por conversación<output id="o-resp">5</output></label>
+        <input type="range" id="k-resp" min="2" max="12" step="1" value="5"/>
+        <label for="k-rec">Recordatorios de cita al mes<output id="o-rec">150</output></label>
+        <input type="range" id="k-rec" min="0" max="1500" step="10" value="150"/>
+        <label for="k-camp">Mensajes de campaña al mes<output id="o-camp">0</output></label>
+        <input type="range" id="k-camp" min="0" max="2000" step="50" value="0"/>
+        <div class="calc-plan" role="group" aria-label="Plan">
+          <button type="button" class="on" data-plan="basic">Asistente · 39 €/mes</button>
+          <button type="button" data-plan="citas">Con citas · 69 €/mes</button>
+        </div>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <div class="calc-row"><span>Mi cuota <small>incluye IA, servidor y mantenimiento</small></span><b id="r-fee">39,00 €</b></div>
+        <div class="calc-row"><span>Conversaciones extra de IA <small id="r-extra-n">dentro del plan</small></span><b id="r-extra">0,00 €</b></div>
+        <div class="calc-row"><span>Meta: respuestas a clientes <small id="r-serv-n">gratis hasta 1.000 al mes</small></span><b id="r-serv">0,00 €</b></div>
+        <div class="calc-row"><span>Meta: recordatorios <small>≈ 0,0166 € cada uno</small></span><b id="r-rec">0,00 €</b></div>
+        <div class="calc-row"><span>Meta: campañas <small>≈ 0,0585 € cada mensaje</small></span><b id="r-camp">0,00 €</b></div>
+        <div class="calc-total"><span>Total aproximado al mes <small>sin IVA</small></span><b id="r-total">0,00 €</b></div>
+        <p class="calc-ia">De esa cuota, la IA real que consumes son unos <b id="r-ia">0,00 €</b>. El resto es servidor y mi trabajo de mantenimiento.</p>
+      </div>
+    </div>
+    <p class="note">Tarifas de Meta para España vigentes desde el 1 de octubre de 2026. Meta factura directamente a tu negocio y puede cambiar sus precios. Coste de IA calculado con Claude Haiku (unos 3.000 tokens de entrada y 250 de salida por respuesta).</p>
+  </div></section>
+
+  <section id="packs"><div class="wrap">
     <div class="head"><p class="eyebrow">Packs</p><h2>Combina y <em>ahorra</em></h2><p class="lead">Lo que más piden las pymes, en un solo precio.</p></div>
     <div class="pack-grid">{''.join(pack_card(p) for p in PACKS)}
     </div>
   </div></section>
 
-  <section id="demos"><div class="wrap">
+  <section class="band" id="demos"><div class="wrap">
     <div class="head"><p class="eyebrow">Demos interactivas</p><h2>Pruébalo como si fuera <em>tu negocio</em></h2>
-      <p class="lead">Funcionan en el móvil, con datos ficticios.</p></div>
+      <p class="lead">Con datos ficticios. Las dos primeras funcionan también en el móvil.</p></div>
     <div class="demo-grid">
       <article class="demo"><img src="../img/thumbs/asistente-whatsapp.jpg" alt="Demo del asistente de WhatsApp" loading="lazy"/>
         <div class="demo-body"><h3>Asistente de WhatsApp con IA</h3>
@@ -412,24 +472,28 @@ def build_page():
         <div class="demo-body"><h3>CRM para restaurantes</h3>
           <p>Reservas por turnos, fichas con los 14 alérgenos, consentimiento RGPD, clientes VIP y dormidos, campañas por WhatsApp y exportación a Excel.</p>
           <div class="actions"><a class="btn primary" href="../demos/crm-restaurante/"><i data-lucide="play"></i>Abrir la demo</a></div></div></article>
+      <article class="demo"><img src="../img/thumbs/nexo-facturas.jpg" alt="Demo de Nexo, facturas con IA" loading="lazy"/>
+        <div class="demo-body"><h3>Nexo: facturas con IA para gestorías</h3>
+          <p>Para despachos que llevan varias empresas: recepción de facturas, lectura con IA, aprobaciones, conciliación, incidencias y exportación al programa contable.</p>
+          <div class="actions"><a class="btn primary" href="https://melinarivera.github.io/Nexo_Facturas/" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Abrir la demo</a></div></div></article>
     </div>
   </div></section>
 
-  <section class="band" id="ejemplos"><div class="wrap">
+  <section id="ejemplos"><div class="wrap">
     <div class="head"><p class="eyebrow">Ejemplos reales</p><h2>Proyectos que puedes <em>abrir ahora</em></h2>
       <p class="lead">Solo enlazo lo que está publicado y funcionando.</p></div>
     <div class="ej-grid">{''.join(ejemplo_card(e) for e in EJEMPLOS)}
     </div>
   </div></section>
 
-  <section id="sectores"><div class="wrap">
-    <div class="head"><p class="eyebrow">Redes y reputación</p><h2>Pensado para <em>negocios de barrio y despachos</em></h2>
+  <section class="band" id="sectores"><div class="wrap">
+    <div class="head"><p class="eyebrow">Redes y reputación</p><h2>Pensado para <em>negocios locales y despachos</em></h2>
       <p class="lead">Así adapto las redes, Google y WhatsApp a cada tipo de negocio.</p></div>
     <div class="sec-grid">{''.join(f'<article class="sec"><span class="svc-icon"><i data-lucide="{ic}"></i></span><h3>{n}</h3><ul>{"".join(f"<li>{b}</li>" for b in bs)}</ul></article>' for n, ic, bs in SECTORES)}
     </div>
   </div></section>
 
-  <section class="band"><div class="wrap">
+  <section><div class="wrap">
     <div class="head"><p class="eyebrow">Cómo trabajo</p><h2>De la llamada al <em>lanzamiento</em></h2></div>
     <div class="steps">
       <div class="step"><b>Llamada gratuita</b><p>20 minutos para entender tu negocio y qué te quita tiempo.</p></div>
@@ -439,12 +503,12 @@ def build_page():
     </div>
   </div></section>
 
-  <section><div class="wrap">
+  <section class="band" id="faq"><div class="wrap">
     <div class="head"><p class="eyebrow">Preguntas frecuentes</p><h2>Lo que suelen <em>preguntarme</em></h2></div>
     <div class="faq">{''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in FAQ)}</div>
   </div></section>
 
-  <section class="band" id="contacto"><div class="wrap contact">
+  <section id="contacto"><div class="wrap contact">
     <div><p class="eyebrow">Contacto</p><h2>Cuéntame qué <em>necesitas</em></h2>
       <p class="lead">Te respondo en menos de 24 horas con una propuesta o con las preguntas que necesite para dártela.</p>
       <div class="socials">
@@ -486,6 +550,31 @@ def build_page():
   setCountry(c);
   document.querySelectorAll('.js-service').forEach(function(a){{ a.addEventListener('click', function(){{
     var sel = document.getElementById('f-service'); for (var i = 0; i < sel.options.length; i++) if (sel.options[i].text === a.dataset.service) sel.selectedIndex = i; }}); }});
+  // Calculadora de gasto mensual del asistente (España, tarifas de Meta desde oct 2026)
+  var plan = 'basic';
+  var PLANS = {{ basic:{{ fee:39, incl:1000 }}, citas:{{ fee:69, incl:2000 }} }};
+  var fmt = function(n){{ return n.toLocaleString('es-ES',{{minimumFractionDigits:2,maximumFractionDigits:2}}) + ' €'; }};
+  var g = function(id){{ return document.getElementById(id); }};
+  function calc(){{
+    var conv = +g('k-conv').value, resp = +g('k-resp').value, rec = +g('k-rec').value, camp = +g('k-camp').value;
+    g('o-conv').textContent = conv.toLocaleString('es-ES'); g('o-resp').textContent = resp;
+    g('o-rec').textContent = rec.toLocaleString('es-ES'); g('o-camp').textContent = camp.toLocaleString('es-ES');
+    var p = PLANS[plan], extraConv = Math.max(0, conv - p.incl), bloques = Math.ceil(extraConv / 1000);
+    var replies = conv * resp, servPaid = Math.max(0, replies - 1000);
+    var fee = p.fee, extra = bloques * 9, serv = servPaid * 0.0166, recC = rec * 0.0166, campC = camp * 0.0585;
+    var ia = replies * (3000 * 0.10 + 250 * 0.50) / 1e6 * 0.92;   // USD → EUR aprox.
+    g('r-fee').textContent = fmt(fee); g('r-extra').textContent = fmt(extra);
+    g('r-extra-n').textContent = bloques ? (bloques + ' bloque' + (bloques > 1 ? 's' : '') + ' de 1.000 · 9 € cada uno') : 'dentro del plan (' + p.incl.toLocaleString('es-ES') + ' incluidas)';
+    g('r-serv').textContent = fmt(serv);
+    g('r-serv-n').textContent = replies.toLocaleString('es-ES') + ' respuestas · gratis hasta 1.000 al mes';
+    g('r-rec').textContent = fmt(recC); g('r-camp').textContent = fmt(campC);
+    g('r-total').textContent = fmt(fee + extra + serv + recC + campC); g('r-ia').textContent = fmt(ia);
+  }}
+  ['k-conv','k-resp','k-rec','k-camp'].forEach(function(id){{ g(id).addEventListener('input', calc); }});
+  document.querySelectorAll('[data-plan]').forEach(function(b){{ b.addEventListener('click', function(){{
+    plan = b.dataset.plan; document.querySelectorAll('[data-plan]').forEach(function(x){{ x.classList.toggle('on', x === b); }}); calc(); }}); }});
+  calc();
+
   var form = document.getElementById('contact-form'), st = document.getElementById('f-msg-status'), btn = document.getElementById('f-submit');
   form.addEventListener('submit', function(e){{
     e.preventDefault(); btn.disabled = true; st.textContent = 'Enviando…';
