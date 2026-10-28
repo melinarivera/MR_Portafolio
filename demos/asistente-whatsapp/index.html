@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Asistente WhatsApp · Demo</title>
+<meta name="description" content="Demo de asistente de WhatsApp con IA para un centro de estética y una consultoría de extranjería: citas, triaje, recordatorios y ficha en el CRM. Hecho por Melina Rivera."/>
+<meta name="robots" content="noindex"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* Layout: teléfono con el chat a la izquierda, "lo que pasa por detrás" a la derecha */
+:root{
+  --bg:#EEF1F4; --panel:#FFFFFF; --ink:#18212B; --muted:#5E6B78; --line:#DCE2E8;
+  --wa-bg:#EFE7DD; --wa-in:#FFFFFF; --wa-out:#D9FDD3; --wa-head:#0B6E5F; --wa-btn:#0A8F7B;
+  --accent:#0A8F7B; --accent-soft:#DDF3EE; --warn:#A35B00; --warn-soft:#FCEFD9; --bad:#B3261E; --bad-soft:#F9E1DF;
+  --font:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.45}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+a{color:var(--accent)}
+.wrap{max-width:1180px;margin:0 auto;padding-block:22px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.top h1{font-size:clamp(22px,3vw,30px);letter-spacing:-.02em;text-wrap:balance}
+.top p{color:var(--muted);max-width:640px;margin-top:4px}
+.back{font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
+.note{background:var(--warn-soft);color:#6B3D00;border-radius:12px;padding:10px 14px;font-size:13.5px;margin-bottom:16px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tab{padding:10px 16px;border-radius:99px;border:1px solid var(--line);background:#fff;font-weight:700;font-size:14px}
+.tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tab:focus-visible,.qr:focus-visible,.send:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.grid{display:grid;grid-template-columns:400px 1fr;gap:20px;align-items:start}
+/* teléfono */
+.phone{background:#111;border-radius:38px;padding:10px;box-shadow:0 20px 50px rgba(20,30,40,.25);max-width:400px;width:100%;margin:0 auto}
+.screen{border-radius:30px;overflow:hidden;background:var(--wa-bg);display:flex;flex-direction:column;height:680px}
+.wa-head{background:var(--wa-head);color:#fff;padding:14px 14px 12px;display:flex;align-items:center;gap:10px}
+.wa-av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:#fff;color:var(--wa-head)}
+.wa-head b{display:block;font-size:15px}
+.wa-head small{opacity:.85;font-size:12px}
+.chat{flex:1;overflow-y:auto;padding:14px 10px;display:flex;flex-direction:column;gap:6px;
+  background-image:radial-gradient(rgba(0,0,0,.035) 1px,transparent 1px);background-size:14px 14px}
+.msg{max-width:84%;padding:8px 10px 6px;border-radius:10px;font-size:14px;box-shadow:0 1px 1px rgba(0,0,0,.08);white-space:pre-wrap;word-wrap:break-word}
+.msg.in{background:var(--wa-in);align-self:flex-start;border-top-left-radius:2px}
+.msg.out{background:var(--wa-out);align-self:flex-end;border-top-right-radius:2px}
+.msg time{display:block;text-align:right;font-size:10.5px;color:#7A8790;margin-top:2px}
+.qrs{display:flex;flex-wrap:wrap;gap:6px;align-self:flex-start;max-width:92%;margin:2px 0 4px}
+.qr{background:#fff;color:var(--wa-btn);border-radius:18px;padding:7px 12px;font-weight:700;font-size:13px;box-shadow:0 1px 1px rgba(0,0,0,.1)}
+.qr:hover{background:#F2FBF9}
+.typing{align-self:flex-start;background:#fff;border-radius:10px;padding:10px 12px;display:flex;gap:4px}
+.typing i{width:6px;height:6px;border-radius:50%;background:#9AA6AE;animation:b 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes b{0%,60%,100%{opacity:.3;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){.typing i{animation:none}}
+.composer{display:flex;gap:8px;padding:8px;background:#F0F2F5}
+.composer input{flex:1;min-width:0;border:none;border-radius:20px;padding:10px 14px;background:#fff;outline:none}
+.send{width:42px;height:42px;border-radius:50%;background:var(--wa-btn);color:#fff;display:grid;place-items:center;flex:none}
+.send svg{width:18px;height:18px}
+/* panel */
+.side{display:grid;gap:14px;min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}
+.card h2{font-size:15px;margin-bottom:10px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.card h2 small{color:var(--muted);font-weight:600;font-size:12px}
+.ficha{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px}
+.ficha div{font-size:13.5px;min-width:0}
+.ficha span{display:block;font-size:11.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.ficha b{font-weight:700;overflow-wrap:anywhere}
+.ficha .empty{color:#A0AAB4;font-weight:500}
+.log{display:flex;flex-direction:column;gap:8px;max-height:270px;overflow-y:auto}
+.ev{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;padding:8px 10px;border-radius:10px;background:#F6F8FA}
+.ev .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex:none;font-size:14px;background:var(--accent-soft)}
+.ev.urg .ic{background:var(--bad-soft)}
+.ev small{display:block;color:var(--muted);font-size:12px}
+.ev-empty{color:var(--muted);font-size:13.5px}
+.costs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.costs div{background:#F6F8FA;border-radius:12px;padding:10px}
+.costs span{font-size:11.5px;color:var(--muted);font-weight:700}
+.costs b{display:block;font-size:18px;font-variant-numeric:tabular-nums}
+.costs-foot{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}
+.reset{font-weight:700;font-size:13px;color:var(--accent);text-decoration:underline}
+@media (max-width:900px){.grid{grid-template-columns:1fr}.screen{height:620px}}
+@media (max-width:420px){.phone{border-radius:0;padding:0;box-shadow:none}.screen{border-radius:14px;height:600px}.costs{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1>Asistente de WhatsApp con IA</h1>
+      <p>Responde dudas, agenda citas y deja cada contacto registrado en tu CRM, también a las 23:00 de un domingo. Elige un negocio y escríbele como lo haría un cliente.</p>
+    </div>
+    <a class="back" href="../../servicios/#srv-ia">← Volver a servicios</a>
+  </div>
+  <div class="note">Demo simulada con datos ficticios: no envía mensajes reales ni guarda nada. En la versión real funciona en el WhatsApp de tu negocio con IA (Claude) y tu calendario.</div>
+  <div class="tabs" role="tablist">
+    <button class="tab on" role="tab" aria-selected="true" data-biz="estetica" id="tab-estetica">💅 Centro de estética</button>
+    <button class="tab" role="tab" aria-selected="false" data-biz="extranjeria" id="tab-extranjeria">🗂️ Consultoría de extranjería</button>
+  </div>
+  <div class="grid">
+    <div class="phone"><div class="screen">
+      <div class="wa-head"><div class="wa-av" id="waAv">A</div><div><b id="waName">Estética Alba</b><small>Asistente automático · demo</small></div></div>
+      <div class="chat" id="chat" aria-live="polite"></div>
+      <form class="composer" id="composer" autocomplete="off">
+        <input id="msgInput" placeholder="Escribe un mensaje" aria-label="Mensaje"/>
+        <button class="send" aria-label="Enviar"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></button>
+      </form>
+    </div></div>
+    <div class="side">
+      <div class="card"><h2>Ficha en el CRM <small id="fichaState">Se rellena sola</small></h2><div class="ficha" id="ficha"></div></div>
+      <div class="card"><h2>Lo que se automatiza <button class="reset" id="resetBtn" type="button">Reiniciar conversación</button></h2><div class="log" id="log"></div></div>
+      <div class="card"><h2>Coste de esta conversación <small>quién lo paga</small></h2>
+        <div class="costs">
+          <div><span>IA (tokens)</span><b id="cIa">0,000 €</b></div>
+          <div><span>WhatsApp (Meta)</span><b id="cWa">0,00 €</b></div>
+          <div><span>Respuestas</span><b id="cN">0</b></div>
+        </div>
+        <p class="costs-foot">La IA va incluida en tu cuota mensual (uso normal de una pyme). Responder a un cliente que te escribe es gratis hasta 1.000 mensajes al mes por número; los recordatorios automáticos cuestan unos 0,017 € cada uno y los paga el negocio a Meta. Tarifas de Meta para España, 2026.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(() => {
+'use strict';
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const now = () => { const d = new Date(); return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`; };
+const eur = (n, d=3) => n.toLocaleString('es-ES',{minimumFractionDigits:d,maximumFractionDigits:d}) + ' €';
+const IA_POR_RESPUESTA = 0.002;   // ≈ 1.500 tokens de entrada + 200 de salida con un modelo ligero
+const META_UTILITY = 0.0166;      // recordatorio (plantilla utility), España 2026
+
+function nextDays(n){
+  const out = []; const d = new Date(); d.setHours(0,0,0,0);
+  while (out.length < n){ d.setDate(d.getDate()+1); if (d.getDay() !== 0) out.push(new Date(d)); }
+  return out.map(x => x.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'}));
+}
+
+/* ---------- negocios ---------- */
+const BIZ = {
+  estetica: {
+    name:'Estética Alba', av:'A',
+    campos:[['nombre','Nombre'],['servicio','Servicio'],['cita','Cita'],['origen','Origen'],['consent','Consentimiento RGPD'],['estado','Estado']],
+    start(){ say('¡Hola! 👋 Soy el asistente de Estética Alba. Te ayudo a reservar, ver precios u horarios. ¿Qué necesitas?', MENU_E); set('origen','WhatsApp'); set('estado','Nuevo contacto'); ev('👤','Contacto nuevo en el CRM','Origen: WhatsApp'); },
+    intents:[
+      [/precio|cu[aá]nto|tarifa|cuesta/i, 'precios'], [/cita|reserv|hueco|turno|agend/i, 'reservar'],
+      [/horario|abr|d[oó]nde|direcci|ubica/i, 'horario'], [/persona|humano|hablar|llamar/i, 'persona'],
+    ],
+  },
+  extranjeria: {
+    name:'Puente Extranjería', av:'P',
+    campos:[['nombre','Nombre'],['tramite','Trámite'],['tiempo','Tiempo en España'],['urgencia','Urgencia'],['cita','Consulta'],['consent','Consentimiento RGPD']],
+    start(){ say('Hola 👋 Soy el asistente de Puente Extranjería. Te ayudo a pedir tu primera consulta y a saber qué traer.\n\nNo doy asesoramiento legal: eso lo hace siempre un abogado del despacho.', MENU_X); set('urgencia','—'); ev('👤','Contacto nuevo en el CRM','Origen: WhatsApp'); },
+    intents:[
+      [/consulta|cita|abogad|ayuda|tr[aá]mite|arraigo|nacionalidad|reagrup|renov/i, 'consulta'],
+      [/document|papel|traer|llevar|qu[eé] necesito/i, 'docs'], [/expediente|estado|c[oó]mo va|EXP-/i, 'estado'],
+      [/persona|humano|hablar|llamar/i, 'persona'],
+    ],
+  },
+};
+const MENU_E = ['Ver precios','Reservar cita','Horario y ubicación','Hablar con una persona'];
+const MENU_X = ['Pedir una consulta','Qué documentos llevar','Estado de mi expediente','Hablar con una persona'];
+const PRECIOS_E = [['Limpieza facial profunda','45 €'],['Manicura semipermanente','25 €'],['Depilación láser · zona pequeña','39 €'],['Masaje relajante 50 min','48 €']];
+
+let biz = 'estetica', step = null, data = {}, costIa = 0, costWa = 0, n = 0, busy = false;
+
+/* ---------- UI ---------- */
+function bubble(text, who){
+  const m = document.createElement('div'); m.className = 'msg ' + who;
+  m.innerHTML = esc(text).replace(/\*(.+?)\*/g,'<b>$1</b>') + `<time>${now()}</time>`;
+  $('#chat').appendChild(m); scroll();
+}
+function quick(opts){
+  const box = document.createElement('div'); box.className = 'qrs';
+  opts.forEach(o => { const b = document.createElement('button'); b.type = 'button'; b.className = 'qr'; b.textContent = o; b.addEventListener('click', () => { box.remove(); userSays(o); }); box.appendChild(b); });
+  $('#chat').appendChild(box); scroll();
+}
+const scroll = () => { const c = $('#chat'); c.scrollTop = c.scrollHeight; };
+function say(text, opts){
+  busy = true;
+  const t = document.createElement('div'); t.className = 'typing'; t.innerHTML = '<i></i><i></i><i></i>';
+  $('#chat').appendChild(t); scroll();
+  setTimeout(() => {
+    t.remove(); bubble(text, 'in'); if (opts) quick(opts);
+    n++; costIa += IA_POR_RESPUESTA; paintCosts(); busy = false;
+  }, 550 + Math.min(900, text.length * 6));
+}
+function paintCosts(){ $('#cIa').textContent = eur(costIa); $('#cWa').textContent = eur(costWa,2); $('#cN').textContent = n; }
+function set(k, v){ data[k] = v; paintFicha(); }
+function paintFicha(){
+  $('#ficha').innerHTML = BIZ[biz].campos.map(([k,l]) => `<div><span>${l}</span>${data[k] ? `<b>${esc(data[k])}</b>` : '<b class="empty">—</b>'}</div>`).join('');
+}
+function ev(ic, title, sub, urg){
+  const box = $('#log'); const e0 = box.querySelector('.ev-empty'); if (e0) e0.remove();
+  const e = document.createElement('div'); e.className = 'ev' + (urg ? ' urg' : '');
+  e.innerHTML = `<div class="ic">${ic}</div><div><b>${esc(title)}</b>${sub ? `<small>${esc(sub)}</small>` : ''}</div>`;
+  box.prepend(e);
+}
+
+/* ---------- conversación ---------- */
+function userSays(text){
+  if (busy) return;
+  bubble(text, 'out');
+  setTimeout(() => route(text), 250);
+}
+function route(t){
+  if (step) return step(t);
+  const hit = BIZ[biz].intents.find(([re]) => re.test(t));
+  const key = hit ? hit[1] : map(t);
+  (FLOWS[biz][key] || FLOWS[biz].fallback)(t);
+}
+function map(t){
+  const all = { 'Ver precios':'precios','Reservar cita':'reservar','Horario y ubicación':'horario','Hablar con una persona':'persona',
+    'Pedir una consulta':'consulta','Qué documentos llevar':'docs','Estado de mi expediente':'estado','Volver al menú':'menu' };
+  return all[t] || 'fallback';
+}
+const askName = next => { say('¿A nombre de quién la reservo?'); step = t => { const v = t.trim().slice(0,40) || 'Cliente'; set('nombre', v); step = null; next(v); }; };
+const askConsent = next => {
+  say('Para gestionar tu cita guardamos tu nombre y teléfono. ¿Aceptas la política de privacidad?', ['Acepto','No acepto']);
+  step = t => { step = null;
+    if (/^acepto|^s[ií]/i.test(t)) { set('consent','Sí · ' + new Date().toLocaleDateString('es-ES')); ev('🔒','Consentimiento registrado','Fecha y texto aceptado guardados'); next(); }
+    else { set('consent','No'); say('Sin problema. Puedes llamarnos y te atendemos por teléfono. ¡Gracias!', ['Volver al menú']); ev('🔒','Sin consentimiento','No se guardan datos de la cita'); }
+  };
+};
+
+const FLOWS = {
+  estetica: {
+    menu(){ say('¿En qué más te ayudo?', MENU_E); },
+    precios(){ say('Estos son algunos precios:\n\n' + PRECIOS_E.map(([s,p]) => `• ${s}: *${p}*`).join('\n') + '\n\n¿Quieres reservar alguno?', ['Reservar cita','Volver al menú']); },
+    horario(){ say('Abrimos de lunes a viernes de 10:00 a 20:00 y los sábados de 10:00 a 14:00.\n📍 Calle del Ejemplo 12, Madrid (a 3 min del metro).', ['Reservar cita','Volver al menú']); },
+    persona(){ say('Le paso tu mensaje a Alba y te escribe en cuanto pueda (normalmente en menos de 1 hora en horario de apertura).', ['Volver al menú']); set('estado','Pendiente de respuesta del equipo'); ev('🔔','Aviso al equipo','Notificación en el móvil de Alba', true); },
+    reservar(){
+      say('¡Genial! ¿Qué servicio quieres?', PRECIOS_E.map(p => p[0]));
+      step = t => { step = null; set('servicio', t);
+        const days = nextDays(3);
+        say(`Perfecto: *${t}*. ¿Qué día te viene bien?`, days);
+        step = d => { step = null;
+          say(`Para el ${d} tengo libre:`, ['10:30','12:00','17:30','19:00']);
+          step = h => { step = null; data._cita = `${d} · ${h}`;
+            askName(nombre => askConsent(() => {
+              set('cita', data._cita); set('estado','Cita confirmada');
+              say(`Listo, ${nombre} ✅\n\n*${data.servicio}*\n🗓️ ${data._cita}\n📍 Calle del Ejemplo 12, Madrid\n\nTe recordaré la cita el día antes. Si necesitas cambiarla, escríbeme aquí.`, ['Volver al menú']);
+              ev('🗓️','Cita creada en el calendario', data._cita);
+              ev('⏰','Recordatorio programado','24 h antes · 0,017 € (Meta)'); costWa += META_UTILITY; paintCosts();
+              ev('⭐','Petición de reseña programada','2 h después de la cita, con enlace a Google');
+            }));
+          };
+        };
+      };
+    },
+    fallback(){ say('Con eso no te puedo ayudar yo, pero se lo paso al equipo para que te responda. Mientras, ¿quieres ver precios o reservar?', MENU_E); ev('🔔','Pregunta sin respuesta → equipo','Se guarda para mejorar el asistente'); },
+  },
+  extranjeria: {
+    menu(){ say('¿En qué más te ayudo?', MENU_X); },
+    docs(){ say('Para la primera consulta trae, si los tienes:\n\n• Pasaporte o documento de identidad\n• Certificado de empadronamiento\n• Cualquier carta, requerimiento o resolución de Extranjería\n\nEl abogado te dirá qué más hace falta según tu caso.', ['Pedir una consulta','Volver al menú']); ev('📄','Lista de documentos enviada','Plantilla aprobada por el despacho'); },
+    estado(){
+      say('Escríbeme tu número de expediente del despacho (por ejemplo: EXP-2026-014).');
+      step = t => { step = null;
+        const m = t.toUpperCase().match(/EXP-\d{4}-\d{2,4}/);
+        if (m) { say(`*${m[0]}*\nEstado: en trámite en la Oficina de Extranjería.\nÚltima novedad: presentado el 12 de octubre.\n\nSi te llega una carta nueva, mándanos una foto por aquí.`, ['Volver al menú']); ev('🔎','Consulta de expediente en el CRM', m[0] + ' · solo datos de estado'); }
+        else { say('No encuentro ese número. Revisa que tenga el formato EXP-2026-014 o pide que te llame una persona.', ['Estado de mi expediente','Hablar con una persona']); }
+      };
+    },
+    persona(){ say('Le aviso al equipo y te contactan hoy en horario de despacho (L–V de 9:00 a 18:00).', ['Volver al menú']); ev('🔔','Aviso al equipo','Tarea creada para recepción', true); },
+    consulta(){
+      say('Te hago tres preguntas rápidas para que el abogado llegue preparado. ¿Sobre qué trámite es?', ['Arraigo','Reagrupación familiar','Nacionalidad','Renovación de tarjeta','Otro']);
+      step = t => { step = null; set('tramite', t);
+        say('¿Cuánto tiempo llevas en España?', ['Menos de 2 años','Entre 2 y 3 años','Más de 3 años']);
+        step = tt => { step = null; set('tiempo', tt);
+          say('¿Tienes alguna carta con plazo (requerimiento, resolución o cita en la oficina)?', ['Sí, con plazo','No']);
+          step = u => { step = null;
+            const urg = /^s[ií]/i.test(u);
+            set('urgencia', urg ? 'Alta · tiene plazo' : 'Normal');
+            if (urg) ev('🚨','Marcado como urgente','Aviso inmediato al abogado responsable', true);
+            say(`${urg ? 'Lo marco como urgente para que lo vean hoy. ' : ''}La primera consulta dura 45 minutos (precio de ejemplo: 50 €). ¿Cómo la prefieres?`, ['Presencial','Online (videollamada)']);
+            step = mod => { step = null;
+              const days = nextDays(2);
+              say(`${mod}. Huecos disponibles:`, [days[0] + ' · 10:00', days[0] + ' · 16:30', days[1] + ' · 12:00']);
+              step = slot => { step = null; data._cita = `${slot} · ${mod}`;
+                askName(nombre => askConsent(() => {
+                  set('cita', data._cita);
+                  say(`Reservado, ${nombre} ✅\n\n🗓️ ${data._cita}\n📌 Trámite: ${data.tramite}\n\nPara la consulta trae pasaporte, empadronamiento y cualquier carta de Extranjería. Te recordaré la cita el día antes.`, ['Volver al menú']);
+                  ev('🗓️','Consulta creada en la agenda del despacho', data._cita);
+                  ev('📋','Resumen del caso para el abogado', `${data.tramite} · ${data.tiempo} · urgencia ${data.urgencia.toLowerCase()}`);
+                  ev('⏰','Recordatorio programado','24 h antes · 0,017 € (Meta)'); costWa += META_UTILITY; paintCosts();
+                }));
+              };
+            };
+          };
+        };
+      };
+    },
+    fallback(){ say('Esa pregunta mejor la responde un abogado. ¿Te pido una consulta o prefieres que te llame una persona?', ['Pedir una consulta','Hablar con una persona']); ev('🔔','Pregunta para el abogado','Se guarda en la ficha del contacto'); },
+  },
+};
+
+/* ---------- arranque ---------- */
+function start(b){
+  biz = b; step = null; data = {}; costIa = 0; costWa = 0; n = 0; busy = false;
+  $('#chat').innerHTML = ''; $('#log').innerHTML = '<div class="ev-empty">Aquí verás cada acción que el asistente hace por ti.</div>';
+  $('#waName').textContent = BIZ[b].name; $('#waAv').textContent = BIZ[b].av;
+  document.querySelectorAll('.tab').forEach(t => { const on = t.dataset.biz === b; t.classList.toggle('on', on); t.setAttribute('aria-selected', on); });
+  paintFicha(); paintCosts(); BIZ[b].start();
+}
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => start(t.dataset.biz)));
+$('#resetBtn').addEventListener('click', () => start(biz));
+$('#composer').addEventListener('submit', e => { e.preventDefault(); const v = $('#msgInput').value.trim(); if (!v || busy) return; $('#msgInput').value = ''; document.querySelectorAll('.qrs').forEach(q => q.remove()); userSays(v); });
+const initial = location.hash === '#extranjeria' ? 'extranjeria' : 'estetica';
+start(initial);
+})();
+</script>
+</body>
+</html>

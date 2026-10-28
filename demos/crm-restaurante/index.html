@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Comanda CRM · Demo restaurante</title>
+<meta name="description" content="Demo funcional de CRM para restaurantes: reservas por turnos, fichas de cliente con alérgenos, consentimiento RGPD, fidelización y campañas por WhatsApp. Hecho por Melina Rivera."/>
+<meta name="robots" content="noindex"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#F7F3EE; --card:#FFFFFF; --ink:#2A211C; --muted:#7A6A60; --line:#E8DED4;
+  --accent:#B4532A; --accent-2:#E7A35E; --accent-soft:#F6E3D6;
+  --ok:#2F7D4F; --ok-soft:#E1F1E7; --warn:#A86A00; --warn-soft:#FBEFD5;
+  --bad:#B3261E; --bad-soft:#F9E0DE; --info:#2C5C8F; --info-soft:#E1ECF7;
+  --shadow:0 1px 2px rgba(42,33,28,.06),0 6px 20px rgba(42,33,28,.06);
+  --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif;font-size:15px;line-height:1.45}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+a{color:inherit}
+.app{display:grid;grid-template-columns:232px 1fr;min-height:100vh}
+/* sidebar */
+.side{background:#2A211C;color:#F3E9E0;padding:22px 14px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh}
+.brand{display:flex;align-items:center;gap:10px;padding:4px 10px 18px}
+.brand-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:800;color:#fff}
+.brand b{display:block;font-size:15px}
+.brand small{color:#BFAEA2;font-size:12px}
+.nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#D9CABE;font-weight:600;font-size:14px}
+.nav a:hover{background:rgba(255,255,255,.06)}
+.nav a.active{background:rgba(231,163,94,.16);color:#fff}
+.nav svg{width:18px;height:18px;flex:none}
+.side-foot{margin-top:auto;font-size:12px;color:#BFAEA2;padding:10px;border-top:1px solid rgba(255,255,255,.08);line-height:1.5}
+.side-foot button{color:var(--accent-2);font-weight:700;font-size:12px;padding:0;margin-top:6px}
+/* main */
+main{padding:24px 28px 90px;min-width:0}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.top h1{font-size:24px;letter-spacing:-.02em}
+.top p{color:var(--muted);font-size:14px}
+.demo-banner{background:var(--accent-soft);border:1px solid #EFCDB8;color:#6B3216;border-radius:12px;padding:10px 14px;font-size:13px;margin-bottom:18px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.demo-banner a{font-weight:700}
+.grid{display:grid;gap:14px}
+.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:16px;min-width:0}
+.kpi .lbl{color:var(--muted);font-size:12.5px;font-weight:600}
+.kpi .val{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-top:4px}
+.kpi .sub{font-size:12px;color:var(--muted);margin-top:2px}
+.two{grid-template-columns:1.4fr 1fr}
+.card h3{font-size:15px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.card h3 small{color:var(--muted);font-weight:600;font-size:12px}
+.list{display:flex;flex-direction:column}
+.li{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.li:first-child{border-top:none}
+.li .main{flex:1;min-width:0}
+.li .main b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.li .main span{color:var(--muted);font-size:12.5px}
+.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;flex:none;background:var(--accent-soft);color:var(--accent)}
+.time{font-weight:800;font-size:14px;width:46px;flex:none}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.b-pendiente{background:var(--warn-soft);color:var(--warn)}
+.b-confirmada{background:var(--info-soft);color:var(--info)}
+.b-sentada{background:var(--accent-soft);color:var(--accent)}
+.b-completada{background:var(--ok-soft);color:var(--ok)}
+.b-noshow,.b-cancelada{background:var(--bad-soft);color:var(--bad)}
+.seg-VIP{background:#2A211C;color:#F7D9A8}
+.seg-Habitual{background:var(--ok-soft);color:var(--ok)}
+.seg-Nuevo{background:var(--info-soft);color:var(--info)}
+.seg-Dormido{background:#EEE7E0;color:#6E5E54}
+.alg{background:var(--bad-soft);color:var(--bad)}
+.bars{display:flex;align-items:flex-end;gap:10px;height:150px;padding-top:10px}
+.bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.bar i{display:block;width:100%;max-width:38px;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,var(--accent-2),var(--accent))}
+.bar span{font-size:11px;color:var(--muted);font-weight:600}
+.bar em{font-style:normal;font-size:11.5px;font-weight:800}
+/* toolbar */
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.btn{text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:10px;font-weight:700;font-size:13.5px;border:1px solid var(--line);background:#fff;white-space:nowrap}
+.btn:hover{border-color:#D8C8BA}
+.btn svg{width:16px;height:16px}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.primary:hover{background:#9C4522}
+.btn.sm{padding:6px 10px;font-size:12.5px;border-radius:8px}
+.btn.ghost{border-color:transparent;background:transparent}
+.btn.wa{background:#1F9D55;border-color:#1F9D55;color:#fff}
+.input,select.input,textarea.input{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 12px;font-size:14px;outline:none;min-width:0}
+.input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(180,83,42,.12)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{padding:7px 12px;border-radius:99px;border:1px solid var(--line);background:#fff;font-weight:700;font-size:12.5px}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+/* reservas */
+.day-nav{display:flex;align-items:center;gap:6px}
+.day-nav b{min-width:190px;text-align:center;font-size:15px}
+.turnos{grid-template-columns:1fr 1fr}
+.occ{height:8px;border-radius:99px;background:#F0E7DE;overflow:hidden;margin:4px 0 12px}
+.occ i{display:block;height:100%;background:linear-gradient(90deg,var(--accent-2),var(--accent))}
+.res{border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:10px;background:#FFFCF9}
+.res-h{display:flex;gap:10px;align-items:center}
+.res-h .main{flex:1;min-width:0}
+.res-h .main b{font-size:14px}
+.res-h .main span{display:block;color:var(--muted);font-size:12.5px}
+.res-n{font-size:12.5px;color:var(--muted);margin-top:8px}
+.res-a{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.empty{color:var(--muted);font-size:13.5px;padding:18px 0;text-align:center}
+/* tabla */
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;color:var(--muted);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.04em;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:11px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:#FBF7F2}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+th.num{text-align:right}
+/* drawer & modal */
+.overlay{position:fixed;inset:0;background:rgba(42,33,28,.42);display:none;z-index:40}
+.overlay.open{display:block}
+.drawer{position:fixed;top:0;right:0;height:100vh;width:min(460px,100vw);background:var(--bg);z-index:50;transform:translateX(100%);transition:transform .22s ease;overflow-y:auto;padding:22px}
+.drawer.open{transform:none}
+.modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.98);width:min(520px,calc(100vw - 24px));max-height:calc(100vh - 24px);overflow-y:auto;background:#fff;border-radius:18px;z-index:60;padding:22px;display:none;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal.open{display:block;transform:translate(-50%,-50%)}
+.modal h2,.drawer h2{font-size:19px;letter-spacing:-.01em}
+.x{position:absolute;right:14px;top:14px;width:34px;height:34px;border-radius:10px;display:grid;place-items:center}
+.x:hover{background:rgba(0,0,0,.05)}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.form .full{grid-column:1/-1}
+.form label{display:flex;flex-direction:column;gap:5px;font-size:12.5px;font-weight:700;color:var(--muted)}
+.form .input{font-weight:500;color:var(--ink)}
+.form .input{width:100%}
+.check{display:flex!important;flex-direction:row!important;align-items:flex-start;gap:8px;font-weight:600!important;color:var(--ink)!important;font-size:13px!important}
+.check input{margin-top:3px;accent-color:var(--accent)}
+.alg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.alg-grid label{flex-direction:row;align-items:center;gap:7px;font-weight:600;color:var(--ink);font-size:13px}
+.alg-grid input{accent-color:var(--bad)}
+.warn{background:var(--bad-soft);color:var(--bad);border-radius:10px;padding:9px 12px;font-size:13px;font-weight:600}
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.stats3 div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
+.stats3 small{color:var(--muted);font-size:11.5px;font-weight:700}
+.stats3 b{display:block;font-size:17px}
+.sec{margin-top:16px}
+.sec h4{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:8px}
+.msg-preview{background:#E7F7EE;border-radius:12px 12px 12px 4px;padding:12px 14px;font-size:13.5px;white-space:pre-wrap;border:1px solid #C9EBD6}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;font-size:13.5px;font-weight:600;opacity:0;transition:.2s;z-index:80;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%)}
+.mobile-nav{display:none}
+.hide-sm{}
+@media (max-width:1050px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.two,.turnos{grid-template-columns:1fr}}
+@media (max-width:760px){
+  .app{grid-template-columns:1fr}
+  .side{display:none}
+  main{padding:16px 16px 96px}
+  .mobile-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:#2A211C;z-index:30;padding:6px 6px calc(6px + env(safe-area-inset-bottom));justify-content:space-around}
+  .mobile-nav a{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:#CDBDB0;text-decoration:none;font-weight:700;padding:6px 8px;border-radius:10px}
+  .mobile-nav a.active{color:#fff;background:rgba(231,163,94,.18)}
+  .mobile-nav svg{width:20px;height:20px}
+  .top h1{font-size:21px}
+  .kpi .val{font-size:22px}
+  .form{grid-template-columns:1fr}
+  .day-nav b{min-width:0;flex:1}
+  .day-nav{width:100%}
+  .hide-sm{display:none}
+  .mob-brand{display:flex!important}
+}
+.mob-brand{display:none;align-items:center;gap:10px;margin-bottom:14px}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><div class="brand-mark">C</div><div><b>Comanda CRM</b><small>Taberna La Encina · demo</small></div></div>
+    <nav class="nav" id="nav"></nav>
+    <div class="side-foot">
+      Demo con datos ficticios. Lo que cambies se guarda solo en este navegador.
+      <br><button type="button" data-act="reset">Restablecer datos de ejemplo</button>
+      <br><br>Hecho por <a href="../../servicios/" style="color:#fff;font-weight:700">Melina Rivera</a>
+    </div>
+  </aside>
+  <main id="main"></main>
+</div>
+<nav class="mobile-nav" id="mnav"></nav>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Ficha de cliente"></aside>
+<div class="modal" id="modal" role="dialog" aria-modal="true"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+'use strict';
+/* ---------- utilidades ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const eur = n => new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n||0);
+const eur2 = n => new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR'}).format(n||0);
+const pad = n => String(n).padStart(2,'0');
+const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const parse = s => { const [y,m,d] = s.split('-').map(Number); return new Date(y,m-1,d); };
+const today = () => { const d = new Date(); d.setHours(0,0,0,0); return d; };
+const addDays = (d,n) => { const x = new Date(d); x.setDate(x.getDate()+n); return x; };
+const daysBetween = (a,b) => Math.round((parse(b)-parse(a))/864e5);
+const fmtDate = s => parse(s).toLocaleDateString('es-ES',{day:'numeric',month:'short',year:'numeric'});
+const fmtDay = s => { const t = parse(s).toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'}); return t.charAt(0).toUpperCase()+t.slice(1); };
+const initials = c => (c.nombre[0]+(c.apellidos||' ')[0]).toUpperCase();
+const uid = () => Math.random().toString(36).slice(2,10);
+const toast = msg => { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast._t); toast._t = setTimeout(()=>t.classList.remove('show'),2200); };
+
+const I = { // iconos (trazos lucide simplificados)
+  panel:'<path d="M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z"/>',
+  reservas:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+  clientes:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
+  campanas:'<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>', left:'<path d="m15 18-6-6 6-6"/>', right:'<path d="m9 18 6-6-6-6"/>',
+  x:'<path d="M18 6 6 18M6 6l12 12"/>', down:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>',
+  wa:'<path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/>',
+  search:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>', copy:'<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
+  cake:'<path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1M2 21h20M7 8v3M12 8v3M17 8v3"/>',
+};
+const ico = (n,extra='') => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ${extra}>${I[n]}</svg>`;
+
+/* ---------- constantes de negocio ---------- */
+const ALERGENOS = ['Gluten','Crustáceos','Huevos','Pescado','Cacahuetes','Soja','Lácteos','Frutos de cáscara','Apio','Mostaza','Sésamo','Sulfitos','Altramuces','Moluscos'];
+const TURNOS = { comida:{label:'Comida', horas:['13:00','13:30','14:00','14:30','15:00','15:30']}, cena:{label:'Cena', horas:['20:00','20:30','21:00','21:30','22:00','22:30']} };
+const CAPACIDAD = 48; // plazas por turno
+const ESTADOS = { pendiente:'Pendiente', confirmada:'Confirmada', sentada:'En mesa', completada:'Completada', noshow:'No-show', cancelada:'Cancelada' };
+const ORIGENES = ['Teléfono','WhatsApp','Web','Sin reserva'];
+const MESAS = ['T1','T2','T3','T4','S1','S2','S3','S4','S5','S6','B1','B2','P1','P2'];
+const TEMPLATES = {
+  vuelve:{label:'Te echamos de menos', seg:'Dormido', txt:'Hola {nombre} 👋 Hace tiempo que no te vemos por La Encina. Esta semana, si reservas, el postre corre de nuestra cuenta. ¿Te guardamos mesa? Responde a este mensaje.'},
+  temporada:{label:'Menú de temporada', seg:'Habitual', txt:'Hola {nombre}, ya tenemos la carta de otoño: setas, guisos de cuchara y torrijas caseras 🍂 ¿Te apetece probarla? Reserva respondiendo a este mensaje.'},
+  vip:{label:'Cata privada VIP', seg:'VIP', txt:'Hola {nombre}, como cliente de la casa te invitamos a nuestra cata de vinos del jueves (plazas limitadas). ¿Te reservamos sitio?'},
+  cumple:{label:'Felicitación de cumpleaños', seg:'Cumple', txt:'¡Feliz cumpleaños, {nombre}! 🎂 Celébralo con nosotros este mes y te invitamos a una copa de cava. Reserva respondiendo a este mensaje.'},
+};
+
+/* ---------- datos de ejemplo ---------- */
+function rng(seed){ return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function seed(){
+  const R = rng(20261028), r = (a,b) => Math.floor(R()*(b-a+1))+a, pick = a => a[r(0,a.length-1)];
+  const nombres = ['Lucía','Javier','Carmen','Álvaro','Marta','Pablo','Elena','Sergio','Laura','Diego','Paula','Andrés','Irene','Raúl','Nuria','Iván','Cristina','Hugo','Sara','Marcos','Beatriz','Óscar','Alba','Rubén','Inés','Daniel','Rocío','Adrián','Claudia','Jorge','Noelia','Víctor','Ana','Miguel','Patricia','Fernando','Julia','Alejandro','Teresa','Gonzalo','Silvia','Mario'];
+  const apellidos = ['García','Martín','López','Sánchez','Gómez','Fernández','Ruiz','Díaz','Moreno','Álvarez','Romero','Navarro','Torres','Domínguez','Gil','Vázquez','Serrano','Ramos','Blanco','Molina','Castro','Ortega','Rubio','Marín','Sanz','Iglesias','Medina','Garrido','Cortés','Castillo'];
+  const notasC = ['Prefiere terraza','Mesa tranquila, lejos de la puerta','Viene con carrito de bebé','Le gusta el vino de la casa','Suele pedir el menú del día','Celebra aquí aniversarios','Trae a clientes de empresa','','','',''];
+  const T = today(), clients = [];
+  nombres.forEach((n,i) => {
+    const perfil = i < 6 ? 'vip' : i < 18 ? 'hab' : i < 28 ? 'nuevo' : 'dormido';
+    const nv = perfil==='vip' ? r(10,22) : perfil==='hab' ? r(3,8) : perfil==='nuevo' ? 1 : r(2,6);
+    const visitas = [];
+    let d = perfil==='dormido' ? r(70,200) : perfil==='nuevo' ? r(2,25) : r(1,20);
+    for (let k=0;k<nv;k++){ const pax = r(1,6); visitas.push({fecha: iso(addDays(T,-d)), pax, importe: Math.round(pax*(r(22,48)+R())*100)/100}); d += perfil==='vip' ? r(6,16) : r(12,40); }
+    visitas.sort((a,b)=>a.fecha.localeCompare(b.fecha));
+    const alg = R() < .28 ? [pick(ALERGENOS)].concat(R()<.3?[pick(ALERGENOS)]:[]) : [];
+    const cumpleD = i % 9 === 0 ? addDays(T, r(1,6)) : new Date(2000, r(0,11), r(1,28));
+    clients.push({
+      id:'c'+i, nombre:n, apellidos: pick(apellidos)+' '+pick(apellidos),
+      tel:`+34 600 0${pad(i)} ${r(100,999)}`, email: (n+'.'+apellidos[i%apellidos.length]).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')+'@ejemplo.es',
+      cumple:`${pad(cumpleD.getMonth()+1)}-${pad(cumpleD.getDate())}`,
+      alergenos:[...new Set(alg)], notas: pick(notasC),
+      rgpd: R() < .8, rgpdFecha: visitas[0].fecha,
+      alta: visitas[0].fecha, visitas
+    });
+  });
+  const reservas = [];
+  for (let off=-3; off<=8; off++){
+    const f = iso(addDays(T,off));
+    const usados = new Set();
+    ['comida','cena'].forEach(turno => {
+      const n = r(4,9) + (turno==='cena'?2:0);
+      const mesas = MESAS.slice().sort(() => R() - .5);
+      for (let k=0;k<n;k++){
+        let c; do { c = pick(clients); } while (usados.has(c.id) && usados.size < clients.length);
+        usados.add(c.id);
+        let estado = off < 0 ? (R()<.9?'completada':'noshow') : off===0 ? pick(turno==='comida'?['sentada','completada','confirmada']:['confirmada','confirmada','pendiente']) : (R()<.65?'confirmada':'pendiente');
+        if (R()<.05) estado='cancelada';
+        reservas.push({ id:uid(), clienteId:c.id, fecha:f, turno, hora:pick(TURNOS[turno].horas), pax:r(2,6), mesa:mesas[k % mesas.length], estado, origen:pick(ORIGENES.slice(0,3)), notas: R()<.18 ? pick(['Celebra cumpleaños','Necesita trona','Mesa en terraza si es posible','Llegará 15 min tarde']) : '' });
+      }
+    });
+  }
+  return { v:1, clients, reservas, enviados:{} };
+}
+
+/* ---------- estado ---------- */
+const KEY = 'comanda-crm-demo-v1';
+let db;
+try { db = JSON.parse(localStorage.getItem(KEY)); } catch(e) { db = null; }
+if (!db || db.v !== 1) db = seed();
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch(e) {} };
+save();
+
+const byId = id => db.clients.find(c => c.id === id);
+function stats(c){
+  const v = c.visitas, n = v.length, gasto = v.reduce((s,x)=>s+x.importe,0);
+  const ultima = n ? v[v.length-1].fecha : null;
+  const dias = ultima ? daysBetween(ultima, iso(today())) : 999;
+  let seg = 'Habitual';
+  if (dias > 60) seg = 'Dormido';
+  else if (n >= 8 || gasto >= 900) seg = 'VIP';
+  else if (n <= 1) seg = 'Nuevo';
+  return { n, gasto, ticket: n ? gasto/n : 0, ultima, dias, seg };
+}
+function cumpleEn(c, dias){ // ¿cumple en los próximos N días?
+  const T = today();
+  for (let i=0;i<=dias;i++){ const d = addDays(T,i); if (`${pad(d.getMonth()+1)}-${pad(d.getDate())}` === c.cumple) return i; }
+  return -1;
+}
+const waLink = txt => 'https://wa.me/?text=' + encodeURIComponent(txt); // en la demo no se usa el número del cliente
+
+/* ---------- router ---------- */
+const VIEWS = { panel:'Panel', reservas:'Reservas', clientes:'Clientes', campanas:'Campañas' };
+let ui = { day: iso(today()), q:'', seg:'Todos', sort:'ultima', tpl:'vuelve', campSeg:'Dormido', campTxt: TEMPLATES.vuelve.txt };
+function navHTML(cur){ return Object.entries(VIEWS).map(([k,l]) => `<a href="#${k}" class="${k===cur?'active':''}">${ico(k)}<span>${l}</span></a>`).join(''); }
+function route(){
+  const v = (location.hash.slice(1) || 'panel').split('?')[0];
+  const view = VIEWS[v] ? v : 'panel';
+  $('#nav').innerHTML = navHTML(view); $('#mnav').innerHTML = navHTML(view);
+  ({panel:renderPanel, reservas:renderReservas, clientes:renderClientes, campanas:renderCampanas})[view]();
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange', route);
+
+const header = (t,sub,actions='') => `
+  <div class="mob-brand"><div class="brand-mark">C</div><div><b>Comanda CRM</b><br><small style="color:var(--muted)">Taberna La Encina · demo</small></div></div>
+  <div class="demo-banner">🧪 <span><b>Demo interactiva</b> con datos ficticios<span class="hide-sm">. Prueba a crear reservas, cerrar mesas o lanzar una campaña: todo se guarda solo en tu navegador</span>.</span> <a href="../../servicios/">← Volver a servicios</a> <button type="button" data-act="reset" style="font-weight:700;text-decoration:underline">Restablecer datos</button></div>
+  <div class="top"><div><h1>${t}</h1><p>${sub}</p></div><div class="toolbar" style="margin:0">${actions}</div></div>`;
+
+/* ---------- PANEL ---------- */
+function renderPanel(){
+  const T = iso(today());
+  const hoy = db.reservas.filter(r => r.fecha===T && r.estado!=='cancelada');
+  const paxHoy = hoy.reduce((s,r)=>s+r.pax,0);
+  const mes = T.slice(0,7);
+  const visitasMes = db.clients.flatMap(c => c.visitas).filter(v => v.fecha.startsWith(mes));
+  const factMes = visitasMes.reduce((s,v)=>s+v.importe,0), paxMes = visitasMes.reduce((s,v)=>s+v.pax,0);
+  const ult30 = db.reservas.filter(r => { const d = daysBetween(r.fecha,T); return d>0 && d<=30; });
+  const noshow = ult30.length ? ult30.filter(r=>r.estado==='noshow').length/ult30.length : 0;
+  const nuevos = db.clients.filter(c => c.alta.startsWith(mes)).length;
+  const prox = hoy.filter(r => ['pendiente','confirmada','sentada'].includes(r.estado)).sort((a,b)=>a.hora.localeCompare(b.hora));
+  const cumple = db.clients.map(c=>({c,d:cumpleEn(c,7)})).filter(x=>x.d>=0).sort((a,b)=>a.d-b.d);
+  const recuperar = db.clients.map(c=>({c,s:stats(c)})).filter(x=>x.s.seg==='Dormido' && x.s.n>=3).sort((a,b)=>b.s.gasto-a.s.gasto).slice(0,5);
+  const dias7 = [...Array(7)].map((_,i)=>{ const f = iso(addDays(today(),i)); return { f, pax: db.reservas.filter(r=>r.fecha===f && r.estado!=='cancelada').reduce((s,r)=>s+r.pax,0) }; });
+  const maxPax = Math.max(...dias7.map(d=>d.pax), 1);
+
+  $('#main').innerHTML = header('Buenos días 👋', fmtDay(T), `<button class="btn primary" data-act="newRes">${ico('plus')} Nueva reserva</button>`) + `
+  <div class="grid kpis">
+    <div class="card kpi"><div class="lbl">Comensales hoy</div><div class="val">${paxHoy}</div><div class="sub">${hoy.length} reservas · ${Math.round(paxHoy/(CAPACIDAD*2)*100)} % ocupación</div></div>
+    <div class="card kpi"><div class="lbl">Facturación del mes</div><div class="val">${eur(factMes)}</div><div class="sub">Ticket medio ${eur2(paxMes?factMes/paxMes:0)} / persona</div></div>
+    <div class="card kpi"><div class="lbl">Clientes nuevos este mes</div><div class="val">${nuevos}</div><div class="sub">${db.clients.length} en la base de datos</div></div>
+    <div class="card kpi"><div class="lbl">No-shows (30 días)</div><div class="val">${Math.round(noshow*100)} %</div><div class="sub">Confirmar por WhatsApp los reduce</div></div>
+  </div>
+  <div class="grid two" style="margin-top:14px">
+    <div class="card"><h3>Reservas de hoy <a href="#reservas" style="font-size:12.5px;color:var(--accent)">Ver todas →</a></h3>
+      <div class="list">${prox.length ? prox.map(resLi).join('') : '<div class="empty">No quedan reservas pendientes hoy.</div>'}</div>
+    </div>
+    <div class="grid" style="align-content:start">
+      <div class="card"><h3>Comensales próximos 7 días</h3>
+        <div class="bars">${dias7.map(d=>`<div class="bar"><em>${d.pax}</em><i style="height:${Math.max(6,d.pax/maxPax*100)}%"></i><span>${parse(d.f).toLocaleDateString('es-ES',{weekday:'short'})}</span></div>`).join('')}</div>
+      </div>
+      <div class="card"><h3><span style="display:flex;align-items:center;gap:8px">${ico('cake','style="width:16px;height:16px"')} Cumpleaños esta semana</span> <small>${cumple.length}</small></h3>
+        <div class="list">${cumple.length ? cumple.map(({c,d})=>`<div class="li" data-client="${c.id}" style="cursor:pointer"><div class="avatar">${initials(c)}</div><div class="main"><b>${esc(c.nombre)} ${esc(c.apellidos.split(' ')[0])}</b><span>${d===0?'¡Hoy!':d===1?'Mañana':'En '+d+' días'}</span></div>${c.rgpd?`<a class="btn sm wa" target="_blank" rel="noopener" href="${waLink(TEMPLATES.cumple.txt.replace('{nombre}',c.nombre))}">${ico('wa')} Felicitar</a>`:'<span class="badge seg-Dormido">Sin consentimiento</span>'}</div>`).join('') : '<div class="empty">Ningún cumpleaños esta semana.</div>'}</div>
+      </div>
+      <div class="card"><h3>Clientes para recuperar <a href="#campanas" style="font-size:12.5px;color:var(--accent)">Campaña →</a></h3>
+        <div class="list">${recuperar.map(({c,s})=>`<div class="li" data-client="${c.id}" style="cursor:pointer"><div class="avatar">${initials(c)}</div><div class="main"><b>${esc(c.nombre)} ${esc(c.apellidos.split(' ')[0])}</b><span>${s.n} visitas · ${eur(s.gasto)} · hace ${s.dias} días</span></div></div>`).join('') || '<div class="empty">Nadie a quien recuperar 🎉</div>'}</div>
+      </div>
+    </div>
+  </div>`;
+}
+function resLi(r){
+  const c = byId(r.clienteId);
+  return `<div class="li" data-client="${c.id}" style="cursor:pointer"><div class="time">${r.hora}</div><div class="main"><b>${esc(c.nombre)} ${esc(c.apellidos.split(' ')[0])} · ${r.pax} pax</b><span>Mesa ${r.mesa}${c.alergenos.length?' · ⚠️ '+esc(c.alergenos.join(', ')):''}</span></div><span class="badge b-${r.estado}">${ESTADOS[r.estado]}</span></div>`;
+}
+
+/* ---------- RESERVAS ---------- */
+function renderReservas(){
+  const f = ui.day, isToday = f===iso(today());
+  const del = db.reservas.filter(r => r.fecha===f);
+  const col = turno => {
+    const rs = del.filter(r=>r.turno===turno).sort((a,b)=>a.hora.localeCompare(b.hora));
+    const pax = rs.filter(r=>!['cancelada','noshow'].includes(r.estado)).reduce((s,r)=>s+r.pax,0);
+    return `<div class="card"><h3>${TURNOS[turno].label} <small>${pax}/${CAPACIDAD} plazas · ${rs.length} reservas</small></h3>
+      <div class="occ"><i style="width:${Math.min(100,pax/CAPACIDAD*100)}%"></i></div>
+      ${rs.length ? rs.map(resCard).join('') : '<div class="empty">Sin reservas en este turno.</div>'}</div>`;
+  };
+  $('#main').innerHTML = header('Reservas', 'Turnos de comida y cena, con alérgenos a la vista', `<button class="btn primary" data-act="newRes">${ico('plus')} Nueva reserva</button>`) + `
+    <div class="toolbar">
+      <div class="day-nav"><button class="btn sm" data-act="day" data-d="-1" aria-label="Día anterior">${ico('left')}</button><b>${fmtDay(f)}${isToday?' · hoy':''}</b><button class="btn sm" data-act="day" data-d="1" aria-label="Día siguiente">${ico('right')}</button></div>
+      ${isToday?'':'<button class="btn sm" data-act="dayToday">Hoy</button>'}
+      <input type="date" class="input" id="dayPick" value="${f}" style="padding:6px 10px"/>
+    </div>
+    <div class="grid turnos">${col('comida')}${col('cena')}</div>`;
+  $('#dayPick').addEventListener('change', e => { if (e.target.value){ ui.day = e.target.value; renderReservas(); } });
+}
+function resCard(r){
+  const c = byId(r.clienteId), s = stats(c);
+  const acts = [];
+  if (r.estado==='pendiente') acts.push(`<a class="btn sm wa" target="_blank" rel="noopener" data-act="confirmWa" data-id="${r.id}" href="${waLink(`Hola ${c.nombre}, te escribimos de Taberna La Encina para confirmar tu reserva del ${fmtDay(r.fecha).toLowerCase()} a las ${r.hora} para ${r.pax} personas. ¿Nos lo confirmas? ¡Gracias!`)}">${ico('wa')} Confirmar</a>`);
+  if (['pendiente','confirmada'].includes(r.estado)) acts.push(`<button class="btn sm" data-act="estado" data-id="${r.id}" data-e="sentada">Sentar</button>`, `<button class="btn sm" data-act="estado" data-id="${r.id}" data-e="noshow">No-show</button>`, `<button class="btn sm ghost" data-act="estado" data-id="${r.id}" data-e="cancelada">Cancelar</button>`);
+  if (r.estado==='sentada') acts.push(`<button class="btn sm primary" data-act="cerrar" data-id="${r.id}">Cerrar mesa</button>`);
+  return `<div class="res">
+    <div class="res-h"><div class="time">${r.hora}</div><div class="main" data-client="${c.id}" style="cursor:pointer"><b>${esc(c.nombre)} ${esc(c.apellidos)}</b><span>${r.pax} pax · Mesa ${r.mesa} · ${esc(r.origen)}</span></div><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span class="badge b-${r.estado}">${ESTADOS[r.estado]}</span><span class="badge seg-${s.seg}">${s.seg}</span></div></div>
+    ${c.alergenos.length?`<div class="res-n"><span class="badge alg">⚠️ ${esc(c.alergenos.join(', '))}</span></div>`:''}
+    ${r.notas?`<div class="res-n">📝 ${esc(r.notas)}</div>`:''}
+    ${acts.length?`<div class="res-a">${acts.join('')}</div>`:''}
+  </div>`;
+}
+
+/* ---------- CLIENTES ---------- */
+function renderClientes(){
+  const segs = ['Todos','VIP','Habitual','Nuevo','Dormido'];
+  const rows = db.clients.map(c=>({c,s:stats(c)}))
+    .filter(({c,s}) => (ui.seg==='Todos' || s.seg===ui.seg) && (`${c.nombre} ${c.apellidos} ${c.tel} ${c.email}`.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').includes(ui.q.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''))))
+    .sort((a,b) => ui.sort==='gasto' ? b.s.gasto-a.s.gasto : ui.sort==='visitas' ? b.s.n-a.s.n : ui.sort==='nombre' ? a.c.nombre.localeCompare(b.c.nombre) : (b.s.ultima||'').localeCompare(a.s.ultima||''));
+  const count = s => s==='Todos' ? db.clients.length : db.clients.filter(c=>stats(c).seg===s).length;
+  $('#main').innerHTML = header('Clientes', 'Historial de visitas, alérgenos, preferencias y consentimiento RGPD', `<button class="btn" data-act="csv">${ico('down')} Exportar a Excel</button><button class="btn primary" data-act="newClient">${ico('plus')} Nuevo cliente</button>`) + `
+    <div class="toolbar">
+      <div style="position:relative;flex:1;min-width:220px;max-width:360px"><span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);display:flex">${ico('search','style="width:16px;height:16px"')}</span><input class="input" id="q" placeholder="Buscar por nombre, teléfono o email" value="${esc(ui.q)}" style="width:100%;padding-left:34px"/></div>
+      <div class="chips">${segs.map(s=>`<button class="chip ${ui.seg===s?'on':''}" data-act="seg" data-s="${s}">${s} · ${count(s)}</button>`).join('')}</div>
+      <select class="input" id="sort" style="padding:7px 10px"><option value="ultima">Última visita</option><option value="gasto">Mayor gasto</option><option value="visitas">Más visitas</option><option value="nombre">Nombre</option></select>
+    </div>
+    <div class="card" style="padding:4px 4px 0"><div class="table-wrap"><table>
+      <thead><tr><th>Cliente</th><th class="hide-sm">Teléfono</th><th class="num">Visitas</th><th class="num">Gasto total</th><th>Última visita</th><th>Segmento</th><th class="hide-sm">Alérgenos</th><th class="hide-sm">RGPD</th></tr></thead>
+      <tbody>${rows.map(({c,s})=>`<tr data-client="${c.id}">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:30px;height:30px;font-size:12px">${initials(c)}</div><b>${esc(c.nombre)} ${esc(c.apellidos)}</b></div></td>
+        <td class="hide-sm">${esc(c.tel)}</td><td class="num">${s.n}</td><td class="num">${eur(s.gasto)}</td>
+        <td>${s.ultima?fmtDate(s.ultima):'—'}</td><td><span class="badge seg-${s.seg}">${s.seg}</span></td>
+        <td class="hide-sm">${c.alergenos.length?`<span class="badge alg">⚠️ ${c.alergenos.length}</span>`:'<span style="color:var(--muted)">—</span>'}</td>
+        <td class="hide-sm">${c.rgpd?'<span class="badge b-completada">Sí</span>':'<span class="badge seg-Dormido">No</span>'}</td></tr>`).join('')}</tbody>
+    </table></div>${rows.length?'':'<div class="empty">Ningún cliente coincide con la búsqueda.</div>'}</div>`;
+  const q = $('#q'); q.addEventListener('input', e => { ui.q = e.target.value; const pos = e.target.selectionStart; renderClientes(); const nq = $('#q'); nq.focus(); nq.setSelectionRange(pos,pos); });
+  const so = $('#sort'); so.value = ui.sort; so.addEventListener('change', e => { ui.sort = e.target.value; renderClientes(); });
+}
+function exportCSV(){
+  const head = ['Nombre','Apellidos','Teléfono','Email','Visitas','Gasto total (€)','Ticket medio (€)','Última visita','Segmento','Alérgenos','Consentimiento RGPD','Notas'];
+  const num = n => n.toFixed(2).replace('.',',');
+  const rows = db.clients.map(c => { const s = stats(c); return [c.nombre,c.apellidos,c.tel,c.email,s.n,num(s.gasto),num(s.ticket),s.ultima?fmtDate(s.ultima):'',s.seg,c.alergenos.join(', '),c.rgpd?'Sí':'No',c.notas]; });
+  const csv = '﻿' + [head,...rows].map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(';')).join('\r\n');
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})); a.download = `clientes-la-encina-${iso(today())}.csv`; a.click();
+  toast('CSV exportado (se abre directamente en Excel)');
+}
+
+/* ---------- ficha (drawer) ---------- */
+function openClient(id){
+  const c = byId(id); if (!c) return; const s = stats(c);
+  const res = db.reservas.filter(r=>r.clienteId===id).sort((a,b)=>(b.fecha+b.hora).localeCompare(a.fecha+a.hora));
+  const futuras = res.filter(r=>r.fecha>=iso(today()) && ['pendiente','confirmada'].includes(r.estado));
+  const [mm,dd] = c.cumple.split('-').map(Number);
+  $('#drawer').innerHTML = `
+    <button class="x" data-act="close" aria-label="Cerrar">${ico('x','style="width:18px;height:18px"')}</button>
+    <div style="display:flex;gap:12px;align-items:center;padding-right:40px"><div class="avatar" style="width:48px;height:48px;font-size:17px">${initials(c)}</div><div><h2>${esc(c.nombre)} ${esc(c.apellidos)}</h2><span class="badge seg-${s.seg}">${s.seg}</span> <span style="color:var(--muted);font-size:12.5px">Cliente desde ${fmtDate(c.alta)}</span></div></div>
+    <div class="stats3"><div><small>Visitas</small><b>${s.n}</b></div><div><small>Gasto total</small><b>${eur(s.gasto)}</b></div><div><small>Ticket medio</small><b>${eur(s.ticket)}</b></div></div>
+    ${c.alergenos.length?`<div class="warn">⚠️ Alérgenos: ${esc(c.alergenos.join(', '))}</div>`:''}
+    <div class="sec"><h4>Contacto</h4><div class="card" style="padding:12px;font-size:13.5px;line-height:1.8">📞 ${esc(c.tel)}<br>✉️ ${esc(c.email||'—')}<br>🎂 ${dd} de ${new Date(2000,mm-1,1).toLocaleDateString('es-ES',{month:'long'})}<br>${c.rgpd?`✅ Acepta comunicaciones comerciales (desde ${fmtDate(c.rgpdFecha)})`:'🚫 No acepta comunicaciones comerciales'}</div></div>
+    ${c.notas?`<div class="sec"><h4>Preferencias</h4><div class="card" style="padding:12px;font-size:13.5px">${esc(c.notas)}</div></div>`:''}
+    <div class="sec"><h4>Próximas reservas</h4>${futuras.length?futuras.map(r=>`<div class="card" style="padding:10px 12px;margin-bottom:6px;font-size:13.5px;display:flex;justify-content:space-between;gap:8px"><span>${fmtDate(r.fecha)} · ${r.hora} · ${r.pax} pax</span><span class="badge b-${r.estado}">${ESTADOS[r.estado]}</span></div>`).join(''):'<div style="color:var(--muted);font-size:13px">Sin reservas próximas.</div>'}</div>
+    <div class="sec"><h4>Últimas visitas</h4><div class="card" style="padding:4px 12px">${c.visitas.slice(-6).reverse().map(v=>`<div class="li" style="padding:8px 0"><div class="main"><b style="font-size:13.5px">${fmtDate(v.fecha)}</b><span>${v.pax} comensales</span></div><b style="font-size:13.5px">${eur2(v.importe)}</b></div>`).join('')}</div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:18px">
+      <button class="btn primary" data-act="newRes" data-client="${c.id}">${ico('plus')} Reservar</button>
+      <button class="btn" data-act="editClient" data-id="${c.id}">Editar ficha</button>
+      ${c.rgpd?`<a class="btn wa" target="_blank" rel="noopener" href="${waLink(`Hola ${c.nombre}, `)}">${ico('wa')} WhatsApp</a>`:''}
+    </div>`;
+  $('#drawer').classList.add('open'); $('#overlay').classList.add('open');
+}
+function closeAll(){ $('#drawer').classList.remove('open'); $('#modal').classList.remove('open'); $('#overlay').classList.remove('open'); }
+
+/* ---------- modales ---------- */
+function modal(html){ $('#modal').innerHTML = `<button class="x" data-act="close" aria-label="Cerrar">${ico('x','style="width:18px;height:18px"')}</button>` + html; $('#modal').classList.add('open'); $('#overlay').classList.add('open'); $('#drawer').classList.remove('open'); }
+
+function newRes(clientId){
+  const f = location.hash.startsWith('#reservas') ? ui.day : iso(today());
+  const opts = db.clients.slice().sort((a,b)=>a.nombre.localeCompare(b.nombre)).map(c=>`<option value="${c.id}" ${c.id===clientId?'selected':''}>${esc(c.nombre)} ${esc(c.apellidos)} · ${esc(c.tel)}</option>`).join('');
+  modal(`<h2>Nueva reserva</h2>
+    <form class="form" id="resForm">
+      <label class="full">Cliente<select class="input" name="cliente"><option value="__new">➕ Cliente nuevo…</option>${opts}</select></label>
+      <div class="full" id="newCliFields" style="display:none;gap:12px;grid-template-columns:1fr 1fr">
+        <label>Nombre<input class="input" name="nn" placeholder="Nombre"/></label>
+        <label>Teléfono<input class="input" name="nt" placeholder="+34 600 000 000" inputmode="tel"/></label>
+        <label class="full check"><input type="checkbox" name="nr"/> Acepta recibir comunicaciones comerciales (RGPD)</label>
+      </div>
+      <div class="full" id="algWarn"></div>
+      <label>Fecha<input class="input" type="date" name="fecha" value="${f}" required/></label>
+      <label>Turno<select class="input" name="turno"><option value="comida">Comida</option><option value="cena" selected>Cena</option></select></label>
+      <label>Hora<select class="input" name="hora"></select></label>
+      <label>Comensales<input class="input" type="number" name="pax" min="1" max="20" value="2" required/></label>
+      <label>Mesa<select class="input" name="mesa">${MESAS.map(m=>`<option>${m}</option>`).join('')}</select></label>
+      <label>Origen<select class="input" name="origen">${ORIGENES.map(o=>`<option>${o}</option>`).join('')}</select></label>
+      <label class="full">Notas<input class="input" name="notas" placeholder="Trona, terraza, celebración…"/></label>
+      <div class="full" style="display:flex;justify-content:flex-end;gap:8px"><button type="button" class="btn" data-act="close">Cancelar</button><button class="btn primary" type="submit">Guardar reserva</button></div>
+    </form>`);
+  const F = $('#resForm');
+  const syncHoras = () => { F.hora.innerHTML = TURNOS[F.turno.value].horas.map(h=>`<option>${h}</option>`).join(''); };
+  const syncCli = () => {
+    const isNew = F.cliente.value==='__new';
+    $('#newCliFields').style.display = isNew ? 'grid' : 'none';
+    const c = byId(F.cliente.value);
+    $('#algWarn').innerHTML = c && c.alergenos.length ? `<div class="warn">⚠️ ${esc(c.nombre)} tiene alergia a: ${esc(c.alergenos.join(', '))}. Se avisará a cocina.</div>` : '';
+  };
+  F.turno.addEventListener('change', syncHoras); F.cliente.addEventListener('change', syncCli);
+  if (!clientId) F.cliente.value = db.clients[0].id;
+  syncHoras(); syncCli();
+  F.addEventListener('submit', e => {
+    e.preventDefault();
+    let cid = F.cliente.value;
+    if (cid==='__new'){
+      if (!F.nn.value.trim()){ toast('Escribe el nombre del cliente'); return; }
+      const [n,...ap] = F.nn.value.trim().split(' ');
+      const c = { id:'c'+uid(), nombre:n, apellidos:ap.join(' '), tel:F.nt.value.trim()||'—', email:'', cumple:'01-01', alergenos:[], notas:'', rgpd:F.nr.checked, rgpdFecha:iso(today()), alta:iso(today()), visitas:[] };
+      db.clients.push(c); cid = c.id;
+    }
+    db.reservas.push({ id:uid(), clienteId:cid, fecha:F.fecha.value, turno:F.turno.value, hora:F.hora.value, pax:Math.max(1,+F.pax.value||1), mesa:F.mesa.value, estado:'pendiente', origen:F.origen.value, notas:F.notas.value.trim() });
+    save(); closeAll(); ui.day = F.fecha.value; toast('Reserva guardada ✔'); location.hash = '#reservas'; route();
+  });
+}
+function cerrarMesa(id){
+  const r = db.reservas.find(x=>x.id===id), c = byId(r.clienteId);
+  modal(`<h2>Cerrar mesa ${r.mesa}</h2><p style="color:var(--muted);margin-top:4px">${esc(c.nombre)} ${esc(c.apellidos)} · ${r.pax} comensales</p>
+    <form class="form" id="closeForm"><label class="full">Importe de la cuenta (€)<input class="input" type="number" name="imp" step="0.01" min="0" value="${(r.pax*34.5).toFixed(2)}" required/></label>
+    <div class="full" style="display:flex;justify-content:flex-end;gap:8px"><button type="button" class="btn" data-act="close">Cancelar</button><button class="btn primary">Cerrar y guardar visita</button></div></form>`);
+  $('#closeForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const imp = Math.max(0, parseFloat(e.target.imp.value)||0);
+    r.estado = 'completada';
+    c.visitas.push({fecha:r.fecha, pax:r.pax, importe:imp}); c.visitas.sort((a,b)=>a.fecha.localeCompare(b.fecha));
+    save(); closeAll(); toast(`Visita registrada: ${eur2(imp)}`); route();
+  });
+}
+function editClient(id){
+  const c = id ? byId(id) : { id:null, nombre:'', apellidos:'', tel:'', email:'', cumple:'01-01', alergenos:[], notas:'', rgpd:false };
+  const [mm,dd] = c.cumple.split('-');
+  modal(`<h2>${id?'Editar ficha':'Nuevo cliente'}</h2>
+    <form class="form" id="cliForm">
+      <label>Nombre<input class="input" name="nombre" value="${esc(c.nombre)}" required/></label>
+      <label>Apellidos<input class="input" name="apellidos" value="${esc(c.apellidos)}"/></label>
+      <label>Teléfono<input class="input" name="tel" value="${esc(c.tel)}" inputmode="tel" placeholder="+34 600 000 000"/></label>
+      <label>Email<input class="input" type="email" name="email" value="${esc(c.email)}"/></label>
+      <label>Cumpleaños<input class="input" type="date" name="cumple" value="2000-${mm}-${dd}"/></label>
+      <label>Preferencias<input class="input" name="notas" value="${esc(c.notas)}" placeholder="Terraza, trona…"/></label>
+      <div class="full"><div style="font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:6px">Alérgenos (14 de declaración obligatoria UE)</div>
+        <div class="alg-grid">${ALERGENOS.map(a=>`<label><input type="checkbox" name="alg" value="${a}" ${c.alergenos.includes(a)?'checked':''}/> ${a}</label>`).join('')}</div></div>
+      <label class="full check"><input type="checkbox" name="rgpd" ${c.rgpd?'checked':''}/> El cliente acepta recibir comunicaciones comerciales por WhatsApp o email. Se guarda la fecha del consentimiento.</label>
+      <div class="full" style="display:flex;justify-content:flex-end;gap:8px"><button type="button" class="btn" data-act="close">Cancelar</button><button class="btn primary">Guardar</button></div>
+    </form>`);
+  $('#cliForm').addEventListener('submit', e => {
+    e.preventDefault(); const F = e.target;
+    const data = { nombre:F.nombre.value.trim(), apellidos:F.apellidos.value.trim(), tel:F.tel.value.trim(), email:F.email.value.trim(), notas:F.notas.value.trim(), alergenos:[...F.querySelectorAll('input[name=alg]:checked')].map(x=>x.value), cumple: F.cumple.value ? F.cumple.value.slice(5) : '01-01' };
+    const rgpd = F.rgpd.checked;
+    if (id){ Object.assign(c, data); if (rgpd && !c.rgpd) c.rgpdFecha = iso(today()); c.rgpd = rgpd; }
+    else { db.clients.push({ id:'c'+uid(), ...data, rgpd, rgpdFecha:iso(today()), alta:iso(today()), visitas:[] }); }
+    save(); closeAll(); toast('Ficha guardada ✔'); route(); if (id) openClient(id);
+  });
+}
+
+/* ---------- CAMPAÑAS ---------- */
+function renderCampanas(){
+  const all = db.clients.map(c=>({c,s:stats(c)}));
+  const enSeg = ui.campSeg==='Cumple' ? all.filter(x=>cumpleEn(x.c,30)>=0) : ui.campSeg==='Todos' ? all : all.filter(x=>x.s.seg===ui.campSeg);
+  const dest = enSeg.filter(x=>x.c.rgpd), excl = enSeg.length - dest.length;
+  const key = ui.tpl+'|'+ui.campSeg, env = db.enviados[key] || [];
+  const segOpts = [['Dormido','Dormidos (+60 días sin venir)'],['Habitual','Habituales'],['VIP','VIP'],['Nuevo','Nuevos (1 visita)'],['Cumple','Cumplen años en 30 días'],['Todos','Todos']];
+  $('#main').innerHTML = header('Campañas', 'Mensajes por WhatsApp a cada segmento, solo a quien dio su consentimiento') + `
+    <div class="grid two">
+      <div class="card">
+        <h3>1. Elige plantilla y segmento</h3>
+        <div class="chips" style="margin-bottom:12px">${Object.entries(TEMPLATES).map(([k,t])=>`<button class="chip ${ui.tpl===k?'on':''}" data-act="tpl" data-k="${k}">${t.label}</button>`).join('')}</div>
+        <div class="form" style="margin-top:0">
+          <label class="full">Segmento<select class="input" id="campSeg">${segOpts.map(([v,l])=>`<option value="${v}" ${ui.campSeg===v?'selected':''}>${l}</option>`).join('')}</select></label>
+          <label class="full">Mensaje · usa {nombre} para personalizar<textarea class="input" id="campTxt" rows="5">${esc(ui.campTxt)}</textarea></label>
+        </div>
+        <div class="sec"><h4>Vista previa</h4><div class="msg-preview" id="prev">${esc(ui.campTxt.replace(/\{nombre\}/g, dest[0]?dest[0].c.nombre:'Lucía'))}</div></div>
+      </div>
+      <div class="card">
+        <h3>2. Envía <small>${env.length}/${dest.length} enviados</small></h3>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px"><span class="badge b-completada">${dest.length} con consentimiento</span>${excl?`<span class="badge seg-Dormido">${excl} excluidos sin consentimiento RGPD</span>`:''}</div>
+        <div class="list">${dest.map(({c,s})=>{ const txt = ui.campTxt.replace(/\{nombre\}/g,c.nombre); const done = env.includes(c.id); return `<div class="li"><div class="avatar">${initials(c)}</div><div class="main"><b>${esc(c.nombre)} ${esc(c.apellidos.split(' ')[0])}</b><span>${s.n} visitas · última ${s.ultima?fmtDate(s.ultima):'—'}</span></div>${done?'<span class="badge b-completada">Enviado ✔</span>':`<a class="btn sm wa" target="_blank" rel="noopener" data-act="sent" data-id="${c.id}" href="${waLink(txt)}">${ico('wa')} Enviar</a>`}</div>`; }).join('') || '<div class="empty">Nadie en este segmento con consentimiento.</div>'}</div>
+        <p style="font-size:12px;color:var(--muted);margin-top:12px;line-height:1.5">En esta demo WhatsApp se abre sin destinatario para no escribir a números reales. En la versión para tu negocio se abre el chat de cada cliente o se envía con la API oficial de WhatsApp Business.</p>
+      </div>
+    </div>`;
+  $('#campSeg').addEventListener('change', e => { ui.campSeg = e.target.value; renderCampanas(); });
+  $('#campTxt').addEventListener('input', e => { ui.campTxt = e.target.value; $('#prev').textContent = ui.campTxt.replace(/\{nombre\}/g, dest[0]?dest[0].c.nombre:'Lucía'); });
+  $('#campTxt').addEventListener('change', () => renderCampanas());
+}
+
+/* ---------- eventos globales ---------- */
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-act]');
+  if (a){
+    const act = a.dataset.act;
+    if (act==='close'){ closeAll(); return; }
+    if (act==='reset'){ if (confirm('¿Restablecer los datos de ejemplo? Se perderán tus cambios en esta demo.')) { db = seed(); save(); ui.day = iso(today()); route(); toast('Datos de ejemplo restablecidos'); } return; }
+    if (act==='newRes'){ e.preventDefault(); newRes(a.dataset.client); return; }
+    if (act==='newClient'){ editClient(null); return; }
+    if (act==='editClient'){ editClient(a.dataset.id); return; }
+    if (act==='csv'){ exportCSV(); return; }
+    if (act==='day'){ ui.day = iso(addDays(parse(ui.day), +a.dataset.d)); renderReservas(); return; }
+    if (act==='dayToday'){ ui.day = iso(today()); renderReservas(); return; }
+    if (act==='seg'){ ui.seg = a.dataset.s; renderClientes(); return; }
+    if (act==='estado'){ const r = db.reservas.find(x=>x.id===a.dataset.id); r.estado = a.dataset.e; save(); toast(`Reserva: ${ESTADOS[r.estado].toLowerCase()}`); renderReservas(); return; }
+    if (act==='confirmWa'){ const r = db.reservas.find(x=>x.id===a.dataset.id); r.estado = 'confirmada'; save(); setTimeout(renderReservas, 50); toast('Mensaje preparado · reserva confirmada'); return; }
+    if (act==='cerrar'){ cerrarMesa(a.dataset.id); return; }
+    if (act==='tpl'){ ui.tpl = a.dataset.k; const t = TEMPLATES[ui.tpl]; ui.campTxt = t.txt; ui.campSeg = t.seg; renderCampanas(); return; }
+    if (act==='sent'){ const k = ui.tpl+'|'+ui.campSeg; (db.enviados[k] = db.enviados[k] || []).push(a.dataset.id); save(); setTimeout(renderCampanas, 50); return; }
+  }
+  if (e.target.closest('a[href^="https://wa.me"]')) return;
+  const cl = e.target.closest('[data-client]');
+  if (cl && !e.target.closest('.modal')) { openClient(cl.dataset.client); return; }
+});
+$('#overlay').addEventListener('click', closeAll);
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeAll(); });
+
+
+route();
+})();
+</script>
+</body>
+</html>

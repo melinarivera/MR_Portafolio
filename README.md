@@ -1,6 +1,6 @@
 # Melina Rivera — Portafolio Personal
 
-> Portafolio personal de Melina Rivera, desarrolladora web freelance especializada en apps y webs reales para pymes y autónomos.
+> Portafolio de Melina Rivera: webs, apps y SaaS, automatizaciones con IA, CRM y redes sociales para pymes y autónomos en España y México.
 
 ---
 
@@ -42,6 +42,8 @@ Este proyecto es **100% frontend estático**:
 ```
 MR_Portafolio/
 ├── index.html       # Toda la app (HTML + JS inline)
+├── demos/
+│   └── crm-restaurante/  # Demo funcional de CRM para restaurantes (datos ficticios, localStorage)
 ├── img/             # Imágenes y assets
 │   ├── MR_logo.png
 │   ├── etern-me.png
@@ -57,10 +59,11 @@ MR_Portafolio/
 1. **Hero** — Presentación con texto typewriter y estadísticas animadas
 2. **Sobre mí** — Quién soy y cómo trabajo
 3. **Mi proceso** — Metodología en 4 pasos: Descubrimiento → Diseño → Desarrollo → Lanzamiento
-4. **Proyectos** — Galería filtrable con proyectos destacados:
-   - *SaaS propios:* ETERN-ME, Cotidiana.app, Zenwi
-   - *Clientes:* Landings, dashboards, e-commerces, plataformas
-5. **Servicios** — Packs de desarrollo freelance
+4. **Proyectos** — Galería filtrable por servicio (webs, apps, IA, CRM, marketing):
+   - *SaaS propios:* ETERN-ME, Tesovia, Cotidiana.app, ZenWi, TravelMates, colereport, MeliVit
+   - *Demos:* Comanda CRM (restaurante)
+   - *Clientes:* landings, tiendas, plataformas y marketing digital
+5. **Servicios y precios** — 8 servicios con precio de partida en € (España) o MXN (México), ejemplos enlazados y 3 packs. Enlace directo por país: `?pais=es` o `?pais=mx`
 6. **Contacto** — Formulario + redes profesionales
 
 ---
@@ -70,13 +73,14 @@ MR_Portafolio/
 ¿Tienes un proyecto en mente?
 
 - 🔗 **LinkedIn:** [linkedin.com/in/deliamelinarivera](https://www.linkedin.com/in/deliamelinarivera)
+- 📸 **Instagram:** [@melina_rivera_developer](https://www.instagram.com/melina_rivera_developer/)
 - 🐙 **GitHub:** [github.com/melinarivera](https://github.com/melinarivera)
 
 ---
 
 ## ⚠️ Aviso de derechos de autor
 
-© 2025 Melina Rivera. Todos los derechos reservados.
+© 2026 Melina Rivera. Todos los derechos reservados.
 
 Este repositorio es **de solo lectura y con fines de visualización**. Queda **expresamente prohibido** clonar, copiar, redistribuir, modificar o reutilizar cualquier parte de este código o diseño sin el **permiso escrito y expreso** de la autora.
 
@@ -84,4 +88,4 @@ Si quieres contactarme para una colaboración o tienes dudas, escríbeme a trav�
 
 ---
 
-*Diseñado y desarrollado con mucho café ☕ — Melina Rivera, 2025*
+*Diseñado y desarrollado con mucho café ☕ — Melina Rivera, 2026*
