@@ -1,0 +1,31 @@
+{
+  "_instrucciones": "ÚNICO sitio donde se cambian los precios. Cambia el número (sin puntos ni símbolos) y guarda. Al subirlo a GitHub se regeneran solas la página de servicios y la sección de servicios del portafolio. eur = España (€, sin IVA) · mxn = México (pesos, + IVA).",
+
+  "landing":        { "eur": 350,  "mxn": 3500 },
+  "web":            { "eur": 1100, "mxn": 12000 },
+  "tienda":         { "eur": 1600, "mxn": 16000 },
+
+  "ia":             { "eur": 490,  "mxn": 5500 },
+  "ia_cuota":       { "eur": 39,   "mxn": 650 },
+  "ia_citas":       { "eur": 890,  "mxn": 9900 },
+  "ia_citas_cuota": { "eur": 69,   "mxn": 1100 },
+  "ia_incluidas":        1000,
+  "ia_citas_incluidas":  2000,
+  "ia_bloque_extra":     { "eur": 9, "mxn": 150 },
+  "ia_descuento_propia": { "eur": 9, "mxn": 150 },
+  "automatizacion": { "eur": 290,  "mxn": 3500 },
+
+  "crm":            { "eur": 1200, "mxn": 14000 },
+  "crm_configurar": { "eur": 400,  "mxn": 4500 },
+
+  "redes":             { "eur": 220, "mxn": 3500 },
+  "redes_crecimiento": { "eur": 420, "mxn": 6500 },
+  "auditoria_redes":   { "eur": 120, "mxn": 1500 },
+
+  "app":            { "eur": 3000, "mxn": 35000 },
+  "mantenimiento":  { "eur": 49,   "mxn": 700 },
+
+  "pack_arranque":        { "eur": 790,  "mxn": 8900,  "ahorro_eur": 170, "ahorro_mxn": 1600 },
+  "pack_pyme_digital":    { "eur": 1890, "mxn": 23900, "ahorro_eur": 360, "ahorro_mxn": 4100 },
+  "pack_organiza":        { "eur": 1590, "mxn": 18500, "ahorro_eur": 190, "ahorro_mxn": 2500 }
+}
