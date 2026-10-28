@@ -2,12 +2,11 @@ BEGIN:VCARD
 VERSION:3.0
 N:Rivera;Melina;;;
 FN:Melina Rivera
-TITLE:Full Stack Developer · Webs, apps, IA, CRM y redes para pymes
+TITLE:Full Stack Developer · Webs, apps, IA, CRM y redes para negocios
 TEL;TYPE=CELL,VOICE:+34711593111
-ADR;TYPE=WORK:;;;Madrid;;;España
 URL;TYPE=Portafolio:https://melinarivera.github.io/MR_Portafolio/
 URL;TYPE=Servicios:https://melinarivera.github.io/MR_Portafolio/servicios/
 URL;TYPE=Instagram:https://www.instagram.com/melina_rivera_developer/
 URL;TYPE=LinkedIn:https://www.linkedin.com/in/deliamelinarivera
-NOTE:Tu socia digital para pymes de España y México.
+NOTE:Tecnología que trabaja por tu negocio. Trabajo en remoto, desde cualquier lugar.
 END:VCARD
