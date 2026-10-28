@@ -879,6 +879,12 @@
     @media (max-width: 1024px) { .projects-grid { grid-template-columns:repeat(2,1fr); } }
     @media (max-width: 640px) { .projects-grid { grid-template-columns:1fr; } .svc-grid { grid-template-columns:1fr; } }
 
+    .svc-mini-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1rem; }
+    .svc-mini { display:flex; flex-direction:column; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:1.4rem; text-decoration:none; transition:var(--transition); }
+    .svc-mini:hover { border-color:rgba(91,141,184,.4); transform:translateY(-3px); }
+    .svc-mini-name { font-family:'Playfair Display',serif; color:var(--white); font-size:1.1rem; margin-bottom:.3rem; }
+    .svc-mini-price { color:var(--blue-light); font-size:.9rem; font-weight:500; }
+
     /* ===== CONTACT ===== */
     #contacto { background: var(--bg); border-top: 1px solid var(--border); }
     .contact-card {
@@ -1167,7 +1173,6 @@
         <li><a href="#sobre" id="nl-sobre">Sobre mí</a></li>
         <li><a href="#proceso" id="nl-proceso">Proceso</a></li>
         <li><a href="#proyectos" id="nl-proyectos">Proyectos</a></li>
-        <li><a href="#testimonios" id="nl-testimonios">Testimonios</a></li>
         <li><a href="#servicios" id="nl-servicios">Servicios y precios</a></li>
         <li><a href="#contacto" class="btn-nav-hire" id="nl-contacto">Contacto</a></li>
       </ul>
@@ -1182,7 +1187,6 @@
     <a href="#sobre" class="mobile-link">Sobre mí</a>
     <a href="#proceso" class="mobile-link">Proceso</a>
     <a href="#proyectos" class="mobile-link">Proyectos</a>
-    <a href="#testimonios" class="mobile-link">Testimonios</a>
     <a href="#servicios" class="mobile-link">Servicios y precios</a>
     <a href="#contacto" class="mobile-link mobile-hire">Contacto →</a>
   </div>
@@ -1207,7 +1211,7 @@
           para pymes y autónomos de España y México. Todo en un mismo sitio, con precios claros.
         </p>
         <div class="hero-actions">
-          <a href="#servicios" class="btn-main">
+          <a href="servicios/" class="btn-main">
             <i data-lucide="tag" class="lucide"></i> Ver servicios y precios
           </a>
           <a href="#proyectos" class="btn-outline">
@@ -1400,58 +1404,58 @@
 
       <div class="projects-grid" id="projectsGrid">
 
-        <!-- ETERN-ME DESTACADO -->
-        <div class="project-featured-row fade-in project-anchor" id="p-eternme" data-category="saas">
+        <!-- TESOVIA DESTACADO -->
+        <div class="project-featured-row fade-in project-anchor" id="p-tesovia" data-category="saas ia">
           <div class="project-card featured">
-            <div class="project-thumb" style="background:linear-gradient(135deg,#100C1A,#1A0E2A,#0A1218);position:relative">
-              <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,168,76,.06),transparent 70%)"></div>
-              <img src="img/etern-me-hero.png" alt="ETERN-ME landing page" style="width:100%;height:100%;object-fit:contain;object-position:center;position:absolute;inset:0;display:block;padding:2.5rem 1rem;"/>
-              <!-- overlay removed to avoid darkening screenshot -->
+            <div class="project-thumb" style="background:#F5F6FF;position:relative">
+              <img src="img/thumbs/tesovia.jpg" alt="Tesovia" style="width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0;display:block"/>
               <div class="project-badge-featured"><i data-lucide="star" class="lucide" style="width:.75em;height:.75em"></i> Destacado</div>
               <div class="project-status status-val">En validación</div>
             </div>
             <div class="project-info">
               <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.3rem">
-                <div class="project-name">ETERN-ME</div>
-                <span style="background:var(--blue-dim);border:1px solid rgba(91,141,184,.2);border-radius:2rem;padding:.2rem .8rem;font-size:.7rem;color:var(--blue-light);font-weight:600">Proyecto propio · SaaS</span>
+                <div class="project-name">Tesovia</div>
+                <span style="background:var(--blue-dim);border:1px solid rgba(91,141,184,.2);border-radius:2rem;padding:.2rem .8rem;font-size:.7rem;color:var(--blue-light);font-weight:600">Proyecto propio · SaaS con IA</span>
               </div>
-              <div class="project-tagline">Todo en orden. Siempre.</div>
-              <div class="project-desc">
-                Organiza tu vida digital. Protege lo que más importa. Una plataforma que centraliza cuentas, documentos e información esencial — para que nada importante se pierda y tus seres queridos tengan acceso cuando lo necesiten.
-              </div>
-              <div class="project-tags">
-                <span class="project-tag">React</span>
-                <span class="project-tag">Node.js</span>
-                <span class="project-tag">Express</span>
-                <span class="project-tag">Supabase</span>
-                <span class="project-tag">PostgreSQL</span>
-                <span class="project-tag">Vercel</span>
-                <span class="project-tag">Railway</span>
-              </div>
-              <div class="project-links">
-                <a href="https://etern-me.com" class="project-link" target="_blank" rel="noopener">
-                  <i data-lucide="external-link" class="lucide"></i> Ver en vivo
-                </a>
-              </div>
+              <div class="project-tagline">Tu trabajo académico, sin el agobio de no saber por dónde empezar.</div>
+              <div class="project-desc">Asistente académico con IA para estudiantes en español e inglés: revisión de citas (APA, Harvard, MLA), feedback, detección de IA y plagio, bibliografías y coordinación de grupos.</div>
+              <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Vite</span><span class="project-tag">FastAPI</span><span class="project-tag">PostgreSQL</span><span class="project-tag">Claude API</span></div>
+              <div class="project-links"><a href="https://www.tesovia.com" class="project-link" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a></div>
             </div>
           </div>
         </div>
 
-
-        <!-- Tesovia -->
-        <div class="fade-in fd1 project-anchor" id="p-tesovia" data-category="saas ia">
+        <!-- ETERN-ME -->
+        <div class="fade-in fd1 project-anchor" id="p-eternme" data-category="saas">
           <div class="project-card">
-            <div class="project-thumb" style="background:#F5F6FF;position:relative">
-              <img src="img/thumbs/tesovia.jpg" alt="Tesovia" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0;"/>
-              <div class="project-thumb-overlay"></div>
-              <div class="project-badge">SaaS · IA</div>
+            <div class="project-thumb" style="background:linear-gradient(135deg,#100C1A,#1A0E2A,#0A1218);position:relative">
+              <img src="img/etern-me-hero.png" alt="ETERN-ME" loading="lazy" style="width:100%;height:100%;object-fit:contain;position:absolute;inset:0;display:block;padding:1.5rem 1rem;"/>
+              <div class="project-badge">Proyecto propio · SaaS</div>
               <div class="project-status status-val">En validación</div>
             </div>
             <div class="project-info">
-              <div class="project-name">Tesovia</div>
-              <div class="project-desc">Asistente académico con IA para estudiantes en español e inglés: revisión de citas (APA, Harvard, MLA), feedback, detección de IA y plagio, bibliografías y coordinación de grupos.</div>
-              <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Vite</span><span class="project-tag">FastAPI</span><span class="project-tag">PostgreSQL</span><span class="project-tag">Claude API</span></div>
-              <div class="project-links"><a href="https://www.tesovia.com" class="project-link" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a></div>
+              <div class="project-name">ETERN-ME</div>
+              <div class="project-desc">Organiza tu vida digital: cuentas, documentos e información esencial en un solo lugar, para que tus seres queridos tengan acceso cuando lo necesiten.</div>
+              <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Node.js</span><span class="project-tag">Supabase</span><span class="project-tag">PostgreSQL</span></div>
+              <div class="project-links"><a href="https://etern-me.com" class="project-link" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Asistente WhatsApp -->
+        <div class="fade-in fd2 project-anchor" id="p-asistente" data-category="ia">
+          <div class="project-card">
+            <div class="project-thumb" style="background:#EEF1F4;position:relative">
+              <img src="img/thumbs/asistente-whatsapp.jpg" alt="Asistente de WhatsApp con IA" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0;"/>
+              <div class="project-thumb-overlay"></div>
+              <div class="project-badge">Demo · Automatización con IA</div>
+              <div class="project-status status-prod">Demo en vivo</div>
+            </div>
+            <div class="project-info">
+              <div class="project-name">Asistente de WhatsApp</div>
+              <div class="project-desc">Dos negocios de ejemplo: un centro de estética que agenda citas y una consultoría de extranjería que prepara la primera consulta. Rellena la ficha del CRM, programa recordatorios y muestra el coste de cada conversación.</div>
+              <div class="project-tags"><span class="project-tag">IA</span><span class="project-tag">WhatsApp</span><span class="project-tag">CRM</span><span class="project-tag">RGPD</span></div>
+              <div class="project-links"><a href="demos/asistente-whatsapp/#estetica" class="project-link"><i data-lucide="play" class="lucide"></i> Estética</a><a href="demos/asistente-whatsapp/#extranjeria" class="project-link"><i data-lucide="play" class="lucide"></i> Extranjería</a></div>
             </div>
           </div>
         </div>
@@ -1547,7 +1551,7 @@
               </div>
               <div class="project-thumb-overlay"></div>
               <div class="project-badge">App · RRHH</div>
-              <div class="project-status status-dev">En desarrollo</div>
+              <div class="project-status status-val">En validación</div>
             </div>
             <div class="project-info">
               <div class="project-name">ZenWi</div>
@@ -1558,12 +1562,7 @@
                 <span class="project-tag">Supabase</span>
               </div>
               <div class="project-links">
-                <span style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.78rem;
-                  background:rgba(255,255,255,0.04);border:1px solid var(--border);
-                  border-radius:2rem;padding:0.3rem 0.9rem;color:var(--muted)">
-                  <i data-lucide="clock" class="lucide" style="width:.85em;height:.85em"></i>
-                  En construcción
-                </span>
+                <a href="https://zenwi.app" class="project-link" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i> Ver en vivo</a>
               </div>
             </div>
           </div>
@@ -1713,19 +1712,19 @@
           </div>
         </div>
 
-        <!-- Redes y reputación · Estancia infantil -->
+        <!-- Redes y reputación -->
         <div class="fade-in fd1 project-anchor" id="p-mkt" data-category="mkt ia">
           <div class="project-card">
             <div class="project-thumb" style="background:#FFF8F0;position:relative">
-              <img src="img/thumbs/marketing.jpg" alt="Redes y reputación · Estancia infantil" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0;"/>
+              <img src="img/thumbs/marketing.jpg" alt="Redes y reputación para negocios locales" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0;"/>
               <div class="project-thumb-overlay"></div>
-              <div class="project-badge">Marketing digital · Cliente</div>
+              <div class="project-badge">Marketing digital</div>
             </div>
             <div class="project-info">
-              <div class="project-name">Redes y reputación · Estancia infantil</div>
-              <div class="project-desc">Diagnóstico de todos los canales (web, Google, Facebook, Instagram), calendario mensual de publicaciones, piezas creadas con IA sin mostrar a menores, bio optimizada y respuestas a reseñas de Google.</div>
+              <div class="project-name">Redes y reputación para negocios locales</div>
+              <div class="project-desc">Para consultoras de extranjería, despachos, tiendas de barrio y estéticas: diagnóstico de web, Google, Instagram y Facebook, calendario mensual de publicaciones, diseños con IA, bio optimizada y respuestas a reseñas.</div>
               <div class="project-tags"><span class="project-tag">Estrategia</span><span class="project-tag">Canva con IA</span><span class="project-tag">Instagram</span><span class="project-tag">Google Business</span></div>
-              <div class="project-links"><span class="project-note">Caso completo en una llamada</span></div>
+              <div class="project-links"><a href="servicios/#sectores" class="project-link"><i data-lucide="arrow-right" class="lucide"></i> Ver por sectores</a></div>
             </div>
           </div>
         </div>
@@ -1747,115 +1746,7 @@
                 <span class="project-tag">JavaScript</span>
               </div>
               <div class="project-links">
-                <a href="https://melinarivera.github.io/Recursos_de_estudio_MasterRRHH/" class="project-link" target="_blank" rel="noopener">
-                  <i data-lucide="external-link" class="lucide"></i> Ver en vivo
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TESTIMONIOS ===== -->
-  <section id="testimonios" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
-    <div class="container">
-      <div class="text-center mb-5 fade-in">
-        <div class="section-chip mx-auto">
-          <i data-lucide="quote" class="lucide"></i> Testimonios
-        </div>
-        <h2 class="section-title">Lo que dicen quienes <em>trabajaron</em> conmigo</h2>
-      </div>
-
-      <div class="project-filters fade-in" id="testimonioFilters">
-        <button class="filter-btn active" data-tfilter="all">Todos</button>
-        <button class="filter-btn" data-tfilter="cliente">Clientes</button>
-        <button class="filter-btn" data-tfilter="master">Máster RRHH</button>
-      </div>
-
-      <div class="row g-4" id="testimoniosGrid">
-
-        <div class="col col-md-6 col-lg-4 fade-in" data-tcat="cliente">
-          <div class="testimonial-card">
-            <div class="testimonial-quote">"</div>
-            <p class="testimonial-text">Melina entendió desde el primer momento lo que necesitaba: una web que se vea profesional y que realmente convierta visitas en reservas. Entrega limpia, comunicación clara y el resultado superó lo que esperaba.</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar testimonial-avatar-client">AL</div>
-              <div>
-                <div class="testimonial-name">Astrid L.</div>
-                <div class="testimonial-role">Propietaria · Lumière Beauty</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col col-md-6 col-lg-4 fade-in fd1" data-tcat="cliente">
-          <div class="testimonial-card">
-            <div class="testimonial-quote">"</div>
-            <p class="testimonial-text">La plataforma que construyó para mí tiene horóscopo con IA, sistema de reservas y blog. Algo que parecía muy complejo lo hizo ordenado y fácil de usar. Sigo trabajando con ella para nuevas funcionalidades.</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar testimonial-avatar-client">EJ</div>
-              <div>
-                <div class="testimonial-name">Efsun J.</div>
-                <div class="testimonial-role">Consultora esotérica · Efsun</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col col-md-6 col-lg-4 fade-in fd2" data-tcat="cliente">
-          <div class="testimonial-card">
-            <div class="testimonial-quote">"</div>
-            <p class="testimonial-text">Lo que más valoro es que llegó con propuestas, no solo con preguntas. La tienda quedó exactamente como la imaginaba, y la entrega fue en el tiempo acordado. Muy recomendable.</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar testimonial-avatar-client">AR</div>
-              <div>
-                <div class="testimonial-name">Alma R.</div>
-                <div class="testimonial-role">Emprendedora · Alma de Barrio</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col col-md-6 col-lg-4 fade-in fd3" data-tcat="master">
-          <div class="testimonial-card">
-            <div class="testimonial-quote">"</div>
-            <p class="testimonial-text">Usé la plataforma de recursos del Máster para repasar todos los módulos antes del examen final. Los tests interactivos y los PDFs organizados por tema me ahorraron horas de búsqueda. Una herramienta que ojalá hubiera existido desde el primer día.</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar testimonial-avatar-master">DM</div>
-              <div>
-                <div class="testimonial-name">Diego M.</div>
-                <div class="testimonial-role">Compañero · Máster en RRHH</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col col-md-6 col-lg-4 fade-in fd1" data-tcat="master">
-          <div class="testimonial-card">
-            <div class="testimonial-quote">"</div>
-            <p class="testimonial-text">Melina construyó algo que ninguno de nosotros le pidió pero que todos necesitábamos. La usé la semana antes de los exámenes y fue la mejor forma de repasar. Simple, rápida, sin distracciones.</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar testimonial-avatar-master">LV</div>
-              <div>
-                <div class="testimonial-name">Laura V.</div>
-                <div class="testimonial-role">Compañera · Máster en RRHH</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col col-md-6 col-lg-4 fade-in fd2" data-tcat="master">
-          <div class="testimonial-card">
-            <div class="testimonial-quote">"</div>
-            <p class="testimonial-text">La compartí en el grupo del Máster y en dos días la tenía usando todo el año. Es el tipo de recurso que demuestra que Melina piensa en el usuario antes que en el código.</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar testimonial-avatar-master">AR</div>
-              <div>
-                <div class="testimonial-name">Ana R.</div>
-                <div class="testimonial-role">Compañera · Máster en RRHH</div>
+                <span class="project-note">Proyecto académico</span>
               </div>
             </div>
           </div>
@@ -1871,180 +1762,57 @@
       <div class="text-center mb-5 fade-in">
         <div class="section-chip mx-auto"><i data-lucide="tag" class="lucide"></i> Servicios y precios</div>
         <h2 class="section-title">Todo lo digital de tu negocio,<br><em>en un mismo sitio</em></h2>
-        <p style="color:var(--muted);font-size:.95rem;max-width:560px;margin:.8rem auto 0;line-height:1.8">
-          Precios de partida claros y ejemplos reales de cada servicio. Elige tu país para ver la tarifa en tu moneda.
-        </p>
+        <p style="color:var(--muted);font-size:.95rem;max-width:560px;margin:.8rem auto 0;line-height:1.8">Precios de partida, qué incluye cada servicio y qué pagas aparte, con demos para probar.</p>
         <div class="country-toggle" role="group" aria-label="País">
           <button type="button" data-country="es" class="active">🇪🇸 España · €</button>
           <button type="button" data-country="mx">🇲🇽 México · MXN</button>
         </div>
-        <div class="tax-note js-tax">Precios orientativos sin IVA (21 %). Presupuesto cerrado tras una llamada gratuita de 20 minutos.</div>
+        <div class="tax-note js-tax">Precios orientativos sin IVA (21 %).</div>
       </div>
-
-      <div class="svc-grid">
-
-        <div class="fade-in project-anchor" id="srv-landing">
-          <div class="service-card">
-            
-            <div class="service-icon"><i data-lucide="rocket" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
-            <div class="service-name">Landing page</div>
-            <div class="service-ideal">Para autónomos y negocios que empiezan</div>
-            <span class="service-price"><span class="js-price" data-eur="desde 450 €" data-mxn="desde $4,500 MXN">desde 450 €</span> <small class="js-price" data-eur="/ proyecto" data-mxn="/ proyecto">/ proyecto</small></span>
-            
-            <ul class="service-list"><li><span class="service-check">✓</span> Una página clara, rápida y pensada para móvil</li><li><span class="service-check">✓</span> Botón de WhatsApp, formulario y mapa</li><li><span class="service-check">✓</span> Textos orientados a conseguir contactos</li><li><span class="service-check">✓</span> SEO local básico (Google)</li><li><span class="service-check">✓</span> Lista en 1–2 semanas</li></ul>
-            <div class="svc-examples"><span class="svc-examples-label">Ejemplos</span><a class="svc-ex" href="https://melinarivera.github.io/tienda-esoterica/" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i>Efsun tienda</a><a class="svc-ex js-goto" href="#p-lumiere"><i data-lucide="arrow-up-right" class="lucide"></i>Lumière Beauty</a></div>
-            <div class="service-divider"></div>
-            <a href="#contacto" class="btn-outline w-100 js-service" data-service="Landing page" style="text-align:center;padding:.65rem 1rem;font-size:.82rem;justify-content:center">Quiero mi landing →</a>
-          </div>
-        </div>
-
-        <div class="fade-in project-anchor" id="srv-web">
-          <div class="service-card popular">
-            <div class="service-popular-badge"><i data-lucide="star" class="lucide" style="width:.75em;height:.75em"></i> Más solicitado</div>
-            <div class="service-icon"><i data-lucide="store" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
-            <div class="service-name">Web corporativa</div>
-            <div class="service-ideal">Para pymes que quieren generar confianza</div>
-            <span class="service-price"><span class="js-price" data-eur="desde 1.100 €" data-mxn="desde $12,000 MXN">desde 1.100 €</span> <small class="js-price" data-eur="/ proyecto" data-mxn="/ proyecto">/ proyecto</small></span>
-            
-            <ul class="service-list"><li><span class="service-check">✓</span> 5–7 páginas con estructura pensada para vender</li><li><span class="service-check">✓</span> Blog o catálogo de servicios</li><li><span class="service-check">✓</span> SEO básico en cada página</li><li><span class="service-check">✓</span> WhatsApp, formulario y analítica</li><li><span class="service-check">✓</span> Páginas legales: aviso legal, privacidad y cookies</li></ul>
-            <div class="svc-examples"><span class="svc-examples-label">Ejemplos</span><a class="svc-ex js-goto" href="#p-estancia"><i data-lucide="arrow-up-right" class="lucide"></i>Estancia infantil</a><a class="svc-ex" href="https://melinarivera.github.io/Recursos_de_estudio_MasterRRHH/" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i>Recursos RRHH</a></div>
-            <div class="service-divider"></div>
-            <a href="#contacto" class="btn-main w-100 js-service" data-service="Web corporativa" style="text-align:center;padding:.65rem 1rem;font-size:.82rem;justify-content:center">Quiero mi web →</a>
-          </div>
-        </div>
-
-        <div class="fade-in project-anchor" id="srv-tienda">
-          <div class="service-card">
-            
-            <div class="service-icon"><i data-lucide="shopping-bag" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
-            <div class="service-name">Tienda online o reservas</div>
-            <div class="service-ideal">Para vender o reservar online 24/7</div>
-            <span class="service-price"><span class="js-price" data-eur="desde 1.600 €" data-mxn="desde $16,000 MXN">desde 1.600 €</span> <small class="js-price" data-eur="/ proyecto" data-mxn="/ proyecto">/ proyecto</small></span>
-            
-            <ul class="service-list"><li><span class="service-check">✓</span> Catálogo, carrito y pago con tarjeta (Stripe, TPV o Mercado Pago)</li><li><span class="service-check">✓</span> O agenda de citas con recordatorios</li><li><span class="service-check">✓</span> Panel para gestionar pedidos o reservas</li><li><span class="service-check">✓</span> Diseño a medida, sin plantillas</li><li><span class="service-check">✓</span> 30 días de soporte tras el lanzamiento</li></ul>
-            <div class="svc-examples"><span class="svc-examples-label">Ejemplos</span><a class="svc-ex" href="https://melinarivera.github.io/pyme-efsun/" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i>Efsun plataforma</a><a class="svc-ex js-goto" href="#p-alma"><i data-lucide="arrow-up-right" class="lucide"></i>Alma de Barrio</a></div>
-            <div class="service-divider"></div>
-            <a href="#contacto" class="btn-outline w-100 js-service" data-service="Tienda online o reservas" style="text-align:center;padding:.65rem 1rem;font-size:.82rem;justify-content:center">Quiero vender online →</a>
-          </div>
-        </div>
-
-        <div class="fade-in project-anchor" id="srv-ia">
-          <div class="service-card">
-            <div class="svc-new">Nuevo</div>
-            <div class="service-icon"><i data-lucide="sparkles" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
-            <div class="service-name">Automatización con IA</div>
-            <div class="service-ideal">Para dejar de responder siempre lo mismo</div>
-            <span class="service-price"><span class="js-price" data-eur="desde 490 €" data-mxn="desde $5,500 MXN">desde 490 €</span> <small class="js-price" data-eur="+ 39 €/mes" data-mxn="+ $650 MXN/mes">+ 39 €/mes</small></span>
-            <div class="svc-extra">Automatizaciones de procesos (facturas, recordatorios, informes): <b><span class="js-price" data-eur="desde 290 €" data-mxn="desde $3,500 MXN">desde 290 €</span></b> por flujo</div>
-            <ul class="service-list"><li><span class="service-check">✓</span> Asistente en tu web o WhatsApp que responde dudas 24/7</li><li><span class="service-check">✓</span> Entrenado con tu información: precios, horarios, servicios</li><li><span class="service-check">✓</span> Pasa la conversación a una persona cuando hace falta</li><li><span class="service-check">✓</span> La cuota incluye mantenimiento y el coste de la IA</li></ul>
-            <div class="svc-examples"><span class="svc-examples-label">Ejemplos</span><a class="svc-ex" href="https://www.tesovia.com" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i>Tesovia</a><a class="svc-ex" href="https://melinarivera.github.io/pyme-efsun/" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i>Horóscopo IA de Efsun</a><a class="svc-ex js-goto" href="#p-estancia"><i data-lucide="arrow-up-right" class="lucide"></i>Asistente estancia infantil</a></div>
-            <div class="service-divider"></div>
-            <a href="#contacto" class="btn-outline w-100 js-service" data-service="Automatización con IA" style="text-align:center;padding:.65rem 1rem;font-size:.82rem;justify-content:center">Quiero automatizar →</a>
-          </div>
-        </div>
-
-        <div class="fade-in project-anchor" id="srv-crm">
-          <div class="service-card">
-            
-            <div class="service-icon"><i data-lucide="layout-dashboard" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
-            <div class="service-name">CRM y planners a medida</div>
-            <div class="service-ideal">Para tener tus clientes y tareas en orden</div>
-            <span class="service-price"><span class="js-price" data-eur="desde 1.200 €" data-mxn="desde $14,000 MXN">desde 1.200 €</span> <small class="js-price" data-eur="/ proyecto" data-mxn="/ proyecto">/ proyecto</small></span>
-            <div class="svc-extra">¿Prefieres HubSpot, Notion u otro? Te lo configuro: <b><span class="js-price" data-eur="desde 400 €" data-mxn="desde $4,500 MXN">desde 400 €</span></b></div>
-            <ul class="service-list"><li><span class="service-check">✓</span> Fichas de cliente con historial y segmentos</li><li><span class="service-check">✓</span> Reservas, agenda o embudo de ventas</li><li><span class="service-check">✓</span> Campañas por WhatsApp o email respetando el RGPD</li><li><span class="service-check">✓</span> Exportación a Excel</li><li><span class="service-check">✓</span> Formación para usarlo desde el primer día</li></ul>
-            <div class="svc-examples"><span class="svc-examples-label">Ejemplos</span><a class="svc-ex" href="demos/crm-restaurante/"><i data-lucide="play" class="lucide"></i>Probar CRM de restaurante</a><a class="svc-ex js-goto" href="#p-colereport"><i data-lucide="arrow-up-right" class="lucide"></i>colereport</a><a class="svc-ex js-goto" href="#p-melivit"><i data-lucide="arrow-up-right" class="lucide"></i>MeliVit</a></div>
-            <div class="service-divider"></div>
-            <a href="#contacto" class="btn-outline w-100 js-service" data-service="CRM y planners a medida" style="text-align:center;padding:.65rem 1rem;font-size:.82rem;justify-content:center">Quiero organizarme →</a>
-          </div>
-        </div>
-
-        <div class="fade-in project-anchor" id="srv-redes">
-          <div class="service-card">
-            <div class="svc-new">Nuevo</div>
-            <div class="service-icon"><i data-lucide="megaphone" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
-            <div class="service-name">Redes sociales</div>
-            <div class="service-ideal">Para que te encuentren y te elijan</div>
-            <span class="service-price"><span class="js-price" data-eur="desde 220 €" data-mxn="desde $3,500 MXN">desde 220 €</span> <small class="js-price" data-eur="/ mes" data-mxn="/ mes">/ mes</small></span>
-            <div class="svc-extra">Auditoría de tus perfiles con plan de acción: <b><span class="js-price" data-eur="120 €" data-mxn="$1,500 MXN">120 €</span></b></div>
-            <ul class="service-list"><li><span class="service-check">✓</span> <span><b style="color:var(--white);font-weight:600">Esencial</b>&nbsp;·&nbsp;<span class="js-price" data-eur="220 €/mes" data-mxn="$3,500 MXN/mes">220 €/mes</span>: 2 redes, 8 publicaciones al mes</span></li><li><span class="service-check">✓</span> <span><b style="color:var(--white);font-weight:600">Crecimiento</b>&nbsp;·&nbsp;<span class="js-price" data-eur="420 €/mes" data-mxn="$6,500 MXN/mes">420 €/mes</span>: 12 posts + 4 reels y gestión de anuncios</span></li><li><span class="service-check">✓</span> <span>Diseños propios con IA y calendario mensual</span></li><li><span class="service-check">✓</span> <span>Respuesta a reseñas y perfil de Google optimizado</span></li><li><span class="service-check">✓</span> <span>La inversión en anuncios se paga aparte</span></li></ul>
-            <div class="svc-examples"><span class="svc-examples-label">Ejemplos</span><a class="svc-ex js-goto" href="#p-mkt"><i data-lucide="arrow-up-right" class="lucide"></i>Caso estancia infantil</a><a class="svc-ex" href="https://www.instagram.com/melina_rivera_developer/" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i>Mi Instagram</a></div>
-            <div class="service-divider"></div>
-            <a href="#contacto" class="btn-outline w-100 js-service" data-service="Redes sociales" style="text-align:center;padding:.65rem 1rem;font-size:.82rem;justify-content:center">Quiero más clientes →</a>
-          </div>
-        </div>
-
-        <div class="fade-in project-anchor" id="srv-app">
-          <div class="service-card">
-            
-            <div class="service-icon"><i data-lucide="smartphone" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
-            <div class="service-name">App o SaaS a medida</div>
-            <div class="service-ideal">Para tu idea o tu herramienta interna</div>
-            <span class="service-price"><span class="js-price" data-eur="MVP desde 3.000 €" data-mxn="MVP desde $35,000 MXN">MVP desde 3.000 €</span> <small class="js-price" data-eur="/ proyecto" data-mxn="/ proyecto">/ proyecto</small></span>
-            
-            <ul class="service-list"><li><span class="service-check">✓</span> Definimos juntos la primera versión (MVP)</li><li><span class="service-check">✓</span> Usuarios, roles y panel de administración</li><li><span class="service-check">✓</span> Base de datos y backend incluidos</li><li><span class="service-check">✓</span> Publicación en producción</li><li><span class="service-check">✓</span> 30 días de soporte tras el lanzamiento</li></ul>
-            <div class="svc-examples"><span class="svc-examples-label">Ejemplos</span><a class="svc-ex" href="https://etern-me.com" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i>ETERN-ME</a><a class="svc-ex" href="https://cotidiana.app" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i>Cotidiana</a><a class="svc-ex" href="https://www.tesovia.com" target="_blank" rel="noopener"><i data-lucide="external-link" class="lucide"></i>Tesovia</a></div>
-            <div class="service-divider"></div>
-            <a href="#contacto" class="btn-outline w-100 js-service" data-service="App o SaaS a medida" style="text-align:center;padding:.65rem 1rem;font-size:.82rem;justify-content:center">Cuéntame tu idea →</a>
-          </div>
-        </div>
-
-        <div class="fade-in project-anchor" id="srv-mant">
-          <div class="service-card">
-            
-            <div class="service-icon"><i data-lucide="wrench" class="lucide" style="width:1.4rem;height:1.4rem"></i></div>
-            <div class="service-name">Mantenimiento</div>
-            <div class="service-ideal">Para que tu web siempre funcione</div>
-            <span class="service-price"><span class="js-price" data-eur="desde 49 €" data-mxn="desde $700 MXN">desde 49 €</span> <small class="js-price" data-eur="/ mes" data-mxn="/ mes">/ mes</small></span>
-            
-            <ul class="service-list"><li><span class="service-check">✓</span> Hosting, dominio y certificado SSL vigilados</li><li><span class="service-check">✓</span> Copias de seguridad</li><li><span class="service-check">✓</span> Pequeños cambios de contenido incluidos</li><li><span class="service-check">✓</span> Soporte directo por WhatsApp</li></ul>
-            
-            <div class="service-divider"></div>
-            <a href="#contacto" class="btn-outline w-100 js-service" data-service="Mantenimiento" style="text-align:center;padding:.65rem 1rem;font-size:.82rem;justify-content:center">Me interesa →</a>
-          </div>
-        </div>
+      <div class="svc-mini-grid">
+        <a class="svc-mini fade-in" href="servicios/#srv-landing">
+          <span class="service-icon" style="margin:0 0 .8rem"><i data-lucide="rocket" class="lucide" style="width:1.2rem;height:1.2rem"></i></span>
+          <span class="svc-mini-name">Landing page sencilla</span>
+          <span class="svc-mini-price"><span class="js-price" data-eur="desde 350 €" data-mxn="desde $3,500 MXN">desde 350 €</span></span>
+        </a>
+        <a class="svc-mini fade-in" href="servicios/#srv-web">
+          <span class="service-icon" style="margin:0 0 .8rem"><i data-lucide="store" class="lucide" style="width:1.2rem;height:1.2rem"></i></span>
+          <span class="svc-mini-name">Web corporativa</span>
+          <span class="svc-mini-price"><span class="js-price" data-eur="desde 1.100 €" data-mxn="desde $12,000 MXN">desde 1.100 €</span></span>
+        </a>
+        <a class="svc-mini fade-in" href="servicios/#srv-tienda">
+          <span class="service-icon" style="margin:0 0 .8rem"><i data-lucide="shopping-bag" class="lucide" style="width:1.2rem;height:1.2rem"></i></span>
+          <span class="svc-mini-name">Tienda online o reservas</span>
+          <span class="svc-mini-price"><span class="js-price" data-eur="desde 1.600 €" data-mxn="desde $16,000 MXN">desde 1.600 €</span></span>
+        </a>
+        <a class="svc-mini fade-in" href="servicios/#srv-ia">
+          <span class="service-icon" style="margin:0 0 .8rem"><i data-lucide="sparkles" class="lucide" style="width:1.2rem;height:1.2rem"></i></span>
+          <span class="svc-mini-name">Asistente de WhatsApp con IA</span>
+          <span class="svc-mini-price"><span class="js-price" data-eur="desde 490 €" data-mxn="desde $5,500 MXN">desde 490 €</span></span>
+        </a>
+        <a class="svc-mini fade-in" href="servicios/#srv-crm">
+          <span class="service-icon" style="margin:0 0 .8rem"><i data-lucide="layout-dashboard" class="lucide" style="width:1.2rem;height:1.2rem"></i></span>
+          <span class="svc-mini-name">CRM y planners a medida</span>
+          <span class="svc-mini-price"><span class="js-price" data-eur="desde 1.200 €" data-mxn="desde $14,000 MXN">desde 1.200 €</span></span>
+        </a>
+        <a class="svc-mini fade-in" href="servicios/#srv-redes">
+          <span class="service-icon" style="margin:0 0 .8rem"><i data-lucide="megaphone" class="lucide" style="width:1.2rem;height:1.2rem"></i></span>
+          <span class="svc-mini-name">Redes sociales y reputación</span>
+          <span class="svc-mini-price"><span class="js-price" data-eur="desde 220 €" data-mxn="desde $3,500 MXN">desde 220 €</span></span>
+        </a>
+        <a class="svc-mini fade-in" href="servicios/#srv-app">
+          <span class="service-icon" style="margin:0 0 .8rem"><i data-lucide="smartphone" class="lucide" style="width:1.2rem;height:1.2rem"></i></span>
+          <span class="svc-mini-name">App o SaaS a medida</span>
+          <span class="svc-mini-price"><span class="js-price" data-eur="MVP desde 3.000 €" data-mxn="MVP desde $35,000 MXN">MVP desde 3.000 €</span></span>
+        </a>
+        <a class="svc-mini fade-in" href="servicios/#srv-mant">
+          <span class="service-icon" style="margin:0 0 .8rem"><i data-lucide="wrench" class="lucide" style="width:1.2rem;height:1.2rem"></i></span>
+          <span class="svc-mini-name">Mantenimiento</span>
+          <span class="svc-mini-price"><span class="js-price" data-eur="desde 49 €" data-mxn="desde $700 MXN">desde 49 €</span></span>
+        </a>
       </div>
-
-      <div class="packs-head fade-in" id="srv-packs">
-        <div class="section-chip mx-auto"><i data-lucide="package" class="lucide"></i> Packs</div>
-        <h3>Combina y ahorra</h3>
-        <p>Lo que más piden las pymes, en un solo precio.</p>
-      </div>
-      <div class="pack-grid">
-
-        <div class="pack-card fade-in">
-          
-          <div class="pack-name">Pack Arranque</div>
-          <div class="pack-for">Para empezar a recibir clientes por internet</div>
-          <ul class="pack-items"><li>Landing page</li><li>Asistente con IA en WhatsApp</li><li>Auditoría de redes con plan de acción</li></ul>
-          <div class="pack-price"><span class="js-price" data-eur="desde 890 €" data-mxn="desde $9,900 MXN">desde 890 €</span></div>
-          <div class="pack-save"><span class="js-price" data-eur="Ahorras 170 € (+ cuota del asistente)" data-mxn="Ahorras $1,600 MXN (+ cuota del asistente)">Ahorras 170 € (+ cuota del asistente)</span></div>
-          <a href="#contacto" class="btn-outline w-100 js-service" data-service="Pack Arranque" style="justify-content:center;padding:.65rem 1rem;font-size:.82rem">Lo quiero →</a>
-        </div>
-
-        <div class="pack-card popular fade-in">
-          <div class="service-popular-badge" style="left:1.8rem;transform:none"><i data-lucide="star" class="lucide" style="width:.75em;height:.75em"></i> Recomendado</div>
-          <div class="pack-name">Pack Pyme Digital</div>
-          <div class="pack-for">Para profesionalizar tu presencia online</div>
-          <ul class="pack-items"><li>Web corporativa</li><li>Asistente con IA en web o WhatsApp</li><li>3 meses de redes plan Esencial</li></ul>
-          <div class="pack-price"><span class="js-price" data-eur="desde 1.890 €" data-mxn="desde $23,900 MXN">desde 1.890 €</span></div>
-          <div class="pack-save"><span class="js-price" data-eur="Ahorras 360 € (+ cuota del asistente)" data-mxn="Ahorras $4,100 MXN (+ cuota del asistente)">Ahorras 360 € (+ cuota del asistente)</span></div>
-          <a href="#contacto" class="btn-main w-100 js-service" data-service="Pack Pyme Digital" style="justify-content:center;padding:.65rem 1rem;font-size:.82rem">Lo quiero →</a>
-        </div>
-
-        <div class="pack-card fade-in">
-          
-          <div class="pack-name">Pack Organiza tu negocio</div>
-          <div class="pack-for">Para dejar las hojas de cálculo y el papel</div>
-          <ul class="pack-items"><li>CRM a medida</li><li>2 automatizaciones de procesos</li><li>Formación para tu equipo</li></ul>
-          <div class="pack-price"><span class="js-price" data-eur="desde 1.590 €" data-mxn="desde $18,500 MXN">desde 1.590 €</span></div>
-          <div class="pack-save"><span class="js-price" data-eur="Ahorras 190 €" data-mxn="Ahorras $2,500 MXN">Ahorras 190 €</span></div>
-          <a href="#contacto" class="btn-outline w-100 js-service" data-service="Pack Organiza tu negocio" style="justify-content:center;padding:.65rem 1rem;font-size:.82rem">Lo quiero →</a>
-        </div>
-      </div>
-
-      <p class="svc-foot fade-in">
-        ¿No sabes qué necesitas? <a href="#contacto">Cuéntame tu situación y te oriento sin compromiso →</a><br>
-        <span style="font-size:.78rem;color:var(--muted2)">Los precios de partida dependen del alcance. Te paso siempre un presupuesto cerrado antes de empezar.</span>
+      <p class="text-center fade-in" style="margin-top:2.5rem">
+        <a href="servicios/" class="btn-main" style="display:inline-flex">Ver servicios, qué incluyen y packs <i data-lucide="arrow-right" class="lucide"></i></a>
       </p>
     </div>
   </section>
@@ -2074,12 +1842,12 @@
                   <label class="contact-label">¿Qué necesitas?</label>
                   <select name="servicio" class="contact-input" id="c-service">
                     <option value="" disabled selected>Selecciona un servicio</option>
-                    <option>Landing page</option>
+                    <option>Landing page sencilla</option>
                     <option>Web corporativa</option>
                     <option>Tienda online o reservas</option>
-                    <option>Automatización con IA</option>
+                    <option>Asistente de WhatsApp con IA</option>
                     <option>CRM y planners a medida</option>
-                    <option>Redes sociales</option>
+                    <option>Redes sociales y reputación</option>
                     <option>App o SaaS a medida</option>
                     <option>Mantenimiento</option>
                     <option>Pack Arranque</option>
@@ -2129,7 +1897,6 @@
           <a href="#sobre">Sobre mí</a>
           <a href="#proceso">Proceso</a>
           <a href="#proyectos">Proyectos</a>
-          <a href="#testimonios">Testimonios</a>
           <a href="#servicios">Servicios y precios</a>
           <a href="#contacto">Contacto</a>
         </div>
