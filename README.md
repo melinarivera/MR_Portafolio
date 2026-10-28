@@ -1,6 +1,6 @@
 # Melina Rivera — Portafolio Personal
 
-> Portafolio de Melina Rivera: webs, apps y SaaS, automatizaciones con IA, CRM y redes sociales para pymes y autónomos en España y México.
+> Portafolio de Melina Rivera: webs, apps y SaaS, automatizaciones con IA, CRM y redes sociales para pymes y autónomos. Trabajo en remoto, desde cualquier lugar.
 
 ---
 
