@@ -1,69 +1,88 @@
-"""Genera servicios/index.html y el resumen de servicios del portafolio desde un único sitio.
+"""Genera servicios/index.html y el resumen de servicios del portafolio (index.html).
 
-Uso:  python3 tools/build_servicios.py
-Edita aquí precios, textos y ejemplos; las dos páginas se actualizan a la vez.
+PRECIOS: se cambian SOLO en servicios/precios.json. Al subir ese archivo a GitHub,
+la acción .github/workflows/precios.yml ejecuta este script y publica las dos páginas.
+Uso manual:  python3 tools/build_servicios.py
+Textos, ejemplos y preguntas frecuentes se editan aquí.
 """
-import os, re, html
+import os, re, html, json
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IG = "https://www.instagram.com/melina_rivera_developer/"
 LI = "https://www.linkedin.com/in/deliamelinarivera"
 FORM = "https://formspree.io/f/xbdplnyg"
 
+PR = json.load(open(os.path.join(ROOT, "servicios", "precios.json"), encoding="utf-8"))
+
+def _eur(n): return f"{n:,}".replace(",", ".") + " €"
+def _mxn(n): return "$" + f"{n:,}" + " MXN"
+def fill(text):
+    """Sustituye [[clave.eur]], [[clave.mxn]], [[clave.ahorro_eur]]… y [[clave.eur_n]] (número) por su valor."""
+    def sub(m):
+        key, field = m.group(1), m.group(2)
+        v = PR[key]
+        if field == "n": return str(v)
+        if field == "n_fmt": return f"{v:,}".replace(",", ".")
+        raw = field.endswith("_n"); f = field[:-2] if raw else field
+        val = v[f] if isinstance(v, dict) else v
+        if raw: return str(val)
+        return _mxn(val) if f.endswith("mxn") else _eur(val) if f.endswith("eur") else f"{val:,}".replace(",", ".")
+    return re.sub(r"\[\[([a-z_]+)\.([a-z_]+)\]\]", sub, text)
+
 # ───────────────────────── PRECIOS (España € / México MXN) ─────────────────────────
 # Revisados en oct 2026 con tarifas publicadas por freelancers y agencias pequeñas de España.
 S = [
   dict(id="landing", icon="rocket", name="Landing page sencilla", ideal="Para autónomos y negocios que empiezan",
-       eur="desde 350 €", mxn="desde $3,500 MXN", per="/ proyecto",
+       eur="desde [[landing.eur]]", mxn="desde [[landing.mxn]]", per="/ proyecto",
        items=["Una página clara y rápida, pensada para móvil", "Botón de WhatsApp, formulario y mapa", "Textos orientados a conseguir contactos", "SEO local básico para Google", "Lista en 1–2 semanas"],
        aparte="Dominio y alojamiento a tu nombre · textos legales con iubenda",
        ex=[("Piñatas Madrid", "https://melinarivera.github.io/pinata/"), ("Efsun tienda", "https://melinarivera.github.io/tienda-esoterica/")]),
   dict(id="web", icon="store", name="Web corporativa", ideal="Para pymes que quieren generar confianza",
-       eur="desde 1.100 €", mxn="desde $12,000 MXN", per="/ proyecto", popular=True,
+       eur="desde [[web.eur]]", mxn="desde [[web.mxn]]", per="/ proyecto", popular=True,
        items=["5–7 páginas con estructura pensada para vender", "Blog o catálogo de servicios", "SEO básico en cada página", "WhatsApp, formulario y analítica", "Aviso legal con tus datos + privacidad y cookies con iubenda"],
        aparte="Dominio y alojamiento a tu nombre · suscripción a iubenda",
        ex=[("ETERN-ME", "https://etern-me.com"), ("Cotidiana", "https://cotidiana.app")]),
   dict(id="tienda", icon="shopping-bag", name="Tienda online o reservas", ideal="Para vender o reservar online 24/7",
-       eur="desde 1.600 €", mxn="desde $16,000 MXN", per="/ proyecto",
+       eur="desde [[tienda.eur]]", mxn="desde [[tienda.mxn]]", per="/ proyecto",
        items=["Catálogo, carrito y pago con tarjeta (Stripe, TPV o Mercado Pago)", "O agenda de citas con recordatorios", "Panel para gestionar pedidos o reservas", "Diseño a medida, sin plantillas", "30 días de soporte tras el lanzamiento"],
        aparte="Comisión de la pasarela de pago en cada venta · alojamiento",
        ex=[("Efsun plataforma", "https://melinarivera.github.io/pyme-efsun/")]),
   dict(id="ia", icon="sparkles", name="Asistente de WhatsApp con IA", ideal="Para dejar de responder siempre lo mismo",
-       eur="desde 490 €", mxn="desde $5,500 MXN", per="+ 39 €/mes", per_mx="+ $650 MXN/mes", new=True,
-       items=["Responde dudas 24/7 en WhatsApp o en tu web", "Entrenado con tu información: precios, horarios, servicios", "Pasa la conversación a una persona cuando hace falta", "<b>Con citas</b> (agenda, recordatorios y ficha en el CRM): <span class='js-price' data-eur='desde 890 € + 69 €/mes' data-mxn='desde $9,900 MXN + $1,100 MXN/mes'>desde 890 € + 69 €/mes</span>", "La cuota incluye la IA, el servidor y el mantenimiento: hasta 1.000 conversaciones al mes (2.000 con citas)"],
+       eur="desde [[ia.eur]]", mxn="desde [[ia.mxn]]", per="+ [[ia_cuota.eur]]/mes", per_mx="+ [[ia_cuota.mxn]]/mes", new=True,
+       items=["Responde dudas 24/7 en WhatsApp o en tu web", "Entrenado con tu información: precios, horarios, servicios", "Pasa la conversación a una persona cuando hace falta", "<b>Con citas</b> (agenda, recordatorios y ficha en el CRM): <span class='js-price' data-eur='desde [[ia_citas.eur]] + [[ia_citas_cuota.eur]]/mes' data-mxn='desde [[ia_citas.mxn]] + [[ia_citas_cuota.mxn]]/mes'>desde [[ia_citas.eur]] + [[ia_citas_cuota.eur]]/mes</span>", "La cuota incluye la IA, el servidor y el mantenimiento: hasta [[ia_incluidas.n_fmt]] conversaciones al mes ([[ia_citas_incluidas.n_fmt]] con citas)"],
        aparte="Mensajes de WhatsApp: los cobra Meta a tu negocio. <a href='#ia-claro'>Calcula tu gasto</a>",
-       extra=("Automatizaciones de procesos (facturas, recordatorios, informes)", "desde 290 €", "desde $3,500 MXN", "por flujo"),
+       extra=("Automatizaciones de procesos (facturas, recordatorios, informes)", "desde [[automatizacion.eur]]", "desde [[automatizacion.mxn]]", "por flujo"),
        ex=[("Demo estética", "../demos/asistente-whatsapp/#estetica"), ("Demo extranjería", "../demos/asistente-whatsapp/#extranjeria"), ("Nexo: facturas con IA", "https://melinarivera.github.io/Nexo_Facturas/")]),
   dict(id="crm", icon="layout-dashboard", name="CRM y planners a medida", ideal="Para tener clientes y tareas en orden",
-       eur="desde 1.200 €", mxn="desde $14,000 MXN", per="/ proyecto",
+       eur="desde [[crm.eur]]", mxn="desde [[crm.mxn]]", per="/ proyecto",
        items=["Fichas de cliente con historial y segmentos", "Reservas, agenda o embudo de ventas", "Campañas por WhatsApp o email respetando el RGPD", "Exportación a Excel", "Formación para usarlo desde el primer día"],
        aparte="Base de datos: plan gratuito al empezar; si crece, desde unos 25 $/mes",
-       extra=("¿Prefieres HubSpot, Notion u otro? Te lo configuro", "desde 400 €", "desde $4,500 MXN", ""),
+       extra=("¿Prefieres HubSpot, Notion u otro? Te lo configuro", "desde [[crm_configurar.eur]]", "desde [[crm_configurar.mxn]]", ""),
        ex=[("Demo CRM restaurante", "../demos/crm-restaurante/"), ("Nexo para gestorías", "https://melinarivera.github.io/Nexo_Facturas/"), ("ZenWi", "https://zenwi.app")]),
   dict(id="redes", icon="megaphone", name="Redes sociales y reputación", ideal="Para que te encuentren y te elijan",
-       eur="desde 220 €", mxn="desde $3,500 MXN", per="/ mes", per_mx="/ mes", new=True,
-       items=["<b>Esencial</b> · <span class='js-price' data-eur='220 €/mes' data-mxn='$3,500 MXN/mes'>220 €/mes</span>: 2 redes, 8 publicaciones al mes", "<b>Crecimiento</b> · <span class='js-price' data-eur='420 €/mes' data-mxn='$6,500 MXN/mes'>420 €/mes</span>: 12 posts + 4 reels y gestión de anuncios", "Diseños propios con IA y calendario mensual", "Respuesta a reseñas y perfil de Google optimizado"],
+       eur="desde [[redes.eur]]", mxn="desde [[redes.mxn]]", per="/ mes", per_mx="/ mes", new=True,
+       items=["<b>Esencial</b> · <span class='js-price' data-eur='[[redes.eur]]/mes' data-mxn='[[redes.mxn]]/mes'>[[redes.eur]]/mes</span>: 2 redes, 8 publicaciones al mes", "<b>Crecimiento</b> · <span class='js-price' data-eur='[[redes_crecimiento.eur]]/mes' data-mxn='[[redes_crecimiento.mxn]]/mes'>[[redes_crecimiento.eur]]/mes</span>: 12 posts + 4 reels y gestión de anuncios", "Diseños propios con IA y calendario mensual", "Respuesta a reseñas y perfil de Google optimizado"],
        aparte="La inversión en anuncios la pagas tú directamente a Meta o Google",
-       extra=("Auditoría de tus perfiles con plan de acción", "120 €", "$1,500 MXN", "pago único"),
+       extra=("Auditoría de tus perfiles con plan de acción", "[[auditoria_redes.eur]]", "[[auditoria_redes.mxn]]", "pago único"),
        ex=[("Mi Instagram", IG)]),
   dict(id="app", icon="smartphone", name="App o SaaS a medida", ideal="Para tu idea o tu herramienta interna",
-       eur="MVP desde 3.000 €", mxn="MVP desde $35,000 MXN", per="/ proyecto",
+       eur="MVP desde [[app.eur]]", mxn="MVP desde [[app.mxn]]", per="/ proyecto",
        items=["Definimos juntos la primera versión (MVP)", "Usuarios, roles y panel de administración", "Base de datos y backend incluidos", "Publicación en producción", "30 días de soporte tras el lanzamiento"],
        aparte="Alojamiento, base de datos y, si lleva IA, su consumo",
        ex=[("Tesovia", "https://www.tesovia.com"), ("ETERN-ME", "https://etern-me.com"), ("TravelMates", "https://melinarivera.github.io/TravelMates-App")]),
   dict(id="mant", icon="wrench", name="Mantenimiento", ideal="Para que tu web siempre funcione",
-       eur="desde 49 €", mxn="desde $700 MXN", per="/ mes", per_mx="/ mes",
+       eur="desde [[mantenimiento.eur]]", mxn="desde [[mantenimiento.mxn]]", per="/ mes", per_mx="/ mes",
        items=["Vigilancia de dominio, alojamiento y certificado SSL", "Copias de seguridad", "Pequeños cambios de contenido incluidos", "Soporte directo por WhatsApp"],
        aparte="Las renovaciones de dominio y alojamiento siguen a tu nombre", ex=[]),
 ]
 
 PACKS = [
   dict(name="Pack Arranque", for_="Para empezar a recibir clientes por internet", items=["Landing page sencilla", "Asistente de WhatsApp con IA", "Auditoría de redes con plan de acción"],
-       eur="desde 790 €", mxn="desde $8,900 MXN", s_eur="Ahorras 170 € · después, 39 €/mes del asistente", s_mxn="Ahorras $1,600 MXN · después, $650 MXN/mes del asistente"),
+       eur="desde [[pack_arranque.eur]]", mxn="desde [[pack_arranque.mxn]]", s_eur="Ahorras [[pack_arranque.ahorro_eur]] · después, [[ia_cuota.eur]]/mes del asistente", s_mxn="Ahorras [[pack_arranque.ahorro_mxn]] · después, [[ia_cuota.mxn]]/mes del asistente"),
   dict(name="Pack Pyme Digital", for_="Para profesionalizar tu presencia online", items=["Web corporativa", "Asistente de WhatsApp con IA", "3 meses de redes plan Esencial"], popular=True,
-       eur="desde 1.890 €", mxn="desde $23,900 MXN", s_eur="Ahorras 360 € · después, 39 €/mes del asistente", s_mxn="Ahorras $4,100 MXN · después, $650 MXN/mes del asistente"),
+       eur="desde [[pack_pyme_digital.eur]]", mxn="desde [[pack_pyme_digital.mxn]]", s_eur="Ahorras [[pack_pyme_digital.ahorro_eur]] · después, [[ia_cuota.eur]]/mes del asistente", s_mxn="Ahorras [[pack_pyme_digital.ahorro_mxn]] · después, [[ia_cuota.mxn]]/mes del asistente"),
   dict(name="Pack Organiza tu negocio", for_="Para dejar las hojas de cálculo y el papel", items=["CRM a medida", "2 automatizaciones de procesos", "Formación para tu equipo"],
-       eur="desde 1.590 €", mxn="desde $18,500 MXN", s_eur="Ahorras 190 €", s_mxn="Ahorras $2,500 MXN"),
+       eur="desde [[pack_organiza.eur]]", mxn="desde [[pack_organiza.mxn]]", s_eur="Ahorras [[pack_organiza.ahorro_eur]]", s_mxn="Ahorras [[pack_organiza.ahorro_mxn]]"),
 ]
 
 # Qué incluye el precio y qué pagas aparte
@@ -74,8 +93,8 @@ COSTES = [
   ("Textos legales: privacidad y cookies", "Tú, a tu nombre (iubenda)", "plan gratuito limitado o desde unos 6 €/mes", "Se actualizan cuando cambia la normativa. Yo los configuro e instalo el banner de cookies."),
   ("Aviso legal", "Incluido", "—", "Lo redacto con los datos de tu negocio. En despachos, extranjería o salud, recomiendo que lo revise tu abogado/a."),
   ("Pagos online", "Comisión de la pasarela", "según Stripe, TPV de tu banco o Mercado Pago", "Se descuenta de cada venta. Yo no cobro comisión."),
-  ("IA (tokens) del asistente", "Incluida en la cuota mensual", "hasta 1.000 conversaciones/mes (2.000 con citas)", "La pago yo desde mi cuenta de Claude, con límite de gasto por cliente. Si te acercas al límite, te aviso; nunca se corta sin avisar."),
-  ("Conversaciones extra de IA", "Tú, solo si las usas", "+1.000 conversaciones: 9 €", "Te aviso al llegar al 80 %. Tú decides si añades un bloque o subimos de plan."),
+  ("IA (tokens) del asistente", "Incluida en la cuota mensual", "hasta [[ia_incluidas.n_fmt]] conversaciones/mes ([[ia_citas_incluidas.n_fmt]] con citas)", "La pago yo desde mi cuenta de Claude, con límite de gasto por cliente. Si te acercas al límite, te aviso; nunca se corta sin avisar."),
+  ("Conversaciones extra de IA", "Tú, solo si las usas", "+1.000 conversaciones: [[ia_bloque_extra.eur]]", "Te aviso al llegar al 80 %. Tú decides si añades un bloque o subimos de plan."),
   ("Mensajes de WhatsApp (Meta)", "Tu negocio, directamente a Meta", "responder a clientes: gratis hasta 1.000/mes · recordatorio ≈ 0,017 € · campaña ≈ 0,059 €", "Tarifas de Meta para España en 2026. Meta te factura a ti; yo no añado margen."),
   ("Anuncios en Meta o Google", "Tú, directamente a la plataforma", "lo decides tú", "Mi gestión va en la cuota de redes."),
   ("Canva Pro, plantillas y herramientas de diseño", "Incluido", "—", "Las uso yo; no tienes que contratar nada."),
@@ -103,10 +122,10 @@ SECTORES = [
 ]
 
 FAQ = [
-  ("¿De dónde sale la IA y quién la paga?", "El asistente usa Claude, de Anthropic. La contrato yo con mi cuenta de empresa (pago por uso, con límite de gasto para cada cliente) y va incluida en tu cuota: hasta 1.000 conversaciones al mes en el plan básico y 2.000 en el de citas. No necesitas crear ninguna cuenta de IA."),
+  ("¿De dónde sale la IA y quién la paga?", "El asistente usa Claude, de Anthropic. La contrato yo con mi cuenta de empresa (pago por uso, con límite de gasto para cada cliente) y va incluida en tu cuota: hasta [[ia_incluidas.n_fmt]] conversaciones al mes en el plan básico y [[ia_citas_incluidas.n_fmt]] en el de citas. No necesitas crear ninguna cuenta de IA."),
   ("¿Cuánto cuesta la IA de verdad?", "Muy poco: un negocio con 1.000 conversaciones al mes consume entre 1 y 5 € de IA. La cuota cubre eso, el servidor donde funciona el asistente y mi mantenimiento (ajustes, nuevas respuestas, revisar que todo va bien)."),
-  ("¿Qué pasa si paso de las conversaciones incluidas?", "Te aviso al llegar al 80 %. Puedes añadir bloques de 1.000 conversaciones por 9 € o pasar al plan superior. El asistente nunca se apaga sin avisarte."),
-  ("¿Prefiero pagar la IA yo directamente, se puede?", "Sí. Creas tu cuenta en Anthropic, pones tu tarjeta y la cuota baja 9 € al mes. Pagas exactamente lo que consumes; yo lo configuro y te enseño a ver el gasto."),
+  ("¿Qué pasa si paso de las conversaciones incluidas?", "Te aviso al llegar al 80 %. Puedes añadir bloques de 1.000 conversaciones por [[ia_bloque_extra.eur]] o pasar al plan superior. El asistente nunca se apaga sin avisarte."),
+  ("¿Prefiero pagar la IA yo directamente, se puede?", "Sí. Creas tu cuenta en Anthropic, pones tu tarjeta y la cuota baja [[ia_descuento_propia.eur]] al mes. Pagas exactamente lo que consumes; yo lo configuro y te enseño a ver el gasto."),
   ("¿Puedo seguir usando WhatsApp en mi móvil?", "Sí. Con la coexistencia de Meta (disponible en España) sigues contestando desde la app de WhatsApp Business con el mismo número, y el asistente responde cuando tú no puedes."),
   ("¿Qué pasa si la IA se equivoca?", "Solo responde con la información que tú apruebas (precios, horarios, servicios). Si no sabe algo, no se lo inventa: pasa la conversación a una persona. Cada mes reviso las preguntas sin respuesta y las añado."),
   ("¿Y los datos de mis clientes?", "Firmamos un contrato de encargado de tratamiento (RGPD). El asistente pide consentimiento antes de guardar datos y solo guarda lo necesario para la cita o la consulta."),
@@ -437,8 +456,8 @@ def build_page():
         <label for="k-camp">Mensajes de campaña al mes<output id="o-camp">0</output></label>
         <input type="range" id="k-camp" min="0" max="2000" step="50" value="0"/>
         <div class="calc-plan" role="group" aria-label="Plan">
-          <button type="button" class="on" data-plan="basic">Asistente · 39 €/mes</button>
-          <button type="button" data-plan="citas">Con citas · 69 €/mes</button>
+          <button type="button" class="on" data-plan="basic">Asistente · [[ia_cuota.eur]]/mes</button>
+          <button type="button" data-plan="citas">Con citas · [[ia_citas_cuota.eur]]/mes</button>
         </div>
       </div>
       <div class="calc-out" aria-live="polite">
@@ -552,7 +571,7 @@ def build_page():
     var sel = document.getElementById('f-service'); for (var i = 0; i < sel.options.length; i++) if (sel.options[i].text === a.dataset.service) sel.selectedIndex = i; }}); }});
   // Calculadora de gasto mensual del asistente (España, tarifas de Meta desde oct 2026)
   var plan = 'basic';
-  var PLANS = {{ basic:{{ fee:39, incl:1000 }}, citas:{{ fee:69, incl:2000 }} }};
+  var PLANS = {{ basic:{{ fee:[[ia_cuota.eur_n]], incl:[[ia_incluidas.n]] }}, citas:{{ fee:[[ia_citas_cuota.eur_n]], incl:[[ia_citas_incluidas.n]] }} }};
   var fmt = function(n){{ return n.toLocaleString('es-ES',{{minimumFractionDigits:2,maximumFractionDigits:2}}) + ' €'; }};
   var g = function(id){{ return document.getElementById(id); }};
   function calc(){{
@@ -561,10 +580,10 @@ def build_page():
     g('o-rec').textContent = rec.toLocaleString('es-ES'); g('o-camp').textContent = camp.toLocaleString('es-ES');
     var p = PLANS[plan], extraConv = Math.max(0, conv - p.incl), bloques = Math.ceil(extraConv / 1000);
     var replies = conv * resp, servPaid = Math.max(0, replies - 1000);
-    var fee = p.fee, extra = bloques * 9, serv = servPaid * 0.0166, recC = rec * 0.0166, campC = camp * 0.0585;
+    var fee = p.fee, extra = bloques * [[ia_bloque_extra.eur_n]], serv = servPaid * 0.0166, recC = rec * 0.0166, campC = camp * 0.0585;
     var ia = replies * (3000 * 0.10 + 250 * 0.50) / 1e6 * 0.92;   // USD → EUR aprox.
     g('r-fee').textContent = fmt(fee); g('r-extra').textContent = fmt(extra);
-    g('r-extra-n').textContent = bloques ? (bloques + ' bloque' + (bloques > 1 ? 's' : '') + ' de 1.000 · 9 € cada uno') : 'dentro del plan (' + p.incl.toLocaleString('es-ES') + ' incluidas)';
+    g('r-extra-n').textContent = bloques ? (bloques + ' bloque' + (bloques > 1 ? 's' : '') + ' de 1.000 · [[ia_bloque_extra.eur]] cada uno') : 'dentro del plan (' + p.incl.toLocaleString('es-ES') + ' incluidas)';
     g('r-serv').textContent = fmt(serv);
     g('r-serv-n').textContent = replies.toLocaleString('es-ES') + ' respuestas · gratis hasta 1.000 al mes';
     g('r-rec').textContent = fmt(recC); g('r-camp').textContent = fmt(campC);
@@ -589,7 +608,7 @@ def build_page():
 </html>
 """
     os.makedirs(os.path.join(ROOT, "servicios"), exist_ok=True)
-    open(os.path.join(ROOT, "servicios", "index.html"), "w", encoding="utf-8").write(page)
+    open(os.path.join(ROOT, "servicios", "index.html"), "w", encoding="utf-8").write(fill(page))
 
 # ───────────────────────── resumen en el portafolio ─────────────────────────
 def build_portfolio_summary():
@@ -623,7 +642,7 @@ def build_portfolio_summary():
     p = os.path.join(ROOT, "index.html")
     s = open(p, encoding="utf-8").read()
     i = s.index('  <section id="servicios">'); j = s.index("  <!-- ===== CONTACTO ===== -->", i)
-    s = s[:i] + block + s[j:]
+    s = s[:i] + fill(block) + s[j:]
     open(p, "w", encoding="utf-8").write(s)
 
 if __name__ == "__main__":

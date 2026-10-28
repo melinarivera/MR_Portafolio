@@ -68,6 +68,18 @@ MR_Portafolio/
 
 ---
 
+## 💶 Cómo cambiar los precios
+
+Los precios están en **un solo archivo**: [`servicios/precios.json`](servicios/precios.json).
+
+1. Abre el archivo en GitHub y pulsa el lápiz (editar).
+2. Cambia el número (sin puntos ni símbolos): `eur` es España (sin IVA) y `mxn` México.
+3. Guarda con «Commit changes».
+
+En uno o dos minutos se actualizan solas la página de servicios y la sección de servicios del portafolio (lo hace la acción `Actualizar precios`). En local: `python3 tools/build_servicios.py`.
+
+---
+
 ## 📫 Contacto
 
 ¿Tienes un proyecto en mente?

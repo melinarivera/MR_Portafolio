@@ -1,0 +1,36 @@
+name: Actualizar precios
+
+# Al cambiar servicios/precios.json (o el generador), regenera la página de
+# servicios y la sección de servicios del portafolio, y guarda el resultado.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "servicios/precios.json"
+      - "tools/build_servicios.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Generar páginas
+        run: python3 tools/build_servicios.py
+      - name: Guardar cambios
+        run: |
+          if git diff --quiet; then
+            echo "Las páginas ya estaban al día."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add servicios/index.html index.html
+          git commit -m "Precios actualizados desde servicios/precios.json"
+          git push
