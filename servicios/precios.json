@@ -22,6 +22,10 @@
   "redes_crecimiento": { "eur": 420, "mxn": 6500 },
   "auditoria_redes":   { "eur": 120, "mxn": 1500 },
 
+  "uxui":           { "eur": 450,  "mxn": 5000 },
+  "uxui_app":       { "eur": 1200, "mxn": 14000 },
+  "auditoria_ux":   { "eur": 250,  "mxn": 2800 },
+
   "app":            { "eur": 3000, "mxn": 35000 },
   "mantenimiento":  { "eur": 49,   "mxn": 700 },
 
