@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140" role="img" aria-label="MR"><g fill="#D3D9E1"><rect x="27" y="22" width="6" height="96"/><polygon points="27,22 45,22 88,98 77,98"/><polygon points="82,98 88,98 127,22 121,22"/><rect x="121" y="22" width="14" height="96"/></g><path d="M135 25 H152 A25 25 0 0 1 152 75 H135" fill="none" stroke="#9CC2E0" stroke-width="6"/><polygon points="139,72 154,72 189,118 174,118" fill="#9CC2E0"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="300 185 975 580" role="img" aria-label="MR">
+<path d="M330 205 L408 290 L598 545 L852 205 L852 330 L640 612 L560 612 L408 405 Z" fill="#2A4A8C"/>
+<path d="M860 470 L1000 470 L1255 745 L1105 745 Z" fill="#2A4A8C"/>
+<path d="M315 200 Q408 230 408 300 V745 H315 Z" fill="#C8CDD4"/>
+<rect x="760" y="430" width="90" height="315" fill="#C8CDD4"/>
+<path d="M852 202 H1078 A166.5 166.5 0 0 1 1078 535 H1045 L1008 493 H1050 A109 109 0 0 0 1050 275 H852 Z" fill="#C8CDD4"/>
+<path d="M410 420 C470 520 535 585 610 588 C700 590 780 430 875 398 C935 380 990 410 1018 470 L990 480 C955 448 910 440 870 455 C800 480 720 650 620 662 C540 670 460 560 410 470 Z" fill="#C8CDD4"/>
+</svg>
