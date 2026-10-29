@@ -1,39 +1,49 @@
 {
-  "_instrucciones": "ÚNICO sitio donde se cambian los precios. Cambia el número (sin puntos ni símbolos) y guarda. Al subirlo a GitHub se regeneran solas la página de servicios y la sección de servicios del portafolio. eur = España (€, sin IVA) · mxn = México (pesos, + IVA).",
+  "_instrucciones": "ÚNICO sitio donde se cambian los precios. Cambia el número (sin puntos ni símbolos) y guarda. Al subirlo a GitHub se regeneran solas la página de servicios y la sección de servicios del portafolio. eur = España (€, sin IVA) · mxn = México (pesos, + IVA). Son los precios «ideales» que ve el cliente; los márgenes de negociación no van aquí.",
 
-  "landing":        { "eur": 350,  "mxn": 3500 },
-  "web":            { "eur": 1100, "mxn": 12000 },
-  "tienda":         { "eur": 1600, "mxn": 16000 },
+  "landing":        { "eur": 350,  "mxn": 4900 },
+  "web":            { "eur": 1100, "mxn": 14900 },
+  "tienda":         { "eur": 1600, "mxn": 19900 },
 
-  "ia":             { "eur": 490,  "mxn": 5500 },
-  "ia_cuota":       { "eur": 39,   "mxn": 650 },
-  "ia_citas":       { "eur": 890,  "mxn": 9900 },
-  "ia_citas_cuota": { "eur": 69,   "mxn": 1100 },
+  "ia":             { "eur": 590,  "mxn": 5500 },
+  "ia_cuota":       { "eur": 49,   "mxn": 990 },
+  "ia_citas":       { "eur": 1190, "mxn": 9900 },
+  "ia_citas_cuota": { "eur": 79,   "mxn": 1500 },
   "ia_incluidas":        1000,
   "ia_citas_incluidas":  2000,
   "ia_bloque_extra":     { "eur": 9, "mxn": 150 },
   "ia_descuento_propia": { "eur": 9, "mxn": 150 },
+
+  "voz":              { "eur": 690, "mxn": 7900 },
+  "voz_cuota":        { "eur": 79,  "mxn": 1290 },
+  "voz_minutos":      200,
+  "voz_bloque_extra": { "eur": 29,  "mxn": 490 },
+
   "automatizacion": { "eur": 290,  "mxn": 3500 },
 
-  "crm":            { "eur": 1200, "mxn": 14000 },
+  "crm":            { "eur": 1490, "mxn": 22000 },
   "crm_configurar": { "eur": 400,  "mxn": 4500 },
 
-  "redes":             { "eur": 220, "mxn": 3500 },
-  "redes_crecimiento": { "eur": 420, "mxn": 6500 },
+  "redes":             { "eur": 250, "mxn": 5900 },
+  "redes_crecimiento": { "eur": 490, "mxn": 9900 },
   "auditoria_redes":   { "eur": 120, "mxn": 1500 },
-  "seo_local":         { "eur": 120, "mxn": 2200 },
+  "seo_local":         { "eur": 190, "mxn": 3500 },
 
-  "uxui":           { "eur": 450,  "mxn": 5000 },
-  "uxui_app":       { "eur": 1200, "mxn": 14000 },
-  "auditoria_ux":   { "eur": 250,  "mxn": 2800 },
-  "identidad":      { "eur": 290,  "mxn": 5500 },
+  "avatar_video":   { "eur": 120, "mxn": 1900 },
+  "avatar_pack":    { "eur": 390, "mxn": 5900 },
+  "avatar_propio":  { "eur": 150, "mxn": 2500 },
 
-  "formacion_ia":   { "eur": 180,  "mxn": 3500 },
+  "uxui":           { "eur": 450,  "mxn": 7500 },
+  "uxui_app":       { "eur": 1490, "mxn": 22000 },
+  "auditoria_ux":   { "eur": 250,  "mxn": 3500 },
+  "identidad":      { "eur": 450,  "mxn": 6500 },
 
-  "app":            { "eur": 3000, "mxn": 35000 },
-  "mantenimiento":  { "eur": 49,   "mxn": 700 },
+  "formacion_ia":   { "eur": 290,  "mxn": 6500 },
 
-  "pack_arranque":        { "eur": 790,  "mxn": 8900,  "ahorro_eur": 170, "ahorro_mxn": 1600 },
-  "pack_pyme_digital":    { "eur": 1890, "mxn": 23900, "ahorro_eur": 360, "ahorro_mxn": 4100 },
-  "pack_organiza":        { "eur": 1590, "mxn": 18500, "ahorro_eur": 190, "ahorro_mxn": 2500 }
+  "app":            { "eur": 3900, "mxn": 49000 },
+  "mantenimiento":  { "eur": 49,   "mxn": 1200 },
+
+  "pack_arranque":        { "eur": 890,  "mxn": 9900,  "ahorro_eur": 170, "ahorro_mxn": 2000 },
+  "pack_pyme_digital":    { "eur": 1990, "mxn": 32900, "ahorro_eur": 450, "ahorro_mxn": 5200 },
+  "pack_organiza":        { "eur": 2090, "mxn": 31500, "ahorro_eur": 270, "ahorro_mxn": 4000 }
 }
