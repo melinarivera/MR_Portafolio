@@ -68,7 +68,7 @@ S = [
   dict(id="crm", icon="layout-dashboard", name="CRM y planners a medida", ideal="Para tener clientes y tareas en orden",
        eur="desde [[crm.eur]]", mxn="desde [[crm.mxn]]", per="/ proyecto",
        items=["Fichas de cliente con historial y segmentos", "Reservas, agenda o embudo de ventas", "Campañas por WhatsApp o email respetando el RGPD", "Exportación a Excel", "Formación para usarlo desde el primer día"],
-       aparte="Base de datos: plan gratuito al empezar; si crece, desde unos 25 $/mes",
+       aparte="Base de datos con copias de seguridad: unos 25 $/mes, a tu nombre",
        extra=("¿Prefieres HubSpot, Notion u otro? Te lo configuro", "desde [[crm_configurar.eur]]", "desde [[crm_configurar.mxn]]", ""),
        ex=[("Demo CRM restaurante", "../demos/crm-restaurante/"), ("Nexo para gestorías", "https://melinarivera.github.io/Nexo_Facturas/"), ("ZenWi", "https://zenwi.app")]),
   dict(id="formacion", icon="graduation-cap", name="Formación en IA para equipos", ideal="Para que tu equipo use la IA en su trabajo diario",
@@ -133,7 +133,7 @@ COSTES = [
   ("Mensajes de WhatsApp (Meta)", "Tu negocio, directamente a Meta", "responder a clientes: gratis hasta 1.000/mes · recordatorio ≈ 0,017 € · campaña ≈ 0,059 €", "Tarifas de Meta para España en 2026. Meta te factura a ti; yo no añado margen."),
   ("Anuncios en Meta o Google", "Tú, directamente a la plataforma", "lo decides tú", "Mi gestión va en la cuota de redes."),
   ("Canva Pro, plantillas y herramientas de diseño", "Incluido", "—", "Las uso yo; no tienes que contratar nada."),
-  ("Base de datos de un CRM o app", "Gratis al empezar · tú si crece", "desde unos 25 $/mes cuando hay mucho uso", "Te aviso antes de que haga falta subir de plan."),
+  ("Base de datos de un CRM o app", "Tú, a tu nombre", "unos 25 $/mes", "Plan de pago desde el primer día: el gratuito se pausa si no se usa y no guarda copias diarias."),
 ]
 
 EJEMPLOS = [  # solo proyectos con página real funcionando
