@@ -112,4 +112,9 @@ PR.forEach(function(p){
 });
 lucide.createIcons();
 </script>
+<script>
+/* Si vienes del kit de ventas, «volver» te lleva al kit y no a la página pública */
+(function(){try{var r=document.referrer;if(r.indexOf('/kit-ventas/')<0)return;var a=document.querySelector('a.back');if(!a)return;a.href=r;
+var done=false;a.childNodes.forEach(function(n){if(!done&&n.nodeType===3&&n.nodeValue.trim()){n.nodeValue=n.nodeValue.indexOf('←')>-1?'← Volver al kit':'Volver al kit';done=true;}});}catch(e){}})();
+</script>
 </body></html>
