@@ -64,7 +64,7 @@ S = [
        items=["Un presentador virtual que habla por tu negocio, con voz natural", "Guion, subtítulos y formato para Reels, TikTok o web. <b>Cada vídeo dura hasta 1 minuto</b>", "<b>Pack mensual</b> (4 vídeos al mes, uno por semana): <span class='js-price' data-eur='desde [[d_avatar_pack.eur]]/mes' data-mxn='desde [[d_avatar_pack.mxn]]/mes'>desde [[d_avatar_pack.eur]]/mes</span>", "Ideal para explicar servicios, preguntas frecuentes, cursos y novedades", "Las licencias de la herramienta de vídeo van incluidas"],
        aparte="Nada: el vídeo es tuyo y lo publicas donde quieras",
        extra=("Tu propio avatar (con tu cara y tu voz, con tu permiso)", "desde +[[d_avatar_propio.eur]]", "desde +[[d_avatar_propio.mxn]]", "pago único"),
-       ex=[]),
+       ex=[("Demo: vídeo con avatar", "#demos")]),
   dict(id="crm", icon="layout-dashboard", name="CRM y planners a medida", ideal="Para tener clientes y tareas en orden",
        eur="desde [[d_crm.eur]]", mxn="desde [[d_crm.mxn]]", per="/ proyecto",
        items=["Fichas de cliente con historial y segmentos", "Reservas, agenda o embudo de ventas", "Campañas por WhatsApp o email respetando el RGPD", "Exportación a Excel", "Formación para usarlo desde el primer día"],
@@ -351,6 +351,9 @@ tr:last-child td{border-bottom:0}
 .demo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
 .demo{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
 .demo img{aspect-ratio:16/9;object-fit:cover;width:100%;border-bottom:1px solid var(--line)}
+.demo .vid{aspect-ratio:9/16;max-height:420px;width:auto;margin:0 auto;display:block;border:0;border-bottom:1px solid var(--line);background:#000}
+.demo .ph{aspect-ratio:16/9;display:grid;place-items:center;background:linear-gradient(135deg,#16213a,#0b1020);color:#7fb0e6;border-bottom:1px solid var(--line)}
+.demo .ph svg{width:44px;height:44px}
 .demo-body{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1}
 .demo h3{font-family:var(--display);font-size:22px}
 .demo p{color:var(--muted);font-size:14.5px}
@@ -523,7 +526,7 @@ def build_page():
 
   <section class="band" id="demos"><div class="wrap">
     <div class="head"><p class="eyebrow">Demos interactivas</p><h2>Pruébalo como si fuera <em>tu negocio</em></h2>
-      <p class="lead">Con datos ficticios. Las dos primeras funcionan también en el móvil.</p></div>
+      <p class="lead">Con datos ficticios. Funcionan también en el móvil.</p></div>
     <div class="demo-grid">
       <article class="demo"><img src="../img/thumbs/asistente-whatsapp.jpg" alt="Demo del asistente de WhatsApp" loading="lazy"/>
         <div class="demo-body"><h3>Asistente de WhatsApp con IA</h3>
@@ -537,6 +540,14 @@ def build_page():
         <div class="demo-body"><h3>Nexo: facturas con IA para gestorías</h3>
           <p>Para despachos que llevan varias empresas: recepción de facturas, lectura con IA, aprobaciones, conciliación, incidencias y exportación al programa contable.</p>
           <div class="actions"><a class="btn primary" href="https://melinarivera.github.io/Nexo_Facturas/" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Abrir la demo</a></div></div></article>
+      <article class="demo"><div class="ph"><i data-lucide="phone-call"></i></div>
+        <div class="demo-body"><h3>Recepcionista de voz con IA</h3>
+          <p>Escucha cómo atiende una llamada: toma una reserva en un restaurante o una cita en una clínica, y te envía el resumen por WhatsApp. Simulada, con datos ficticios.</p>
+          <div class="actions"><a class="btn primary" href="../demos/recepcionista-voz/#restaurante"><i data-lucide="play"></i>Restaurante</a><a class="btn ghost" href="../demos/recepcionista-voz/#clinica">Clínica</a></div></div></article>
+      <article class="demo"><iframe class="vid" src="https://app.heygen.com/embeds/37c991beba5e436fa6402971bb6dc4fb" title="Vídeo con avatar de IA: presentación de MR" loading="lazy" allow="fullscreen; encrypted-media" allowfullscreen></iframe>
+        <div class="demo-body"><h3>Vídeos con avatar IA</h3>
+          <p>Este vídeo lo presenta un avatar con mi cara y mi voz, creado con inteligencia artificial. Así puedes tener vídeos para tu negocio sin ponerte delante de la cámara.</p>
+          <div class="actions"><a class="btn ghost" href="https://app.heygen.com/videos/tecnolog-a-y-avatares-para-tu-negocio-37c991beba5e436fa6402971bb6dc4fb" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Verlo en pantalla completa</a></div></div></article>
     </div>
   </div></section>
 
