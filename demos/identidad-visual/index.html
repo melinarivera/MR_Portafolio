@@ -6,12 +6,13 @@
 <meta name="theme-color" content="#09172E"/>
 <link rel="icon" href="../../marca/mr-favicon.svg" type="image/svg+xml"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@600;700;800&family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../../marca/tokens.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@600;700;800&family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <title>Demo · Tu marca en un minuto</title>
 <meta name="description" content="Escribe el nombre de tu negocio, elige un estilo y un color, y mira la identidad visual aplicada: logo, paleta, tipografías, rótulo, publicación y tarjeta."/>
 <style>
-:root{--night:#09172E;--blue:#2A4A8C;--silver:#C8CDD4;--paper:#F4F6F9;--ink:#141A2B;--muted:#56607A;--rule:#DCE1E9;color-scheme:light}
+:root{--night:var(--mr-bg2);--blue:var(--mr-blue);--silver:var(--mr-muted);--paper:var(--mr-paper);--ink:var(--mr-paper-fg);--muted:var(--mr-paper-muted);--rule:var(--mr-paper-line);color-scheme:light}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--paper);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
 svg.lucide{width:1em;height:1em;stroke-width:1.9;flex:none}
@@ -22,9 +23,9 @@ img{display:block;max-width:100%}
 header.top{background:var(--night);color:#EEF1F6}
 header.top .wrap{padding-top:18px;padding-bottom:26px}
 .back{color:var(--silver);font-weight:600;text-decoration:none;font-size:14.5px;display:inline-flex;gap:6px;align-items:center;min-height:44px}
-h1{font-family:Fraunces,Georgia,serif;font-variation-settings:"SOFT" 14,"WONK" 1;font-size:clamp(26px,4.6vw,38px);line-height:1.12;margin-top:4px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(26px,4.6vw,38px);line-height:1.12;margin-top:4px}
 .lead{color:var(--silver);max-width:60ch;margin-top:8px}
-.tag{display:inline-block;margin-top:14px;font-size:13px;color:#E8CFA0;border:1px solid rgba(200,145,46,.46);border-radius:999px;padding:4px 12px}
+.tag{display:inline-block;margin-top:14px;font-size:13px;color:var(--mr-blue-light);border:1px solid rgba(91,141,184,.4);border-radius:999px;padding:4px 12px}
 
 .ctl{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:24px;background:#fff;border:1px solid var(--rule);border-radius:18px;padding:18px 20px}
 .lb{font-weight:600;font-size:13.5px;color:var(--muted);display:block;margin-bottom:8px}

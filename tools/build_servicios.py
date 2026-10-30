@@ -52,7 +52,7 @@ S = [
        items=["Responde dudas 24/7 en WhatsApp o en tu web", "Entrenado con tu información: precios, horarios, servicios", "Pasa la conversación a una persona cuando hace falta", "<b>Con citas</b> (agenda, recordatorios y ficha en el CRM): <span class='js-price' data-eur='desde [[d_ia_citas.eur]] + [[d_ia_citas_cuota.eur]]/mes' data-mxn='desde [[d_ia_citas.mxn]] + [[d_ia_citas_cuota.mxn]]/mes'>desde [[d_ia_citas.eur]] + [[d_ia_citas_cuota.eur]]/mes</span>", "<b>Tope claro:</b> la cuota incluye [[ia_incluidas.n_fmt]] conversaciones al mes ([[ia_citas_incluidas.n_fmt]] con citas), con la IA, el servidor y el mantenimiento. No es ilimitado: si te acercas, te aviso, y si necesitas más, +1.000 conversaciones por <span class='js-price' data-eur='[[ia_bloque_extra.eur]]' data-mxn='[[ia_bloque_extra.mxn]]'>[[ia_bloque_extra.eur]]</span>. Nunca se corta sin avisar"],
        aparte="Mensajes de WhatsApp: los cobra Meta a tu negocio. <a href='#ia-claro'>Calcula tu gasto</a>",
        extra=("Automatizaciones de procesos (facturas, recordatorios, informes)", "desde [[d_automatizacion.eur]]", "desde [[d_automatizacion.mxn]]", "por flujo"),
-       ex=[("Demo estética", "../demos/asistente-whatsapp/#estetica"), ("Demo extranjería", "../demos/asistente-whatsapp/#extranjeria"), ("Nexo: facturas con IA", "https://melinarivera.github.io/Nexo_Facturas/")]),
+       ex=[("Demo estética", "../demos/asistente-whatsapp/#estetica"), ("Demo extranjería", "../demos/asistente-whatsapp/#extranjeria")]),
   dict(id="voz", icon="phone-call", name="Recepcionista de voz con IA", ideal="Para no perder ni una llamada",
        eur="desde [[d_voz.eur]]", mxn="desde [[d_voz.mxn]]", per="+ [[d_voz_cuota.eur]]/mes", per_mx="+ [[d_voz_cuota.mxn]]/mes", new=True,
        items=["Contesta el teléfono 24/7 con voz natural, en español", "Da información (horarios, precios, servicios) y toma citas o reservas", "Te envía un resumen de cada llamada por WhatsApp o email", "Pasa la llamada a una persona cuando hace falta", "<b>Tope claro:</b> la cuota incluye la IA, la voz, el número y [[voz_minutos.n_fmt]] minutos de llamada al mes (unas 100 llamadas de 2 minutos). Si necesitas más, +100 minutos por <span class='js-price' data-eur='[[voz_bloque_extra.eur]]' data-mxn='[[voz_bloque_extra.mxn]]'>[[voz_bloque_extra.eur]]</span>. Te aviso antes de llegar al límite"],
@@ -64,18 +64,18 @@ S = [
        items=["Un presentador virtual que habla por tu negocio, con voz natural", "Guion, subtítulos y formato para Reels, TikTok o web. <b>Cada vídeo dura hasta 1 minuto</b>", "<b>Pack mensual</b> (4 vídeos al mes, uno por semana): <span class='js-price' data-eur='desde [[d_avatar_pack.eur]]/mes' data-mxn='desde [[d_avatar_pack.mxn]]/mes'>desde [[d_avatar_pack.eur]]/mes</span>", "Ideal para explicar servicios, preguntas frecuentes, cursos y novedades", "Las licencias de la herramienta de vídeo van incluidas"],
        aparte="Nada: el vídeo es tuyo y lo publicas donde quieras",
        extra=("Tu propio avatar (con tu cara y tu voz, con tu permiso)", "desde +[[d_avatar_propio.eur]]", "desde +[[d_avatar_propio.mxn]]", "pago único"),
-       ex=[]),
+       ex=[("Demo: vídeo con avatar", "../demos/avatar-video/")]),
   dict(id="crm", icon="layout-dashboard", name="CRM y planners a medida", ideal="Para tener clientes y tareas en orden",
        eur="desde [[d_crm.eur]]", mxn="desde [[d_crm.mxn]]", per="/ proyecto",
        items=["Fichas de cliente con historial y segmentos", "Reservas, agenda o embudo de ventas", "Campañas por WhatsApp o email respetando el RGPD", "Exportación a Excel", "Formación para usarlo desde el primer día"],
        aparte="Base de datos con copias de seguridad: unos 25 $/mes, a tu nombre",
        extra=("¿Prefieres HubSpot, Notion u otro? Te lo configuro", "desde [[d_crm_configurar.eur]]", "desde [[d_crm_configurar.mxn]]", ""),
-       ex=[("Demo CRM restaurante", "../demos/crm-restaurante/"), ("Nexo para gestorías", "https://melinarivera.github.io/Nexo_Facturas/"), ("ZenWi", "https://zenwi.app")]),
+       ex=[("Demo CRM restaurante", "../demos/crm-restaurante/")], muestras="crm"),
   dict(id="formacion", icon="graduation-cap", name="Formación en IA para equipos", ideal="Para que tu equipo use la IA en su trabajo diario",
        eur="desde [[d_formacion_ia.eur]]", mxn="desde [[d_formacion_ia.mxn]]", per="/ taller", new=True,
        items=["Taller práctico de 2 horas, hasta 10 personas, presencial u online", "Cada persona sale usando la IA en 3 tareas reales de su puesto", "Guía con 15–20 instrucciones listas para copiar, hecha para tu negocio", "Semáforo de datos y normas de uso de IA para tu equipo", "Constancia de asistencia y 2 semanas de dudas por WhatsApp", "En España se puede bonificar con FUNDAE"],
        aparte="Licencias de las herramientas de IA, si el equipo quiere planes de pago",
-       ex=[("Demo: semáforo de datos", "../demos/semaforo-ia/"), ("Tesovia", "https://www.tesovia.com")]),
+       ex=[("Demo: semáforo de datos", "../demos/semaforo-ia/")], muestras="formacion"),
   dict(id="redes", icon="megaphone", name="Redes sociales y reputación", ideal="Para que te encuentren y te elijan",
        eur="desde [[d_redes.eur]]", mxn="desde [[d_redes.mxn]]", per="/ mes", per_mx="/ mes", new=True,
        items=["<b>Esencial</b> · <span class='js-price' data-eur='desde [[d_redes.eur]]/mes' data-mxn='desde [[d_redes.mxn]]/mes'>desde [[d_redes.eur]]/mes</span>: 2 redes, 8 publicaciones al mes", "<b>Crecimiento</b> · <span class='js-price' data-eur='desde [[d_redes_crecimiento.eur]]/mes' data-mxn='desde [[d_redes_crecimiento.mxn]]/mes'>desde [[d_redes_crecimiento.eur]]/mes</span>: 12 posts + 4 reels y gestión de anuncios", "Diseños propios con IA y calendario mensual", "Respuesta a reseñas y perfil de Google optimizado"],
@@ -102,7 +102,7 @@ S = [
        eur="MVP desde [[d_app.eur]]", mxn="MVP desde [[d_app.mxn]]", per="/ proyecto",
        items=["Definimos juntos la primera versión (MVP)", "Usuarios, roles y panel de administración", "Base de datos y backend incluidos", "Publicación en producción", "30 días de soporte tras el lanzamiento"],
        aparte="Alojamiento, base de datos y, si lleva IA, su consumo",
-       ex=[("Tesovia", "https://www.tesovia.com"), ("ETERN-ME", "https://etern-me.com")]),
+       ex=[("Tesovia", "https://www.tesovia.com"), ("ETERN-ME", "https://etern-me.com")], muestras="app"),
   dict(id="mant", icon="wrench", name="Mantenimiento", ideal="Para que tu web siempre funcione",
        eur="desde [[d_mantenimiento.eur]]", mxn="desde [[d_mantenimiento.mxn]]", per="/ mes", per_mx="/ mes",
        items=["Vigilancia de dominio, alojamiento y certificado SSL", "Copias de seguridad", "Pequeños cambios de contenido incluidos", "Soporte directo por WhatsApp"],
@@ -141,11 +141,8 @@ EJEMPLOS = [  # solo proyectos con página real funcionando
   dict(name="Nexo · Facturas con IA", tag="Automatización para gestorías", desc="Demo multiempresa: la factura entra, la IA la lee y valida, el equipo aprueba y sale lista para el programa contable (SAP).", img="../img/thumbs/nexo-facturas.jpg", url="https://melinarivera.github.io/Nexo_Facturas/", fit="cover", bg="#F3F5EF"),
   dict(name="Piñatas Madrid", tag="Web de negocio local", desc="Catálogo de piñatas artesanales con pedido directo por WhatsApp, reserva con señal y entrega en metro.", img="../img/thumbs/pinata.jpg", url="https://melinarivera.github.io/pinata/", fit="cover", bg="#1E1433"),
   dict(name="ETERN-ME", tag="SaaS", desc="Organiza cuentas, documentos e información esencial para que nada importante se pierda.", img="../img/etern-me-hero.png", url="https://etern-me.com", fit="contain", bg="#140F20"),
-  dict(name="Cotidiana", tag="App", desc="Organizador del día a día para personas mayores o con poca experiencia tecnológica.", img="../img/cotidiana-hero.png", url="https://cotidiana.app", fit="contain", bg="#0D1A30"),
-  dict(name="ZenWi", tag="App RRHH", desc="Detección temprana del burnout en equipos, anónima por diseño.", img="../img/zenwi-logo.png", url="https://zenwi.app", fit="logo", bg="#0B1428"),
   dict(name="Efsun · Plataforma", tag="Web con IA y reservas", desc="Horóscopo generado con IA, reservas de sesiones, blog y WhatsApp.", img="../img/thumbs/efsun_plataforma.jpg", url="https://melinarivera.github.io/pyme-efsun/", fit="cover", bg="#0A0A1F"),
   dict(name="Efsun · Tienda", tag="Tienda online", desc="Catálogo, carrito y diseño a medida para una consultora esotérica.", img="../img/thumbs/efsun_tienda.jpg", url="https://melinarivera.github.io/tienda-esoterica/", fit="cover", bg="#0D0A1F"),
-  dict(name="TravelMates", tag="App colaborativa", desc="Viajes en grupo: itinerarios, gastos y votaciones en un solo lugar.", img="../img/travelmates-hero.png", url="https://melinarivera.github.io/TravelMates-App", fit="contain", bg="#0F1E30"),
 ]
 
 SECTORES = [
@@ -244,32 +241,34 @@ def ejemplo_card(e):
 CSS = r"""
 :root{
   /* Layout: una columna de lectura con bandas; tarjetas en rejilla que se apilan en móvil */
-  --bg:#F7F6F2; --bg2:#FFFFFF; --bg3:#F1EFE8; --line:#E2DFD6; --line2:#D5D0C4;
-  --fg:#13203A; --muted:#5B6578; --muted2:#7A8396;
-  --accent:#0A1526; --accent-2:#96681A; --accent-dim:rgba(200,145,46,.14); --ok:#1E7F51;
-  --gold:#C8912E;
-  --display:Fraunces,Georgia,'Times New Roman',serif; --body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --r:16px; color-scheme:light;
+  /* Todo sale de marca/tokens.css: aquí solo se le ponen nombres cortos. */
+  --bg:var(--mr-bg); --bg2:var(--mr-bg2); --bg3:var(--mr-bg3);
+  --line:var(--mr-line); --line2:var(--mr-line2);
+  --fg:var(--mr-fg); --muted:var(--mr-muted); --muted2:var(--mr-muted2);
+  --accent:var(--mr-blue); --accent-2:var(--mr-blue-light); --accent-dim:var(--mr-blue-dim);
+  --gold:var(--mr-blue-light); --ok:var(--mr-ok);
+  --display:var(--mr-display); --body:var(--mr-body);
+  --r:var(--mr-r); color-scheme:dark;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:84px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:#2F5FA8}
+a{color:var(--accent-2)}
 img{max-width:100%;display:block}
 i[data-lucide],svg.lucide{width:1em;height:1em;stroke-width:2;flex:none}
 .wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 section{padding-block:76px}
 .band{background:var(--bg2);border-block:1px solid var(--line)}
 h1,h2,h3{text-wrap:balance}
-h2{font-family:var(--display);font-weight:600;font-variation-settings:"SOFT" 14,"WONK" 1;font-size:clamp(28px,4vw,40px);line-height:1.15;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,40px);line-height:1.15;letter-spacing:-.01em}
 h2 em{font-style:normal;color:var(--gold);font-weight:600}
 .lead{color:var(--muted);max-width:62ch;margin-top:12px}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-size:15px;font-weight:600;color:var(--gold);margin-bottom:10px}
 .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);border-radius:2px}
 .head{margin-bottom:36px}
 /* nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(247,246,242,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(8,8,15,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
 .nav-in{display:flex;align-items:center;gap:20px;min-height:64px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--fg);font-weight:600;white-space:nowrap}
@@ -280,19 +279,19 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .nav-links a:hover{color:var(--fg)}
 .toggle{display:inline-flex;background:var(--bg3);border:1px solid var(--line);border-radius:99px;padding:3px;gap:2px}
 .toggle button{border:0;background:transparent;color:var(--muted);font:inherit;font-size:13px;font-weight:600;padding:6px 12px;border-radius:99px;cursor:pointer;white-space:nowrap}
-.toggle button.on{background:var(--accent);color:#fff}
+.toggle button.on{background:var(--accent);color:#07111C}
 .nav-links a:hover{border-bottom:1.5px solid var(--gold)}
 .toggle button:focus-visible,.btn:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent-2);outline-offset:2px}
 @media (max-width:860px){.nav-links{display:none}.nav-in{justify-content:space-between}}
 /* hero */
 .hero{padding-block:64px 56px}
-.hero h1{font-family:var(--display);font-weight:600;font-variation-settings:"SOFT" 14,"WONK" 1;font-size:clamp(34px,6vw,60px);line-height:1.06;letter-spacing:-.02em;max-width:17ch}
+.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,6vw,60px);line-height:1.06;letter-spacing:-.02em;max-width:17ch}
 .hero h1 em{font-style:normal;font-weight:600;color:var(--gold)}
 .hero .lead{font-size:18px}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:12px 22px;border-radius:99px;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid var(--line2);color:var(--fg);background:var(--bg2);transition:.2s}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn.primary:hover{background:#17294a}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:12px 22px;border-radius:99px;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid var(--line2);color:var(--fg);background:transparent;transition:.2s}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#07111C;font-weight:700}
+.btn.primary:hover{background:var(--accent-2);color:#07111C}
 .btn.ghost:hover{border-color:var(--gold)}
 .sectors{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
 .sectors span{font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:5px 12px}
@@ -302,11 +301,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .svc{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .svc-top{display:flex;align-items:center;gap:8px}
 .svc-icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--accent-dim);color:var(--accent-2);font-size:20px;margin-right:auto}
-.flag{font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:4px 11px;border-radius:99px;background:var(--accent);color:#fff}
+.flag{font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:4px 11px;border-radius:99px;background:var(--accent);color:#07111C}
 .flag.new{background:transparent;border:1px solid var(--gold);color:var(--accent-2)}
-.svc h3,.pack h3{font-family:var(--display);font-size:22px;font-weight:600;line-height:1.2}
+.svc h3,.pack h3{font-family:var(--display);font-size:22px;font-weight:700;line-height:1.2}
 .svc-ideal{font-size:14px;font-weight:500;color:var(--muted)}
-.svc-price{font-family:var(--display);font-size:27px;font-weight:600;color:var(--fg);line-height:1.2;margin-top:4px}
+.svc-price{font-family:var(--display);font-size:27px;font-weight:700;color:var(--accent-2);line-height:1.2;margin-top:4px}
 .svc-price small{font-family:var(--body);font-size:13px;color:var(--muted)}
 .svc-extra{font-size:13.5px;color:var(--muted)}
 .svc-extra b{color:var(--fg);font-weight:600}
@@ -319,8 +318,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .svc-aparte b{color:var(--fg);font-weight:600}
 .svc-ex{display:flex;flex-wrap:wrap;gap:6px}
 .svc-ex>span{width:100%;font-size:13px;font-weight:600;color:var(--muted2)}
-.ex{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;text-decoration:none;color:var(--accent-2);border:1px solid rgba(200,145,46,.34);background:var(--accent-dim);border-radius:99px;padding:6px 12px}
-.ex:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.ex{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;text-decoration:none;color:var(--accent-2);border:1px solid rgba(91,141,184,.3);background:var(--accent-dim);border-radius:99px;padding:6px 12px}
+.ex:hover{background:var(--accent);color:#07111C;border-color:var(--accent)}
 .svc .btn{margin-top:6px}
 .mx{margin:4px 0 2px}
 .mx-track{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;padding-bottom:6px;border-radius:12px}
@@ -349,39 +348,39 @@ tr:last-child td{border-bottom:0}
 .calc-in input[type=range]{width:100%;accent-color:var(--accent)}
 .calc-plan{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
 .calc-plan button{border:1px solid var(--line2);background:transparent;color:var(--muted);font:inherit;font-size:13.5px;font-weight:600;padding:8px 14px;border-radius:99px;cursor:pointer}
-.calc-plan button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.calc-plan button.on{background:var(--accent);border-color:var(--accent);color:#07111C}
 .calc-out{display:flex;flex-direction:column;gap:2px;min-width:0}
 .calc-row,.calc-total{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);align-items:baseline}
 .calc-row span,.calc-total span{font-size:14.5px}
 .calc-row small,.calc-total small{display:block;font-size:12.5px;color:var(--muted2)}
 .calc-row b{font-variant-numeric:tabular-nums;font-weight:600}
 .calc-total{border-bottom:0;padding-top:14px}
-.calc-total b{font-family:var(--display);font-size:32px;font-weight:600;color:var(--fg);font-variant-numeric:tabular-nums}
+.calc-total b{font-family:var(--display);font-size:32px;font-weight:700;color:var(--accent-2);font-variant-numeric:tabular-nums}
 .calc-ia{font-size:13.5px;color:var(--muted);background:var(--bg3);border-radius:12px;padding:10px 12px;margin-top:6px}
 .calc-ia b{color:var(--ok)}
 /* packs */
 .pack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
 .pack{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:8px;position:relative}
-.pack.popular{border-color:var(--accent);box-shadow:0 18px 40px -26px rgba(10,21,38,.55)}
+.pack.popular{border-color:var(--accent);background:linear-gradient(170deg,var(--bg3),var(--bg2))}
 .pack .flag{position:absolute;top:-12px;left:24px}
 .pack-for{color:var(--muted);font-size:14px}
 .pack li::before{content:"+";position:absolute;left:4px;color:var(--gold);font-weight:700}
-.pack-price{font-family:var(--display);font-size:31px;font-weight:600;color:var(--fg);margin-top:auto}
+.pack-price{font-family:var(--display);font-size:31px;font-weight:700;color:var(--fg);margin-top:auto}
 .pack-save{font-size:13.5px;color:var(--ok);margin-bottom:8px}
 /* demos */
 .demo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
 .demo{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
 .demo img{aspect-ratio:16/10;object-fit:cover;object-position:top center;width:100%;border-bottom:1px solid var(--line)}
-.demo .ph{aspect-ratio:16/9;display:grid;place-items:center;background:#0A1526;color:var(--gold);border-bottom:1px solid var(--line)}
+.demo .ph{aspect-ratio:16/9;display:grid;place-items:center;background:var(--bg3);color:var(--accent-2);border-bottom:1px solid var(--line)}
 .demo .ph svg{width:44px;height:44px}
 .demo-body{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1}
-.demo h3{font-family:var(--display);font-size:21px;font-weight:600}
+.demo h3{font-family:var(--display);font-size:21px;font-weight:700}
 .demo p{color:var(--muted);font-size:14.5px}
 .demo .actions{margin-top:auto;padding-top:6px}
 /* ejemplos */
 .ej-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .ej{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;text-decoration:none;color:var(--fg);display:flex;flex-direction:column;transition:.2s}
-.ej:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 18px 38px -24px rgba(10,21,38,.5)}
+.ej:hover{border-color:var(--accent);transform:translateY(-3px)}
 .ej.featured{grid-column:1/-1;flex-direction:row}
 .ej-media{aspect-ratio:16/9;position:relative;overflow:hidden;flex:none}
 .ej-media img{position:absolute;inset:0;width:100%;height:100%;object-position:top}
@@ -391,10 +390,10 @@ tr:last-child td{border-bottom:0}
 .ej-body{padding:20px;display:flex;flex-direction:column;gap:6px;min-width:0}
 .ej.featured .ej-body{padding:32px;justify-content:center}
 .ej-tag{font-size:13px;font-weight:600;color:var(--muted2)}
-.ej h3{font-family:var(--display);font-size:20px;font-weight:600}
+.ej h3{font-family:var(--display);font-size:20px;font-weight:700}
 .ej.featured h3{font-size:30px}
 .ej p{color:var(--muted);font-size:14.5px}
-.ej-go{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:600;color:#2F5FA8;margin-top:6px}
+.ej-go{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:600;color:var(--accent-2);margin-top:6px}
 @media (max-width:980px){.ej-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.ej-grid{grid-template-columns:1fr}.ej.featured{flex-direction:column}.ej.featured .ej-media{width:100%;aspect-ratio:16/9;min-height:0}.ej.featured .ej-body{padding:20px}.ej.featured h3{font-size:22px}}
 /* sectores */
@@ -408,7 +407,7 @@ tr:last-child td{border-bottom:0}
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;counter-reset:s}
 .step{border-top:2px solid var(--fg);padding-top:16px;position:relative}
 .step::before{content:"";position:absolute;top:-7px;left:0;width:12px;height:12px;border-radius:50%;background:var(--gold)}
-.step b{display:block;font-family:var(--display);font-size:19px;font-weight:600;margin-bottom:6px}
+.step b{display:block;font-family:var(--display);font-size:19px;font-weight:700;margin-bottom:6px}
 .step b::before{counter-increment:s;content:counter(s) ". ";color:var(--gold)}
 .step p{color:var(--muted);font-size:14.5px}
 @media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
@@ -428,7 +427,7 @@ details p{color:var(--muted);padding-bottom:16px;font-size:15px}
 .form .full{grid-column:1/-1}
 @media (max-width:520px){.form{grid-template-columns:1fr}}
 .form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:var(--muted)}
-.form input,.form select,.form textarea{background:var(--bg);border:1px solid var(--line2);border-radius:10px;padding:12px 13px;color:var(--fg);font:inherit;font-size:16px;width:100%;min-height:48px}
+.form input,.form select,.form textarea{background:var(--bg3);border:1px solid var(--line2);border-radius:10px;padding:12px 13px;color:var(--fg);font:inherit;font-size:16px;width:100%;min-height:48px}
 .form textarea{min-height:120px;resize:vertical}
 .form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--accent)}
 .form-msg{font-size:14px;color:var(--muted)}
@@ -460,9 +459,10 @@ def build_page():
 <meta property="og:type" content="website"/>
 <meta property="og:locale" content="es_ES"/>
 <meta name="twitter:card" content="summary_large_image"/>
+<link rel="stylesheet" href="../marca/tokens.css"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <style>{CSS}</style>
 </head>
@@ -702,43 +702,26 @@ def build_page():
 
 # ───────────────────────── resumen en el portafolio ─────────────────────────
 HOME_FAMS = [
-  ("Tu sitio en internet", "Webs, tiendas y apps", [
-    ("Landing de una página", "Para presentar el negocio y recibir mensajes.", "desde [[d_landing.eur]]", "pago único", "Ver ejemplo", "https://melinarivera.github.io/pinata/"),
-    ("Web completa", "Varias secciones, blog y formularios conectados.", "desde [[d_web.eur]]", "pago único", "Ver ejemplo", "https://melinarivera.github.io/pyme-efsun/"),
-    ("Tienda online", "Catálogo, carrito y pagos.", "desde [[d_tienda.eur]]", "pago único", "Ver ejemplo", "https://melinarivera.github.io/tienda-esoterica/"),
-    ("App o SaaS a medida", "Tu idea o tu herramienta interna, desde la primera versión.", "desde [[d_app.eur]]", "por proyecto", "Ver ejemplo", "https://www.tesovia.com"),
-  ]),
-  ("IA que atiende por ti", "WhatsApp, voz y automatizaciones", [
-    ("Asistente de WhatsApp con IA", "Contesta, informa y agenda. Tú ves todo lo que dice.", "desde [[d_ia.eur]]", "+ [[d_ia_cuota.eur]]/mes", "Ver demo", "demos/asistente-whatsapp/#estetica"),
-    ("Recepcionista de voz con IA", "Coge el teléfono cuando tú no puedes y te pasa el resumen.", "desde [[d_voz.eur]]", "+ [[d_voz_cuota.eur]]/mes", "Ver demo", "demos/recepcionista-voz/#restaurante"),
-    ("Automatizaciones", "Lo que haces a mano cada semana, hecho solo.", "desde [[d_automatizacion.eur]]", "por automatización", "Ver demo", "https://melinarivera.github.io/Nexo_Facturas/"),
-    ("Formación en IA para tu equipo", "Taller práctico con lo que sí se puede meter en la IA y lo que no.", "desde [[d_formacion_ia.eur]]", "por sesión", "Ver demo", "demos/semaforo-ia/"),
-  ]),
-  ("Orden dentro del negocio", "CRM y mantenimiento", [
-    ("CRM y planners a medida", "Clientes, reservas y tareas en un sitio, no en cuatro Excels.", "desde [[d_crm.eur]]", "pago único", "Ver demo", "demos/crm-restaurante/"),
-    ("Mantenimiento", "Copias, actualizaciones y un informe claro cada mes.", "desde [[d_mantenimiento.eur]]", "al mes", "Ver demo", "demos/informe-mantenimiento/"),
-  ]),
-  ("Que te vean y te reconozcan", "Marca, diseño y visibilidad", [
-    ("Ficha de Google y SEO local", "Para salir cuando te buscan cerca.", "desde [[d_seo_local.eur]]", "pago único", "Ver demo", "demos/ficha-google/"),
-    ("Identidad visual básica", "Logo, colores, tipografías y plantillas.", "desde [[d_identidad.eur]]", "por proyecto", "Ver demo", "demos/identidad-visual/"),
-    ("Diseño UX/UI", "Ver y tocar tu web o app antes de programarla.", "desde [[d_uxui.eur]]", "por proyecto", "Ver demo", "demos/prototipo-ux/"),
-    ("Redes sociales", "Calendario, diseños y respuesta a reseñas.", "desde [[d_redes.eur]]", "al mes", "Ver ejemplo", IG),
-    ("Vídeos con avatar IA", "Un presentador virtual que explica tus servicios.", "desde [[d_avatar_video.eur]]", "por vídeo", "Ver demo", "demos/avatar-video/"),
-  ]),
+  ("Tu sitio en internet", "Landing, web completa, tienda online y apps a medida.",
+   "desde [[d_landing.eur]]", "Landing · Web · Tienda · App"),
+  ("IA que atiende por ti", "Asistente de WhatsApp, recepcionista de voz, automatizaciones y formación para tu equipo.",
+   "desde [[d_automatizacion.eur]]", "WhatsApp · Voz · Automatización · Taller"),
+  ("Orden dentro del negocio", "CRM y planners a medida, y mantenimiento mensual de lo que ya tienes.",
+   "desde [[d_mantenimiento.eur]]/mes", "CRM · Mantenimiento"),
+  ("Que te vean y te reconozcan", "Ficha de Google, identidad visual, diseño UX/UI, redes y vídeos con avatar.",
+   "desde [[d_avatar_video.eur]]", "Google · Marca · UX/UI · Redes · Vídeo"),
 ]
 
 def build_portfolio_summary():
-    """Reescribe la lista de precios del inicio (index.html) entre las marcas PRECIOS."""
-    out = []
-    for title, sub, items in HOME_FAMS:
-        rows = "".join(
-            f'    <div class="row"><div class="nm">{html.escape(n)}<small>{html.escape(d)}</small></div>'
-            f'<div class="pr">{pr}<em>{per}</em></div>'
-            f'<a class="dm" href="{href}"{chr(32)+chr(116)+"arget=" + chr(34) + "_blank" + chr(34) + " rel=" + chr(34) + "noopener" + chr(34) if href.startswith("http") else ""}>'
-            f'<i data-lucide="{"external-link" if lbl.startswith("Ver ejemplo") else "play"}"></i>{lbl}</a></div>\n'
-            for n, d, pr, per, lbl, href in items)
-        out.append(f'  <div class="fam">\n    <h3>{title} <span>{sub}</span></h3>\n{rows}  </div>')
-    block = "\n".join(out)
+    """Reescribe el resumen de precios del inicio (index.html) entre las marcas PRECIOS."""
+    cards = ""
+    for t, d, pr, it in HOME_FAMS:
+        cards += ('    <div class="fam">\n'
+                  '      <h3>' + t + ' <b>' + pr + '</b></h3>\n'
+                  '      <p>' + d + '</p>\n'
+                  '      <span class="items">' + it + '</span>\n'
+                  '    </div>\n')
+    block = '  <div class="fams">\n' + cards + '  </div>'
     p = os.path.join(ROOT, "index.html")
     s = open(p, encoding="utf-8").read()
     a, b = "<!-- PRECIOS:inicio -->", "<!-- PRECIOS:fin -->"

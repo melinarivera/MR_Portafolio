@@ -9,10 +9,11 @@
 <link rel="icon" href="../../marca/mr-favicon.svg" type="image/svg+xml"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../../marca/tokens.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <style>
-:root{--night:#09172E;--blue:#2A4A8C;--silver:#C8CDD4;--paper:#F4F6F9;--ink:#141A2B;--muted:#56607A;--rule:#DCE1E9;--ok:#1D7F4B;--red:#C2362B;color-scheme:light}
+:root{--night:var(--mr-bg2);--blue:var(--mr-blue);--silver:var(--mr-muted);--paper:var(--mr-paper);--ink:var(--mr-paper-fg);--muted:var(--mr-paper-muted);--rule:var(--mr-paper-line);--ok:#1D7F4B;--red:#C2362B;color-scheme:light}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
 svg.lucide{width:1em;height:1em;stroke-width:1.9;flex:none}
@@ -22,7 +23,7 @@ button{font:inherit;cursor:pointer}
 header.top{background:var(--night);color:#EEF1F6}
 header.top .wrap{padding-top:18px;padding-bottom:22px}
 .back{color:var(--silver);font-weight:600;text-decoration:none;font-size:14.5px;display:inline-flex;gap:6px;align-items:center;min-height:44px}
-h1{font-family:Fraunces,Georgia,serif;font-variation-settings:"SOFT" 14,"WONK" 1;font-size:clamp(26px,4.5vw,36px);line-height:1.15;margin-top:4px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(26px,4.5vw,36px);line-height:1.15;margin-top:4px}
 .lead{color:var(--silver);max-width:62ch;margin-top:8px}
 .seg{display:inline-flex;gap:4px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:4px;margin-top:16px;flex-wrap:wrap}
 .seg button{border:0;background:transparent;color:#DDE3EC;font-weight:600;padding:9px 14px;border-radius:9px;min-height:42px;display:inline-flex;gap:8px;align-items:center}

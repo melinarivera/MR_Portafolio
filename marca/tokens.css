@@ -1,0 +1,55 @@
+/* ─────────────────────────────────────────────────────────────
+   MR · Sistema de marca. ÚNICO sitio donde se definen los colores,
+   las tipografías y los espacios. Lo usan el portafolio, la página
+   de servicios, las nueve demos y el kit de ventas.
+
+   Si cambias un color aquí, cambia en todas partes.
+   ───────────────────────────────────────────────────────────── */
+:root{
+  /* Fondos (azul noche) */
+  --mr-bg:      #08080F;   /* fondo general */
+  --mr-bg2:     #0F0F1A;   /* bandas y tarjetas */
+  --mr-bg3:     #16162A;   /* superficies elevadas */
+  --mr-bg4:     #1C1C34;   /* chips y campos */
+
+  /* Azul de marca */
+  --mr-blue:       #5B8DB8;
+  --mr-blue-light: #8BB8D8;
+  --mr-blue-dark:  #3A6A95;
+  --mr-blue-dim:   rgba(91,141,184,.13);
+  --mr-blue-glow:  rgba(91,141,184,.26);
+
+  /* Texto */
+  --mr-fg:     #F0EDE8;
+  --mr-muted:  rgba(240,237,232,.66);
+  --mr-muted2: rgba(240,237,232,.44);
+
+  /* Líneas */
+  --mr-line:  rgba(240,237,232,.09);
+  --mr-line2: rgba(240,237,232,.17);
+
+  /* Estados */
+  --mr-ok:   #4CAF82;
+  --mr-warn: #D8A24A;
+  --mr-bad:  #D97066;
+
+  /* Claro: solo para pantallas que simulan el producto de un cliente
+     (chat de WhatsApp, panel de CRM, ficha de Google…) */
+  --mr-paper:      #F4F6F9;
+  --mr-paper-card: #FFFFFF;
+  --mr-paper-fg:   #141A2B;
+  --mr-paper-muted:#56607A;
+  --mr-paper-line: #DCE1E9;
+
+  /* Tipografía */
+  --mr-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --mr-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Formas */
+  --mr-r:    18px;
+  --mr-r-sm: 12px;
+  --mr-r-pill: 999px;
+
+  /* Movimiento */
+  --mr-t: .22s cubic-bezier(.4,0,.2,1);
+}
