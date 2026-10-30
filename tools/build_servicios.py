@@ -231,30 +231,32 @@ def ejemplo_card(e):
 CSS = r"""
 :root{
   /* Layout: una columna de lectura con bandas; tarjetas en rejilla que se apilan en móvil */
-  --bg:#08080F; --bg2:#0F0F1A; --bg3:#16162A; --line:rgba(240,237,232,.09); --line2:rgba(240,237,232,.16);
-  --fg:#F0EDE8; --muted:rgba(240,237,232,.68); --muted2:rgba(240,237,232,.48);
-  --accent:#5B8DB8; --accent-2:#8BB8D8; --accent-dim:rgba(91,141,184,.14); --ok:#4CAF82;
-  --display:'Playfair Display',Georgia,'Times New Roman',serif; --body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --r:18px; color-scheme:dark;
+  --bg:#F7F6F2; --bg2:#FFFFFF; --bg3:#F1EFE8; --line:#E2DFD6; --line2:#D5D0C4;
+  --fg:#13203A; --muted:#5B6578; --muted2:#7A8396;
+  --accent:#0A1526; --accent-2:#96681A; --accent-dim:rgba(200,145,46,.14); --ok:#1E7F51;
+  --gold:#C8912E;
+  --display:Fraunces,Georgia,'Times New Roman',serif; --body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --r:16px; color-scheme:light;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:84px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:var(--accent-2)}
+a{color:#2F5FA8}
 img{max-width:100%;display:block}
 i[data-lucide],svg.lucide{width:1em;height:1em;stroke-width:2;flex:none}
 .wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 section{padding-block:76px}
 .band{background:var(--bg2);border-block:1px solid var(--line)}
 h1,h2,h3{text-wrap:balance}
-h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4vw,40px);line-height:1.15;letter-spacing:-.01em}
-h2 em{font-style:italic;color:var(--accent-2);font-weight:500}
+h2{font-family:var(--display);font-weight:600;font-variation-settings:"SOFT" 14,"WONK" 1;font-size:clamp(28px,4vw,40px);line-height:1.15;letter-spacing:-.01em}
+h2 em{font-style:normal;color:var(--gold);font-weight:600}
 .lead{color:var(--muted);max-width:62ch;margin-top:12px}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-2);margin-bottom:12px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-size:15px;font-weight:600;color:var(--gold);margin-bottom:10px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);border-radius:2px}
 .head{margin-bottom:36px}
 /* nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(8,8,15,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(247,246,242,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
 .nav-in{display:flex;align-items:center;gap:20px;min-height:64px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--fg);font-weight:600;white-space:nowrap}
@@ -266,61 +268,62 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .toggle{display:inline-flex;background:var(--bg3);border:1px solid var(--line);border-radius:99px;padding:3px;gap:2px}
 .toggle button{border:0;background:transparent;color:var(--muted);font:inherit;font-size:13px;font-weight:600;padding:6px 12px;border-radius:99px;cursor:pointer;white-space:nowrap}
 .toggle button.on{background:var(--accent);color:#fff}
+.nav-links a:hover{border-bottom:1.5px solid var(--gold)}
 .toggle button:focus-visible,.btn:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent-2);outline-offset:2px}
 @media (max-width:860px){.nav-links{display:none}.nav-in{justify-content:space-between}}
 /* hero */
 .hero{padding-block:64px 56px}
-.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,6vw,60px);line-height:1.06;letter-spacing:-.02em;max-width:17ch}
-.hero h1 em{font-style:italic;font-weight:500;color:var(--accent-2)}
+.hero h1{font-family:var(--display);font-weight:600;font-variation-settings:"SOFT" 14,"WONK" 1;font-size:clamp(34px,6vw,60px);line-height:1.06;letter-spacing:-.02em;max-width:17ch}
+.hero h1 em{font-style:normal;font-weight:600;color:var(--gold)}
 .hero .lead{font-size:18px}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:99px;font-weight:600;font-size:14.5px;text-decoration:none;border:1px solid var(--line2);color:var(--fg);transition:.2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:12px 22px;border-radius:99px;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid var(--line2);color:var(--fg);background:var(--bg2);transition:.2s}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn.primary:hover{background:#4C7DA8}
-.btn.ghost:hover{border-color:var(--accent-2)}
+.btn.primary:hover{background:#17294a}
+.btn.ghost:hover{border-color:var(--gold)}
 .sectors{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
 .sectors span{font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:5px 12px}
 .tax{font-size:13px;color:var(--muted2);margin-top:14px}
 /* servicios */
 .svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
-.svc{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.svc{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .svc-top{display:flex;align-items:center;gap:8px}
 .svc-icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--accent-dim);color:var(--accent-2);font-size:20px;margin-right:auto}
-.flag{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:var(--accent);color:#fff}
-.flag.new{background:transparent;border:1px solid var(--accent-2);color:var(--accent-2)}
-.svc h3,.pack h3{font-family:var(--display);font-size:22px;font-weight:700;line-height:1.2}
-.svc-ideal{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted2)}
-.svc-price{font-family:var(--display);font-size:26px;color:var(--accent-2);line-height:1.2;margin-top:4px}
+.flag{font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:4px 11px;border-radius:99px;background:var(--accent);color:#fff}
+.flag.new{background:transparent;border:1px solid var(--gold);color:var(--accent-2)}
+.svc h3,.pack h3{font-family:var(--display);font-size:22px;font-weight:600;line-height:1.2}
+.svc-ideal{font-size:14px;font-weight:500;color:var(--muted)}
+.svc-price{font-family:var(--display);font-size:27px;font-weight:600;color:var(--fg);line-height:1.2;margin-top:4px}
 .svc-price small{font-family:var(--body);font-size:13px;color:var(--muted)}
 .svc-extra{font-size:13.5px;color:var(--muted)}
 .svc-extra b{color:var(--fg);font-weight:600}
 .svc ul,.pack ul{list-style:none;display:flex;flex-direction:column;gap:7px;margin:6px 0 4px}
 .svc li,.pack li{font-size:14.5px;color:var(--muted);padding-left:22px;position:relative}
-.svc li::before{content:"";position:absolute;left:2px;top:.62em;width:10px;height:6px;border-left:2px solid var(--accent-2);border-bottom:2px solid var(--accent-2);transform:rotate(-45deg) translateY(-3px)}
+.svc li::before{content:"";position:absolute;left:2px;top:.62em;width:10px;height:6px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(-45deg) translateY(-3px)}
 .svc li b{color:var(--fg);font-weight:600}
 .svc-aparte{display:flex;gap:8px;font-size:13px;color:var(--muted);background:var(--bg3);border-radius:12px;padding:10px 12px;margin-top:auto}
-.svc-aparte i,.svc-aparte svg{margin-top:3px;color:var(--accent-2)}
+.svc-aparte i,.svc-aparte svg{margin-top:3px;color:var(--gold)}
 .svc-aparte b{color:var(--fg);font-weight:600}
 .svc-ex{display:flex;flex-wrap:wrap;gap:6px}
-.svc-ex>span{width:100%;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2)}
-.ex{display:inline-flex;align-items:center;gap:6px;font-size:13px;text-decoration:none;color:var(--accent-2);border:1px solid rgba(139,184,216,.28);background:var(--accent-dim);border-radius:99px;padding:5px 11px}
-.ex:hover{color:#fff;border-color:var(--accent-2)}
+.svc-ex>span{width:100%;font-size:13px;font-weight:600;color:var(--muted2)}
+.ex{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;text-decoration:none;color:var(--accent-2);border:1px solid rgba(200,145,46,.34);background:var(--accent-dim);border-radius:99px;padding:6px 12px}
+.ex:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 .svc .btn{margin-top:6px}
 /* tabla de costes */
-.table{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--bg)}
+.table{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--bg2)}
 table{width:100%;border-collapse:collapse;min-width:760px}
 th,td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top;font-size:14.5px}
 th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);font-weight:700;background:var(--bg3)}
 td:first-child{color:var(--fg);font-weight:600;width:26%}
 td:nth-child(2){width:20%}
-td:nth-child(3){color:var(--accent-2);width:22%}
+td:nth-child(3){color:var(--fg);width:22%}
 td:last-child{color:var(--muted)}
 tr:last-child td{border-bottom:0}
 .who{display:inline-block;font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--bg3);color:var(--muted)}
 .who.inc{background:rgba(76,175,130,.14);color:var(--ok)}
 .note{font-size:13.5px;color:var(--muted2);margin-top:14px;max-width:80ch}
 /* calculadora */
-.calc{display:grid;grid-template-columns:1fr 1fr;gap:24px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:24px;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:24px}
 @media (max-width:820px){.calc{grid-template-columns:1fr}}
 .calc-in{display:flex;flex-direction:column;gap:6px;min-width:0}
 .calc-in label{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);font-weight:600;margin-top:8px}
@@ -335,32 +338,32 @@ tr:last-child td{border-bottom:0}
 .calc-row small,.calc-total small{display:block;font-size:12.5px;color:var(--muted2)}
 .calc-row b{font-variant-numeric:tabular-nums;font-weight:600}
 .calc-total{border-bottom:0;padding-top:14px}
-.calc-total b{font-family:var(--display);font-size:30px;color:var(--accent-2);font-variant-numeric:tabular-nums}
+.calc-total b{font-family:var(--display);font-size:32px;font-weight:600;color:var(--fg);font-variant-numeric:tabular-nums}
 .calc-ia{font-size:13.5px;color:var(--muted);background:var(--bg3);border-radius:12px;padding:10px 12px;margin-top:6px}
 .calc-ia b{color:var(--ok)}
 /* packs */
 .pack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-.pack{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:8px;position:relative}
-.pack.popular{border-color:var(--accent);background:linear-gradient(170deg,var(--bg3),var(--bg))}
+.pack{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:8px;position:relative}
+.pack.popular{border-color:var(--accent);box-shadow:0 18px 40px -26px rgba(10,21,38,.55)}
 .pack .flag{position:absolute;top:-12px;left:24px}
 .pack-for{color:var(--muted);font-size:14px}
-.pack li::before{content:"+";position:absolute;left:4px;color:var(--accent-2);font-weight:700}
-.pack-price{font-family:var(--display);font-size:30px;color:var(--fg);margin-top:auto}
+.pack li::before{content:"+";position:absolute;left:4px;color:var(--gold);font-weight:700}
+.pack-price{font-family:var(--display);font-size:31px;font-weight:600;color:var(--fg);margin-top:auto}
 .pack-save{font-size:13.5px;color:var(--ok);margin-bottom:8px}
 /* demos */
 .demo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
-.demo{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
-.demo img{aspect-ratio:16/9;object-fit:cover;width:100%;border-bottom:1px solid var(--line)}
-.demo .ph{aspect-ratio:16/9;display:grid;place-items:center;background:linear-gradient(135deg,#16213a,#0b1020);color:#7fb0e6;border-bottom:1px solid var(--line)}
+.demo{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.demo img{aspect-ratio:16/10;object-fit:cover;object-position:top center;width:100%;border-bottom:1px solid var(--line)}
+.demo .ph{aspect-ratio:16/9;display:grid;place-items:center;background:#0A1526;color:var(--gold);border-bottom:1px solid var(--line)}
 .demo .ph svg{width:44px;height:44px}
 .demo-body{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1}
-.demo h3{font-family:var(--display);font-size:22px}
+.demo h3{font-family:var(--display);font-size:21px;font-weight:600}
 .demo p{color:var(--muted);font-size:14.5px}
 .demo .actions{margin-top:auto;padding-top:6px}
 /* ejemplos */
 .ej-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .ej{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;text-decoration:none;color:var(--fg);display:flex;flex-direction:column;transition:.2s}
-.ej:hover{border-color:var(--accent);transform:translateY(-3px)}
+.ej:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 18px 38px -24px rgba(10,21,38,.5)}
 .ej.featured{grid-column:1/-1;flex-direction:row}
 .ej-media{aspect-ratio:16/9;position:relative;overflow:hidden;flex:none}
 .ej-media img{position:absolute;inset:0;width:100%;height:100%;object-position:top}
@@ -369,44 +372,45 @@ tr:last-child td{border-bottom:0}
 .ej.featured .ej-media{width:52%;aspect-ratio:auto;min-height:280px}
 .ej-body{padding:20px;display:flex;flex-direction:column;gap:6px;min-width:0}
 .ej.featured .ej-body{padding:32px;justify-content:center}
-.ej-tag{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-2)}
-.ej h3{font-family:var(--display);font-size:20px}
+.ej-tag{font-size:13px;font-weight:600;color:var(--muted2)}
+.ej h3{font-family:var(--display);font-size:20px;font-weight:600}
 .ej.featured h3{font-size:30px}
 .ej p{color:var(--muted);font-size:14.5px}
-.ej-go{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--accent-2);margin-top:6px}
+.ej-go{display:inline-flex;align-items:center;gap:6px;font-size:14.5px;font-weight:600;color:#2F5FA8;margin-top:6px}
 @media (max-width:980px){.ej-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.ej-grid{grid-template-columns:1fr}.ej.featured{flex-direction:column}.ej.featured .ej-media{width:100%;aspect-ratio:16/9;min-height:0}.ej.featured .ej-body{padding:20px}.ej.featured h3{font-size:22px}}
 /* sectores */
 .sec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-.sec{border:1px solid var(--line);border-radius:var(--r);padding:22px;background:var(--bg)}
+.sec{border:1px solid var(--line);border-radius:var(--r);padding:22px;background:var(--bg2)}
 .sec .svc-icon{margin-bottom:12px}
 .sec h3{font-size:17px;margin-bottom:8px}
 .sec li{font-size:14px;color:var(--muted);list-style:none;padding-left:16px;position:relative;margin-top:4px}
-.sec li::before{content:"·";position:absolute;left:4px;color:var(--accent-2);font-weight:800}
+.sec li::before{content:"·";position:absolute;left:4px;color:var(--gold);font-weight:800}
 /* proceso */
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;counter-reset:s}
-.step{border-top:2px solid var(--accent);padding-top:16px}
-.step b{display:block;font-family:var(--display);font-size:19px;margin-bottom:6px}
-.step b::before{counter-increment:s;content:counter(s) ". ";color:var(--accent-2)}
+.step{border-top:2px solid var(--fg);padding-top:16px;position:relative}
+.step::before{content:"";position:absolute;top:-7px;left:0;width:12px;height:12px;border-radius:50%;background:var(--gold)}
+.step b{display:block;font-family:var(--display);font-size:19px;font-weight:600;margin-bottom:6px}
+.step b::before{counter-increment:s;content:counter(s) ". ";color:var(--gold)}
 .step p{color:var(--muted);font-size:14.5px}
 @media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.steps{grid-template-columns:1fr}}
 /* faq */
 .faq{max-width:780px;display:flex;flex-direction:column;gap:10px}
-details{border:1px solid var(--line);border-radius:14px;background:var(--bg);padding:0 18px}
+details{border:1px solid var(--line);border-radius:14px;background:var(--bg2);padding:0 18px}
 summary{cursor:pointer;list-style:none;padding:16px 0;font-weight:600;display:flex;justify-content:space-between;gap:12px}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";color:var(--accent-2);font-size:20px;line-height:1}
+summary::after{content:"+";color:var(--gold);font-size:22px;line-height:1}
 details[open] summary::after{content:"–"}
 details p{color:var(--muted);padding-bottom:16px;font-size:15px}
 /* contacto */
 .contact{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:start}
 @media (max-width:860px){.contact{grid-template-columns:1fr}}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:24px}
 .form .full{grid-column:1/-1}
 @media (max-width:520px){.form{grid-template-columns:1fr}}
 .form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:var(--muted)}
-.form input,.form select,.form textarea{background:var(--bg3);border:1px solid var(--line2);border-radius:10px;padding:11px 12px;color:var(--fg);font:inherit;font-size:15px;width:100%}
+.form input,.form select,.form textarea{background:var(--bg);border:1px solid var(--line2);border-radius:10px;padding:12px 13px;color:var(--fg);font:inherit;font-size:16px;width:100%;min-height:48px}
 .form textarea{min-height:120px;resize:vertical}
 .form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--accent)}
 .form-msg{font-size:14px;color:var(--muted)}
@@ -440,7 +444,7 @@ def build_page():
 <meta name="twitter:card" content="summary_large_image"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <style>{CSS}</style>
 </head>
@@ -451,8 +455,8 @@ def build_page():
     <a href="#servicios">Servicios</a><a href="#incluye">Qué incluye</a><a href="#ia-claro">Gasto mensual</a><a href="#demos">Demos</a><a href="#ejemplos">Ejemplos</a><a href="#contacto">Contacto</a>
   </nav>
   <div class="toggle" role="group" aria-label="País y moneda">
-    <button type="button" data-country="es" class="on" id="c-es">🇪🇸 España €</button>
-    <button type="button" data-country="mx" id="c-mx">🇲🇽 México MXN</button>
+    <button type="button" data-country="es" class="on" id="c-es">España · €</button>
+    <button type="button" data-country="mx" id="c-mx">México · MXN</button>
   </div>
 </div></header>
 
@@ -527,11 +531,11 @@ def build_page():
     <div class="head"><p class="eyebrow">Demos interactivas</p><h2>Pruébalo como si fuera <em>tu negocio</em></h2>
       <p class="lead">Con datos ficticios. Funcionan también en el móvil.</p></div>
     <div class="demo-grid">
-      <article class="demo"><img src="../img/thumbs/asistente-whatsapp.jpg" alt="Demo del asistente de WhatsApp" loading="lazy"/>
+      <article class="demo"><img src="../img/demos-thumbs/asistente-whatsapp.jpg" alt="Demo del asistente de WhatsApp" loading="lazy"/>
         <div class="demo-body"><h3>Asistente de WhatsApp con IA</h3>
           <p>Escríbele como un cliente: pide cita en un centro de estética o una primera consulta en una consultoría de extranjería. Verás cómo rellena la ficha del CRM, programa recordatorios y lo que cuesta cada conversación.</p>
           <div class="actions"><a class="btn primary" href="../demos/asistente-whatsapp/#estetica"><i data-lucide="play"></i>Estética</a><a class="btn ghost" href="../demos/asistente-whatsapp/#extranjeria"><i data-lucide="play"></i>Extranjería</a></div></div></article>
-      <article class="demo"><img src="../img/thumbs/crm-restaurante.jpg" alt="Demo del CRM para restaurantes" loading="lazy"/>
+      <article class="demo"><img src="../img/demos-thumbs/crm-restaurante.jpg" alt="Demo del CRM para restaurantes" loading="lazy"/>
         <div class="demo-body"><h3>CRM para restaurantes</h3>
           <p>Reservas por turnos, fichas con los 14 alérgenos, consentimiento RGPD, clientes VIP y dormidos, campañas por WhatsApp y exportación a Excel.</p>
           <div class="actions"><a class="btn primary" href="../demos/crm-restaurante/"><i data-lucide="play"></i>Abrir la demo</a></div></div></article>
@@ -539,27 +543,27 @@ def build_page():
         <div class="demo-body"><h3>Nexo: facturas con IA para gestorías</h3>
           <p>Para despachos que llevan varias empresas: recepción de facturas, lectura con IA, aprobaciones, conciliación, incidencias y exportación al programa contable.</p>
           <div class="actions"><a class="btn primary" href="https://melinarivera.github.io/Nexo_Facturas/" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Abrir la demo</a></div></div></article>
-      <article class="demo"><div class="ph"><i data-lucide="shield-check"></i></div>
+      <article class="demo"><img src="../img/demos-thumbs/informe-mantenimiento.jpg" alt="Demo: Informe mensual de mantenimiento" loading="lazy"/>
         <div class="demo-body"><h3>Informe mensual de mantenimiento</h3>
           <p>Lo que recibe cada mes quien tiene mantenimiento: web disponible, copias de seguridad, certificado, dominio y los cambios hechos. Pide un cambio y mira cómo queda anotado.</p>
           <div class="actions"><a class="btn primary" href="../demos/informe-mantenimiento/"><i data-lucide="play"></i>Abrir la demo</a></div></div></article>
-      <article class="demo"><div class="ph"><i data-lucide="pen-tool"></i></div>
+      <article class="demo"><img src="../img/demos-thumbs/prototipo-ux.jpg" alt="Demo: Prototipo de app" loading="lazy"/>
         <div class="demo-body"><h3>Diseño UX/UI: prototipo de app</h3>
           <p>Un prototipo de reservas en el que puedes tocar y avanzar, con la razón de cada pantalla y su guía de estilo.</p>
           <div class="actions"><a class="btn primary" href="../demos/prototipo-ux/"><i data-lucide="play"></i>Abrir la demo</a></div></div></article>
-      <article class="demo"><div class="ph"><i data-lucide="palette"></i></div>
+      <article class="demo"><img src="../img/demos-thumbs/identidad-visual.jpg" alt="Demo: Generador de identidad visual" loading="lazy"/>
         <div class="demo-body"><h3>Identidad visual: tu marca en un minuto</h3>
           <p>Escribe el nombre de tu negocio, elige estilo y color, y mira el logo, la paleta, una publicación y una tarjeta de visita.</p>
           <div class="actions"><a class="btn primary" href="../demos/identidad-visual/"><i data-lucide="play"></i>Abrir la demo</a></div></div></article>
-      <article class="demo"><div class="ph"><i data-lucide="map-pin"></i></div>
+      <article class="demo"><img src="../img/demos-thumbs/ficha-google.jpg" alt="Demo: Ficha de Google completa" loading="lazy"/>
         <div class="demo-body"><h3>Ficha de Google completa</h3>
           <p>Marca lo que tiene la ficha de un negocio y mira cómo cambia lo que ve quien lo busca en Google Maps.</p>
           <div class="actions"><a class="btn primary" href="../demos/ficha-google/"><i data-lucide="play"></i>Abrir la demo</a></div></div></article>
-      <article class="demo"><div class="ph"><i data-lucide="traffic-cone"></i></div>
+      <article class="demo"><img src="../img/demos-thumbs/semaforo-ia.jpg" alt="Demo: Semáforo de datos del taller de IA" loading="lazy"/>
         <div class="demo-body"><h3>Taller de IA: el semáforo de datos</h3>
           <p>Una muestra del taller: toca una situación y mira si se puede meter en la IA, y copia tres instrucciones listas para usar en el trabajo diario.</p>
           <div class="actions"><a class="btn primary" href="../demos/semaforo-ia/"><i data-lucide="play"></i>Abrir la demo</a></div></div></article>
-      <article class="demo"><div class="ph"><i data-lucide="phone-call"></i></div>
+      <article class="demo"><img src="../img/demos-thumbs/recepcionista-voz.jpg" alt="Demo: Recepcionista de voz con IA" loading="lazy"/>
         <div class="demo-body"><h3>Recepcionista de voz con IA</h3>
           <p>Escucha cómo atiende una llamada: toma una reserva en un restaurante o una cita en una clínica, y te envía el resumen por WhatsApp. Simulada, con datos ficticios.</p>
           <div class="actions"><a class="btn primary" href="../demos/recepcionista-voz/#restaurante"><i data-lucide="play"></i>Restaurante</a><a class="btn ghost" href="../demos/recepcionista-voz/#clinica">Clínica</a></div></div></article>
@@ -679,39 +683,52 @@ def build_page():
     open(os.path.join(ROOT, "servicios", "index.html"), "w", encoding="utf-8").write(fill(page))
 
 # ───────────────────────── resumen en el portafolio ─────────────────────────
-def build_portfolio_summary():
-    cards = "".join(f"""
-        <a class="svc-mini fade-in" href="servicios/#srv-{s['id']}">
-          <span class="service-icon" style="margin:0 0 .8rem"><i data-lucide="{s['icon']}" class="lucide" style="width:1.2rem;height:1.2rem"></i></span>
-          <span class="svc-mini-name">{s['name']}</span>
-          <span class="svc-mini-price">{P(s['eur'], s['mxn'])}</span>
-        </a>""" for s in S)
-    block = f"""  <section id="servicios">
-    <div class="container">
-      <div class="text-center mb-5 fade-in">
-        <div class="section-chip mx-auto"><i data-lucide="tag" class="lucide"></i> Servicios y precios</div>
-        <h2 class="section-title">Todo lo digital de tu negocio,<br><em>en un mismo sitio</em></h2>
-        <p style="color:var(--muted);font-size:.95rem;max-width:560px;margin:.8rem auto 0;line-height:1.8">Precios de partida, qué incluye cada servicio y qué pagas aparte, con demos para probar.</p>
-        <div class="country-toggle" role="group" aria-label="País">
-          <button type="button" data-country="es" class="active">🇪🇸 España · €</button>
-          <button type="button" data-country="mx">🇲🇽 México · MXN</button>
-        </div>
-        <div class="tax-note js-tax">Todos los precios son + IVA (o + impuestos en otros países).</div>
-      </div>
-      <div class="svc-mini-grid">{cards}
-      </div>
-      <p class="text-center fade-in" style="margin-top:2.5rem">
-        <a href="servicios/" class="btn-main" style="display:inline-flex">Ver servicios, qué incluyen y packs <i data-lucide="arrow-right" class="lucide"></i></a>
-      </p>
-    </div>
-  </section>
+HOME_FAMS = [
+  ("Tu sitio en internet", "Webs, tiendas y apps", [
+    ("Landing de una página", "Para presentar el negocio y recibir mensajes.", "desde [[d_landing.eur]]", "pago único", "Ver ejemplo", "https://melinarivera.github.io/pinata/"),
+    ("Web completa", "Varias secciones, blog y formularios conectados.", "desde [[d_web.eur]]", "pago único", "Ver ejemplo", "https://melinarivera.github.io/pyme-efsun/"),
+    ("Tienda online", "Catálogo, carrito y pagos.", "desde [[d_tienda.eur]]", "pago único", "Ver ejemplo", "https://melinarivera.github.io/tienda-esoterica/"),
+    ("App o SaaS a medida", "Tu idea o tu herramienta interna, desde la primera versión.", "desde [[d_app.eur]]", "por proyecto", "Ver ejemplo", "https://www.tesovia.com"),
+  ]),
+  ("IA que atiende por ti", "WhatsApp, voz y automatizaciones", [
+    ("Asistente de WhatsApp con IA", "Contesta, informa y agenda. Tú ves todo lo que dice.", "desde [[d_ia.eur]]", "+ [[d_ia_cuota.eur]]/mes", "Ver demo", "demos/asistente-whatsapp/#estetica"),
+    ("Recepcionista de voz con IA", "Coge el teléfono cuando tú no puedes y te pasa el resumen.", "desde [[d_voz.eur]]", "+ [[d_voz_cuota.eur]]/mes", "Ver demo", "demos/recepcionista-voz/#restaurante"),
+    ("Automatizaciones", "Lo que haces a mano cada semana, hecho solo.", "desde [[d_automatizacion.eur]]", "por automatización", "Ver demo", "https://melinarivera.github.io/Nexo_Facturas/"),
+    ("Formación en IA para tu equipo", "Taller práctico con lo que sí se puede meter en la IA y lo que no.", "desde [[d_formacion_ia.eur]]", "por sesión", "Ver demo", "demos/semaforo-ia/"),
+  ]),
+  ("Orden dentro del negocio", "CRM y mantenimiento", [
+    ("CRM y planners a medida", "Clientes, reservas y tareas en un sitio, no en cuatro Excels.", "desde [[d_crm.eur]]", "pago único", "Ver demo", "demos/crm-restaurante/"),
+    ("Mantenimiento", "Copias, actualizaciones y un informe claro cada mes.", "desde [[d_mantenimiento.eur]]", "al mes", "Ver demo", "demos/informe-mantenimiento/"),
+  ]),
+  ("Que te vean y te reconozcan", "Marca, diseño y visibilidad", [
+    ("Ficha de Google y SEO local", "Para salir cuando te buscan cerca.", "desde [[d_seo_local.eur]]", "pago único", "Ver demo", "demos/ficha-google/"),
+    ("Identidad visual básica", "Logo, colores, tipografías y plantillas.", "desde [[d_identidad.eur]]", "por proyecto", "Ver demo", "demos/identidad-visual/"),
+    ("Diseño UX/UI", "Ver y tocar tu web o app antes de programarla.", "desde [[d_uxui.eur]]", "por proyecto", "Ver demo", "demos/prototipo-ux/"),
+    ("Redes sociales", "Calendario, diseños y respuesta a reseñas.", "desde [[d_redes.eur]]", "al mes", "Ver ejemplo", IG),
+    ("Vídeos con avatar IA", "Un presentador virtual que explica tus servicios.", "desde [[d_avatar_video.eur]]", "por vídeo", "Ver demo", "demos/avatar-video/"),
+  ]),
+]
 
-"""
+def build_portfolio_summary():
+    """Reescribe la lista de precios del inicio (index.html) entre las marcas PRECIOS."""
+    out = []
+    for title, sub, items in HOME_FAMS:
+        rows = "".join(
+            f'    <div class="row"><div class="nm">{html.escape(n)}<small>{html.escape(d)}</small></div>'
+            f'<div class="pr">{pr}<em>{per}</em></div>'
+            f'<a class="dm" href="{href}"{chr(32)+chr(116)+"arget=" + chr(34) + "_blank" + chr(34) + " rel=" + chr(34) + "noopener" + chr(34) if href.startswith("http") else ""}>'
+            f'<i data-lucide="{"external-link" if lbl.startswith("Ver ejemplo") else "play"}"></i>{lbl}</a></div>\n'
+            for n, d, pr, per, lbl, href in items)
+        out.append(f'  <div class="fam">\n    <h3>{title} <span>{sub}</span></h3>\n{rows}  </div>')
+    block = "\n".join(out)
     p = os.path.join(ROOT, "index.html")
     s = open(p, encoding="utf-8").read()
-    i = s.index('  <section id="servicios">'); j = s.index("  <!-- ===== CONTACTO ===== -->", i)
-    s = s[:i] + fill(block) + s[j:]
-    open(p, "w", encoding="utf-8").write(s)
+    a, b = "<!-- PRECIOS:inicio -->", "<!-- PRECIOS:fin -->"
+    if a not in s or b not in s:
+        print("aviso: no encuentro las marcas de precios en index.html; no se toca el inicio")
+        return
+    i = s.index(a) + len(a); j = s.index(b)
+    open(p, "w", encoding="utf-8").write(s[:i] + "\n" + fill(block) + "\n  " + s[j:])
 
 if __name__ == "__main__":
     build_page()
