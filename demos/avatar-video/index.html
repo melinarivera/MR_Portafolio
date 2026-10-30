@@ -1,22 +1,97 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex">
-<title>Demo: vídeo con avatar IA · MR</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="theme-color" content="#09172E"/>
+<meta name="robots" content="noindex"/>
+<link rel="icon" href="../../marca/mr-favicon.svg" type="image/svg+xml"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<title>Demo · Vídeo con avatar IA</title>
+<meta name="description" content="Un presentador virtual creado con IA que explica tus servicios, sin cámara ni estudio. Mira cómo queda y qué se necesita para hacerlo."/>
 <style>
-:root{color-scheme:dark}
-*{box-sizing:border-box}
-body{margin:0;min-height:100svh;background:#0a0d16;color:#eef1f6;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;flex-direction:column;align-items:center;gap:16px;padding:20px 16px 32px}
-h1{font-size:1.15rem;margin:4px 0 0;text-align:center}
-p{margin:0;color:#aab3c5;font-size:.95rem;text-align:center;max-width:34rem;line-height:1.45}
-.v{width:min(100%,360px);aspect-ratio:9/16;border:0;border-radius:14px;background:#000}
+:root{--night:#09172E;--blue:#2A4A8C;--silver:#C8CDD4;--paper:#F4F6F9;--ink:#141A2B;--muted:#56607A;--rule:#DCE1E9;--gold:#C8912E;color-scheme:light}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+svg.lucide{width:1em;height:1em;stroke-width:1.9;flex:none}
+img{display:block;max-width:100%}
+:focus-visible{outline:3px solid #9CB8E0;outline-offset:2px}
+.wrap{max-width:980px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-left)) 52px}
+header.top{background:var(--night);color:#EEF1F6}
+header.top .wrap{padding-top:18px;padding-bottom:26px}
+.back{color:var(--silver);font-weight:600;text-decoration:none;font-size:14.5px;display:inline-flex;gap:6px;align-items:center;min-height:44px}
+h1{font-family:Fraunces,Georgia,serif;font-variation-settings:"SOFT" 14,"WONK" 1;font-size:clamp(26px,4.6vw,38px);line-height:1.12;margin-top:4px;font-weight:600}
+.lead{color:var(--silver);max-width:60ch;margin-top:8px}
+.tag{display:inline-block;margin-top:14px;font-size:13px;color:#E8CFA0;border:1px solid rgba(200,145,46,.46);border-radius:999px;padding:4px 12px}
+.stage{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:32px;align-items:start;margin-top:26px}
+@media(max-width:820px){.stage{grid-template-columns:1fr;gap:22px}}
+.player{background:#0B1120;border-radius:22px;padding:10px;box-shadow:0 20px 44px -22px rgba(9,23,46,.6)}
+.player iframe{width:100%;aspect-ratio:9/16;border:0;border-radius:15px;background:#000;display:block}
+.cap{color:var(--muted);font-size:13px;text-align:center;margin-top:10px}
+h2{font-family:Fraunces,Georgia,serif;font-variation-settings:"SOFT" 14,"WONK" 1;font-size:23px;font-weight:600;margin-bottom:10px}
+.card{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:18px 20px}
+.card+.card{margin-top:16px}
+ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+li{display:flex;gap:10px;font-size:15.5px}
+li svg{color:var(--gold);margin-top:5px;width:15px;height:15px}
+.steps{counter-reset:s;display:flex;flex-direction:column;gap:12px}
+.st{display:flex;gap:13px}
+.st i.n{width:28px;height:28px;border-radius:50%;background:var(--night);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700;font-style:normal;flex:none}
+.st b{display:block;font-size:15.5px}
+.st small{color:var(--muted);font-size:14px}
+.price{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px;padding-top:14px;border-top:1px solid var(--rule);color:var(--muted);font-size:14.5px}
+.price b{color:var(--ink);font-family:Fraunces,serif;font-size:17px}
+.note{color:var(--muted);font-size:13.5px;margin-top:16px;max-width:64ch}
+.foot{margin-top:30px;color:var(--muted);font-size:14.5px;max-width:62ch}
+.foot a{color:var(--blue);font-weight:600}
 </style>
 </head>
 <body>
-<h1>Así se ve un vídeo con avatar IA</h1>
-<p>Este vídeo lo presenta un avatar con la cara y la voz de Melina, creado con inteligencia artificial. Tu negocio puede tener los suyos sin ponerse delante de la cámara.</p>
-<iframe class="v" src="https://app.heygen.com/embeds/37c991beba5e436fa6402971bb6dc4fb" title="Vídeo con avatar de IA" allow="fullscreen; encrypted-media" allowfullscreen></iframe>
-</body>
-</html>
+<header class="top"><div class="wrap">
+  <a class="back" href="../../servicios/#servicios"><i data-lucide="arrow-left"></i>Servicios</a>
+  <h1>Un presentador que no necesita cámara</h1>
+  <p class="lead">Este vídeo lo presenta un avatar con la cara y la voz de Melina, creado con inteligencia artificial a partir de un guion. Tu negocio puede tener los suyos sin ponerse nunca delante de la cámara.</p>
+  <span class="tag">Vídeo real hecho con IA · dura menos de un minuto</span>
+</div></header>
+
+<main class="wrap">
+  <div class="stage">
+    <div>
+      <div class="player">
+        <iframe src="https://app.heygen.com/embeds/37c991beba5e436fa6402971bb6dc4fb" title="Vídeo presentado por un avatar de IA" allow="fullscreen; encrypted-media" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="cap">Dale al play · con sonido</p>
+    </div>
+    <div>
+      <div class="card">
+        <h2>Para qué sirve</h2>
+        <ul>
+          <li><i data-lucide="check"></i><span>Explicar un servicio o resolver las preguntas de siempre, sin repetirlas una por una.</span></li>
+          <li><i data-lucide="check"></i><span>Publicar en Reels, TikTok o en la web con la misma imagen todas las semanas.</span></li>
+          <li><i data-lucide="check"></i><span>Presentar novedades, promociones o un curso sin montar un estudio.</span></li>
+          <li><i data-lucide="check"></i><span>Grabar en varios idiomas con la misma voz.</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Cómo se hace</h2>
+        <div class="steps">
+          <div class="st"><i class="n">1</i><span><b>Me cuentas de qué va</b><small>Un servicio, una promoción, una duda que te repiten.</small></span></div>
+          <div class="st"><i class="n">2</i><span><b>Escribo el guion</b><small>Corto, claro y con una sola llamada a la acción. Tú lo apruebas antes de grabar.</small></span></div>
+          <div class="st"><i class="n">3</i><span><b>Se genera el vídeo</b><small>Avatar, voz natural, subtítulos y el formato de cada red.</small></span></div>
+          <div class="st"><i class="n">4</i><span><b>Lo recibes y es tuyo</b><small>El archivo es de tu negocio y lo publicas donde quieras.</small></span></div>
+        </div>
+        <div class="price"><span>Un vídeo suelto <b>desde 90 €</b></span><span>Pack de 4 al mes <b>desde 320 €</b></span><span>Tu propio avatar <b>desde +120 €</b></span></div>
+      </div>
+      <p class="note">Con tu permiso también se puede crear un avatar con tu cara y tu voz, para que quien te vea reconozca a la persona del negocio. Las licencias de la herramienta van incluidas en el precio.</p>
+    </div>
+  </div>
+
+  <p class="foot">¿Quieres los vídeos de tu negocio? <a href="https://wa.me/34711593111?text=Hola%20Melina%2C%20me%20interesan%20los%20v%C3%ADdeos%20con%20avatar%20IA">Escríbeme por WhatsApp</a> o <a href="../../servicios/#servicios">mira los servicios</a>.</p>
+</main>
+<script>
+window.lucide&&lucide.createIcons();
+(function(){try{var r=document.referrer;if(r.indexOf('/kit-ventas/')<0)return;var a=document.querySelector('a.back');if(!a)return;a.href=r;var done=false;a.childNodes.forEach(function(n){if(!done&&n.nodeType===3&&n.nodeValue.trim()){n.nodeValue='Volver al kit';done=true;}});}catch(e){}})();
+</script>
+</body></html>

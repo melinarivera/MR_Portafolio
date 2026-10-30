@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
 :root{
   --bg:#F7F3EE; --card:#FFFFFF; --ink:#2A211C; --muted:#7A6A60; --line:#E8DED4;
@@ -39,7 +39,7 @@ a{color:inherit}
 /* main */
 main{padding:24px 28px 90px;min-width:0}
 .top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:18px}
-.top h1{font-size:24px;letter-spacing:-.02em}
+.top h1{font-family:Fraunces,Georgia,serif;font-variation-settings:"SOFT" 14,"WONK" 1;font-weight:600;font-size:25px;letter-spacing:-.01em}
 .top p{color:var(--muted);font-size:14px}
 .demo-banner{background:var(--accent-soft);border:1px solid #EFCDB8;color:#6B3216;border-radius:12px;padding:10px 14px;font-size:13px;margin-bottom:18px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .demo-banner a{font-weight:700}
@@ -319,7 +319,7 @@ window.addEventListener('hashchange', route);
 
 const header = (t,sub,actions='') => `
   <div class="mob-brand"><div class="brand-mark">C</div><div><b>Comanda CRM</b><br><small style="color:var(--muted)">Taberna La Encina · demo</small></div></div>
-  <div class="demo-banner">🧪 <span><b>Demo interactiva</b> con datos ficticios<span class="hide-sm">. Prueba a crear reservas, cerrar mesas o lanzar una campaña: todo se guarda solo en tu navegador</span>.</span> <a href="../../servicios/">← Volver a servicios</a> <button type="button" data-act="reset" style="font-weight:700;text-decoration:underline">Restablecer datos</button></div>
+  <div class="demo-banner"><span><b>Demo interactiva</b> con datos ficticios<span class="hide-sm">. Prueba a crear reservas, cerrar mesas o lanzar una campaña: todo se guarda solo en tu navegador</span>.</span> <a href="../../servicios/">Volver a servicios</a> <button type="button" data-act="reset" style="font-weight:700;text-decoration:underline">Restablecer datos</button></div>
   <div class="top"><div><h1>${t}</h1><p>${sub}</p></div><div class="toolbar" style="margin:0">${actions}</div></div>`;
 
 /* ---------- PANEL ---------- */
@@ -339,7 +339,7 @@ function renderPanel(){
   const dias7 = [...Array(7)].map((_,i)=>{ const f = iso(addDays(today(),i)); return { f, pax: db.reservas.filter(r=>r.fecha===f && r.estado!=='cancelada').reduce((s,r)=>s+r.pax,0) }; });
   const maxPax = Math.max(...dias7.map(d=>d.pax), 1);
 
-  $('#main').innerHTML = header('Buenos días 👋', fmtDay(T), `<button class="btn primary" data-act="newRes">${ico('plus')} Nueva reserva</button>`) + `
+  $('#main').innerHTML = header('Buenos días', fmtDay(T), `<button class="btn primary" data-act="newRes">${ico('plus')} Nueva reserva</button>`) + `
   <div class="grid kpis">
     <div class="card kpi"><div class="lbl">Comensales hoy</div><div class="val">${paxHoy}</div><div class="sub">${hoy.length} reservas · ${Math.round(paxHoy/(CAPACIDAD*2)*100)} % ocupación</div></div>
     <div class="card kpi"><div class="lbl">Facturación del mes</div><div class="val">${eur(factMes)}</div><div class="sub">Ticket medio ${eur2(paxMes?factMes/paxMes:0)} / persona</div></div>
@@ -358,7 +358,7 @@ function renderPanel(){
         <div class="list">${cumple.length ? cumple.map(({c,d})=>`<div class="li" data-client="${c.id}" style="cursor:pointer"><div class="avatar">${initials(c)}</div><div class="main"><b>${esc(c.nombre)} ${esc(c.apellidos.split(' ')[0])}</b><span>${d===0?'¡Hoy!':d===1?'Mañana':'En '+d+' días'}</span></div>${c.rgpd?`<a class="btn sm wa" target="_blank" rel="noopener" href="${waLink(TEMPLATES.cumple.txt.replace('{nombre}',c.nombre))}">${ico('wa')} Felicitar</a>`:'<span class="badge seg-Dormido">Sin consentimiento</span>'}</div>`).join('') : '<div class="empty">Ningún cumpleaños esta semana.</div>'}</div>
       </div>
       <div class="card"><h3>Clientes para recuperar <a href="#campanas" style="font-size:12.5px;color:var(--accent)">Campaña →</a></h3>
-        <div class="list">${recuperar.map(({c,s})=>`<div class="li" data-client="${c.id}" style="cursor:pointer"><div class="avatar">${initials(c)}</div><div class="main"><b>${esc(c.nombre)} ${esc(c.apellidos.split(' ')[0])}</b><span>${s.n} visitas · ${eur(s.gasto)} · hace ${s.dias} días</span></div></div>`).join('') || '<div class="empty">Nadie a quien recuperar 🎉</div>'}</div>
+        <div class="list">${recuperar.map(({c,s})=>`<div class="li" data-client="${c.id}" style="cursor:pointer"><div class="avatar">${initials(c)}</div><div class="main"><b>${esc(c.nombre)} ${esc(c.apellidos.split(' ')[0])}</b><span>${s.n} visitas · ${eur(s.gasto)} · hace ${s.dias} días</span></div></div>`).join('') || '<div class="empty">Nadie a quien recuperar: todos han venido hace poco</div>'}</div>
       </div>
     </div>
   </div>`;
@@ -397,7 +397,7 @@ function resCard(r){
   return `<div class="res">
     <div class="res-h"><div class="time">${r.hora}</div><div class="main" data-client="${c.id}" style="cursor:pointer"><b>${esc(c.nombre)} ${esc(c.apellidos)}</b><span>${r.pax} pax · Mesa ${r.mesa} · ${esc(r.origen)}</span></div><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end"><span class="badge b-${r.estado}">${ESTADOS[r.estado]}</span><span class="badge seg-${s.seg}">${s.seg}</span></div></div>
     ${c.alergenos.length?`<div class="res-n"><span class="badge alg">⚠️ ${esc(c.alergenos.join(', '))}</span></div>`:''}
-    ${r.notas?`<div class="res-n">📝 ${esc(r.notas)}</div>`:''}
+    ${r.notas?`<div class="res-n">Nota: ${esc(r.notas)}</div>`:''}
     ${acts.length?`<div class="res-a">${acts.join('')}</div>`:''}
   </div>`;
 }
@@ -447,7 +447,7 @@ function openClient(id){
     <div style="display:flex;gap:12px;align-items:center;padding-right:40px"><div class="avatar" style="width:48px;height:48px;font-size:17px">${initials(c)}</div><div><h2>${esc(c.nombre)} ${esc(c.apellidos)}</h2><span class="badge seg-${s.seg}">${s.seg}</span> <span style="color:var(--muted);font-size:12.5px">Cliente desde ${fmtDate(c.alta)}</span></div></div>
     <div class="stats3"><div><small>Visitas</small><b>${s.n}</b></div><div><small>Gasto total</small><b>${eur(s.gasto)}</b></div><div><small>Ticket medio</small><b>${eur(s.ticket)}</b></div></div>
     ${c.alergenos.length?`<div class="warn">⚠️ Alérgenos: ${esc(c.alergenos.join(', '))}</div>`:''}
-    <div class="sec"><h4>Contacto</h4><div class="card" style="padding:12px;font-size:13.5px;line-height:1.8">📞 ${esc(c.tel)}<br>✉️ ${esc(c.email||'—')}<br>🎂 ${dd} de ${new Date(2000,mm-1,1).toLocaleDateString('es-ES',{month:'long'})}<br>${c.rgpd?`✅ Acepta comunicaciones comerciales (desde ${fmtDate(c.rgpdFecha)})`:'🚫 No acepta comunicaciones comerciales'}</div></div>
+    <div class="sec"><h4>Contacto</h4><div class="card" style="padding:12px;font-size:13.5px;line-height:1.8">Tel. ${esc(c.tel)}<br>Email ${esc(c.email||'—')}<br>Cumple ${dd} de ${new Date(2000,mm-1,1).toLocaleDateString('es-ES',{month:'long'})}<br>${c.rgpd?`✅ Acepta comunicaciones comerciales (desde ${fmtDate(c.rgpdFecha)})`:'No acepta comunicaciones comerciales'}</div></div>
     ${c.notas?`<div class="sec"><h4>Preferencias</h4><div class="card" style="padding:12px;font-size:13.5px">${esc(c.notas)}</div></div>`:''}
     <div class="sec"><h4>Próximas reservas</h4>${futuras.length?futuras.map(r=>`<div class="card" style="padding:10px 12px;margin-bottom:6px;font-size:13.5px;display:flex;justify-content:space-between;gap:8px"><span>${fmtDate(r.fecha)} · ${r.hora} · ${r.pax} pax</span><span class="badge b-${r.estado}">${ESTADOS[r.estado]}</span></div>`).join(''):'<div style="color:var(--muted);font-size:13px">Sin reservas próximas.</div>'}</div>
     <div class="sec"><h4>Últimas visitas</h4><div class="card" style="padding:4px 12px">${c.visitas.slice(-6).reverse().map(v=>`<div class="li" style="padding:8px 0"><div class="main"><b style="font-size:13.5px">${fmtDate(v.fecha)}</b><span>${v.pax} comensales</span></div><b style="font-size:13.5px">${eur2(v.importe)}</b></div>`).join('')}</div></div>

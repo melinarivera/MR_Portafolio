@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
 /* Layout: teléfono con el chat a la izquierda, "lo que pasa por detrás" a la derecha */
 :root{
@@ -25,7 +25,7 @@ button{cursor:pointer;border:none;background:none}
 a{color:var(--accent)}
 .wrap{max-width:1180px;margin:0 auto;padding-block:22px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:16px}
-.top h1{font-size:clamp(22px,3vw,30px);letter-spacing:-.02em;text-wrap:balance}
+.top h1{font-family:Fraunces,Georgia,serif;font-variation-settings:"SOFT" 14,"WONK" 1;font-weight:600;font-size:clamp(23px,3vw,31px);letter-spacing:-.01em;text-wrap:balance}
 .top p{color:var(--muted);max-width:640px;margin-top:4px}
 .back{font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
 .note{background:var(--warn-soft);color:#6B3D00;border-radius:12px;padding:10px 14px;font-size:13.5px;margin-bottom:16px}
@@ -71,7 +71,12 @@ a{color:var(--accent)}
 .ficha .empty{color:#A0AAB4;font-weight:500}
 .log{display:flex;flex-direction:column;gap:8px;max-height:270px;overflow-y:auto}
 .ev{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;padding:8px 10px;border-radius:10px;background:#F6F8FA}
-.ev .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex:none;font-size:14px;background:var(--accent-soft)}
+.ev .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex:none;background:var(--accent-soft)}
+.ev .ic svg{width:15px;height:15px;stroke-width:2}
+.tab{display:inline-flex;align-items:center;gap:8px}
+.back{display:inline-flex;align-items:center;gap:6px}
+.back svg{width:15px;height:15px;stroke-width:2}
+.tab svg{width:16px;height:16px;stroke-width:2}
 .ev.urg .ic{background:var(--bad-soft)}
 .ev small{display:block;color:var(--muted);font-size:12px}
 .ev-empty{color:var(--muted);font-size:13.5px}
@@ -84,6 +89,7 @@ a{color:var(--accent)}
 @media (max-width:900px){.grid{grid-template-columns:1fr}.screen{height:620px}}
 @media (max-width:420px){.phone{border-radius:0;padding:0;box-shadow:none}.screen{border-radius:14px;height:600px}.costs{grid-template-columns:1fr 1fr}}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -92,12 +98,12 @@ a{color:var(--accent)}
       <h1>Asistente de WhatsApp con IA</h1>
       <p>Responde dudas, agenda citas y deja cada contacto registrado en tu CRM, también a las 23:00 de un domingo. Elige un negocio y escríbele como lo haría un cliente.</p>
     </div>
-    <a class="back" href="../../servicios/#srv-ia">← Volver a servicios</a>
+    <a class="back" href="../../servicios/#srv-ia"><i data-lucide="arrow-left"></i>Volver a servicios</a>
   </div>
   <div class="note">Demo simulada con datos ficticios: no envía mensajes reales ni guarda nada. En la versión real funciona en el WhatsApp de tu negocio con IA (Claude) y tu calendario.</div>
   <div class="tabs" role="tablist">
-    <button class="tab on" role="tab" aria-selected="true" data-biz="estetica" id="tab-estetica">💅 Centro de estética</button>
-    <button class="tab" role="tab" aria-selected="false" data-biz="extranjeria" id="tab-extranjeria">🗂️ Consultoría de extranjería</button>
+    <button class="tab on" role="tab" aria-selected="true" data-biz="estetica" id="tab-estetica"><i data-lucide="flower-2"></i>Centro de estética</button>
+    <button class="tab" role="tab" aria-selected="false" data-biz="extranjeria" id="tab-extranjeria"><i data-lucide="scale"></i>Consultoría de extranjería</button>
   </div>
   <div class="grid">
     <div class="phone"><div class="screen">
@@ -143,7 +149,7 @@ const BIZ = {
   estetica: {
     name:'Estética Alba', av:'A',
     campos:[['nombre','Nombre'],['servicio','Servicio'],['cita','Cita'],['origen','Origen'],['consent','Consentimiento RGPD'],['estado','Estado']],
-    start(){ say('¡Hola! 👋 Soy el asistente de Estética Alba. Te ayudo a reservar, ver precios u horarios. ¿Qué necesitas?', MENU_E); set('origen','WhatsApp'); set('estado','Nuevo contacto'); ev('👤','Contacto nuevo en el CRM','Origen: WhatsApp'); },
+    start(){ say('¡Hola! 👋 Soy el asistente de Estética Alba. Te ayudo a reservar, ver precios u horarios. ¿Qué necesitas?', MENU_E); set('origen','WhatsApp'); set('estado','Nuevo contacto'); ev('user-round-plus','Contacto nuevo en el CRM','Origen: WhatsApp'); },
     intents:[
       [/precio|cu[aá]nto|tarifa|cuesta/i, 'precios'], [/cita|reserv|hueco|turno|agend/i, 'reservar'],
       [/horario|abr|d[oó]nde|direcci|ubica/i, 'horario'], [/persona|humano|hablar|llamar/i, 'persona'],
@@ -152,7 +158,7 @@ const BIZ = {
   extranjeria: {
     name:'Puente Extranjería', av:'P',
     campos:[['nombre','Nombre'],['tramite','Trámite'],['tiempo','Tiempo en España'],['urgencia','Urgencia'],['cita','Consulta'],['consent','Consentimiento RGPD']],
-    start(){ say('Hola 👋 Soy el asistente de Puente Extranjería. Te ayudo a pedir tu primera consulta y a saber qué traer.\n\nNo doy asesoramiento legal: eso lo hace siempre un abogado del despacho.', MENU_X); set('urgencia','—'); ev('👤','Contacto nuevo en el CRM','Origen: WhatsApp'); },
+    start(){ say('Hola 👋 Soy el asistente de Puente Extranjería. Te ayudo a pedir tu primera consulta y a saber qué traer.\n\nNo doy asesoramiento legal: eso lo hace siempre un abogado del despacho.', MENU_X); set('urgencia','—'); ev('user-round-plus','Contacto nuevo en el CRM','Origen: WhatsApp'); },
     intents:[
       [/consulta|cita|abogad|ayuda|tr[aá]mite|arraigo|nacionalidad|reagrup|renov/i, 'consulta'],
       [/document|papel|traer|llevar|qu[eé] necesito/i, 'docs'], [/expediente|estado|c[oó]mo va|EXP-/i, 'estado'],
@@ -195,8 +201,9 @@ function paintFicha(){
 function ev(ic, title, sub, urg){
   const box = $('#log'); const e0 = box.querySelector('.ev-empty'); if (e0) e0.remove();
   const e = document.createElement('div'); e.className = 'ev' + (urg ? ' urg' : '');
-  e.innerHTML = `<div class="ic">${ic}</div><div><b>${esc(title)}</b>${sub ? `<small>${esc(sub)}</small>` : ''}</div>`;
+  e.innerHTML = `<div class="ic"><i data-lucide="${ic}"></i></div><div><b>${esc(title)}</b>${sub ? `<small>${esc(sub)}</small>` : ''}</div>`;
   box.prepend(e);
+  if (window.lucide) lucide.createIcons();
 }
 
 /* ---------- conversación ---------- */
@@ -220,8 +227,8 @@ const askName = next => { say('¿A nombre de quién la reservo?'); step = t => {
 const askConsent = next => {
   say('Para gestionar tu cita guardamos tu nombre y teléfono. ¿Aceptas la política de privacidad?', ['Acepto','No acepto']);
   step = t => { step = null;
-    if (/^acepto|^s[ií]/i.test(t)) { set('consent','Sí · ' + new Date().toLocaleDateString('es-ES')); ev('🔒','Consentimiento registrado','Fecha y texto aceptado guardados'); next(); }
-    else { set('consent','No'); say('Sin problema. Puedes llamarnos y te atendemos por teléfono. ¡Gracias!', ['Volver al menú']); ev('🔒','Sin consentimiento','No se guardan datos de la cita'); }
+    if (/^acepto|^s[ií]/i.test(t)) { set('consent','Sí · ' + new Date().toLocaleDateString('es-ES')); ev('shield-check','Consentimiento registrado','Fecha y texto aceptado guardados'); next(); }
+    else { set('consent','No'); say('Sin problema. Puedes llamarnos y te atendemos por teléfono. ¡Gracias!', ['Volver al menú']); ev('shield-check','Sin consentimiento','No se guardan datos de la cita'); }
   };
 };
 
@@ -230,7 +237,7 @@ const FLOWS = {
     menu(){ say('¿En qué más te ayudo?', MENU_E); },
     precios(){ say('Estos son algunos precios:\n\n' + PRECIOS_E.map(([s,p]) => `• ${s}: *${p}*`).join('\n') + '\n\n¿Quieres reservar alguno?', ['Reservar cita','Volver al menú']); },
     horario(){ say('Abrimos de lunes a viernes de 10:00 a 20:00 y los sábados de 10:00 a 14:00.\n📍 Calle del Ejemplo 12, Madrid (a 3 min del metro).', ['Reservar cita','Volver al menú']); },
-    persona(){ say('Le paso tu mensaje a Alba y te escribe en cuanto pueda (normalmente en menos de 1 hora en horario de apertura).', ['Volver al menú']); set('estado','Pendiente de respuesta del equipo'); ev('🔔','Aviso al equipo','Notificación en el móvil de Alba', true); },
+    persona(){ say('Le paso tu mensaje a Alba y te escribe en cuanto pueda (normalmente en menos de 1 hora en horario de apertura).', ['Volver al menú']); set('estado','Pendiente de respuesta del equipo'); ev('bell','Aviso al equipo','Notificación en el móvil de Alba', true); },
     reservar(){
       say('¡Genial! ¿Qué servicio quieres?', PRECIOS_E.map(p => p[0]));
       step = t => { step = null; set('servicio', t);
@@ -242,28 +249,28 @@ const FLOWS = {
             askName(nombre => askConsent(() => {
               set('cita', data._cita); set('estado','Cita confirmada');
               say(`Listo, ${nombre} ✅\n\n*${data.servicio}*\n🗓️ ${data._cita}\n📍 Calle del Ejemplo 12, Madrid\n\nTe recordaré la cita el día antes. Si necesitas cambiarla, escríbeme aquí.`, ['Volver al menú']);
-              ev('🗓️','Cita creada en el calendario', data._cita);
-              ev('⏰','Recordatorio programado','24 h antes · 0,017 € (Meta)'); costWa += META_UTILITY; paintCosts();
-              ev('⭐','Petición de reseña programada','2 h después de la cita, con enlace a Google');
+              ev('calendar-check','Cita creada en el calendario', data._cita);
+              ev('alarm-clock','Recordatorio programado','24 h antes · 0,017 € (Meta)'); costWa += META_UTILITY; paintCosts();
+              ev('star','Petición de reseña programada','2 h después de la cita, con enlace a Google');
             }));
           };
         };
       };
     },
-    fallback(){ say('Con eso no te puedo ayudar yo, pero se lo paso al equipo para que te responda. Mientras, ¿quieres ver precios o reservar?', MENU_E); ev('🔔','Pregunta sin respuesta → equipo','Se guarda para mejorar el asistente'); },
+    fallback(){ say('Con eso no te puedo ayudar yo, pero se lo paso al equipo para que te responda. Mientras, ¿quieres ver precios o reservar?', MENU_E); ev('bell','Pregunta sin respuesta → equipo','Se guarda para mejorar el asistente'); },
   },
   extranjeria: {
     menu(){ say('¿En qué más te ayudo?', MENU_X); },
-    docs(){ say('Para la primera consulta trae, si los tienes:\n\n• Pasaporte o documento de identidad\n• Certificado de empadronamiento\n• Cualquier carta, requerimiento o resolución de Extranjería\n\nEl abogado te dirá qué más hace falta según tu caso.', ['Pedir una consulta','Volver al menú']); ev('📄','Lista de documentos enviada','Plantilla aprobada por el despacho'); },
+    docs(){ say('Para la primera consulta trae, si los tienes:\n\n• Pasaporte o documento de identidad\n• Certificado de empadronamiento\n• Cualquier carta, requerimiento o resolución de Extranjería\n\nEl abogado te dirá qué más hace falta según tu caso.', ['Pedir una consulta','Volver al menú']); ev('file-text','Lista de documentos enviada','Plantilla aprobada por el despacho'); },
     estado(){
       say('Escríbeme tu número de expediente del despacho (por ejemplo: EXP-2026-014).');
       step = t => { step = null;
         const m = t.toUpperCase().match(/EXP-\d{4}-\d{2,4}/);
-        if (m) { say(`*${m[0]}*\nEstado: en trámite en la Oficina de Extranjería.\nÚltima novedad: presentado el 12 de octubre.\n\nSi te llega una carta nueva, mándanos una foto por aquí.`, ['Volver al menú']); ev('🔎','Consulta de expediente en el CRM', m[0] + ' · solo datos de estado'); }
+        if (m) { say(`*${m[0]}*\nEstado: en trámite en la Oficina de Extranjería.\nÚltima novedad: presentado el 12 de octubre.\n\nSi te llega una carta nueva, mándanos una foto por aquí.`, ['Volver al menú']); ev('search','Consulta de expediente en el CRM', m[0] + ' · solo datos de estado'); }
         else { say('No encuentro ese número. Revisa que tenga el formato EXP-2026-014 o pide que te llame una persona.', ['Estado de mi expediente','Hablar con una persona']); }
       };
     },
-    persona(){ say('Le aviso al equipo y te contactan hoy en horario de despacho (L–V de 9:00 a 18:00).', ['Volver al menú']); ev('🔔','Aviso al equipo','Tarea creada para recepción', true); },
+    persona(){ say('Le aviso al equipo y te contactan hoy en horario de despacho (L–V de 9:00 a 18:00).', ['Volver al menú']); ev('bell','Aviso al equipo','Tarea creada para recepción', true); },
     consulta(){
       say('Te hago tres preguntas rápidas para que el abogado llegue preparado. ¿Sobre qué trámite es?', ['Arraigo','Reagrupación familiar','Nacionalidad','Renovación de tarjeta','Otro']);
       step = t => { step = null; set('tramite', t);
@@ -273,7 +280,7 @@ const FLOWS = {
           step = u => { step = null;
             const urg = /^s[ií]/i.test(u);
             set('urgencia', urg ? 'Alta · tiene plazo' : 'Normal');
-            if (urg) ev('🚨','Marcado como urgente','Aviso inmediato al abogado responsable', true);
+            if (urg) ev('siren','Marcado como urgente','Aviso inmediato al abogado responsable', true);
             say(`${urg ? 'Lo marco como urgente para que lo vean hoy. ' : ''}La primera consulta dura 45 minutos (precio de ejemplo: 50 €). ¿Cómo la prefieres?`, ['Presencial','Online (videollamada)']);
             step = mod => { step = null;
               const days = nextDays(2);
@@ -282,9 +289,9 @@ const FLOWS = {
                 askName(nombre => askConsent(() => {
                   set('cita', data._cita);
                   say(`Reservado, ${nombre} ✅\n\n🗓️ ${data._cita}\n📌 Trámite: ${data.tramite}\n\nPara la consulta trae pasaporte, empadronamiento y cualquier carta de Extranjería. Te recordaré la cita el día antes.`, ['Volver al menú']);
-                  ev('🗓️','Consulta creada en la agenda del despacho', data._cita);
-                  ev('📋','Resumen del caso para el abogado', `${data.tramite} · ${data.tiempo} · urgencia ${data.urgencia.toLowerCase()}`);
-                  ev('⏰','Recordatorio programado','24 h antes · 0,017 € (Meta)'); costWa += META_UTILITY; paintCosts();
+                  ev('calendar-check','Consulta creada en la agenda del despacho', data._cita);
+                  ev('clipboard-list','Resumen del caso para el abogado', `${data.tramite} · ${data.tiempo} · urgencia ${data.urgencia.toLowerCase()}`);
+                  ev('alarm-clock','Recordatorio programado','24 h antes · 0,017 € (Meta)'); costWa += META_UTILITY; paintCosts();
                 }));
               };
             };
@@ -292,7 +299,7 @@ const FLOWS = {
         };
       };
     },
-    fallback(){ say('Esa pregunta mejor la responde un abogado. ¿Te pido una consulta o prefieres que te llame una persona?', ['Pedir una consulta','Hablar con una persona']); ev('🔔','Pregunta para el abogado','Se guarda en la ficha del contacto'); },
+    fallback(){ say('Esa pregunta mejor la responde un abogado. ¿Te pido una consulta o prefieres que te llame una persona?', ['Pedir una consulta','Hablar con una persona']); ev('bell','Pregunta para el abogado','Se guarda en la ficha del contacto'); },
   },
 };
 
