@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="theme-color" content="#09172E"/>
+<link rel="icon" href="../../marca/mr-favicon.svg" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@500;700;800&family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<title>Demo · Tu marca en un minuto</title>
+<meta name="description" content="Prueba cómo se ve una identidad visual básica: logo, colores, tipografías, una publicación y una tarjeta de visita."/>
+<style>
+:root{--night:#09172E;--blue:#2A4A8C;--silver:#C8CDD4;--paper:#F4F6F9;--ink:#141A2B;--muted:#56607A;--rule:#DCE1E9;--ok:#1D7F4B;--warn:#B45309;--red:#C2362B;color-scheme:light}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+svg.lucide{width:1em;height:1em;stroke-width:1.9;flex:none}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid #9CB8E0;outline-offset:2px}
+.wrap{max-width:980px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-left)) 48px}
+header.top{background:var(--night);color:#EEF1F6}
+header.top .wrap{padding-top:18px;padding-bottom:24px}
+.back{color:var(--silver);font-weight:600;text-decoration:none;font-size:14.5px;display:inline-flex;gap:6px;align-items:center;min-height:44px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(26px,4.5vw,36px);line-height:1.15;margin-top:4px}
+.lead{color:var(--silver);max-width:62ch;margin-top:8px}
+.tag{display:inline-block;margin-top:14px;font-size:13px;color:#C8D6EE;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:4px 12px}
+h2{font-family:"Playfair Display",Georgia,serif;font-size:22px;margin:26px 0 12px}
+.card{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:16px 18px}
+.foot{margin-top:30px;color:var(--muted);font-size:14px}
+.foot a{color:var(--blue);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--rule);background:#fff;color:var(--ink);font-weight:600}
+.btn.primary{background:var(--night);color:#fff;border-color:var(--night)}
+.seg{display:inline-flex;gap:4px;background:#E7EBF2;border-radius:12px;padding:4px;margin-top:18px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;color:var(--muted);font-weight:600;padding:9px 16px;border-radius:9px;min-height:42px}
+.seg button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(9,23,46,.15)}
+.note{color:var(--muted);font-size:13.5px;margin-top:10px}
+
+.ctl{display:flex;flex-direction:column;gap:16px;margin-top:22px}
+.ctl label,.ctl .lb{font-weight:600;font-size:14.5px;display:block;margin-bottom:6px}
+.ctl input[type=text]{width:100%;min-height:48px;border:1px solid var(--rule);border-radius:12px;padding:0 14px;font:inherit;background:#fff}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opts button{min-height:46px;padding:0 16px;border-radius:12px;border:2px solid var(--rule);background:#fff;font-weight:600;color:var(--ink)}
+.opts button[aria-pressed=true]{border-color:var(--night);background:#EEF1F6}
+.dotc{width:46px;height:46px;border-radius:50%!important;padding:0!important;border:3px solid #fff!important;box-shadow:0 0 0 2px var(--rule)}
+.dotc[aria-pressed=true]{box-shadow:0 0 0 3px var(--night)}
+.kit{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:22px}
+.logo{display:flex;align-items:center;gap:14px;justify-content:center;min-height:150px;border-radius:14px;padding:18px}
+.mono{width:64px;height:64px;display:grid;place-items:center;color:#fff;font-size:26px;font-weight:700;flex:none}
+.lname{font-size:26px;line-height:1.05;font-weight:700}
+.pal{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.pal div{border-radius:12px;min-height:92px;padding:8px;font-size:11.5px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;word-break:break-all}
+.ty h4{font-size:30px;line-height:1.1;margin-bottom:6px}
+.post{aspect-ratio:1/1;border-radius:14px;padding:22px;display:flex;flex-direction:column;justify-content:space-between}
+.post .big{font-size:26px;line-height:1.1;font-weight:700}
+.post .sm{font-size:13.5px;opacity:.9}
+.post .pill{align-self:flex-start;border-radius:999px;padding:8px 16px;font-weight:700;font-size:14px}
+.bc{aspect-ratio:1.75/1;border-radius:12px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 6px 16px rgba(9,23,46,.15)}
+.bc b{font-size:22px}.bc span{font-size:13px}
+.h3s{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:10px}
+
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="back" href="../../servicios/#servicios"><i data-lucide="arrow-left"></i>Servicios</a>
+  <h1>Tu marca en un minuto</h1>
+  <p class="lead">Escribe el nombre de tu negocio, elige un estilo y un color, y mira cómo se ve una identidad visual básica: logo, colores, letras y dos piezas listas para usar.</p>
+  <span class="tag">Demo orientativa · en el servicio real, el diseño se hace a medida con 2 propuestas</span>
+</div></header>
+<main class="wrap">
+  <div class="ctl">
+    <div><label for="nm">Nombre del negocio</label><input id="nm" type="text" maxlength="28" value="Fisio Retiro" autocomplete="off"/></div>
+    <div><span class="lb">Estilo</span><div class="opts" id="st"><button type="button" data-s="el" aria-pressed="true">Elegante</button><button type="button" data-s="ce" aria-pressed="false">Cercano</button><button type="button" data-s="mo" aria-pressed="false">Moderno</button></div></div>
+    <div><span class="lb">Color principal</span><div class="opts" id="co"></div></div>
+  </div>
+  <div class="kit">
+    <div class="card"><div class="h3s">Logo</div><div class="logo" id="lg"></div></div>
+    <div class="card"><div class="h3s">Paleta de colores</div><div class="pal" id="pl"></div></div>
+    <div class="card ty"><div class="h3s">Tipografías</div><h4 id="t1">Aa Títulos</h4><p id="t2">Textos para leer con comodidad en web y redes.</p></div>
+    <div class="card"><div class="h3s">Publicación para Instagram</div><div class="post" id="po"></div></div>
+    <div class="card"><div class="h3s">Tarjeta de visita</div><div class="bc" id="bc"></div></div>
+  </div>
+  <p class="note">Así sale en el servicio real: logo con 2 propuestas, versión para redes, paleta, tipografías, mini guía de marca en PDF y 5 plantillas de Canva.</p>
+  <p class="foot">¿Quieres la identidad de tu negocio? <a href="https://wa.me/34711593111?text=Hola%20Melina%2C%20me%20interesa%20la%20identidad%20visual%20de%20mi%20negocio">Escríbeme por WhatsApp</a> o <a href="../../servicios/#servicios">mira los servicios</a>.</p>
+</main>
+<script>
+window.lucide&&lucide.createIcons();
+var ST={el:{h:'"Playfair Display",Georgia,serif',b:'"DM Sans",sans-serif',r:'0',nm:'Elegante'},ce:{h:'Nunito,sans-serif',b:'Nunito,sans-serif',r:'50%',nm:'Cercano'},mo:{h:'"Space Grotesk",sans-serif',b:'Inter,sans-serif',r:'12px',nm:'Moderno'}};
+var CO=[{n:'Azul',p:'#2A4A8C',d:'#0E1B33',s:'#E8EEF9',a:'#E0A100'},{n:'Verde',p:'#1F7A4D',d:'#10331F',s:'#E6F3EC',a:'#E8743B'},{n:'Coral',p:'#D9534F',d:'#4A1F1D',s:'#FCEBEA',a:'#2A6F8F'},{n:'Violeta',p:'#6B4FB3',d:'#25184A',s:'#EFEAFA',a:'#E0A100'}];
+var st='el',ci=0;
+var coW=document.getElementById('co');
+CO.forEach(function(c,i){var b=document.createElement('button');b.type='button';b.className='dotc';b.style.background=c.p;b.setAttribute('aria-label',c.n);b.setAttribute('aria-pressed',i===0);b.onclick=function(){ci=i;coW.querySelectorAll('button').forEach(function(x,j){x.setAttribute('aria-pressed',j===i)});draw();};coW.appendChild(b);});
+document.querySelectorAll('#st button').forEach(function(b){b.onclick=function(){st=b.dataset.s;document.querySelectorAll('#st button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});draw();};});
+document.getElementById('nm').addEventListener('input',draw);
+function ini(n){var w=n.trim().split(/\s+/).filter(Boolean);return ((w[0]||'M')[0]+((w[1]||'')[0]||'')).toUpperCase();}
+function esc(s){return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function draw(){
+  var n=document.getElementById('nm').value.trim()||'Tu negocio',S=ST[st],C=CO[ci],e=esc(n),i=esc(ini(n));
+  document.getElementById('lg').style.background=C.s;
+  document.getElementById('lg').innerHTML='<div class="mono" style="background:'+C.p+';border-radius:'+S.r+';font-family:'+S.h+'">'+i+'</div><div class="lname" style="color:'+C.d+';font-family:'+S.h+'">'+e+'</div>';
+  document.getElementById('pl').innerHTML=[[C.p,'Principal'],[C.d,'Oscuro'],[C.s,'Fondo'],[C.a,'Acento']].map(function(x,k){return '<div style="background:'+x[0]+';color:'+(k==2?C.d:'#fff')+'"><b>'+x[1]+'</b>'+x[0]+'</div>'}).join('');
+  var t1=document.getElementById('t1'),t2=document.getElementById('t2');t1.style.fontFamily=S.h;t1.style.color=C.d;t1.textContent='Aa '+S.nm;t2.style.fontFamily=S.b;
+  document.getElementById('po').style.cssText='background:'+C.p+';color:#fff;font-family:'+S.b;
+  document.getElementById('po').innerHTML='<div class="sm" style="font-family:'+S.h+'">'+e+'</div><div class="big" style="font-family:'+S.h+'">Cuida tu espalda, también en noviembre</div><div class="pill" style="background:'+C.a+';color:'+C.d+'">Reserva tu cita</div>';
+  document.getElementById('bc').style.cssText='background:'+C.s+';color:'+C.d+';font-family:'+S.b;
+  document.getElementById('bc').innerHTML='<b style="font-family:'+S.h+'">'+e+'</b><span>Ana Pérez · Fisioterapeuta<br>+34 600 000 000 · hola@ejemplo.es</span>';
+}
+draw();
+</script>
+<script>
+(function(){try{var r=document.referrer;if(r.indexOf('/kit-ventas/')<0)return;var a=document.querySelector('a.back');if(!a)return;a.href=r;var done=false;a.childNodes.forEach(function(n){if(!done&&n.nodeType===3&&n.nodeValue.trim()){n.nodeValue='Volver al kit';done=true;}});}catch(e){}})();
+</script>
+</body></html>
