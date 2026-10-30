@@ -546,8 +546,7 @@ def build_page():
           <div class="actions"><a class="btn primary" href="../demos/recepcionista-voz/#restaurante"><i data-lucide="play"></i>Restaurante</a><a class="btn ghost" href="../demos/recepcionista-voz/#clinica">Clínica</a></div></div></article>
       <article class="demo"><iframe class="vid" src="https://app.heygen.com/embeds/37c991beba5e436fa6402971bb6dc4fb" title="Vídeo con avatar de IA: presentación de MR" loading="lazy" allow="fullscreen; encrypted-media" allowfullscreen></iframe>
         <div class="demo-body"><h3>Vídeos con avatar IA</h3>
-          <p>Este vídeo lo presenta un avatar con mi cara y mi voz, creado con inteligencia artificial. Así puedes tener vídeos para tu negocio sin ponerte delante de la cámara.</p>
-          <div class="actions"><a class="btn ghost" href="https://app.heygen.com/videos/tecnolog-a-y-avatares-para-tu-negocio-37c991beba5e436fa6402971bb6dc4fb" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Verlo en pantalla completa</a></div></div></article>
+          <p>Este vídeo lo presenta un avatar con mi cara y mi voz, creado con inteligencia artificial. Así puedes tener vídeos para tu negocio sin ponerte delante de la cámara.</p></div></article>
     </div>
   </div></section>
 
