@@ -86,18 +86,18 @@ S = [
        eur="desde [[d_seo_local.eur]]", mxn="desde [[d_seo_local.mxn]]", per="pago único", per_mx="pago único", new=True,
        items=["Ficha de Google completa: categorías, horarios, servicios y fotos", "Textos con las palabras que usan tus clientes", "Respuesta a las reseñas pendientes", "Plantillas para pedir reseñas a tus clientes", "Comprobación de que tus datos coinciden en internet"],
        aparte="Nada: la ficha de Google es gratuita y va a tu nombre",
-       ex=[("Piñatas Madrid", "https://melinarivera.github.io/pinata/")]),
+       ex=[("Demo: ficha de Google completa", "../demos/ficha-google/")]),
   dict(id="uxui", icon="pen-tool", name="Diseño UX/UI", ideal="Para ver y probar tu web o app antes de construirla",
        eur="desde [[d_uxui.eur]]", mxn="desde [[d_uxui.mxn]]", per="/ proyecto", new=True,
        items=["Entrevista y mapa de lo que necesita tu cliente", "Diseño de pantallas en Figma (web: hasta 5 pantallas)", "Prototipo navegable para probarlo antes de programar", "Guía de estilo: colores, tipografías y botones", "<b>App completa</b> (hasta 15 pantallas y flujo de usuario): <span class='js-price' data-eur='desde [[d_uxui_app.eur]]' data-mxn='desde [[d_uxui_app.mxn]]'>desde [[d_uxui_app.eur]]</span>"],
        aparte="Figma: el archivo se entrega en tu cuenta (plan gratuito suficiente para verlo)",
        extra=("Auditoría UX de tu web o app actual, con informe de mejoras", "desde [[d_auditoria_ux.eur]]", "desde [[d_auditoria_ux.mxn]]", "pago único"),
-       ex=[("Demo asistente WhatsApp", "../demos/asistente-whatsapp/#estetica"), ("Demo CRM restaurante", "../demos/crm-restaurante/"), ("Tesovia", "https://www.tesovia.com")]),
+       ex=[("Demo: prototipo de app", "../demos/prototipo-ux/"), ("Tesovia", "https://www.tesovia.com")]),
   dict(id="identidad", icon="palette", name="Identidad visual básica", ideal="Para que tu negocio se reconozca a primera vista",
        eur="desde [[d_identidad.eur]]", mxn="desde [[d_identidad.mxn]]", per="/ proyecto", new=True,
        items=["Logo sencillo con 2 propuestas y versión para redes", "Paleta de colores y tipografías", "Mini guía de marca en PDF", "5 plantillas de Canva para redes", "2 rondas de cambios"],
        aparte="Registro de la marca, si lo quieres (se hace en la oficina de patentes)",
-       ex=[("Piñatas Madrid", "https://melinarivera.github.io/pinata/")]),
+       ex=[("Demo: tu marca en un minuto", "../demos/identidad-visual/"), ("Piñatas Madrid", "https://melinarivera.github.io/pinata/")]),
   dict(id="app", icon="smartphone", name="App o SaaS a medida", ideal="Para tu idea o tu herramienta interna",
        eur="MVP desde [[d_app.eur]]", mxn="MVP desde [[d_app.mxn]]", per="/ proyecto",
        items=["Definimos juntos la primera versión (MVP)", "Usuarios, roles y panel de administración", "Base de datos y backend incluidos", "Publicación en producción", "30 días de soporte tras el lanzamiento"],
@@ -543,6 +543,18 @@ def build_page():
         <div class="demo-body"><h3>Informe mensual de mantenimiento</h3>
           <p>Lo que recibe cada mes quien tiene mantenimiento: web disponible, copias de seguridad, certificado, dominio y los cambios hechos. Pide un cambio y mira cómo queda anotado.</p>
           <div class="actions"><a class="btn primary" href="../demos/informe-mantenimiento/"><i data-lucide="play"></i>Abrir la demo</a></div></div></article>
+      <article class="demo"><div class="ph"><i data-lucide="pen-tool"></i></div>
+        <div class="demo-body"><h3>Diseño UX/UI: prototipo de app</h3>
+          <p>Un prototipo de reservas en el que puedes tocar y avanzar, con la razón de cada pantalla y su guía de estilo.</p>
+          <div class="actions"><a class="btn primary" href="../demos/prototipo-ux/"><i data-lucide="play"></i>Abrir la demo</a></div></div></article>
+      <article class="demo"><div class="ph"><i data-lucide="palette"></i></div>
+        <div class="demo-body"><h3>Identidad visual: tu marca en un minuto</h3>
+          <p>Escribe el nombre de tu negocio, elige estilo y color, y mira el logo, la paleta, una publicación y una tarjeta de visita.</p>
+          <div class="actions"><a class="btn primary" href="../demos/identidad-visual/"><i data-lucide="play"></i>Abrir la demo</a></div></div></article>
+      <article class="demo"><div class="ph"><i data-lucide="map-pin"></i></div>
+        <div class="demo-body"><h3>Ficha de Google completa</h3>
+          <p>Marca lo que tiene la ficha de un negocio y mira cómo cambia lo que ve quien lo busca en Google Maps.</p>
+          <div class="actions"><a class="btn primary" href="../demos/ficha-google/"><i data-lucide="play"></i>Abrir la demo</a></div></div></article>
       <article class="demo"><div class="ph"><i data-lucide="traffic-cone"></i></div>
         <div class="demo-body"><h3>Taller de IA: el semáforo de datos</h3>
           <p>Una muestra del taller: toca una situación y mira si se puede meter en la IA, y copia tres instrucciones listas para usar en el trabajo diario.</p>

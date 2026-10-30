@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="theme-color" content="#09172E"/>
+<link rel="icon" href="../../marca/mr-favicon.svg" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<title>Demo · Ficha de Google completa</title>
+<meta name="description" content="Marca lo que tiene la ficha de un negocio en Google y mira cómo cambia lo que ve quien lo busca."/>
+<style>
+:root{--night:#09172E;--blue:#2A4A8C;--silver:#C8CDD4;--paper:#F4F6F9;--ink:#141A2B;--muted:#56607A;--rule:#DCE1E9;--ok:#1D7F4B;--warn:#B45309;--red:#C2362B;color-scheme:light}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+svg.lucide{width:1em;height:1em;stroke-width:1.9;flex:none}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid #9CB8E0;outline-offset:2px}
+.wrap{max-width:980px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-left)) 48px}
+header.top{background:var(--night);color:#EEF1F6}
+header.top .wrap{padding-top:18px;padding-bottom:24px}
+.back{color:var(--silver);font-weight:600;text-decoration:none;font-size:14.5px;display:inline-flex;gap:6px;align-items:center;min-height:44px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(26px,4.5vw,36px);line-height:1.15;margin-top:4px}
+.lead{color:var(--silver);max-width:62ch;margin-top:8px}
+.tag{display:inline-block;margin-top:14px;font-size:13px;color:#C8D6EE;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:4px 12px}
+h2{font-family:"Playfair Display",Georgia,serif;font-size:22px;margin:26px 0 12px}
+.card{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:16px 18px}
+.foot{margin-top:30px;color:var(--muted);font-size:14px}
+.foot a{color:var(--blue);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--rule);background:#fff;color:var(--ink);font-weight:600}
+.btn.primary{background:var(--night);color:#fff;border-color:var(--night)}
+.seg{display:inline-flex;gap:4px;background:#E7EBF2;border-radius:12px;padding:4px;margin-top:18px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;color:var(--muted);font-weight:600;padding:9px 16px;border-radius:9px;min-height:42px}
+.seg button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(9,23,46,.15)}
+.note{color:var(--muted);font-size:13.5px;margin-top:10px}
+
+.stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:26px;align-items:start;margin-top:22px}
+@media(max-width:820px){.stage{grid-template-columns:1fr}.stage .gcard{order:-1;position:static}}
+.ck{display:flex;flex-direction:column;gap:8px}
+.ck label{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--rule);border-radius:14px;padding:12px 14px;cursor:pointer;min-height:56px}
+.ck input{width:22px;height:22px;flex:none;margin-top:2px;accent-color:var(--night)}
+.ck small{display:block;color:var(--muted);font-size:13.5px}
+.score{display:flex;align-items:center;gap:12px;margin:0 0 14px}
+.score b{font-size:28px;font-family:"Playfair Display",serif}
+.bar{flex:1;height:10px;border-radius:99px;background:#E1E6EE;overflow:hidden}.bar i{display:block;height:100%;background:var(--ok);border-radius:99px;transition:width .3s}
+.gcard{background:#fff;border:1px solid var(--rule);border-radius:18px;overflow:hidden;position:sticky;top:14px;box-shadow:0 10px 28px rgba(9,23,46,.1)}
+.ph3{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;height:96px;background:#E7EBF2}
+.ph3 div{background:linear-gradient(135deg,#cfe0d6,#b8cfc2);display:grid;place-items:center;color:#7d9a8a;font-size:22px}
+.ph3 .empty{background:#EEF0F4;color:#aab2c2;font-size:12px;text-align:center;padding:6px}
+.gb{padding:16px 18px}
+.gb h3{font-size:20px;line-height:1.2}
+.rt{color:#B45309;font-weight:700;font-size:14px;margin-top:2px}.rt span{color:var(--muted);font-weight:400}
+.mt{color:#3b4458;font-size:14.5px;margin-top:2px}
+.hrs.ok{color:var(--ok);font-weight:600}.hrs.no{color:#8b93a6;font-style:italic}
+.act{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.act span{border:1px solid var(--rule);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;color:var(--blue)}
+.act span.off{color:#aab2c2;border-style:dashed;font-weight:500}
+.desc{margin-top:12px;font-size:14px;color:#3b4458}
+.desc.no{color:#aab2c2;font-style:italic}
+.rv{margin-top:12px;border-top:1px solid var(--rule);padding-top:10px;font-size:13.5px}
+.rv b{display:block}
+.rv .rp{margin-top:6px;margin-left:12px;padding-left:10px;border-left:3px solid #cfe0d6;color:#3b4458}
+.rv .rp.no{border-color:#F2B8B2;color:var(--red);font-style:italic}
+
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="back" href="../../servicios/#servicios"><i data-lucide="arrow-left"></i>Servicios</a>
+  <h1>Una ficha de Google completa, paso a paso</h1>
+  <p class="lead">Marca lo que tiene la ficha de un negocio y mira cómo cambia lo que ve quien lo busca en Google Maps.</p>
+  <span class="tag">Ejemplo ficticio · Fisio Retiro, Madrid</span>
+</div></header>
+<main class="wrap">
+  <div class="stage">
+    <div>
+      <div class="score"><b id="sc">25 %</b><div class="bar"><i id="br" style="width:25%"></i></div></div>
+      <div class="ck" id="ck"></div>
+      <p class="note">Una ficha completa ayuda a que te encuentren y elijan mejor. Ninguna ficha garantiza salir en primera posición: depende también de la competencia cercana, las reseñas y la distancia.</p>
+    </div>
+    <div class="gcard" aria-live="polite">
+      <div class="ph3" id="ph"></div>
+      <div class="gb">
+        <h3>Fisio Retiro</h3>
+        <div class="rt">4,6 ★ <span id="rn">(26 reseñas)</span></div>
+        <div class="mt" id="cat">Negocio</div>
+        <div class="mt">Calle Alcalá 120, Madrid</div>
+        <div class="mt hrs no" id="hr">Horario no disponible</div>
+        <div class="act" id="ac"></div>
+        <div class="desc no" id="ds">Sin descripción</div>
+        <div class="rv"><b>«Muy buen trato, me quitaron el dolor de espalda.»</b><span style="color:var(--muted)">Reseña de Laura · hace 1 semana</span><div class="rp no" id="rp">Sin respuesta del negocio</div></div>
+      </div>
+    </div>
+  </div>
+  <p class="foot">¿Quieres que tu ficha esté así? <a href="https://wa.me/34711593111?text=Hola%20Melina%2C%20me%20interesa%20la%20ficha%20de%20Google%20y%20el%20SEO%20local">Escríbeme por WhatsApp</a> o <a href="../../servicios/#servicios">mira los servicios</a>.</p>
+</main>
+<script>
+window.lucide&&lucide.createIcons();
+var IT=[
+ ['name','Nombre y dirección correctos','Lo básico para que te encuentren.',true],
+ ['cat','Categoría principal y secundarias','Por ejemplo «Fisioterapeuta» y «Centro de masajes».',false],
+ ['hrs','Horarios, también de festivos','Evita el «¿estarán abiertos?» que hace que se vayan a otro.',false],
+ ['ctc','Teléfono, web y botón de WhatsApp','Para llamar o escribir con un toque.',false],
+ ['dsc','Descripción con tus servicios','Con las palabras que usan tus clientes al buscar.',false],
+ ['pho','Fotos reales del local y del equipo','Al menos 10, con buena luz.',false],
+ ['rvw','Respuesta a las reseñas','Responder a todas, también a las negativas, con calma.',false]
+];
+var ck=document.getElementById('ck'),on={};IT.forEach(function(i){on[i[0]]=i[3]});
+IT.forEach(function(i){var l=document.createElement('label');l.innerHTML='<input type="checkbox"'+(i[3]?' checked disabled':'')+' data-k="'+i[0]+'"/><span><b>'+i[1]+'</b><small>'+i[2]+'</small></span>';ck.appendChild(l);});
+ck.addEventListener('change',function(e){var k=e.target.dataset.k;if(k){on[k]=e.target.checked;draw();}});
+function draw(){
+  var n=IT.filter(function(i){return on[i[0]]}).length,p=Math.round(n/IT.length*100);
+  document.getElementById('sc').textContent=p+' %';document.getElementById('br').style.width=p+'%';
+  document.getElementById('cat').textContent=on.cat?'Fisioterapeuta · Centro de masajes':'Negocio';
+  var h=document.getElementById('hr');h.className='mt hrs '+(on.hrs?'ok':'no');h.textContent=on.hrs?'Abierto · Cierra a las 20:00 · Festivos: 10:00–14:00':'Horario no disponible';
+  document.getElementById('ac').innerHTML=on.ctc?'<span>Llamar</span><span>Cómo llegar</span><span>Web</span><span>WhatsApp</span>':'<span>Cómo llegar</span><span class="off">Sin teléfono</span><span class="off">Sin web</span>';
+  var d=document.getElementById('ds');d.className='desc'+(on.dsc?'':' no');d.textContent=on.dsc?'Fisioterapia de espalda, masaje deportivo y primera valoración en el barrio de Retiro. Reserva por WhatsApp.':'Sin descripción';
+  document.getElementById('ph').innerHTML=on.pho?'<div>🏥</div><div>🧑‍⚕️</div><div>💆</div>':'<div class="empty" style="grid-column:1/-1">Sin fotos del negocio</div>';
+  var r=document.getElementById('rp');r.className='rp'+(on.rvw?'':' no');r.textContent=on.rvw?'Gracias, Laura. Nos alegra que ya estés mejor. Te esperamos en tu próxima revisión.':'Sin respuesta del negocio';
+}
+draw();
+</script>
+<script>
+(function(){try{var r=document.referrer;if(r.indexOf('/kit-ventas/')<0)return;var a=document.querySelector('a.back');if(!a)return;a.href=r;var done=false;a.childNodes.forEach(function(n){if(!done&&n.nodeType===3&&n.nodeValue.trim()){n.nodeValue='Volver al kit';done=true;}});}catch(e){}})();
+</script>
+</body></html>
