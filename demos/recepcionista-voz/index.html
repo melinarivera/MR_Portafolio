@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Demo · Recepcionista de voz con IA</title>
+<meta name="description" content="Escucha cómo atiende una llamada la recepcionista de voz con IA: reserva en un restaurante o cita en una clínica."/>
+<meta name="theme-color" content="#09172E"/>
+<link rel="icon" href="../../marca/mr-favicon.svg" type="image/svg+xml"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<style>
+:root{--night:#09172E;--blue:#2A4A8C;--silver:#C8CDD4;--paper:#F4F6F9;--ink:#141A2B;--muted:#56607A;--rule:#DCE1E9;--ok:#1D7F4B;--red:#C2362B;color-scheme:light}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+svg.lucide{width:1em;height:1em;stroke-width:1.9;flex:none}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid #9CB8E0;outline-offset:2px}
+.wrap{max-width:980px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-left)) 48px}
+header.top{background:var(--night);color:#EEF1F6}
+header.top .wrap{padding-top:18px;padding-bottom:22px}
+.back{color:var(--silver);font-weight:600;text-decoration:none;font-size:14.5px;display:inline-flex;gap:6px;align-items:center;min-height:44px}
+h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(26px,4.5vw,36px);line-height:1.15;margin-top:4px}
+.lead{color:var(--silver);max-width:62ch;margin-top:8px}
+.seg{display:inline-flex;gap:4px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:4px;margin-top:16px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;color:#DDE3EC;font-weight:600;padding:9px 14px;border-radius:9px;min-height:42px;display:inline-flex;gap:8px;align-items:center}
+.seg button[aria-pressed=true]{background:#EEF1F6;color:var(--night)}
+.grid{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:24px;align-items:start;margin-top:22px}
+@media (max-width:820px){.grid{grid-template-columns:1fr}}
+.phone{background:var(--night);color:#fff;border-radius:34px;padding:26px 22px 24px;box-shadow:0 18px 40px rgba(9,23,46,.25);display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.avatar{width:86px;height:86px;border-radius:50%;background:#1B3363;display:grid;place-items:center;font-size:38px;color:var(--silver);margin-bottom:6px;position:relative}
+.avatar.talk::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid #9CB8E0;animation:pulse 1.2s ease-out infinite}
+@keyframes pulse{from{opacity:.9;transform:scale(.92)}to{opacity:0;transform:scale(1.18)}}
+.who{font-weight:700;font-size:19px}
+.status{color:var(--silver);font-size:14.5px;min-height:22px}
+.timer{font-variant-numeric:tabular-nums;color:#9CB8E0;font-weight:600}
+.callbtns{display:flex;gap:28px;margin-top:18px}
+.round{width:68px;height:68px;border-radius:50%;border:0;display:grid;place-items:center;font-size:28px;color:#fff}
+.round.go{background:var(--ok)}
+.round.end{background:var(--red)}
+.round[disabled]{opacity:.35;cursor:not-allowed}
+.small{font-size:12.5px;color:#AEB7C6;margin-top:10px;max-width:30ch}
+.mute{margin-top:10px;background:none;border:1px solid rgba(255,255,255,.2);color:#DDE3EC;border-radius:99px;padding:6px 12px;font-size:13.5px;display:inline-flex;gap:6px;align-items:center;min-height:38px}
+.panel{background:#fff;border:1px solid var(--rule);border-radius:18px;padding:18px}
+.panel h2{font-size:17px;display:flex;gap:8px;align-items:center;margin-bottom:12px}
+.panel h2 svg{color:var(--blue)}
+.tx{display:flex;flex-direction:column;gap:10px;min-height:160px}
+.empty{color:var(--muted);font-size:15px}
+.line{max-width:88%;padding:10px 13px;border-radius:14px;font-size:15px;line-height:1.45}
+.line small{display:block;font-size:12px;font-weight:700;margin-bottom:2px}
+.line.c{background:var(--paper);align-self:flex-start;border-top-left-radius:4px}
+.line.c small{color:var(--muted)}
+.line.a{background:#E6EDF8;align-self:flex-end;border-top-right-radius:4px}
+.line.a small{color:var(--blue)}
+.result{margin-top:16px;display:grid;gap:12px}
+.card{border-radius:16px;padding:14px 16px;border:1px solid var(--rule);background:#fff}
+.card.wa{background:#E7F5EC;border-color:#BFE3CC}
+.card h3{font-size:15px;display:flex;gap:8px;align-items:center;margin-bottom:6px}
+.card.wa h3 svg{color:var(--ok)}
+.card ul{list-style:none;display:flex;flex-direction:column;gap:3px;font-size:14.5px}
+.cost{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding:6px 0;border-top:1px solid var(--rule)}
+.cost:first-of-type{border-top:0}
+.cost b{font-variant-numeric:tabular-nums}
+.note{margin-top:18px;font-size:14px;color:var(--muted);max-width:75ch}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){.avatar.talk::after{animation:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="back" href="../../servicios/"><i data-lucide="arrow-left"></i>Servicios MR</a>
+  <h1>Recepcionista de voz con IA</h1>
+  <p class="lead">Pulsa el botón verde y escucha cómo atiende una llamada mientras el negocio está ocupado. Sube el volumen.</p>
+  <div class="seg" role="group" aria-label="Tipo de negocio">
+    <button type="button" data-sc="restaurante" aria-pressed="true"><i data-lucide="utensils"></i>Restaurante</button>
+    <button type="button" data-sc="clinica" aria-pressed="false"><i data-lucide="stethoscope"></i>Clínica de fisioterapia</button>
+  </div>
+</div></header>
+
+<main class="wrap">
+  <div class="grid">
+    <section class="phone" aria-label="Llamada">
+      <div class="avatar" id="av"><i data-lucide="phone"></i></div>
+      <div class="who" id="who">Taberna La Encina</div>
+      <div class="status" id="status">Asistente de voz · listo para atender</div>
+      <div class="timer" id="timer">00:00</div>
+      <div class="callbtns">
+        <button class="round go" id="call" type="button" aria-label="Simular una llamada"><i data-lucide="phone-call"></i></button>
+        <button class="round end" id="hang" type="button" aria-label="Colgar" disabled><i data-lucide="phone-off"></i></button>
+      </div>
+      <button class="mute" id="mute" type="button" aria-pressed="false"><i data-lucide="volume-2"></i><span>Sonido activado</span></button>
+      <p class="small">Simulación con la voz de tu navegador. La recepcionista real usa una voz mucho más natural y no sigue un guion.</p>
+    </section>
+
+    <section>
+      <div class="panel">
+        <h2><i data-lucide="captions"></i>Lo que se dice en la llamada</h2>
+        <div class="tx" id="tx" aria-live="polite"><p class="empty">Aquí aparece la conversación mientras suena.</p></div>
+      </div>
+      <div class="result" id="result" hidden>
+        <div class="card wa">
+          <h3><i data-lucide="message-circle"></i><span id="waTitle">Resumen enviado al WhatsApp del negocio</span></h3>
+          <ul id="waList"></ul>
+        </div>
+        <div class="card">
+          <h3><i data-lucide="calendar-check"></i>Apuntado en la agenda</h3>
+          <ul id="agList"></ul>
+        </div>
+        <div class="card">
+          <h3><i data-lucide="receipt"></i>Lo que ha costado esta llamada</h3>
+          <div class="cost"><span>Minutos usados</span><b id="mins">2 de 200 incluidos al mes</b></div>
+          <div class="cost"><span>Pago extra para el negocio</span><b>0 €: va dentro de la cuota</b></div>
+        </div>
+      </div>
+      <p class="note">Datos ficticios. En el servicio real el negocio decide qué información da la recepcionista, a quién pasa las llamadas y qué le llega en cada resumen. Siempre avisa de que es un asistente virtual.</p>
+    </section>
+  </div>
+</main>
+
+<script>
+(function(){
+'use strict';
+var SC = {
+  restaurante: {
+    nombre: 'Taberna La Encina',
+    lineas: [
+      ['a','Taberna La Encina, buenas tardes. Le atiende el asistente virtual. ¿En qué puedo ayudarle?'],
+      ['c','Hola, quería reservar mesa para el sábado por la noche.'],
+      ['a','Claro. ¿Para cuántas personas y a qué hora le vendría bien?'],
+      ['c','Para cuatro, a las nueve y media si puede ser.'],
+      ['a','El sábado a las nueve y media tengo mesa para cuatro en el salón. ¿A nombre de quién la reservo?'],
+      ['c','A nombre de Laura Gómez. Ah, y uno de nosotros es celíaco.'],
+      ['a','Apuntado: celíaco. Tenemos carta sin gluten. ¿Me confirma un teléfono para enviarle la confirmación?'],
+      ['c','Sí, el seis, uno, dos, tres, cuatro, cinco, seis, siete, ocho.'],
+      ['a','Perfecto, Laura. Mesa para cuatro el sábado a las 21:30. Le llegará la confirmación por WhatsApp. ¡Gracias por llamar!']
+    ],
+    wa: ['Nueva reserva: Laura Gómez', 'Sábado · 21:30 · 4 personas · salón', 'Aviso: 1 persona celíaca', 'Teléfono: 612 345 678'],
+    ag: ['Sábado 21:30 · Mesa para 4 · Laura Gómez', 'Confirmación enviada a la clienta por WhatsApp']
+  },
+  clinica: {
+    nombre: 'Fisio Retiro',
+    lineas: [
+      ['a','Fisio Retiro, buenos días. Le atiende el asistente virtual. ¿En qué puedo ayudarle?'],
+      ['c','Hola, quería pedir cita, que tengo molestias en la espalda.'],
+      ['a','Lo siento. ¿Es su primera visita con nosotros?'],
+      ['c','Sí, es la primera vez.'],
+      ['a','La primera visita dura una hora y cuesta cuarenta y cinco euros. Tengo hueco el jueves a las diez o el viernes a las seis de la tarde. ¿Cuál prefiere?'],
+      ['c','El viernes a las seis.'],
+      ['a','Muy bien. ¿Me dice su nombre completo?'],
+      ['c','Carlos Ruiz.'],
+      ['a','Listo, Carlos: primera visita el viernes a las 18:00. El día antes le enviaremos un recordatorio. ¡Que se mejore!']
+    ],
+    wa: ['Nueva cita: Carlos Ruiz (primera visita)', 'Viernes · 18:00 · 60 minutos', 'Motivo: molestias en la espalda', 'Recordatorio programado para el jueves'],
+    ag: ['Viernes 18:00 · Primera visita · Carlos Ruiz', 'Recordatorio automático el jueves']
+  }
+};
+var $ = function(s){ return document.querySelector(s); };
+var esc = function(t){ return String(t).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
+var sc = 'restaurante', running = false, idx = 0, t0 = 0, tick = null, step = null, muted = false;
+var synth = window.speechSynthesis || null, voices = [];
+function loadVoices(){ if (synth) voices = synth.getVoices().filter(function(v){ return /^es/i.test(v.lang); }); }
+loadVoices(); if (synth && 'onvoiceschanged' in synth) synth.onvoiceschanged = loadVoices;
+function pickVoice(role){
+  if (!voices.length) return null;
+  var es = voices.filter(function(v){ return /es-ES/i.test(v.lang); });
+  var pool = es.length ? es : voices;
+  return role === 'a' ? pool[0] : (pool[1] || pool[0]);
+}
+function icons(){ if (window.lucide) lucide.createIcons(); }
+function fmt(s){ var m = Math.floor(s/60), r = s % 60; return (m < 10 ? '0' : '') + m + ':' + (r < 10 ? '0' : '') + r; }
+function setSc(k){
+  if (running) stop(false);
+  sc = k; $('#who').textContent = SC[k].nombre;
+  document.querySelectorAll('[data-sc]').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.sc === k); });
+  $('#tx').innerHTML = '<p class="empty">Aquí aparece la conversación mientras suena.</p>';
+  $('#result').hidden = true; $('#timer').textContent = '00:00'; $('#status').textContent = 'Asistente de voz · listo para atender';
+  try { history.replaceState(null, '', '#' + k); } catch(e) {}
+}
+function addLine(l){
+  var tx = $('#tx'); if (tx.querySelector('.empty')) tx.innerHTML = '';
+  var d = document.createElement('div'); d.className = 'line ' + l[0];
+  d.innerHTML = '<small>' + (l[0] === 'a' ? 'Asistente' : 'Cliente') + '</small>' + esc(l[1]);
+  tx.appendChild(d); d.scrollIntoView({ block:'nearest', behavior:'smooth' });
+}
+function say(l, done){
+  $('#av').classList.toggle('talk', l[0] === 'a');
+  $('#status').textContent = l[0] === 'a' ? 'Habla el asistente…' : 'Habla el cliente…';
+  var fallback = Math.max(1800, l[1].length * 60);
+  if (!synth || muted){ step = setTimeout(done, fallback); return; }
+  var u = new SpeechSynthesisUtterance(l[1]); u.lang = 'es-ES';
+  var v = pickVoice(l[0]); if (v) u.voice = v;
+  u.rate = l[0] === 'a' ? 1.02 : 1.08; u.pitch = l[0] === 'a' ? 1.05 : 0.8;
+  var finished = false, guard = setTimeout(function(){ if (!finished){ finished = true; done(); } }, fallback + 6000);
+  u.onend = u.onerror = function(){ if (finished) return; finished = true; clearTimeout(guard); step = setTimeout(done, 350); };
+  synth.speak(u);
+}
+function next(){
+  if (!running) return;
+  var L = SC[sc].lineas;
+  if (idx >= L.length){ stop(true); return; }
+  var l = L[idx++]; addLine(l); say(l, next);
+}
+function start(){
+  if (running) return;
+  running = true; idx = 0; $('#tx').innerHTML = ''; $('#result').hidden = true;
+  $('#call').disabled = true; $('#hang').disabled = false;
+  t0 = Date.now(); $('#timer').textContent = '00:00';
+  tick = setInterval(function(){ $('#timer').textContent = fmt(Math.round((Date.now() - t0)/1000)); }, 500);
+  $('#status').textContent = 'Llamada entrante…';
+  step = setTimeout(next, 700);
+}
+function stop(completed){
+  running = false; clearTimeout(step); clearInterval(tick);
+  if (synth) synth.cancel();
+  $('#av').classList.remove('talk'); $('#call').disabled = false; $('#hang').disabled = true;
+  $('#status').textContent = completed ? 'Llamada terminada · resumen enviado' : 'Llamada cortada';
+  if (completed){
+    var secs = Math.max(1, Math.round((Date.now() - t0)/1000)), mins = Math.ceil(secs/60);
+    $('#mins').textContent = mins + ' de 200 incluidos al mes';
+    $('#waList').innerHTML = SC[sc].wa.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join('');
+    $('#agList').innerHTML = SC[sc].ag.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join('');
+    $('#result').hidden = false; icons();
+  }
+}
+document.addEventListener('click', function(e){
+  var b = e.target.closest('[data-sc]'); if (b){ setSc(b.dataset.sc); return; }
+  if (e.target.closest('#call')){ start(); return; }
+  if (e.target.closest('#hang')){ stop(false); return; }
+  if (e.target.closest('#mute')){
+    muted = !muted; if (muted && synth) synth.cancel();
+    var m = $('#mute'); m.setAttribute('aria-pressed', muted);
+    m.innerHTML = muted ? '<i data-lucide="volume-x"></i><span>Sonido desactivado</span>' : '<i data-lucide="volume-2"></i><span>Sonido activado</span>';
+    icons(); return;
+  }
+});
+var h = (location.hash || '').slice(1); if (SC[h]) setSc(h);
+icons();
+})();
+</script>
+</body>
+</html>
