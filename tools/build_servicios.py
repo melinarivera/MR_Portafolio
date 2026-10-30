@@ -33,78 +33,78 @@ def fill(text):
 # Revisados en oct 2026 con tarifas publicadas por freelancers y agencias pequeñas de España.
 S = [
   dict(id="landing", icon="rocket", name="Landing page sencilla", ideal="Para autónomos y negocios que empiezan",
-       eur="desde [[landing.eur]]", mxn="desde [[landing.mxn]]", per="/ proyecto",
+       eur="desde [[d_landing.eur]]", mxn="desde [[d_landing.mxn]]", per="/ proyecto",
        items=["Una página clara y rápida, pensada para móvil", "Botón de WhatsApp, formulario y mapa", "Textos orientados a conseguir contactos", "SEO local básico para Google", "Lista en 1–2 semanas"],
        aparte="Dominio y alojamiento a tu nombre · textos legales con iubenda",
        ex=[("Piñatas Madrid", "https://melinarivera.github.io/pinata/"), ("Efsun tienda", "https://melinarivera.github.io/tienda-esoterica/")]),
   dict(id="web", icon="store", name="Web corporativa", ideal="Para pymes que quieren generar confianza",
-       eur="desde [[web.eur]]", mxn="desde [[web.mxn]]", per="/ proyecto", popular=True,
+       eur="desde [[d_web.eur]]", mxn="desde [[d_web.mxn]]", per="/ proyecto", popular=True,
        items=["5–7 páginas con estructura pensada para vender", "Blog o catálogo de servicios", "SEO básico en cada página", "WhatsApp, formulario y analítica", "Aviso legal con tus datos + privacidad y cookies con iubenda"],
        aparte="Dominio y alojamiento a tu nombre · suscripción a iubenda",
        ex=[("ETERN-ME", "https://etern-me.com"), ("Cotidiana", "https://cotidiana.app")]),
   dict(id="tienda", icon="shopping-bag", name="Tienda online o reservas", ideal="Para vender o reservar online 24/7",
-       eur="desde [[tienda.eur]]", mxn="desde [[tienda.mxn]]", per="/ proyecto",
+       eur="desde [[d_tienda.eur]]", mxn="desde [[d_tienda.mxn]]", per="/ proyecto",
        items=["Catálogo, carrito y pago con tarjeta (Stripe, TPV o Mercado Pago)", "O agenda de citas con recordatorios", "Panel para gestionar pedidos o reservas", "Diseño a medida, sin plantillas", "30 días de soporte tras el lanzamiento"],
        aparte="Comisión de la pasarela de pago en cada venta · alojamiento",
        ex=[("Efsun plataforma", "https://melinarivera.github.io/pyme-efsun/")]),
   dict(id="ia", icon="sparkles", name="Asistente de WhatsApp con IA", ideal="Para dejar de responder siempre lo mismo",
-       eur="desde [[ia.eur]]", mxn="desde [[ia.mxn]]", per="+ [[ia_cuota.eur]]/mes", per_mx="+ [[ia_cuota.mxn]]/mes", new=True,
-       items=["Responde dudas 24/7 en WhatsApp o en tu web", "Entrenado con tu información: precios, horarios, servicios", "Pasa la conversación a una persona cuando hace falta", "<b>Con citas</b> (agenda, recordatorios y ficha en el CRM): <span class='js-price' data-eur='desde [[ia_citas.eur]] + [[ia_citas_cuota.eur]]/mes' data-mxn='desde [[ia_citas.mxn]] + [[ia_citas_cuota.mxn]]/mes'>desde [[ia_citas.eur]] + [[ia_citas_cuota.eur]]/mes</span>", "La cuota incluye la IA, el servidor y el mantenimiento: hasta [[ia_incluidas.n_fmt]] conversaciones al mes ([[ia_citas_incluidas.n_fmt]] con citas)"],
+       eur="desde [[d_ia.eur]]", mxn="desde [[d_ia.mxn]]", per="+ [[d_ia_cuota.eur]]/mes", per_mx="+ [[d_ia_cuota.mxn]]/mes", new=True,
+       items=["Responde dudas 24/7 en WhatsApp o en tu web", "Entrenado con tu información: precios, horarios, servicios", "Pasa la conversación a una persona cuando hace falta", "<b>Con citas</b> (agenda, recordatorios y ficha en el CRM): <span class='js-price' data-eur='desde [[d_ia_citas.eur]] + [[d_ia_citas_cuota.eur]]/mes' data-mxn='desde [[d_ia_citas.mxn]] + [[d_ia_citas_cuota.mxn]]/mes'>desde [[d_ia_citas.eur]] + [[d_ia_citas_cuota.eur]]/mes</span>", "<b>Tope claro:</b> la cuota incluye [[ia_incluidas.n_fmt]] conversaciones al mes ([[ia_citas_incluidas.n_fmt]] con citas), con la IA, el servidor y el mantenimiento. No es ilimitado: si te acercas, te aviso, y si necesitas más, +1.000 conversaciones por <span class='js-price' data-eur='[[ia_bloque_extra.eur]]' data-mxn='[[ia_bloque_extra.mxn]]'>[[ia_bloque_extra.eur]]</span>. Nunca se corta sin avisar"],
        aparte="Mensajes de WhatsApp: los cobra Meta a tu negocio. <a href='#ia-claro'>Calcula tu gasto</a>",
-       extra=("Automatizaciones de procesos (facturas, recordatorios, informes)", "desde [[automatizacion.eur]]", "desde [[automatizacion.mxn]]", "por flujo"),
+       extra=("Automatizaciones de procesos (facturas, recordatorios, informes)", "desde [[d_automatizacion.eur]]", "desde [[d_automatizacion.mxn]]", "por flujo"),
        ex=[("Demo estética", "../demos/asistente-whatsapp/#estetica"), ("Demo extranjería", "../demos/asistente-whatsapp/#extranjeria"), ("Nexo: facturas con IA", "https://melinarivera.github.io/Nexo_Facturas/")]),
   dict(id="voz", icon="phone-call", name="Recepcionista de voz con IA", ideal="Para no perder ni una llamada",
-       eur="desde [[voz.eur]]", mxn="desde [[voz.mxn]]", per="+ [[voz_cuota.eur]]/mes", per_mx="+ [[voz_cuota.mxn]]/mes", new=True,
-       items=["Contesta el teléfono 24/7 con voz natural, en español", "Da información (horarios, precios, servicios) y toma citas o reservas", "Te envía un resumen de cada llamada por WhatsApp o email", "Pasa la llamada a una persona cuando hace falta", "La cuota incluye la IA, la voz, el número y [[voz_minutos.n_fmt]] minutos al mes"],
+       eur="desde [[d_voz.eur]]", mxn="desde [[d_voz.mxn]]", per="+ [[d_voz_cuota.eur]]/mes", per_mx="+ [[d_voz_cuota.mxn]]/mes", new=True,
+       items=["Contesta el teléfono 24/7 con voz natural, en español", "Da información (horarios, precios, servicios) y toma citas o reservas", "Te envía un resumen de cada llamada por WhatsApp o email", "Pasa la llamada a una persona cuando hace falta", "<b>Tope claro:</b> la cuota incluye la IA, la voz, el número y [[voz_minutos.n_fmt]] minutos de llamada al mes (unas 100 llamadas de 2 minutos). Si necesitas más, +100 minutos por <span class='js-price' data-eur='[[voz_bloque_extra.eur]]' data-mxn='[[voz_bloque_extra.mxn]]'>[[voz_bloque_extra.eur]]</span>. Te aviso antes de llegar al límite"],
        aparte="Desviar tu línea al asistente: según tu operador (normalmente gratis)",
        extra=("Minutos extra", "+[[voz_bloque_extra.eur]]", "+[[voz_bloque_extra.mxn]]", "cada 100 minutos"),
-       ex=[]),
+       ex=[("Demo: restaurante", "../demos/recepcionista-voz/#restaurante"), ("Demo: clínica", "../demos/recepcionista-voz/#clinica")]),
   dict(id="avatar", icon="clapperboard", name="Vídeos con avatar IA", ideal="Para tener vídeos sin ponerte delante de la cámara",
-       eur="desde [[avatar_video.eur]]", mxn="desde [[avatar_video.mxn]]", per="/ vídeo", new=True,
-       items=["Un presentador virtual que habla por tu negocio, con voz natural", "Guion, subtítulos y formato para Reels, TikTok o web (hasta 1 minuto)", "<b>Pack mensual</b>, 4 vídeos: <span class='js-price' data-eur='[[avatar_pack.eur]]/mes' data-mxn='[[avatar_pack.mxn]]/mes'>[[avatar_pack.eur]]/mes</span>", "Ideal para explicar servicios, preguntas frecuentes, cursos y novedades", "Las licencias de la herramienta de vídeo van incluidas"],
+       eur="desde [[d_avatar_video.eur]]", mxn="desde [[d_avatar_video.mxn]]", per="/ vídeo", new=True,
+       items=["Un presentador virtual que habla por tu negocio, con voz natural", "Guion, subtítulos y formato para Reels, TikTok o web. <b>Cada vídeo dura hasta 1 minuto</b>", "<b>Pack mensual</b> (4 vídeos al mes, uno por semana): <span class='js-price' data-eur='desde [[d_avatar_pack.eur]]/mes' data-mxn='desde [[d_avatar_pack.mxn]]/mes'>desde [[d_avatar_pack.eur]]/mes</span>", "Ideal para explicar servicios, preguntas frecuentes, cursos y novedades", "Las licencias de la herramienta de vídeo van incluidas"],
        aparte="Nada: el vídeo es tuyo y lo publicas donde quieras",
-       extra=("Tu propio avatar (con tu cara y tu voz, con tu permiso)", "+[[avatar_propio.eur]]", "+[[avatar_propio.mxn]]", "pago único"),
+       extra=("Tu propio avatar (con tu cara y tu voz, con tu permiso)", "desde +[[d_avatar_propio.eur]]", "desde +[[d_avatar_propio.mxn]]", "pago único"),
        ex=[]),
   dict(id="crm", icon="layout-dashboard", name="CRM y planners a medida", ideal="Para tener clientes y tareas en orden",
-       eur="desde [[crm.eur]]", mxn="desde [[crm.mxn]]", per="/ proyecto",
+       eur="desde [[d_crm.eur]]", mxn="desde [[d_crm.mxn]]", per="/ proyecto",
        items=["Fichas de cliente con historial y segmentos", "Reservas, agenda o embudo de ventas", "Campañas por WhatsApp o email respetando el RGPD", "Exportación a Excel", "Formación para usarlo desde el primer día"],
        aparte="Base de datos con copias de seguridad: unos 25 $/mes, a tu nombre",
-       extra=("¿Prefieres HubSpot, Notion u otro? Te lo configuro", "desde [[crm_configurar.eur]]", "desde [[crm_configurar.mxn]]", ""),
+       extra=("¿Prefieres HubSpot, Notion u otro? Te lo configuro", "desde [[d_crm_configurar.eur]]", "desde [[d_crm_configurar.mxn]]", ""),
        ex=[("Demo CRM restaurante", "../demos/crm-restaurante/"), ("Nexo para gestorías", "https://melinarivera.github.io/Nexo_Facturas/"), ("ZenWi", "https://zenwi.app")]),
   dict(id="formacion", icon="graduation-cap", name="Formación en IA para equipos", ideal="Para que tu equipo use la IA en su trabajo diario",
-       eur="desde [[formacion_ia.eur]]", mxn="desde [[formacion_ia.mxn]]", per="/ taller", new=True,
+       eur="desde [[d_formacion_ia.eur]]", mxn="desde [[d_formacion_ia.mxn]]", per="/ taller", new=True,
        items=["Taller práctico de 2 horas, hasta 10 personas, presencial u online", "Cada persona sale usando la IA en 3 tareas reales de su puesto", "Guía con 15–20 instrucciones listas para copiar, hecha para tu negocio", "Semáforo de datos y normas de uso de IA para tu equipo", "Constancia de asistencia y 2 semanas de dudas por WhatsApp", "En España se puede bonificar con FUNDAE"],
        aparte="Licencias de las herramientas de IA, si el equipo quiere planes de pago",
        ex=[("Tesovia", "https://www.tesovia.com")]),
   dict(id="redes", icon="megaphone", name="Redes sociales y reputación", ideal="Para que te encuentren y te elijan",
-       eur="desde [[redes.eur]]", mxn="desde [[redes.mxn]]", per="/ mes", per_mx="/ mes", new=True,
-       items=["<b>Esencial</b> · <span class='js-price' data-eur='[[redes.eur]]/mes' data-mxn='[[redes.mxn]]/mes'>[[redes.eur]]/mes</span>: 2 redes, 8 publicaciones al mes", "<b>Crecimiento</b> · <span class='js-price' data-eur='[[redes_crecimiento.eur]]/mes' data-mxn='[[redes_crecimiento.mxn]]/mes'>[[redes_crecimiento.eur]]/mes</span>: 12 posts + 4 reels y gestión de anuncios", "Diseños propios con IA y calendario mensual", "Respuesta a reseñas y perfil de Google optimizado"],
+       eur="desde [[d_redes.eur]]", mxn="desde [[d_redes.mxn]]", per="/ mes", per_mx="/ mes", new=True,
+       items=["<b>Esencial</b> · <span class='js-price' data-eur='desde [[d_redes.eur]]/mes' data-mxn='desde [[d_redes.mxn]]/mes'>desde [[d_redes.eur]]/mes</span>: 2 redes, 8 publicaciones al mes", "<b>Crecimiento</b> · <span class='js-price' data-eur='desde [[d_redes_crecimiento.eur]]/mes' data-mxn='desde [[d_redes_crecimiento.mxn]]/mes'>desde [[d_redes_crecimiento.eur]]/mes</span>: 12 posts + 4 reels y gestión de anuncios", "Diseños propios con IA y calendario mensual", "Respuesta a reseñas y perfil de Google optimizado"],
        aparte="La inversión en anuncios la pagas tú directamente a Meta o Google",
-       extra=("Auditoría de tus perfiles con plan de acción", "[[auditoria_redes.eur]]", "[[auditoria_redes.mxn]]", "pago único"),
+       extra=("Auditoría de tus perfiles con plan de acción", "desde [[d_auditoria_redes.eur]]", "desde [[d_auditoria_redes.mxn]]", "pago único"),
        ex=[("Mi Instagram", IG)]),
   dict(id="seo", icon="map-pin", name="Ficha de Google y SEO local", ideal="Para aparecer en Google Maps cuando te buscan cerca",
-       eur="[[seo_local.eur]]", mxn="[[seo_local.mxn]]", per="pago único", per_mx="pago único", new=True,
+       eur="desde [[d_seo_local.eur]]", mxn="desde [[d_seo_local.mxn]]", per="pago único", per_mx="pago único", new=True,
        items=["Ficha de Google completa: categorías, horarios, servicios y fotos", "Textos con las palabras que usan tus clientes", "Respuesta a las reseñas pendientes", "Plantillas para pedir reseñas a tus clientes", "Comprobación de que tus datos coinciden en internet"],
        aparte="Nada: la ficha de Google es gratuita y va a tu nombre",
        ex=[("Piñatas Madrid", "https://melinarivera.github.io/pinata/")]),
   dict(id="uxui", icon="pen-tool", name="Diseño UX/UI", ideal="Para ver y probar tu web o app antes de construirla",
-       eur="desde [[uxui.eur]]", mxn="desde [[uxui.mxn]]", per="/ proyecto", new=True,
-       items=["Entrevista y mapa de lo que necesita tu cliente", "Diseño de pantallas en Figma (web: hasta 5 pantallas)", "Prototipo navegable para probarlo antes de programar", "Guía de estilo: colores, tipografías y botones", "<b>App completa</b> (hasta 15 pantallas y flujo de usuario): <span class='js-price' data-eur='desde [[uxui_app.eur]]' data-mxn='desde [[uxui_app.mxn]]'>desde [[uxui_app.eur]]</span>"],
+       eur="desde [[d_uxui.eur]]", mxn="desde [[d_uxui.mxn]]", per="/ proyecto", new=True,
+       items=["Entrevista y mapa de lo que necesita tu cliente", "Diseño de pantallas en Figma (web: hasta 5 pantallas)", "Prototipo navegable para probarlo antes de programar", "Guía de estilo: colores, tipografías y botones", "<b>App completa</b> (hasta 15 pantallas y flujo de usuario): <span class='js-price' data-eur='desde [[d_uxui_app.eur]]' data-mxn='desde [[d_uxui_app.mxn]]'>desde [[d_uxui_app.eur]]</span>"],
        aparte="Figma: el archivo se entrega en tu cuenta (plan gratuito suficiente para verlo)",
-       extra=("Auditoría UX de tu web o app actual, con informe de mejoras", "[[auditoria_ux.eur]]", "[[auditoria_ux.mxn]]", "pago único"),
+       extra=("Auditoría UX de tu web o app actual, con informe de mejoras", "desde [[d_auditoria_ux.eur]]", "desde [[d_auditoria_ux.mxn]]", "pago único"),
        ex=[("Demo asistente WhatsApp", "../demos/asistente-whatsapp/#estetica"), ("Demo CRM restaurante", "../demos/crm-restaurante/"), ("Tesovia", "https://www.tesovia.com")]),
   dict(id="identidad", icon="palette", name="Identidad visual básica", ideal="Para que tu negocio se reconozca a primera vista",
-       eur="desde [[identidad.eur]]", mxn="desde [[identidad.mxn]]", per="/ proyecto", new=True,
+       eur="desde [[d_identidad.eur]]", mxn="desde [[d_identidad.mxn]]", per="/ proyecto", new=True,
        items=["Logo sencillo con 2 propuestas y versión para redes", "Paleta de colores y tipografías", "Mini guía de marca en PDF", "5 plantillas de Canva para redes", "2 rondas de cambios"],
        aparte="Registro de la marca, si lo quieres (se hace en la oficina de patentes)",
        ex=[("Piñatas Madrid", "https://melinarivera.github.io/pinata/")]),
   dict(id="app", icon="smartphone", name="App o SaaS a medida", ideal="Para tu idea o tu herramienta interna",
-       eur="MVP desde [[app.eur]]", mxn="MVP desde [[app.mxn]]", per="/ proyecto",
+       eur="MVP desde [[d_app.eur]]", mxn="MVP desde [[d_app.mxn]]", per="/ proyecto",
        items=["Definimos juntos la primera versión (MVP)", "Usuarios, roles y panel de administración", "Base de datos y backend incluidos", "Publicación en producción", "30 días de soporte tras el lanzamiento"],
        aparte="Alojamiento, base de datos y, si lleva IA, su consumo",
        ex=[("Tesovia", "https://www.tesovia.com"), ("ETERN-ME", "https://etern-me.com"), ("TravelMates", "https://melinarivera.github.io/TravelMates-App")]),
   dict(id="mant", icon="wrench", name="Mantenimiento", ideal="Para que tu web siempre funcione",
-       eur="desde [[mantenimiento.eur]]", mxn="desde [[mantenimiento.mxn]]", per="/ mes", per_mx="/ mes",
+       eur="desde [[d_mantenimiento.eur]]", mxn="desde [[d_mantenimiento.mxn]]", per="/ mes", per_mx="/ mes",
        items=["Vigilancia de dominio, alojamiento y certificado SSL", "Copias de seguridad", "Pequeños cambios de contenido incluidos", "Soporte directo por WhatsApp"],
        aparte="Las renovaciones de dominio y alojamiento siguen a tu nombre", ex=[]),
 ]
@@ -258,7 +258,8 @@ h2 em{font-style:italic;color:var(--accent-2);font-weight:500}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
 .nav-in{display:flex;align-items:center;gap:20px;min-height:64px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--fg);font-weight:600;white-space:nowrap}
-.brand img{width:34px;height:34px;border-radius:50%}
+.brand img{height:40px;width:auto;border-radius:8px}
+@media(max-width:600px){.brand .bn{display:none}.brand img{height:36px}}
 .nav-links{display:flex;gap:18px;margin-left:auto}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500}
 .nav-links a:hover{color:var(--fg)}
@@ -443,7 +444,7 @@ def build_page():
 </head>
 <body>
 <header class="nav"><div class="wrap nav-in">
-  <a class="brand" href="#inicio"><img src="../img/MR_logo.png" alt=""/>Melina Rivera</a>
+  <a class="brand" href="#inicio"><img src="../marca/mr-logo-3d.png" alt="MR"/><span class="bn">Melina Rivera</span></a>
   <nav class="nav-links" aria-label="Secciones">
     <a href="#servicios">Servicios</a><a href="#incluye">Qué incluye</a><a href="#ia-claro">Gasto mensual</a><a href="#demos">Demos</a><a href="#ejemplos">Ejemplos</a><a href="#contacto">Contacto</a>
   </nav>
@@ -463,7 +464,7 @@ def build_page():
       <a class="btn ghost" href="#demos"><i data-lucide="play"></i>Probar las demos</a>
     </div>
     <div class="sectors" aria-label="Sectores">{secs}</div>
-    <p class="tax js-tax">Precios orientativos sin IVA (21 %). Presupuesto cerrado tras una llamada gratuita de 20 minutos.</p>
+    <p class="tax js-tax">Todos los precios son + IVA (o + impuestos en otros países). Los «desde» son el punto de partida; el precio final depende del alcance y te lo doy cerrado, por escrito, antes de empezar.</p>
   </div></section>
 
   <section class="band" id="servicios"><div class="wrap">
@@ -480,7 +481,7 @@ def build_page():
       <thead><tr><th>Concepto</th><th>Quién lo paga</th><th>Coste aproximado</th><th>Cómo funciona</th></tr></thead>
       <tbody>{rows}</tbody>
     </table></div>
-    <p class="note js-note">Importes orientativos de octubre de 2026 (España, sin IVA). En México las tarifas de Meta y de los proveedores son distintas: te las detallo en el presupuesto.</p>
+    <p class="note js-note">Importes orientativos de octubre de 2026 (España, + IVA). En México las tarifas de Meta y de los proveedores son distintas: te las detallo en el presupuesto.</p>
   </div></section>
 
   <section class="band" id="ia-claro"><div class="wrap">
@@ -507,7 +508,7 @@ def build_page():
         <div class="calc-row"><span>Meta: respuestas a clientes <small id="r-serv-n">gratis hasta 1.000 al mes</small></span><b id="r-serv">0,00 €</b></div>
         <div class="calc-row"><span>Meta: recordatorios <small>≈ 0,0166 € cada uno</small></span><b id="r-rec">0,00 €</b></div>
         <div class="calc-row"><span>Meta: campañas <small>≈ 0,0585 € cada mensaje</small></span><b id="r-camp">0,00 €</b></div>
-        <div class="calc-total"><span>Total aproximado al mes <small>sin IVA</small></span><b id="r-total">0,00 €</b></div>
+        <div class="calc-total"><span>Total aproximado al mes <small>+ IVA</small></span><b id="r-total">0,00 €</b></div>
         <p class="calc-ia">De esa cuota, la IA real que consumes son unos <b id="r-ia">0,00 €</b>. El resto es servidor y mi trabajo de mantenimiento.</p>
       </div>
     </div>
@@ -594,7 +595,7 @@ def build_page():
 <script>
 (function(){{
   if (window.lucide) lucide.createIcons();
-  var TAX = {{ es:'Precios orientativos sin IVA (21 %). Presupuesto cerrado tras una llamada gratuita de 20 minutos.', mx:'Precios orientativos + IVA (16 %). Presupuesto cerrado tras una llamada gratuita de 20 minutos.' }};
+  var TAX = {{ es:'Todos los precios son + IVA (o + impuestos en otros países). Los «desde» son el punto de partida; el precio final depende del alcance y te lo doy cerrado, por escrito, antes de empezar.', mx:'Todos los precios son + IVA (o + impuestos en otros países). Los «desde» son el punto de partida; el precio final depende del alcance y te lo doy cerrado, por escrito, antes de empezar.' }};
   function setCountry(c){{
     document.querySelectorAll('.js-price').forEach(function(el){{ el.textContent = c === 'mx' ? el.dataset.mxn : el.dataset.eur; }});
     document.querySelectorAll('[data-country]').forEach(function(b){{ b.classList.toggle('on', b.dataset.country === c); b.setAttribute('aria-pressed', b.dataset.country === c); }});
@@ -669,7 +670,7 @@ def build_portfolio_summary():
           <button type="button" data-country="es" class="active">🇪🇸 España · €</button>
           <button type="button" data-country="mx">🇲🇽 México · MXN</button>
         </div>
-        <div class="tax-note js-tax">Precios orientativos sin IVA (21 %).</div>
+        <div class="tax-note js-tax">Todos los precios son + IVA (o + impuestos en otros países).</div>
       </div>
       <div class="svc-mini-grid">{cards}
       </div>
