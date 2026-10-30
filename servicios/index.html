@@ -100,6 +100,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .ex{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;text-decoration:none;color:var(--accent-2);border:1px solid rgba(200,145,46,.34);background:var(--accent-dim);border-radius:99px;padding:6px 12px}
 .ex:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 .svc .btn{margin-top:6px}
+.mx{margin:4px 0 2px}
+.mx-track{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;padding-bottom:6px;border-radius:12px}
+.mx-track img{width:88%;flex:none;scroll-snap-align:center;aspect-ratio:16/10;object-fit:cover;border-radius:12px;border:1px solid var(--line);background:var(--bg3)}
+.mx-track:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.mx-cap{display:block;font-size:12.5px;color:var(--muted2);margin-top:2px}
 /* tabla de costes */
 .table{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--bg2)}
 table{width:100%;border-collapse:collapse;min-width:760px}
@@ -246,9 +251,10 @@ footer a{color:var(--muted)}
         <p class="svc-ideal">Para autónomos y negocios que empiezan</p>
         <p class="svc-price"><span class="js-price" data-eur="desde 300 €" data-mxn="desde $4,000 MXN">desde 300 €</span> <small><span class="js-price" data-eur="/ proyecto" data-mxn="/ proyecto">/ proyecto</span></small></p>
         
+        
         <ul><li>Una página clara y rápida, pensada para móvil</li><li>Botón de WhatsApp, formulario y mapa</li><li>Textos orientados a conseguir contactos</li><li>SEO local básico para Google</li><li>Lista en 1–2 semanas</li></ul>
         <p class="svc-aparte"><i data-lucide="info"></i><span><b>Aparte:</b> Dominio y alojamiento a tu nombre · textos legales con iubenda. <a href="#incluye">Ver detalle</a></span></p>
-        <div class="svc-ex"><span>Ejemplos reales</span><a class="ex" href="https://melinarivera.github.io/pinata/" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Piñatas Madrid</a><a class="ex" href="https://melinarivera.github.io/tienda-esoterica/" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Efsun tienda</a></div>
+        <div class="svc-ex"><span>Ejemplos reales</span><a class="ex" href="https://melinarivera.github.io/pinata/" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Piñatas Madrid</a></div>
         <a class="btn ghost js-service" data-service="Landing page sencilla" href="#contacto">Pedir presupuesto</a>
       </article>
       <article class="svc" id="srv-web">
@@ -257,9 +263,10 @@ footer a{color:var(--muted)}
         <p class="svc-ideal">Para pymes que quieren generar confianza</p>
         <p class="svc-price"><span class="js-price" data-eur="desde 900 €" data-mxn="desde $12,000 MXN">desde 900 €</span> <small><span class="js-price" data-eur="/ proyecto" data-mxn="/ proyecto">/ proyecto</span></small></p>
         
+        
         <ul><li>5–7 páginas con estructura pensada para vender</li><li>Blog o catálogo de servicios</li><li>SEO básico en cada página</li><li>WhatsApp, formulario y analítica</li><li>Aviso legal con tus datos + privacidad y cookies con iubenda</li></ul>
         <p class="svc-aparte"><i data-lucide="info"></i><span><b>Aparte:</b> Dominio y alojamiento a tu nombre · suscripción a iubenda. <a href="#incluye">Ver detalle</a></span></p>
-        <div class="svc-ex"><span>Ejemplos reales</span><a class="ex" href="https://etern-me.com" target="_blank" rel="noopener"><i data-lucide="external-link"></i>ETERN-ME</a><a class="ex" href="https://cotidiana.app" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Cotidiana</a></div>
+        <div class="svc-ex"><span>Ejemplos reales</span><a class="ex" href="https://melinarivera.github.io/pyme-efsun/" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Efsun · web con reservas</a></div>
         <a class="btn primary js-service" data-service="Web corporativa" href="#contacto">Pedir presupuesto</a>
       </article>
       <article class="svc" id="srv-tienda">
@@ -268,9 +275,10 @@ footer a{color:var(--muted)}
         <p class="svc-ideal">Para vender o reservar online 24/7</p>
         <p class="svc-price"><span class="js-price" data-eur="desde 1.400 €" data-mxn="desde $16,000 MXN">desde 1.400 €</span> <small><span class="js-price" data-eur="/ proyecto" data-mxn="/ proyecto">/ proyecto</span></small></p>
         
+        
         <ul><li>Catálogo, carrito y pago con tarjeta (Stripe, TPV o Mercado Pago)</li><li>O agenda de citas con recordatorios</li><li>Panel para gestionar pedidos o reservas</li><li>Diseño a medida, sin plantillas</li><li>30 días de soporte tras el lanzamiento</li></ul>
         <p class="svc-aparte"><i data-lucide="info"></i><span><b>Aparte:</b> Comisión de la pasarela de pago en cada venta · alojamiento. <a href="#incluye">Ver detalle</a></span></p>
-        <div class="svc-ex"><span>Ejemplos reales</span><a class="ex" href="https://melinarivera.github.io/pyme-efsun/" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Efsun plataforma</a></div>
+        <div class="svc-ex"><span>Ejemplos reales</span><a class="ex" href="https://melinarivera.github.io/tienda-esoterica/" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Efsun · tienda online</a></div>
         <a class="btn ghost js-service" data-service="Tienda online o reservas" href="#contacto">Pedir presupuesto</a>
       </article>
       <article class="svc" id="srv-ia">
@@ -279,6 +287,7 @@ footer a{color:var(--muted)}
         <p class="svc-ideal">Para dejar de responder siempre lo mismo</p>
         <p class="svc-price"><span class="js-price" data-eur="desde 490 €" data-mxn="desde $4,500 MXN">desde 490 €</span> <small><span class="js-price" data-eur="+ 39 €/mes" data-mxn="+ $790 MXN/mes">+ 39 €/mes</span></small></p>
         <p class="svc-extra">Automatizaciones de procesos (facturas, recordatorios, informes): <b><span class="js-price" data-eur="desde 250 €" data-mxn="desde $3,000 MXN">desde 250 €</span></b> por flujo</p>
+        
         <ul><li>Responde dudas 24/7 en WhatsApp o en tu web</li><li>Entrenado con tu información: precios, horarios, servicios</li><li>Pasa la conversación a una persona cuando hace falta</li><li><b>Con citas</b> (agenda, recordatorios y ficha en el CRM): <span class='js-price' data-eur='desde 990 € + 69 €/mes' data-mxn='desde $8,500 MXN + $1,200 MXN/mes'>desde 990 € + 69 €/mes</span></li><li><b>Tope claro:</b> la cuota incluye 1.000 conversaciones al mes (2.000 con citas), con la IA, el servidor y el mantenimiento. No es ilimitado: si te acercas, te aviso, y si necesitas más, +1.000 conversaciones por <span class='js-price' data-eur='9 €' data-mxn='$150 MXN'>9 €</span>. Nunca se corta sin avisar</li></ul>
         <p class="svc-aparte"><i data-lucide="info"></i><span><b>Aparte:</b> Mensajes de WhatsApp: los cobra Meta a tu negocio. <a href='#ia-claro'>Calcula tu gasto</a>. <a href="#incluye">Ver detalle</a></span></p>
         <div class="svc-ex"><span>Ejemplos reales</span><a class="ex" href="../demos/asistente-whatsapp/#estetica"><i data-lucide="play"></i>Demo estética</a><a class="ex" href="../demos/asistente-whatsapp/#extranjeria"><i data-lucide="play"></i>Demo extranjería</a><a class="ex" href="https://melinarivera.github.io/Nexo_Facturas/" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Nexo: facturas con IA</a></div>
@@ -290,6 +299,7 @@ footer a{color:var(--muted)}
         <p class="svc-ideal">Para no perder ni una llamada</p>
         <p class="svc-price"><span class="js-price" data-eur="desde 490 €" data-mxn="desde $6,500 MXN">desde 490 €</span> <small><span class="js-price" data-eur="+ 69 €/mes" data-mxn="+ $990 MXN/mes">+ 69 €/mes</span></small></p>
         <p class="svc-extra">Minutos extra: <b><span class="js-price" data-eur="+29 €" data-mxn="+$490 MXN">+29 €</span></b> cada 100 minutos</p>
+        
         <ul><li>Contesta el teléfono 24/7 con voz natural, en español</li><li>Da información (horarios, precios, servicios) y toma citas o reservas</li><li>Te envía un resumen de cada llamada por WhatsApp o email</li><li>Pasa la llamada a una persona cuando hace falta</li><li><b>Tope claro:</b> la cuota incluye la IA, la voz, el número y 200 minutos de llamada al mes (unas 100 llamadas de 2 minutos). Si necesitas más, +100 minutos por <span class='js-price' data-eur='29 €' data-mxn='$490 MXN'>29 €</span>. Te aviso antes de llegar al límite</li></ul>
         <p class="svc-aparte"><i data-lucide="info"></i><span><b>Aparte:</b> Desviar tu línea al asistente: según tu operador (normalmente gratis). <a href="#incluye">Ver detalle</a></span></p>
         <div class="svc-ex"><span>Ejemplos reales</span><a class="ex" href="../demos/recepcionista-voz/#restaurante"><i data-lucide="play"></i>Demo: restaurante</a><a class="ex" href="../demos/recepcionista-voz/#clinica"><i data-lucide="play"></i>Demo: clínica</a></div>
@@ -301,6 +311,7 @@ footer a{color:var(--muted)}
         <p class="svc-ideal">Para tener vídeos sin ponerte delante de la cámara</p>
         <p class="svc-price"><span class="js-price" data-eur="desde 90 €" data-mxn="desde $1,500 MXN">desde 90 €</span> <small><span class="js-price" data-eur="/ vídeo" data-mxn="/ vídeo">/ vídeo</span></small></p>
         <p class="svc-extra">Tu propio avatar (con tu cara y tu voz, con tu permiso): <b><span class="js-price" data-eur="desde +120 €" data-mxn="desde +$1,900 MXN">desde +120 €</span></b> pago único</p>
+        
         <ul><li>Un presentador virtual que habla por tu negocio, con voz natural</li><li>Guion, subtítulos y formato para Reels, TikTok o web. <b>Cada vídeo dura hasta 1 minuto</b></li><li><b>Pack mensual</b> (4 vídeos al mes, uno por semana): <span class='js-price' data-eur='desde 320 €/mes' data-mxn='desde $4,900 MXN/mes'>desde 320 €/mes</span></li><li>Ideal para explicar servicios, preguntas frecuentes, cursos y novedades</li><li>Las licencias de la herramienta de vídeo van incluidas</li></ul>
         <p class="svc-aparte"><i data-lucide="info"></i><span><b>Aparte:</b> Nada: el vídeo es tuyo y lo publicas donde quieras. <a href="#incluye">Ver detalle</a></span></p>
         
@@ -312,6 +323,7 @@ footer a{color:var(--muted)}
         <p class="svc-ideal">Para tener clientes y tareas en orden</p>
         <p class="svc-price"><span class="js-price" data-eur="desde 1.200 €" data-mxn="desde $18,000 MXN">desde 1.200 €</span> <small><span class="js-price" data-eur="/ proyecto" data-mxn="/ proyecto">/ proyecto</span></small></p>
         <p class="svc-extra">¿Prefieres HubSpot, Notion u otro? Te lo configuro: <b><span class="js-price" data-eur="desde 300 €" data-mxn="desde $3,500 MXN">desde 300 €</span></b></p>
+        
         <ul><li>Fichas de cliente con historial y segmentos</li><li>Reservas, agenda o embudo de ventas</li><li>Campañas por WhatsApp o email respetando el RGPD</li><li>Exportación a Excel</li><li>Formación para usarlo desde el primer día</li></ul>
         <p class="svc-aparte"><i data-lucide="info"></i><span><b>Aparte:</b> Base de datos con copias de seguridad: unos 25 $/mes, a tu nombre. <a href="#incluye">Ver detalle</a></span></p>
         <div class="svc-ex"><span>Ejemplos reales</span><a class="ex" href="../demos/crm-restaurante/"><i data-lucide="play"></i>Demo CRM restaurante</a><a class="ex" href="https://melinarivera.github.io/Nexo_Facturas/" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Nexo para gestorías</a><a class="ex" href="https://zenwi.app" target="_blank" rel="noopener"><i data-lucide="external-link"></i>ZenWi</a></div>
@@ -322,6 +334,7 @@ footer a{color:var(--muted)}
         <h3>Formación en IA para equipos</h3>
         <p class="svc-ideal">Para que tu equipo use la IA en su trabajo diario</p>
         <p class="svc-price"><span class="js-price" data-eur="desde 250 €" data-mxn="desde $5,500 MXN">desde 250 €</span> <small><span class="js-price" data-eur="/ taller" data-mxn="/ taller">/ taller</span></small></p>
+        
         
         <ul><li>Taller práctico de 2 horas, hasta 10 personas, presencial u online</li><li>Cada persona sale usando la IA en 3 tareas reales de su puesto</li><li>Guía con 15–20 instrucciones listas para copiar, hecha para tu negocio</li><li>Semáforo de datos y normas de uso de IA para tu equipo</li><li>Constancia de asistencia y 2 semanas de dudas por WhatsApp</li><li>En España se puede bonificar con FUNDAE</li></ul>
         <p class="svc-aparte"><i data-lucide="info"></i><span><b>Aparte:</b> Licencias de las herramientas de IA, si el equipo quiere planes de pago. <a href="#incluye">Ver detalle</a></span></p>
@@ -334,6 +347,7 @@ footer a{color:var(--muted)}
         <p class="svc-ideal">Para que te encuentren y te elijan</p>
         <p class="svc-price"><span class="js-price" data-eur="desde 220 €" data-mxn="desde $4,900 MXN">desde 220 €</span> <small><span class="js-price" data-eur="/ mes" data-mxn="/ mes">/ mes</span></small></p>
         <p class="svc-extra">Auditoría de tus perfiles con plan de acción: <b><span class="js-price" data-eur="desde 90 €" data-mxn="desde $1,200 MXN">desde 90 €</span></b> pago único</p>
+        
         <ul><li><b>Esencial</b> · <span class='js-price' data-eur='desde 220 €/mes' data-mxn='desde $4,900 MXN/mes'>desde 220 €/mes</span>: 2 redes, 8 publicaciones al mes</li><li><b>Crecimiento</b> · <span class='js-price' data-eur='desde 420 €/mes' data-mxn='desde $8,500 MXN/mes'>desde 420 €/mes</span>: 12 posts + 4 reels y gestión de anuncios</li><li>Diseños propios con IA y calendario mensual</li><li>Respuesta a reseñas y perfil de Google optimizado</li></ul>
         <p class="svc-aparte"><i data-lucide="info"></i><span><b>Aparte:</b> La inversión en anuncios la pagas tú directamente a Meta o Google. <a href="#incluye">Ver detalle</a></span></p>
         <div class="svc-ex"><span>Ejemplos reales</span><a class="ex" href="https://www.instagram.com/melina_rivera_developer/" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Mi Instagram</a></div>
@@ -344,6 +358,7 @@ footer a{color:var(--muted)}
         <h3>Ficha de Google y SEO local</h3>
         <p class="svc-ideal">Para aparecer en Google Maps cuando te buscan cerca</p>
         <p class="svc-price"><span class="js-price" data-eur="desde 150 €" data-mxn="desde $2,800 MXN">desde 150 €</span> <small><span class="js-price" data-eur="pago único" data-mxn="pago único">pago único</span></small></p>
+        
         
         <ul><li>Ficha de Google completa: categorías, horarios, servicios y fotos</li><li>Textos con las palabras que usan tus clientes</li><li>Respuesta a las reseñas pendientes</li><li>Plantillas para pedir reseñas a tus clientes</li><li>Comprobación de que tus datos coinciden en internet</li></ul>
         <p class="svc-aparte"><i data-lucide="info"></i><span><b>Aparte:</b> Nada: la ficha de Google es gratuita y va a tu nombre. <a href="#incluye">Ver detalle</a></span></p>
@@ -356,9 +371,10 @@ footer a{color:var(--muted)}
         <p class="svc-ideal">Para ver y probar tu web o app antes de construirla</p>
         <p class="svc-price"><span class="js-price" data-eur="desde 380 €" data-mxn="desde $6,000 MXN">desde 380 €</span> <small><span class="js-price" data-eur="/ proyecto" data-mxn="/ proyecto">/ proyecto</span></small></p>
         <p class="svc-extra">Auditoría UX de tu web o app actual, con informe de mejoras: <b><span class="js-price" data-eur="desde 200 €" data-mxn="desde $2,800 MXN">desde 200 €</span></b> pago único</p>
+        
         <ul><li>Entrevista y mapa de lo que necesita tu cliente</li><li>Diseño de pantallas en Figma (web: hasta 5 pantallas)</li><li>Prototipo navegable para probarlo antes de programar</li><li>Guía de estilo: colores, tipografías y botones</li><li><b>App completa</b> (hasta 15 pantallas y flujo de usuario): <span class='js-price' data-eur='desde 1.200 €' data-mxn='desde $18,000 MXN'>desde 1.200 €</span></li></ul>
         <p class="svc-aparte"><i data-lucide="info"></i><span><b>Aparte:</b> Figma: el archivo se entrega en tu cuenta (plan gratuito suficiente para verlo). <a href="#incluye">Ver detalle</a></span></p>
-        <div class="svc-ex"><span>Ejemplos reales</span><a class="ex" href="../demos/prototipo-ux/"><i data-lucide="play"></i>Demo: prototipo de app</a><a class="ex" href="https://www.tesovia.com" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Tesovia</a></div>
+        <div class="svc-ex"><span>Ejemplos reales</span><a class="ex" href="../demos/prototipo-ux/"><i data-lucide="play"></i>Demo: prototipo de app</a></div>
         <a class="btn ghost js-service" data-service="Diseño UX/UI" href="#contacto">Pedir presupuesto</a>
       </article>
       <article class="svc" id="srv-identidad">
@@ -366,6 +382,7 @@ footer a{color:var(--muted)}
         <h3>Identidad visual básica</h3>
         <p class="svc-ideal">Para que tu negocio se reconozca a primera vista</p>
         <p class="svc-price"><span class="js-price" data-eur="desde 390 €" data-mxn="desde $5,500 MXN">desde 390 €</span> <small><span class="js-price" data-eur="/ proyecto" data-mxn="/ proyecto">/ proyecto</span></small></p>
+        
         
         <ul><li>Logo sencillo con 2 propuestas y versión para redes</li><li>Paleta de colores y tipografías</li><li>Mini guía de marca en PDF</li><li>5 plantillas de Canva para redes</li><li>2 rondas de cambios</li></ul>
         <p class="svc-aparte"><i data-lucide="info"></i><span><b>Aparte:</b> Registro de la marca, si lo quieres (se hace en la oficina de patentes). <a href="#incluye">Ver detalle</a></span></p>
@@ -378,9 +395,10 @@ footer a{color:var(--muted)}
         <p class="svc-ideal">Para tu idea o tu herramienta interna</p>
         <p class="svc-price"><span class="js-price" data-eur="MVP desde 3.500 €" data-mxn="MVP desde $42,000 MXN">MVP desde 3.500 €</span> <small><span class="js-price" data-eur="/ proyecto" data-mxn="/ proyecto">/ proyecto</span></small></p>
         
+        
         <ul><li>Definimos juntos la primera versión (MVP)</li><li>Usuarios, roles y panel de administración</li><li>Base de datos y backend incluidos</li><li>Publicación en producción</li><li>30 días de soporte tras el lanzamiento</li></ul>
         <p class="svc-aparte"><i data-lucide="info"></i><span><b>Aparte:</b> Alojamiento, base de datos y, si lleva IA, su consumo. <a href="#incluye">Ver detalle</a></span></p>
-        <div class="svc-ex"><span>Ejemplos reales</span><a class="ex" href="https://www.tesovia.com" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Tesovia</a><a class="ex" href="https://etern-me.com" target="_blank" rel="noopener"><i data-lucide="external-link"></i>ETERN-ME</a><a class="ex" href="https://melinarivera.github.io/TravelMates-App" target="_blank" rel="noopener"><i data-lucide="external-link"></i>TravelMates</a></div>
+        <div class="svc-ex"><span>Ejemplos reales</span><a class="ex" href="https://www.tesovia.com" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Tesovia</a><a class="ex" href="https://etern-me.com" target="_blank" rel="noopener"><i data-lucide="external-link"></i>ETERN-ME</a></div>
         <a class="btn ghost js-service" data-service="App o SaaS a medida" href="#contacto">Pedir presupuesto</a>
       </article>
       <article class="svc" id="srv-mant">
@@ -388,6 +406,7 @@ footer a{color:var(--muted)}
         <h3>Mantenimiento</h3>
         <p class="svc-ideal">Para que tu web siempre funcione</p>
         <p class="svc-price"><span class="js-price" data-eur="desde 39 €" data-mxn="desde $990 MXN">desde 39 €</span> <small><span class="js-price" data-eur="/ mes" data-mxn="/ mes">/ mes</span></small></p>
+        
         
         <ul><li>Vigilancia de dominio, alojamiento y certificado SSL</li><li>Copias de seguridad</li><li>Pequeños cambios de contenido incluidos</li><li>Soporte directo por WhatsApp</li></ul>
         <p class="svc-aparte"><i data-lucide="info"></i><span><b>Aparte:</b> Las renovaciones de dominio y alojamiento siguen a tu nombre. <a href="#incluye">Ver detalle</a></span></p>

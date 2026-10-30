@@ -36,17 +36,17 @@ S = [
        eur="desde [[d_landing.eur]]", mxn="desde [[d_landing.mxn]]", per="/ proyecto",
        items=["Una página clara y rápida, pensada para móvil", "Botón de WhatsApp, formulario y mapa", "Textos orientados a conseguir contactos", "SEO local básico para Google", "Lista en 1–2 semanas"],
        aparte="Dominio y alojamiento a tu nombre · textos legales con iubenda",
-       ex=[("Piñatas Madrid", "https://melinarivera.github.io/pinata/"), ("Efsun tienda", "https://melinarivera.github.io/tienda-esoterica/")]),
+       ex=[("Piñatas Madrid", "https://melinarivera.github.io/pinata/")], muestras="landing"),
   dict(id="web", icon="store", name="Web corporativa", ideal="Para pymes que quieren generar confianza",
        eur="desde [[d_web.eur]]", mxn="desde [[d_web.mxn]]", per="/ proyecto", popular=True,
        items=["5–7 páginas con estructura pensada para vender", "Blog o catálogo de servicios", "SEO básico en cada página", "WhatsApp, formulario y analítica", "Aviso legal con tus datos + privacidad y cookies con iubenda"],
        aparte="Dominio y alojamiento a tu nombre · suscripción a iubenda",
-       ex=[("ETERN-ME", "https://etern-me.com"), ("Cotidiana", "https://cotidiana.app")]),
+       ex=[("Efsun · web con reservas", "https://melinarivera.github.io/pyme-efsun/")], muestras="web"),
   dict(id="tienda", icon="shopping-bag", name="Tienda online o reservas", ideal="Para vender o reservar online 24/7",
        eur="desde [[d_tienda.eur]]", mxn="desde [[d_tienda.mxn]]", per="/ proyecto",
        items=["Catálogo, carrito y pago con tarjeta (Stripe, TPV o Mercado Pago)", "O agenda de citas con recordatorios", "Panel para gestionar pedidos o reservas", "Diseño a medida, sin plantillas", "30 días de soporte tras el lanzamiento"],
        aparte="Comisión de la pasarela de pago en cada venta · alojamiento",
-       ex=[("Efsun plataforma", "https://melinarivera.github.io/pyme-efsun/")]),
+       ex=[("Efsun · tienda online", "https://melinarivera.github.io/tienda-esoterica/")], muestras="tienda"),
   dict(id="ia", icon="sparkles", name="Asistente de WhatsApp con IA", ideal="Para dejar de responder siempre lo mismo",
        eur="desde [[d_ia.eur]]", mxn="desde [[d_ia.mxn]]", per="+ [[d_ia_cuota.eur]]/mes", per_mx="+ [[d_ia_cuota.mxn]]/mes", new=True,
        items=["Responde dudas 24/7 en WhatsApp o en tu web", "Entrenado con tu información: precios, horarios, servicios", "Pasa la conversación a una persona cuando hace falta", "<b>Con citas</b> (agenda, recordatorios y ficha en el CRM): <span class='js-price' data-eur='desde [[d_ia_citas.eur]] + [[d_ia_citas_cuota.eur]]/mes' data-mxn='desde [[d_ia_citas.mxn]] + [[d_ia_citas_cuota.mxn]]/mes'>desde [[d_ia_citas.eur]] + [[d_ia_citas_cuota.eur]]/mes</span>", "<b>Tope claro:</b> la cuota incluye [[ia_incluidas.n_fmt]] conversaciones al mes ([[ia_citas_incluidas.n_fmt]] con citas), con la IA, el servidor y el mantenimiento. No es ilimitado: si te acercas, te aviso, y si necesitas más, +1.000 conversaciones por <span class='js-price' data-eur='[[ia_bloque_extra.eur]]' data-mxn='[[ia_bloque_extra.mxn]]'>[[ia_bloque_extra.eur]]</span>. Nunca se corta sin avisar"],
@@ -81,7 +81,7 @@ S = [
        items=["<b>Esencial</b> · <span class='js-price' data-eur='desde [[d_redes.eur]]/mes' data-mxn='desde [[d_redes.mxn]]/mes'>desde [[d_redes.eur]]/mes</span>: 2 redes, 8 publicaciones al mes", "<b>Crecimiento</b> · <span class='js-price' data-eur='desde [[d_redes_crecimiento.eur]]/mes' data-mxn='desde [[d_redes_crecimiento.mxn]]/mes'>desde [[d_redes_crecimiento.eur]]/mes</span>: 12 posts + 4 reels y gestión de anuncios", "Diseños propios con IA y calendario mensual", "Respuesta a reseñas y perfil de Google optimizado"],
        aparte="La inversión en anuncios la pagas tú directamente a Meta o Google",
        extra=("Auditoría de tus perfiles con plan de acción", "desde [[d_auditoria_redes.eur]]", "desde [[d_auditoria_redes.mxn]]", "pago único"),
-       ex=[("Mi Instagram", IG)]),
+       ex=[("Mi Instagram", IG)], muestras="redes"),
   dict(id="seo", icon="map-pin", name="Ficha de Google y SEO local", ideal="Para aparecer en Google Maps cuando te buscan cerca",
        eur="desde [[d_seo_local.eur]]", mxn="desde [[d_seo_local.mxn]]", per="pago único", per_mx="pago único", new=True,
        items=["Ficha de Google completa: categorías, horarios, servicios y fotos", "Textos con las palabras que usan tus clientes", "Respuesta a las reseñas pendientes", "Plantillas para pedir reseñas a tus clientes", "Comprobación de que tus datos coinciden en internet"],
@@ -92,17 +92,17 @@ S = [
        items=["Entrevista y mapa de lo que necesita tu cliente", "Diseño de pantallas en Figma (web: hasta 5 pantallas)", "Prototipo navegable para probarlo antes de programar", "Guía de estilo: colores, tipografías y botones", "<b>App completa</b> (hasta 15 pantallas y flujo de usuario): <span class='js-price' data-eur='desde [[d_uxui_app.eur]]' data-mxn='desde [[d_uxui_app.mxn]]'>desde [[d_uxui_app.eur]]</span>"],
        aparte="Figma: el archivo se entrega en tu cuenta (plan gratuito suficiente para verlo)",
        extra=("Auditoría UX de tu web o app actual, con informe de mejoras", "desde [[d_auditoria_ux.eur]]", "desde [[d_auditoria_ux.mxn]]", "pago único"),
-       ex=[("Demo: prototipo de app", "../demos/prototipo-ux/"), ("Tesovia", "https://www.tesovia.com")]),
+       ex=[("Demo: prototipo de app", "../demos/prototipo-ux/")], muestras="uxui"),
   dict(id="identidad", icon="palette", name="Identidad visual básica", ideal="Para que tu negocio se reconozca a primera vista",
        eur="desde [[d_identidad.eur]]", mxn="desde [[d_identidad.mxn]]", per="/ proyecto", new=True,
        items=["Logo sencillo con 2 propuestas y versión para redes", "Paleta de colores y tipografías", "Mini guía de marca en PDF", "5 plantillas de Canva para redes", "2 rondas de cambios"],
        aparte="Registro de la marca, si lo quieres (se hace en la oficina de patentes)",
-       ex=[("Demo: tu marca en un minuto", "../demos/identidad-visual/"), ("Piñatas Madrid", "https://melinarivera.github.io/pinata/")]),
+       ex=[("Demo: tu marca en un minuto", "../demos/identidad-visual/"), ("Piñatas Madrid", "https://melinarivera.github.io/pinata/")], muestras="identidad"),
   dict(id="app", icon="smartphone", name="App o SaaS a medida", ideal="Para tu idea o tu herramienta interna",
        eur="MVP desde [[d_app.eur]]", mxn="MVP desde [[d_app.mxn]]", per="/ proyecto",
        items=["Definimos juntos la primera versión (MVP)", "Usuarios, roles y panel de administración", "Base de datos y backend incluidos", "Publicación en producción", "30 días de soporte tras el lanzamiento"],
        aparte="Alojamiento, base de datos y, si lleva IA, su consumo",
-       ex=[("Tesovia", "https://www.tesovia.com"), ("ETERN-ME", "https://etern-me.com"), ("TravelMates", "https://melinarivera.github.io/TravelMates-App")]),
+       ex=[("Tesovia", "https://www.tesovia.com"), ("ETERN-ME", "https://etern-me.com")]),
   dict(id="mant", icon="wrench", name="Mantenimiento", ideal="Para que tu web siempre funcione",
        eur="desde [[d_mantenimiento.eur]]", mxn="desde [[d_mantenimiento.mxn]]", per="/ mes", per_mx="/ mes",
        items=["Vigilancia de dominio, alojamiento y certificado SSL", "Copias de seguridad", "Pequeños cambios de contenido incluidos", "Soporte directo por WhatsApp"],
@@ -179,6 +179,18 @@ def link(label, href, cls="ex"):
     icon = "external-link" if ext else "play"
     return f'<a class="{cls}" href="{href}"{" target=\"_blank\" rel=\"noopener\"" if ext else ""}><i data-lucide="{icon}"></i>{html.escape(label)}</a>'
 
+def muestras_html(key):
+    """Carrusel de muestras de diseño. Solo sale si existen las imágenes."""
+    if not key: return ""
+    d = os.path.join(ROOT, "img", "muestras")
+    files = sorted(f for f in os.listdir(d) if f.startswith(key + "-")) if os.path.isdir(d) else []
+    if not files: return ""
+    slides = "".join(
+        f'<img src="../img/muestras/{f}" alt="Muestra de diseño {i+1}" loading="lazy" decoding="async"/>'
+        for i, f in enumerate(files))
+    return (f'<div class="mx"><div class="mx-track" tabindex="0" aria-label="Muestras de diseño">{slides}</div>'
+            f'<span class="mx-cap">Muestras de diseño, no son clientes reales</span></div>')
+
 def service_card(s):
     badges = ""
     if s.get("popular"): badges += '<span class="flag">Más pedido</span>'
@@ -198,6 +210,7 @@ def service_card(s):
         <p class="svc-ideal">{s['ideal']}</p>
         <p class="svc-price">{P(s['eur'], s['mxn'])} <small>{P(s['per'], per_mx)}</small></p>
         {extra}
+        {muestras_html(s.get('muestras'))}
         <ul>{''.join(f'<li>{i}</li>' for i in s['items'])}</ul>
         <p class="svc-aparte"><i data-lucide="info"></i><span><b>Aparte:</b> {s['aparte']}. <a href="#incluye">Ver detalle</a></span></p>
         {ex}
@@ -309,6 +322,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .ex{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;text-decoration:none;color:var(--accent-2);border:1px solid rgba(200,145,46,.34);background:var(--accent-dim);border-radius:99px;padding:6px 12px}
 .ex:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 .svc .btn{margin-top:6px}
+.mx{margin:4px 0 2px}
+.mx-track{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;padding-bottom:6px;border-radius:12px}
+.mx-track img{width:88%;flex:none;scroll-snap-align:center;aspect-ratio:16/10;object-fit:cover;border-radius:12px;border:1px solid var(--line);background:var(--bg3)}
+.mx-track:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.mx-cap{display:block;font-size:12.5px;color:var(--muted2);margin-top:2px}
 /* tabla de costes */
 .table{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--bg2)}
 table{width:100%;border-collapse:collapse;min-width:760px}

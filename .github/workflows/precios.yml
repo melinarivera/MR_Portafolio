@@ -8,6 +8,7 @@ on:
     paths:
       - "servicios/precios.json"
       - "tools/build_servicios.py"
+      - "img/muestras/**"
   workflow_dispatch:
 
 permissions:
