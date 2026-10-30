@@ -186,7 +186,7 @@ def muestras_html(key):
         f'<img src="../img/muestras/{f}" alt="Muestra de diseño {i+1}" loading="lazy" decoding="async"/>'
         for i, f in enumerate(files))
     return (f'<div class="mx"><div class="mx-track" tabindex="0" aria-label="Muestras de diseño">{slides}</div>'
-            f'<span class="mx-cap">Muestras de diseño, no son clientes reales</span></div>')
+            f'<span class="mx-cap">Muestras de diseño</span></div>')
 
 def service_card(s):
     badges = ""
