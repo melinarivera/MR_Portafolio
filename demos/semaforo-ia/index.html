@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="theme-color" content="#09172E"/>
+<link rel="icon" href="../../marca/mr-favicon.svg" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<title>Demo · Semáforo de datos para usar IA</title>
+<meta name="description" content="Una muestra del taller de IA para equipos: el semáforo de datos (qué se puede meter en la IA y qué no) e instrucciones listas para copiar."/>
+<style>
+:root{--night:#09172E;--blue:#2A4A8C;--silver:#C8CDD4;--paper:#F4F6F9;--ink:#141A2B;--muted:#56607A;--rule:#DCE1E9;--ok:#1D7F4B;--warn:#B45309;--red:#C2362B;color-scheme:light}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+svg.lucide{width:1em;height:1em;stroke-width:1.9;flex:none}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid #9CB8E0;outline-offset:2px}
+.wrap{max-width:900px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-left)) 48px}
+header.top{background:var(--night);color:#EEF1F6}
+header.top .wrap{padding-top:18px;padding-bottom:24px}
+.back{color:var(--silver);font-weight:600;text-decoration:none;font-size:14.5px;display:inline-flex;gap:6px;align-items:center;min-height:44px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(26px,4.5vw,36px);line-height:1.15;margin-top:4px}
+.lead{color:var(--silver);max-width:62ch;margin-top:8px}
+.tag{display:inline-block;margin-top:14px;font-size:13px;color:#C8D6EE;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:4px 12px}
+h2{font-family:"Playfair Display",Georgia,serif;font-size:22px;margin:28px 0 12px}
+.card{background:#fff;border:1px solid var(--rule);border-radius:16px;padding:16px 18px}
+.foot{margin-top:30px;color:var(--muted);font-size:14px}
+.foot a{color:var(--blue);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--rule);background:#fff;color:var(--ink);font-weight:600}
+.btn.primary{background:var(--night);color:#fff;border-color:var(--night)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.chip{border:1px solid var(--rule);background:#fff;border-radius:12px;min-height:46px;padding:8px 14px;text-align:left;font-weight:500;color:var(--ink);display:inline-flex;align-items:center;gap:8px}
+.chip[aria-pressed=true]{border-color:var(--night);box-shadow:0 0 0 2px var(--night) inset}
+.res{margin-top:14px;border-radius:16px;padding:16px 18px;border:1px solid var(--rule);background:#fff;min-height:96px}
+.res .lt{display:inline-flex;align-items:center;gap:8px;font-weight:700;margin-bottom:4px}
+.dot{width:14px;height:14px;border-radius:50%;display:inline-block}
+.g{background:var(--ok)}.a{background:#E0A100}.r{background:var(--red)}
+.res.g2{background:#EAF6EE;border-color:#BFE3CC}.res.a2{background:#FFF6DD;border-color:#F1D98B}.res.r2{background:#FCE9E7;border-color:#F2B8B2}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;color:var(--muted);font-size:14px}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.pr{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.pr h3{font-size:16px}
+.pr pre{white-space:pre-wrap;font:inherit;background:#F0F3F8;border-radius:12px;padding:12px 14px;color:#27304a;font-size:14.5px}
+.pr .btn{align-self:flex-start;min-height:42px}
+.note{color:var(--muted);font-size:13.5px;margin-top:10px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="back" href="../../servicios/#servicios"><i data-lucide="arrow-left"></i>Servicios</a>
+  <h1>Antes de pegarlo en la IA, mira el semáforo</h1>
+  <p class="lead">Dos cosas del taller de IA para equipos: qué datos se pueden meter en la IA y qué instrucciones sirven para el trabajo diario.</p>
+  <span class="tag">Muestra del taller · ejemplos genéricos</span>
+</div></header>
+<main class="wrap">
+  <h2 style="margin-top:22px">1. El semáforo de datos</h2>
+  <p>Toca una situación y mira de qué color es.</p>
+  <div class="chips" id="chips"></div>
+  <div class="res" id="res" aria-live="polite"><span style="color:var(--muted)">Elige una situación para ver la respuesta.</span></div>
+  <div class="legend"><span><i class="dot g"></i>Verde: adelante</span><span><i class="dot a"></i>Ámbar: antes, quita los datos personales</span><span><i class="dot r"></i>Rojo: nunca</span></div>
+  <p class="note">Es una guía general. Depende de la herramienta y del plan que uses, así que en el taller lo ajustamos a las normas de tu empresa.</p>
+
+  <h2>2. Instrucciones listas para copiar</h2>
+  <p>Cambia lo que va entre corchetes y pégalo en la IA que uses.</p>
+  <div class="card pr" id="prs"></div>
+
+  <p class="foot">¿Quieres esto para tu equipo, con tus propios casos? <a href="https://wa.me/34711593111?text=Hola%20Melina%2C%20me%20interesa%20el%20taller%20de%20IA%20para%20mi%20equipo">Escríbeme por WhatsApp</a> o <a href="../../servicios/#servicios">mira los servicios</a>.</p>
+</main>
+<script>
+lucide.createIcons();
+var ITEMS=[
+ ["El texto público de mi web","g","Es información que ya es pública. Puedes usarlo para mejorar textos o crear variantes."],
+ ["Ideas para un post de Instagram","g","No hay datos de nadie. Es el mejor uso para empezar."],
+ ["Una plantilla de correo sin nombres","g","Sin datos personales, no hay riesgo. Pide versiones más cortas o más cercanas."],
+ ["El correo de un cliente que quiero contestar","a","Antes de pegarlo, quita nombre, teléfono y datos concretos. Pide la respuesta con [cliente] en su lugar."],
+ ["Una factura para resumirla","a","Quita NIF, IBAN y direcciones antes. Si solo necesitas ver los importes, copia solo esa parte."],
+ ["Un contrato para entender una cláusula","a","Pega solo la cláusula, sin nombres ni cifras. Y consúltalo con tu asesor: la IA puede equivocarse."],
+ ["Una contraseña o un código de acceso","r","Nunca. Ni para «que me ayude a recordarla». Cámbiala si la has pegado sin querer."],
+ ["El DNI o el IBAN de una persona","r","Nunca. Son datos personales que no deben salir de tus sistemas."],
+ ["Datos de salud de un cliente o paciente","r","Nunca en herramientas generales. Son datos especialmente protegidos."]
+];
+var LAB={g:"Verde",a:"Ámbar",r:"Rojo"},CLS={g:"g2",a:"a2",r:"r2"};
+var chips=document.getElementById('chips'),res=document.getElementById('res');
+ITEMS.forEach(function(it,i){
+  var b=document.createElement('button');b.type='button';b.className='chip';b.setAttribute('aria-pressed','false');
+  b.innerHTML='<i class="dot '+it[1]+'"></i><span></span>';b.lastChild.textContent=it[0];
+  b.addEventListener('click',function(){
+    chips.querySelectorAll('.chip').forEach(function(c){c.setAttribute('aria-pressed','false')});
+    b.setAttribute('aria-pressed','true');
+    res.className='res '+CLS[it[1]];
+    res.innerHTML='<div class="lt"><i class="dot '+it[1]+'"></i>'+LAB[it[1]]+'</div><div></div>';
+    res.lastChild.textContent=it[2];
+  });chips.appendChild(b);
+});
+var PR=[
+ ["Contestar una reseña negativa","Eres el responsable de atención al cliente de [tipo de negocio]. Responde con amabilidad y sin excusas a esta reseña: [pega la reseña sin nombres]. Máximo 80 palabras. Reconoce el problema, ofrece una solución y deja un contacto."],
+ ["Resumir una reunión","Resume estas notas en tres partes: decisiones tomadas, tareas con responsable y fecha, y dudas pendientes. Notas: [pega las notas]. Usa frases cortas."],
+ ["Preparar una propuesta","Redacta una propuesta de [servicio] para [tipo de cliente] en 5 apartados: problema, solución, plazo, precio orientativo y siguientes pasos. Tono cercano y profesional, máximo una página."]
+];
+var prs=document.getElementById('prs');
+PR.forEach(function(p){
+  var d=document.createElement('div');d.className='pr';
+  d.innerHTML='<h3></h3><pre></pre><button class="btn" type="button"><i data-lucide="copy"></i><span>Copiar</span></button>';
+  d.querySelector('h3').textContent=p[0];d.querySelector('pre').textContent=p[1];
+  var bt=d.querySelector('button');
+  bt.addEventListener('click',function(){
+    function ok(){bt.querySelector('span').textContent='Copiado';setTimeout(function(){bt.querySelector('span').textContent='Copiar'},1800)}
+    if(navigator.clipboard){navigator.clipboard.writeText(p[1]).then(ok,function(){})}else{ok()}
+  });
+  prs.appendChild(d);
+});
+lucide.createIcons();
+</script>
+</body></html>

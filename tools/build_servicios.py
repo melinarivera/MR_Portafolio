@@ -75,7 +75,7 @@ S = [
        eur="desde [[d_formacion_ia.eur]]", mxn="desde [[d_formacion_ia.mxn]]", per="/ taller", new=True,
        items=["Taller práctico de 2 horas, hasta 10 personas, presencial u online", "Cada persona sale usando la IA en 3 tareas reales de su puesto", "Guía con 15–20 instrucciones listas para copiar, hecha para tu negocio", "Semáforo de datos y normas de uso de IA para tu equipo", "Constancia de asistencia y 2 semanas de dudas por WhatsApp", "En España se puede bonificar con FUNDAE"],
        aparte="Licencias de las herramientas de IA, si el equipo quiere planes de pago",
-       ex=[("Tesovia", "https://www.tesovia.com")]),
+       ex=[("Demo: semáforo de datos", "../demos/semaforo-ia/"), ("Tesovia", "https://www.tesovia.com")]),
   dict(id="redes", icon="megaphone", name="Redes sociales y reputación", ideal="Para que te encuentren y te elijan",
        eur="desde [[d_redes.eur]]", mxn="desde [[d_redes.mxn]]", per="/ mes", per_mx="/ mes", new=True,
        items=["<b>Esencial</b> · <span class='js-price' data-eur='desde [[d_redes.eur]]/mes' data-mxn='desde [[d_redes.mxn]]/mes'>desde [[d_redes.eur]]/mes</span>: 2 redes, 8 publicaciones al mes", "<b>Crecimiento</b> · <span class='js-price' data-eur='desde [[d_redes_crecimiento.eur]]/mes' data-mxn='desde [[d_redes_crecimiento.mxn]]/mes'>desde [[d_redes_crecimiento.eur]]/mes</span>: 12 posts + 4 reels y gestión de anuncios", "Diseños propios con IA y calendario mensual", "Respuesta a reseñas y perfil de Google optimizado"],
@@ -106,7 +106,7 @@ S = [
   dict(id="mant", icon="wrench", name="Mantenimiento", ideal="Para que tu web siempre funcione",
        eur="desde [[d_mantenimiento.eur]]", mxn="desde [[d_mantenimiento.mxn]]", per="/ mes", per_mx="/ mes",
        items=["Vigilancia de dominio, alojamiento y certificado SSL", "Copias de seguridad", "Pequeños cambios de contenido incluidos", "Soporte directo por WhatsApp"],
-       aparte="Las renovaciones de dominio y alojamiento siguen a tu nombre", ex=[]),
+       aparte="Las renovaciones de dominio y alojamiento siguen a tu nombre", ex=[("Demo: informe mensual", "../demos/informe-mantenimiento/")]),
 ]
 
 PACKS = [
@@ -539,6 +539,14 @@ def build_page():
         <div class="demo-body"><h3>Nexo: facturas con IA para gestorías</h3>
           <p>Para despachos que llevan varias empresas: recepción de facturas, lectura con IA, aprobaciones, conciliación, incidencias y exportación al programa contable.</p>
           <div class="actions"><a class="btn primary" href="https://melinarivera.github.io/Nexo_Facturas/" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Abrir la demo</a></div></div></article>
+      <article class="demo"><div class="ph"><i data-lucide="shield-check"></i></div>
+        <div class="demo-body"><h3>Informe mensual de mantenimiento</h3>
+          <p>Lo que recibe cada mes quien tiene mantenimiento: web disponible, copias de seguridad, certificado, dominio y los cambios hechos. Pide un cambio y mira cómo queda anotado.</p>
+          <div class="actions"><a class="btn primary" href="../demos/informe-mantenimiento/"><i data-lucide="play"></i>Abrir la demo</a></div></div></article>
+      <article class="demo"><div class="ph"><i data-lucide="traffic-cone"></i></div>
+        <div class="demo-body"><h3>Taller de IA: el semáforo de datos</h3>
+          <p>Una muestra del taller: toca una situación y mira si se puede meter en la IA, y copia tres instrucciones listas para usar en el trabajo diario.</p>
+          <div class="actions"><a class="btn primary" href="../demos/semaforo-ia/"><i data-lucide="play"></i>Abrir la demo</a></div></div></article>
       <article class="demo"><div class="ph"><i data-lucide="phone-call"></i></div>
         <div class="demo-body"><h3>Recepcionista de voz con IA</h3>
           <p>Escucha cómo atiende una llamada: toma una reserva en un restaurante o una cita en una clínica, y te envía el resumen por WhatsApp. Simulada, con datos ficticios.</p>
